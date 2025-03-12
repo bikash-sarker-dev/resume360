@@ -1,1 +1,25 @@
+/* fonts import  */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+/* tailwindcss config  */
 @import "tailwindcss";
+
+/* theme custom color  */
+@theme {
+  --color-r-primary: #40cdc3;
+  --color-r-secondary: #86abdf;
+  --color-r-accent: #6d81d9;
+  --color-r-text: #030b0b;
+  --color-r-background: #effbfa;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+}
+
+.container {
+  width: 92%;
+  max-width: 1170px;
+  margin: 0 auto;
+}
