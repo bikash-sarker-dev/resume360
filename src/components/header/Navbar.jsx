@@ -3,10 +3,12 @@ import { Link } from "react-router";
 
 const Navbar = () => {
   return (
-    <div>
-      <ul className="flex gap-5 bg-cyan-600 py-3">
+    <div className="bg-r-secondary">
+      <ul className=" container flex gap-5  text-xl py-3">
         <li>
-          <Link to="/">Home</Link>
+          <Link className="" to="/">
+            Home
+          </Link>
         </li>
         <li>
           <Link to="/login">login</Link>
