@@ -11,11 +11,13 @@
   --color-r-accent: #6d81d9;
   --color-r-text: #030b0b;
   --color-r-background: #effbfa;
+  --color-r-info: #e6f8f7;
 }
 
 body {
   font-family: "Inter", sans-serif;
   font-style: normal;
+  background-color: #effbfa;
 }
 
 .container {
