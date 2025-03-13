@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from "react-router";
 
 const LoginPage = () => {
-  return <div className="container py-28">
+  return <div className="container py-24">
    <div className="hero bg-background">
   <div className="hero-content flex-1 flex-col lg:flex-row">
     <div className="text-center lg:text-left">
       <h1 className="text-5xl font-bold">Seamless Login for Exclusive Access</h1>
       <p className="py-6">
         Immerse yourself in a hassle-free login journey with our intuitively designed login form. Effortless access your account.
+        <br></br>
         <br></br>
         <br></br>
         Don't have an account? <span className="underline"><Link to='/register'>Register here</Link></span>
@@ -31,6 +32,12 @@ const LoginPage = () => {
           </div>
           <button className="btn btn-primary mt-4">Login</button>
         </fieldset>
+        <div className="divider">OR</div>
+        <div className="text-center text-3xl">
+        <i className="fa-brands fa-google mr-5"></i>
+        <i className="fa-brands fa-facebook mr-5"></i>
+        <i className="fa-brands fa-apple"></i>
+        </div>
       </div>
     </div>
   </div>
