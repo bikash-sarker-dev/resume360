@@ -41,7 +41,7 @@ const ProfessionalTemplate = () => {
   };
 
   return (
-    <section>
+    <section className="my-24">
       <div className="container">
         <SectionHead
           subTitle={"The best resume builder online"}
