@@ -25,3 +25,80 @@ body {
   max-width: 1170px;
   margin: 0 auto;
 }
+
+
+/* 
+this is for navbar active button , after setup all router then active this 
+
+
+a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 15px;
+  color: #030b0b;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+Active  color
+
+a.active {
+  color: #40cdc3;
+}
+
+Underline animation
+ 
+a.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transform: translateX(-50%);
+}
+
+Expand underline on active
+
+a.active::after {
+  width: 100%;
+} */
+
+
+/* for slide naimation in hero text */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Common animation class */
+.slide-up {
+  animation: slideUp 0.8s ease-in-out forwards;
+  opacity: 0; /* Ensures elements are hidden before animation starts */
+}
+
+/* Delayed animations */
+.slide-up-h1 {
+  animation-delay: 0.3s;
+}
+
+.slide-up-p {
+  animation-delay: 0.6s;
+}
+
+.slide-up-btn {
+  animation-delay: 0.9s;
+}
+
+
+
