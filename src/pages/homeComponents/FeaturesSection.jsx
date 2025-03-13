@@ -10,7 +10,7 @@ const FeaturesSection = () => {
         <div className="">
             <div className="max-w-6xl mx-auto py-16 px-4">
                 <p className="text-center mb-5 text-r-primary">Discover Our Exclusive Features</p>
-                <h2 className="md:text-4xl text-3xl font-bold text-center mb-14 text-r-text">Our Features</h2>
+                <h2 className="md:text-4xl text-2xl font-bold text-center mb-14 text-r-text">Our Features</h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-md:max-w-md mx-auto">
                     <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all">
