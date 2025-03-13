@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router";
 
 const LoginPage = () => {
+
+  const [showPassword,setShowPassword]=useState(false)
+
+  const handleLogin = (event) => {
+    event.preventDefault()
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    const user = {email,password}
+    console.log(user);
+  }
+
   return <div className="container py-24">
    <div className="hero bg-background">
   <div className="hero-content flex-1 flex-col lg:flex-row">
@@ -17,21 +29,22 @@ const LoginPage = () => {
     </div>
     <div className="card w-full">
       <div className="card-body">
-        <h2 className="text-2xl font-bold mb-5">Login</h2>
-        <fieldset className="fieldset">
+       <form  onSubmit={handleLogin}>
+       <fieldset className="fieldset">
           <label className="fieldset-label">Email</label>
-          <input type="email" className="input w-full" placeholder="Email" />
+          <input type="email" name="email" className="input w-full" placeholder="Email" />
           <label className="fieldset-label">Password</label>
-          <input type="password" className="input w-full" placeholder="Password" />
+          <input type="password" name="password" className="input w-full" placeholder="Password" />
           <div className="flex justify-between items-center">
           <label className="fieldset-label">
           <input type="checkbox" defaultChecked className="checkbox" />
            Remember me
           </label>
-          <div><a className="link link-hover">Forgot password?</a></div>
+          <div><a className="link link-hover">Forgot your password?</a></div>
           </div>
           <button className="btn btn-primary mt-4">Login</button>
         </fieldset>
+       </form>
         <div className="divider">OR</div>
         <div className="text-center text-3xl">
         <i className="fa-brands fa-google mr-5"></i>
