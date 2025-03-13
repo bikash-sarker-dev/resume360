@@ -1,3 +1,9 @@
+import { BiCustomize } from "react-icons/bi";
+import { LuSquareDashedMousePointer } from "react-icons/lu";
+import { VscPreview } from "react-icons/vsc";
+import { BsRobot } from "react-icons/bs";
+import { FaRegFileAlt } from "react-icons/fa";
+import { PiReadCvLogo } from "react-icons/pi";
 
 const FeaturesSection = () => {
     return (
