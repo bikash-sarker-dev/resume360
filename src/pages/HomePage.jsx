@@ -1,7 +1,10 @@
 import React from "react";
+import { Subscriptions } from "../components/Subscriptions/Subscriptions";
 
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return <div>
+    <Subscriptions></Subscriptions>
+  </div>;
 };
 
 export default HomePage;
