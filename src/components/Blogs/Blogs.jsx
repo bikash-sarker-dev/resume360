@@ -19,7 +19,7 @@ const [Blogs,setBlogs]=useState([])
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 ">
      Latest Insights & Career Tips
   </h2>
-  <p className="text-lg md:text-xl text-gray-600 mt-2">
+  <p className="text-lg md:text-xl text-gray-600 mt-3">
     Stay updated with expert advice on resume writing, job searching, and career growth. 
     Explore trending topics to boost your professional journey!
   </p>
