@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router";
 
 const LoginPage = () => {
@@ -11,14 +12,14 @@ const LoginPage = () => {
     const email = form.email.value;
     const password = form.password.value;
     const user = {email,password}
-    console.log(user);
+    // console.log(user);
   }
 
-  return <div className="container py-24">
+  return <div className="container py-20">
    <div className="hero bg-background">
   <div className="hero-content flex-1 flex-col lg:flex-row">
     <div className="text-center lg:text-left">
-      <h1 className="text-5xl font-bold">Seamless Login for Exclusive Access</h1>
+      <h1 className="text-3xl md:4xl lg:text-5xl font-bold">Seamless Login for Exclusive Access</h1>
       <p className="py-6">
         Immerse yourself in a hassle-free login journey with our intuitively designed login form. Effortless access your account.
         <br></br>
@@ -29,12 +30,19 @@ const LoginPage = () => {
     </div>
     <div className="card w-full">
       <div className="card-body">
+        <h2 className="text-xl lg:text-2xl font-bold mb-4">Login</h2>
        <form  onSubmit={handleLogin}>
        <fieldset className="fieldset">
           <label className="fieldset-label">Email</label>
           <input type="email" name="email" className="input w-full" placeholder="Email" />
           <label className="fieldset-label">Password</label>
-          <input type="password" name="password" className="input w-full" placeholder="Password" />
+          <input type={showPassword?'text':'password'} name="password" className="input w-full" placeholder="Password" />
+          {/* show password checkbox */}
+          <label className="fieldset-label">
+          <input onClick={()=>setShowPassword(!showPassword)} type="checkbox" defaultChecked className="checkbox" />
+           Show Password
+          </label>
+          {/* remember me checkbox */}
           <div className="flex justify-between items-center">
           <label className="fieldset-label">
           <input type="checkbox" defaultChecked className="checkbox" />
