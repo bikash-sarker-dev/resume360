@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
-import Banner from "../Banner/Banner";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -29,11 +28,16 @@ const Navbar = () => {
         >
           {/* Logo */}
           <div className="text-2xl font-serif ">
+<<<<<<< HEAD
             Resumes<span className="font-bold text-r-primary">360</span>
+=======
+            Resume<span className="font-bold text-r-primary">360</span>
+>>>>>>> 3c5bc3383ccec08025604a5e8bc0ea12c1a0b1fd
           </div>
 
           {/* Desktop Navigation */}
           <ul className="hidden lg:flex space-x-6 text-lg font-medium">
+<<<<<<< HEAD
             <Link className="cursor-pointer hover:text-gray-300 transition-all">
               Home
             </Link>
@@ -41,6 +45,24 @@ const Navbar = () => {
               Vlog
             </Link>
             <Link className="cursor-pointer hover:text-gray-300 transition-all">
+=======
+            <Link
+              to="/"
+              className="cursor-pointer hover:text-gray-300 transition-all"
+            >
+              Home
+            </Link>
+            <Link
+              to=""
+              className="cursor-pointer hover:text-gray-300 transition-all"
+            >
+              Vlog
+            </Link>
+            <Link
+              to=""
+              className="cursor-pointer hover:text-gray-300 transition-all"
+            >
+>>>>>>> 3c5bc3383ccec08025604a5e8bc0ea12c1a0b1fd
               Info
             </Link>
           </ul>
@@ -109,10 +131,13 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
+<<<<<<< HEAD
 
       <div>
         <Banner></Banner>
       </div>
+=======
+>>>>>>> 3c5bc3383ccec08025604a5e8bc0ea12c1a0b1fd
     </>
   );
 };
