@@ -45,7 +45,7 @@ export const Subscriptions = () => {
                    
                   </ul>
                   <div className="mt-6 ">
-                    <button className="btn btn-active  bg-[#86abdf] ">Subscribe</button>
+                    <button className="btn btn-active  bg-[#86abdf] hover:bg-r-accent">Subscribe</button>
                   </div>
                 </div>
               </div>)
