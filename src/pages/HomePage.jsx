@@ -1,7 +1,12 @@
 import React from "react";
+import ProfessionalTemplate from "../components/home/pro-Templates/ProfessionalTemplate";
 
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return (
+    <div>
+      <ProfessionalTemplate />
+    </div>
+  );
 };
 
 export default HomePage;
