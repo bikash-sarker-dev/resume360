@@ -18,36 +18,41 @@ export const Subscriptions = () => {
     )
 
   return (
-    <div className='container mx-auto '>
-        Subscriptions  {subscriptions.length}
-
+    <div className='container mx-auto py-16'>
+      <div className='text-center font-bold'>
+      <h5 className='text-lg md:text-xl mb-3 opacity-80'>Choose the Perfect Plan for Your Career Growth</h5>
+      <h1 className='text-2xl md:text-3xl lg:text-5xl'> Choose a Subscription </h1>
+      </div>
         <div className='mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
         gap-8
         '>
             {
-                subscriptions.map((subscription ,idx)=><div className="card w-96 bg-base-100 shadow-sm">
+                subscriptions.map((subscription ,idx)=><div 
+                className="card p-4 bg-white  shadow-sm">
                 <div className="card-body">
-                  <span className="badge badge-xs badge-warning">Most Popular</span>
+                  <span className="badge badge-xs badge-warning">{subscription.popularityBadge && subscription.popularityBadge }</span>
                   <div className="flex justify-between">
-                    <h2 className="text-3xl font-bold">Premium</h2>
-                    <span className="text-xl">$29/mo</span>
+                    <h2 className="text-3xl font-bold">{subscription.name}</h2>
+                    <span className="text-xl">${subscription.price}/mo</span>
                   </div>
                   <ul className="mt-6 flex flex-col gap-2 text-xs">
                    {
                     subscription.features.map(feature=> <li>
-                        <p></p>  
-                        <span>High-resolution image generation</span>
+                        <p className='inline-block mr-2'>{feature.available?"✅":"❌"}</p>  
+                        <span className=' font-bold opacity-80'>{feature.name}</span>
                       </li>)
                    }
                    
                   </ul>
-                  <div className="mt-6">
-                    <button className="btn btn-primary btn-block">Subscribe</button>
+                  <div className="mt-6 ">
+                    <button className="btn btn-active  bg-[#86abdf] ">Subscribe</button>
                   </div>
                 </div>
               </div>)
             }
         </div>
+
+   
         
         
         </div>

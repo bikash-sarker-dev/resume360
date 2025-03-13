@@ -5,6 +5,7 @@
         "name": "Free",
         "price": 0,
         "description": "Get started with basic resume templates and essential features for free.",
+        "popularityBadge": "Basic",
         "features": [
           { "name": "Basic Resume Templates", "available": true },
           { "name": "Advanced Resume Templates", "available": false },
@@ -24,6 +25,8 @@
         "name": "Pro",
         "price": 9.99,
         "description": "Unlock advanced templates, AI suggestions, and customization options.",
+        "popularityBadge": "Most Popular",
+       
         "features": [
           { "name": "Basic Resume Templates", "available": true },
           { "name": "Advanced Resume Templates", "available": true },
@@ -43,6 +46,7 @@
         "name": "Elite",
         "price": 19.99,
         "description": "Get full access to AI tools, analytics, and priority support for career growth.",
+        "popularityBadge": "Premium Choice",
         "features": [
           { "name": "Basic Resume Templates", "available": true },
           { "name": "Advanced Resume Templates", "available": true },
