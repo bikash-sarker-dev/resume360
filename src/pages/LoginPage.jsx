@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router";
 
 const LoginPage = () => {
@@ -15,31 +14,28 @@ const LoginPage = () => {
     // console.log(user);
   }
 
-  return <div className="container py-20">
+  return <div className="container py-8 lg:py-12">
    <div className="hero bg-background">
   <div className="hero-content flex-1 flex-col lg:flex-row">
     <div className="text-center lg:text-left">
       <h1 className="text-3xl md:4xl lg:text-5xl font-bold">Seamless Login for Exclusive Access</h1>
-      <p className="py-6">
-        Immerse yourself in a hassle-free login journey with our intuitively designed login form. Effortless access your account.
-        <br></br>
-        <br></br>
-        <br></br>
-        Don't have an account? <span className="underline"><Link to='/register'>Register here</Link></span>
+      <p className="py-6 w-10/12 mx-auto lg:mx-0">
+        Immerse yourself in a hassle-free login journey with our intuitively designed login form. Effortless access your account.</p>
+        <p>Don't have an account? <span className="underline"><Link to='/register'>Register here</Link></span>
       </p>
     </div>
-    <div className="card w-full">
+    <div className="card w-full md:w-8/12">
       <div className="card-body">
         <h2 className="text-xl lg:text-2xl font-bold mb-4">Login</h2>
        <form  onSubmit={handleLogin}>
        <fieldset className="fieldset">
           <label className="fieldset-label">Email</label>
-          <input type="email" name="email" className="input w-full" placeholder="Email" />
+          <input type="email" name="email" className="input w-full" placeholder="Enter Email" />
           <label className="fieldset-label">Password</label>
-          <input type={showPassword?'text':'password'} name="password" className="input w-full" placeholder="Password" />
+          <input type={showPassword?'text':'password'} name="password" className="input w-full" placeholder="Enter Password" />
           {/* show password checkbox */}
           <label className="fieldset-label">
-          <input onClick={()=>setShowPassword(!showPassword)} type="checkbox" defaultChecked className="checkbox" />
+          <input onClick={()=>setShowPassword(!showPassword)} type="checkbox" className="checkbox" />
            Show Password
           </label>
           {/* remember me checkbox */}
