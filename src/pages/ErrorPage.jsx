@@ -1,4 +1,7 @@
 import React from "react";
+import errorLottieData from "../assets/animation/error.json"
+import Lottie from "lottie-react";
+import { Link } from "react-router";
 
 const ErrorPage = () => {
   return <div>
