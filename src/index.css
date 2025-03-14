@@ -15,6 +15,7 @@
   --color-r-text: #030b0b;
   --color-r-background: #effbfa;
   --color-r-info: #ccf2ef;
+  --color-r-info-card: #daebf5;
   --color-r-card: #e6f8f7;
 }
 
@@ -29,3 +30,114 @@ body {
   max-width: 1170px;
   margin: 0 auto;
 }
+<<<<<<< HEAD
+
+
+/* 
+this is for navbar active button , after setup all router then active this 
+
+
+a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 15px;
+  color: #030b0b;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+Active  color
+
+a.active {
+  color: #40cdc3;
+}
+
+Underline animation
+ 
+a.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transform: translateX(-50%);
+}
+
+Expand underline on active
+
+a.active::after {
+  width: 100%;
+} */
+
+
+/* for slide naimation in hero text */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Common animation class */
+.slide-up {
+  animation: slideUp 0.8s ease-in-out forwards;
+  opacity: 0; /* Ensures elements are hidden before animation starts */
+}
+
+/* Delayed animations */
+.slide-up-h1 {
+  animation-delay: 0.3s;
+}
+
+.slide-up-p {
+  animation-delay: 0.6s;
+}
+
+.slide-up-btn {
+  animation-delay: 0.9s;
+}
+
+
+/* this is for brand logo motion  */
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.logo-container div {
+  opacity: 0;
+  transform: translateX(100%);
+  animation: slideInRight 0.5s ease-in-out forwards;
+}
+
+.logo-container div:nth-child(1) {
+  animation-delay: 0.3s;
+}
+.logo-container div:nth-child(2) {
+  animation-delay: 0.6s;
+}
+.logo-container div:nth-child(3) {
+  animation-delay: 0.9s;
+}
+.logo-container div:nth-child(4) {
+  animation-delay: 1.2s;
+}
+
+=======
+>>>>>>> 4e0e69f74c8dbe5c21c33970e36142ae4bc85539
