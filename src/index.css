@@ -4,6 +4,9 @@
 /* tailwindcss config  */
 @import "tailwindcss";
 
+/* Daisy Ui */
+@plugin "daisyui";
+
 /* theme custom color  */
 @theme {
   --color-r-primary: #40cdc3;
