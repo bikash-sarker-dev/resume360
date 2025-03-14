@@ -3,55 +3,71 @@ import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer
-      className="relative bg-cover bg-center bg-no-repeat text-r-text py-16 px-8 md:px-16"
-      style={{
-        backgroundImage: "url('')",
-      }}
-    >
-      {/* Dark overlay */}
-      <div className="absolute inset-0  bg-opacity-60"></div>
-
-      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+    <footer className="relative  bg-r-info  text-r-text pt-16 pb-8 px-8 md:px-16">
+      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-16 text-center md:text-left">
         {/* Brand Section */}
-        <div>
-        <div className="text-3xl font-serif ">
+        <div className=" flex md:flex-row md:w-max items-center flex-col w-full space-x-5  lg:space-x-20">
+          <div className="text-3xl font-serif ">
             Resumes<span className="font-bold text-r-primary">360</span>
           </div>
-          <p className="mt-2 text-gray-500">
-            Build your perfect resume in minutes with our AI-powered tools.
-          </p>
-        </div>
 
-        {/* Navigation Links */}
-        <div>
-          <h3 className="text-xl font-semibold">Quick Links</h3>
-          <ul className="mt-3 space-y-2">
-            <li><a  className="hover:text-gray-400">Home</a></li>
-            <li><a  className="hover:text-gray-400">Features</a></li>
-            <li><a  className="hover:text-gray-400">Pricing</a></li>
-            <li><a  className="hover:text-gray-400">Contact</a></li>
-          </ul>
+          {/* Social & Legal Links */}
+
+          <div className=" ">
+            <h3 className="text-xl mt-5 md:mt-0 font-semibold">
+              Stay Connected
+            </h3>
+
+            <div className="mt-3 flex justify-center md:justify-start space-x-4">
+              <a href="#" className="hover:text-gray-400 text-2xl">
+                <FaFacebookF />
+              </a>
+              <a href="#" className="hover:text-gray-400 text-2xl">
+                <FaTwitter />
+              </a>
+              <a href="#" className="hover:text-gray-400 text-2xl">
+                <FaLinkedinIn />
+              </a>
+            </div>
+          </div>
         </div>
 
         {/* Social & Legal Links */}
-        <div>
-          <h3 className="text-xl font-semibold">Stay Connected</h3>
-          <div className="mt-3 flex justify-center md:justify-start space-x-4">
-      <a href="#" className="hover:text-gray-400 text-2xl">
-        <FaFacebookF />
-      </a>
-      <a href="#" className="hover:text-gray-400 text-2xl">
-        <FaTwitter />
-      </a>
-      <a href="#" className="hover:text-gray-400 text-2xl">
-        <FaLinkedinIn />
-      </a>
-    </div>
-          <div className="mt-4">
-            <a  className="text-gray-400 text-sm hover:text-gray-500">Privacy Policy</a> |  
-            <a  className="text-gray-400 text-sm hover:text-gray-500"> Terms of Use</a>
-          </div>
+
+        {/* Navigation Links */}
+        <div className="flex flex-col md:ml-16 ml-0 text-left items-center">
+          <h3 className="text-xl ml-[-20px] font-semibold">Menu</h3>
+          <ul className="mt-3 space-y-2">
+            <li>
+              <a className="hover:text-gray-400">Home</a>
+            </li>
+            <li>
+              <a className="hover:text-gray-400">Features</a>
+            </li>
+            <li>
+              <a className="hover:text-gray-400">Pricing</a>
+            </li>
+            <li>
+              <a className="hover:text-gray-400">Contact</a>
+            </li>
+          </ul>
+        </div>
+        <div className="flex flex-col items-center text-left">
+          <h3 className="text-xl  ml-[-50px] font-semibold">Information</h3>
+          <ul className="mt-3 space-y-2">
+            <li>
+              <a className="hover:text-gray-400">About Us</a>
+            </li>
+            <li>
+              <a className="hover:text-gray-400">Terms & Conditions</a>
+            </li>
+            <li>
+              <a className="hover:text-gray-400">Privacy Policy</a>
+            </li>
+            <li>
+              <a className="hover:text-gray-400">FAQ</a>
+            </li>
+          </ul>
         </div>
       </div>
 

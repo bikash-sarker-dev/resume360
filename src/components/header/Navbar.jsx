@@ -33,21 +33,32 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <ul className="hidden lg:flex space-x-6 text-lg font-medium">
-            <Link className="cursor-pointer hover:text-gray-300 transition-all">
+            <Link
+              to="/"
+              className="cursor-pointer hover:text-gray-300 transition-all"
+            >
               Home
             </Link>
-            <Link className="cursor-pointer hover:text-gray-300 transition-all">
+            <Link
+              to=""
+              className="cursor-pointer hover:text-gray-300 transition-all"
+            >
               Vlog
             </Link>
-            <Link className="cursor-pointer hover:text-gray-300 transition-all">
+            <Link
+              to=""
+              className="cursor-pointer hover:text-gray-300 transition-all"
+            >
               Info
             </Link>
           </ul>
 
           {/* Login Button (Desktop) */}
-          <button className="hidden lg:block shadow shadow-r-primary px-6 py-3 rounded-lg text-lg font-semibold duration-500 text-r-accent hover:text-r-text hover:bg-r-primary transition">
-            Login
-          </button>
+          <Link to="/login">
+            <button className="hidden lg:block shadow shadow-r-primary px-6 py-3 rounded-lg text-lg font-semibold duration-500 text-r-accent hover:text-r-text hover:bg-r-primary transition">
+              Login
+            </button>
+          </Link>
 
           {/* Mobile Menu Button */}
           <button
