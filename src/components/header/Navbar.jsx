@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
-import Banner from "../Banner/Banner";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -110,9 +109,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div>
-        <Banner></Banner>
-      </div>
+      
     </>
   );
 };
