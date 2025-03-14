@@ -6,11 +6,16 @@ import Counter from "../components/home/counter/Counter";
 import ProfessionalTemplate from "../components/home/pro-Templates/ProfessionalTemplate";
 import { Subscriptions } from "../components/home/Subscriptions/Subscriptions";
 
+import FeaturesSection from "./../components/home/features/FeaturesSection";
+import StepsSection from "./../components/home/stepsBySteps/StepsSection";
+
 const HomePage = () => {
   return (
     <div>
       <Banner />
       <BrandLogo />
+      <FeaturesSection />
+      <StepsSection />
       <ProfessionalTemplate />
       <Counter />
       <Subscriptions></Subscriptions>
