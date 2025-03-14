@@ -1,0 +1,53 @@
+{
+    "blogs": [
+      {
+        "id": 1,
+        "title": "10 Resume Tips to Land Your Dream Job",
+        "author": "Jane Doe",
+        "authorAvatar": "https://i.ibb.co.com/c2j7Tt5/guide5.jpg",
+        "date": "2025-03-12",
+        "thumbnail": "https://i.ibb.co.com/HTQKsLvc/blog1.jpg",
+        "description": "Learn the essential resume tips that will make your application stand out from the competition.",
+        "readTime": "5 min read",
+        "category": "Resume Writing",
+        "tags": ["Resume", "Job Search", "Career Growth"],
+        "likes": 254,
+        "comments": 18,
+        "fullBlogUrl": "https://example.com/blog/resume-tips"
+      },
+      {
+        "id": 2,
+        "title": "How to Write a Cover Letter That Gets Noticed",
+        "author": "Emily Johnson",
+        "authorAvatar": "https://i.ibb.co.com/x7b5RkP/guide4.jpg",
+        "date": "2025-03-10",
+        "thumbnail": "https://i.ibb.co.com/hRHP9v5M/blog-2.jpg",
+        "description": "A step-by-step guide on crafting a cover letter that impresses hiring managers.",
+        "readTime": "6 min read",
+        "category": "Cover Letter",
+        "tags": ["Cover Letter", "Job Application", "Writing Tips"],
+        "likes": 312,
+        "comments": 22,
+        "fullBlogUrl": "https://example.com/blog/cover-letter-guide"
+      },
+      {
+        "id": 3,
+        "title": " Top In-Demand Skills Employers Are Seeking in 2025",
+        "author": "Alexander Brooks",
+        "authorAvatar": "https://i.ibb.co.com/YBWKXJ5/person1.jpg",
+        "date": "2025-03-08",
+        "thumbnail": "https://i.ibb.co.com/27C0gGLk/blog-3.jpg",
+        "description": "Discover the most in-demand skills for 2025 and how to highlight them on your resume.",
+        "readTime": "7 min read",
+        "category": "Career Advice",
+        "tags": ["Job Market", "Skills", "Future Trends"],
+        "likes": 410,
+        "comments": 30,
+        "fullBlogUrl": "https://example.com/blog/top-skills-2025"
+      }
+    ]
+  }
+  
+
+
+  
