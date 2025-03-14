@@ -1,6 +1,6 @@
 import React from "react";
-import { Subscriptions } from "../components/Subscriptions/Subscriptions";
-import { Blogs } from "../components/Blogs/Blogs";
+import { Subscriptions } from "../components/home/Subscriptions/Subscriptions";
+import { Blogs } from "../components/home/Blogs/Blogs";
 
 
 import Banner from "../components/home/Banner/Banner";
