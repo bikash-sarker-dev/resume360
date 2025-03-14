@@ -20,7 +20,7 @@ export const Subscriptions = () => {
   return (
     <div className='container mx-auto py-16'>
       <div className='text-center font-bold'>
-      <h5 className='text-lg md:text-xl mb-3 opacity-80'>Choose the Perfect Plan for Your Career Growth</h5>
+      <h5 className='text-lg md:text-xl mb-3 opacity-80'>Choose the Perfect Plan for Your Career Growth.</h5>
       <h1 className='text-2xl md:text-3xl lg:text-5xl'> Choose a Subscription </h1>
       </div>
         <div className='mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
