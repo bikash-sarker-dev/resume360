@@ -54,9 +54,11 @@ const Navbar = () => {
           </ul>
 
           {/* Login Button (Desktop) */}
-          <button className="hidden lg:block shadow shadow-r-primary px-6 py-3 rounded-lg text-lg font-semibold duration-500 text-r-accent hover:text-r-text hover:bg-r-primary transition">
-            Login
-          </button>
+          <Link to="/login">
+            <button className="hidden lg:block shadow shadow-r-primary px-6 py-3 rounded-lg text-lg font-semibold duration-500 text-r-accent hover:text-r-text hover:bg-r-primary transition">
+              Login
+            </button>
+          </Link>
 
           {/* Mobile Menu Button */}
           <button
