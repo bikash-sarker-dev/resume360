@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
+
 export const Blogs = () => {
 const [Blogs,setBlogs]=useState([])
         useEffect(
@@ -47,6 +48,7 @@ const [Blogs,setBlogs]=useState([])
                         
                       </div>
                     </div>
+                  
                   </div>)
             }
         </div>

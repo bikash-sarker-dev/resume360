@@ -2,11 +2,25 @@ import React from "react";
 import { Subscriptions } from "../components/Subscriptions/Subscriptions";
 import { Blogs } from "../components/Blogs/Blogs";
 
+
+import Banner from "../components/home/Banner/Banner";
+import Counter from "../components/home/counter/Counter";
+import FeaturesSection from "../components/home/features/FeaturesSection";
+import ProfessionalTemplate from "../components/home/pro-Templates/ProfessionalTemplate";
+import StepsSection from "../components/home/stepsBySteps/StepsSection";
+
 const HomePage = () => {
-  return <div>
-    <Subscriptions></Subscriptions>
-    <Blogs></Blogs>
-  </div>;
+  return (
+    <div>
+      <Banner />
+      <FeaturesSection />
+      <StepsSection />
+      <ProfessionalTemplate />
+      <Counter />
+      <Subscriptions></Subscriptions>
+      <Blogs></Blogs>
+    </div>
+  );
 };
 
 export default HomePage;
