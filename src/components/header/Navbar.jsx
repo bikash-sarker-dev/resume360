@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { FiMenu, FiX } from "react-icons/fi";
 import { Link } from "react-router";
 
 const Navbar = () => {
@@ -18,109 +19,95 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScroll]);
 
+  const menu = [
+    <>
+      <Link
+        to="/"
+        className="cursor-pointer hover:text-gray-300 transition-all"
+      >
+        Home
+      </Link>
+      <Link to="" className="cursor-pointer hover:text-gray-300 transition-all">
+        Vlog
+      </Link>
+      <Link to="" className="cursor-pointer hover:text-gray-300 transition-all">
+        Info
+      </Link>
+      <Link to="" className="cursor-pointer hover:text-gray-300 transition-all">
+        about
+      </Link>
+      <Link to="" className="cursor-pointer hover:text-gray-300 transition-all">
+        menu 5
+      </Link>
+    </>
+  ];
+
   return (
     <>
-      <div className="relative z-50 w-full">
+      <div className=" ">
         <header
-          className={`fixed top-0 left-0 w-full  text-r-text bg-opacity-80 backdrop-blur-md z-20 p-4 flex items-center justify-between shadow-md transition-transform duration-300 ${
+          className={`fixed  top-0 left-0  w-full bg-r-info/80  text-r-text  backdrop-blur-sm z-50 px-4 py-3  shadow-md transition-transform duration-500 ${
             hidden ? "-translate-y-full" : "translate-y-0"
           }`}
         >
+          <div className="flex items-center justify-between w-10/12 mx-auto">
           {/* Logo */}
           <div className="text-2xl font-serif ">
             Resumes<span className="font-bold text-r-primary">360</span>
           </div>
 
           {/* Desktop Navigation */}
-          <ul className="hidden lg:flex space-x-6 text-lg font-medium">
-            <Link
-              to="/"
-              className="cursor-pointer hover:text-gray-300 transition-all"
-            >
-              Home
-            </Link>
-            <Link
-              to=""
-              className="cursor-pointer hover:text-gray-300 transition-all"
-            >
-              Vlog
-            </Link>
-            <Link
-              to=""
-              className="cursor-pointer hover:text-gray-300 transition-all"
-            >
-              Info
-            </Link>
+          <ul className="hidden md:flex ml-20  space-x-6  text-lg font-medium">
+            {menu}
           </ul>
 
           {/* Login Button (Desktop) */}
+          <div className="flex gap-4">
           <Link to="/login">
-            <button className="hidden lg:block shadow shadow-r-primary px-6 py-3 rounded-lg text-lg font-semibold duration-500 text-r-accent hover:text-r-text hover:bg-r-primary transition">
+            <button className="hidden lg:block shadow shadow-r-primary px-6 py-2 rounded-lg text-lg font-semibold duration-500 text-r-accent hover:text-r-text hover:bg-r-primary transition">
               Login
             </button>
           </Link>
+          <Link to="/register">
+            <button className="hidden lg:block shadow shadow-r-primary px-6 py-2 rounded-lg text-lg font-semibold duration-500 text-r-accent hover:text-r-text hover:bg-r-primary transition">
+              register
+            </button>
+          </Link>
+          </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile hamburger Button */}
           <button
-            className="lg:hidden  p-2 focus:outline-none z-30"
+            className="lg:hidden text-3xl  px-2 focus:outline-none z-30"
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            <div
-              className={`w-6 h-0.5 bg-r-accent mb-1 transition-all ${
-                menuOpen ? "rotate-45 translate-y-1.5" : ""
-              }`}
-            ></div>
-            <div
-              className={`w-6 h-0.5 bg-r-accent mb-1 transition-all ${
-                menuOpen ? "opacity-0" : ""
-              }`}
-            ></div>
-            <div
-              className={`w-6 h-0.5 bg-r-primary transition-all ${
-                menuOpen ? "-rotate-45 -translate-y-1.5" : ""
-              }`}
-            ></div>
+            <div 
+                >{ menuOpen ? <FiX></FiX> : <FiMenu></FiMenu>}</div>
+           
           </button>
+          </div>
         </header>
 
         {/* Mobile Dropdown Menu */}
         <div
-          className={`lg:hidden fixed top-0 rounded-3xl backdrop-blur-3xl opacity-30  right-10 w-[300px]  text-r-text transition-all duration-300 ease-in-out ${
+          className={`lg:hidden z-30 fixed top-0 rounded-3xl backdrop-blur-3xl opacity-30  right-10 w-[300px]  text-r-text transition-all duration-500 ease-in-out ${
             menuOpen
               ? "opacity-100 z-0 translate-y-0 top-16"
               : "opacity-0  -translate-y-full pointer-events-none"
           }`}
         >
-          <ul className="flex flex-col items-center space-y-4 py-6 text-lg">
-            <Link
-              className="cursor-pointer hover:text-gray-300"
-              onClick={() => setMenuOpen(false)}
-            >
-              Home
+          <ul
+            className="flex flex-col items-center space-y-4 py-6 text-lg"
+            onClick={() => setMenuOpen(false)}
+          >
+            {menu}
+            <Link to="/login">
+              <button className="shadow shadow-r-primary px-6 py-3 rounded-lg text-lg font-semibold duration-500 text-r-text hover:text-r-text hover:bg-r-primary transition">
+                Login
+              </button>
             </Link>
-            <Link
-              className="cursor-pointer hover:text-gray-300"
-              onClick={() => setMenuOpen(false)}
-            >
-              Vlog
-            </Link>
-            <Link
-              className="cursor-pointer hover:text-gray-300"
-              onClick={() => setMenuOpen(false)}
-            >
-              Info
-            </Link>
-            <button
-              className="shadow shadow-r-primary px-6 py-3 rounded-lg text-lg font-semibold duration-500 text-r-text hover:text-r-text hover:bg-r-primary transition"
-              onClick={() => setMenuOpen(false)}
-            >
-              Login
-            </button>
           </ul>
         </div>
       </div>
-
-      
     </>
   );
 };
