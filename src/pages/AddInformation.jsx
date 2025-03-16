@@ -1,10 +1,10 @@
-import PersonalInfo from "../components/information-input/personal-info/PersonalInfo";
-
+import InformationInput from "../components/information-input/InformationInput";
 
 const AddInformation = () => {
     return (
         <>
-          <PersonalInfo></PersonalInfo>  
+          <InformationInput></InformationInput>
+          
         </>
     );
 };
