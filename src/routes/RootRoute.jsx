@@ -10,6 +10,7 @@ import RegisterPage from "../pages/RegisterPage";
 import TemplatePage from "../pages/TemplatePage";
 import User from "../pages/User";
 import AboutPage from "./../pages/AboutPage";
+import AddInformation from "../pages/AddInformation";
 
 const RootRoute = () => {
   return (
@@ -22,6 +23,7 @@ const RootRoute = () => {
         <Route path="/user" element={<User />} />
         <Route path="/templates" element={<TemplatePage />} />
         <Route path="/personal-info" element={<PersonalInfoPage />} />
+        <Route path="/add-information" element={<AddInformation/>} />
       </Route>
       <Route path="*" element={<ErrorPage />} />
     </Routes>
