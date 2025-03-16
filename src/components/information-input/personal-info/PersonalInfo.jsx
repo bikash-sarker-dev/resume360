@@ -1,11 +1,125 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import { TextField, Button } from "@mui/material";
+import { useState } from "react";
+import { FiUploadCloud } from "react-icons/fi";
 
 const PersonalInfo = () => {
+    const [image, setImage] = useState(null);
+    const [fileName, setFileName] = useState("");
+
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setImage(URL.createObjectURL(file));
+            setFileName(file.name);
+        }
+    };
+
+    const handleRemoveImage = () => {
+        setImage(null);
+        setFileName("");
+    };
+
     return (
         <>
-            
+            <div className='grid grid-cols-2 gap-4'>
+                <TextField
+                    className=''
+                    required
+                    id="outlined-required"
+                    label="Full Name"
+                    defaultValue=""
+                    helperText="Please enter your full name"
+                />
+                <div className="flex flex-col row-span-3 justify-center items-center border-2 border-dashed border-r-accent rounded-lg text-center">
+                    {!image ? (
+                        <>
+                            <label htmlFor="image-upload" className="cursor-pointer flex flex-col items-center">
+                                <FiUploadCloud className="text-gray-500 text-5xl" />
+                                <p className="font-semibold mt-2">Upload file</p>
+                                <p className="text-xs text-gray-500">PNG, JPG, SVG, WEBP, and GIF are allowed.</p>
+                            </label>
+                            <input
+                                type="file"
+                                accept="image/png, image/jpg, image/jpeg, image/svg, image/webp, image/gif"
+                                onChange={handleImageChange}
+                                className="hidden"
+                                id="image-upload"
+                            />
+                        </>
+                    ) : (
+                        <div className="flex flex-col items-center gap-2">
+                            <img src={image} alt="Selected" className="w-32 h-32 object-cover rounded-lg" />
+                            <p className="text-sm text-gray-500">{fileName}</p>
+                            <Button variant="outlined" color="secondary" onClick={handleRemoveImage}>
+                                Remove Image
+                            </Button>
+                        </div>
+                    )}
+                </div>
+                <TextField
+                    className=''
+                    required
+                    id="outlined-required"
+                    label="Phone Number"
+                    defaultValue=""
+                    type='number'
+                    helperText="Please enter your phone number"
+                />
+                <TextField
+                    className=''
+                    required
+                    id="outlined-required"
+                    label="Email"
+                    defaultValue=""
+                    type='email'
+                    helperText="Please enter your email"
+                />
+                <TextField
+                    className='col-span-2'
+                    required
+                    id="outlined-required"
+                    label="Address"
+                    defaultValue=""
+                    helperText="Please enter your short address"
+                />
+                <TextField
+                    className='col-span-2'
+                    required
+                    id="outlined-required"
+                    label="About Me"
+                    defaultValue=""
+                    helperText="Please enter your about"
+                    multiline
+                    rows={4} // Adjust the number of rows as needed
+                />
+                <div className='grid grid-cols-3 gap-4 col-span-2'>
+                    <TextField
+                        className=''
+                        required
+                        id="outlined-required"
+                        label="Date of Birth"
+                        defaultValue=""
+                        helperText="Please enter your Date of Birth"
+                    />
+                    <TextField
+                        className=''
+                        required
+                        id="outlined-required"
+                        label="Gender"
+                        defaultValue=""
+                        helperText="Please enter your gender"
+                    />
+                    <TextField
+                        className=''
+                        required
+                        id="outlined-required"
+                        label="Nationality"
+                        defaultValue=""
+                        helperText="Please enter your nationality"
+                    />
+                </div>
+            </div>
         </>
     );
 };
