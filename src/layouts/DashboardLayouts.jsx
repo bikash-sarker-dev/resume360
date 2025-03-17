@@ -10,7 +10,7 @@ const DashboardLayouts = () => {
           <Sidebar />
         </div>
         <div
-          className="col-span-10 ml-10 p-5
+          className="col-span-10 ml-9 
         "
         >
           <NavbarDashboard />

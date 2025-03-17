@@ -1,11 +1,14 @@
 import React from "react";
 import { IoIosNotificationsOutline } from "react-icons/io";
+import { IoSettingsOutline } from "react-icons/io5";
+import { LuMessageCircleMore } from "react-icons/lu";
 
 const NavbarDashboard = () => {
   return (
-    <div>
-      <div className="flex gap-5">
-        <div className="w-4/5 flex gap-2">
+    <div className="bg-r-info-card p-4">
+      <div className="flex gap-5 items-center">
+        {/* search part start  */}
+        <div className="w-6/8 flex gap-2">
           <label className="input w-full">
             <svg
               className="h-[1em] opacity-50"
@@ -32,20 +35,42 @@ const NavbarDashboard = () => {
           </label>
           <button className="btn">Search</button>
         </div>
-        <div className="w-1/6">
+        {/* notification indicator part  */}
+        <div className="w-1/8 space-x-6 text-center">
           <div className="indicator">
             <span className="indicator-item badge w-6 h-6 text-r-text bg-r-primary rounded-full">
               12
             </span>
-            <button className="btn">
-              <IoIosNotificationsOutline />
+
+            <button className="btn btn-circle bg-r-info border-r-accent hover:bg-r-primary text-r-text">
+              <IoIosNotificationsOutline className="text-2xl" />
+            </button>
+          </div>
+          <div className="indicator">
+            <span className="indicator-item badge w-6 h-6 text-r-text bg-r-primary rounded-full">
+              9
+            </span>
+
+            <button className="btn btn-circle bg-r-info border-r-accent hover:bg-r-primary text-r-text">
+              <LuMessageCircleMore className="text-2xl opacity-70" />
+            </button>
+          </div>
+          <div className="indicator">
+            <span className="indicator-item badge w-6 h-6 text-r-text bg-r-primary rounded-full">
+              5
+            </span>
+
+            <button className="btn btn-circle bg-r-info border-r-accent hover:bg-r-primary text-r-text">
+              <IoSettingsOutline className="text-2xl opacity-70 " />
             </button>
           </div>
         </div>
-        <div className="w-1/6">
-          <h4>user name</h4>
+        <div className="divider divider-horizontal  m-0"></div>
+        {/* user setting part  */}
+        <div className="w-1/8 flex items-center  mr-6 gap-5">
+          <h4 className="font-semibold opacity-80">Bikash Sarker</h4>
           <div className="avatar">
-            <div className="w-24 rounded-full">
+            <div className="w-12 h-12  rounded-full">
               <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
             </div>
           </div>
