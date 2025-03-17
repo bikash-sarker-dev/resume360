@@ -1,6 +1,10 @@
 
 
 import React from "react";
+import pic1 from "../../../../src/assets/images/about/connecting/pic1.jpg"
+import pic2 from "../../../../src/assets/images/about/connecting/pic2.jpg"
+import pic3 from "../../../../src/assets/images/about/connecting/pic3.jpg"
+import pic4 from "../../../../src/assets/images/about/connecting/pic5.jpg"
 
 const ConnectingPeople = () => {
   return (
@@ -13,11 +17,7 @@ const ConnectingPeople = () => {
         connect
       </h1>
       <p className="py-4 md:py-6 text-gray-500 text-sm md:text-base w-3/4">
-        Cupidatat minim id magna ipsum sint dolor qui. Sunt sit in quis
-        cupidatat mollit aute velit. Et labore commodo nulla aliqua proident
-        mollit ullamco exercitation tempor. Sint aliqua anim nulla sunt
-        mollit id pariatur in voluptate cillum. Eu voluptate tempor esse
-        minim amet fugiat veniam occaecat aliqua....
+      In today’s fast-paced digital world, your resume is your first impression. Our online resume builder is revolutionizing the way job seekers and employers connect by providing an easy-to-use platform that creates professional, customizable resumes in minutes. Whether you're a recent graduate or an experienced professional, our tool helps you showcase your skills, experience, and personality in a way that sets you apart. With powerful features, a user-friendly interface, and expert guidance, we’re making the job application process smoother, faster, and more effective than ever before.
       </p>
     </div>
 
@@ -26,24 +26,24 @@ const ConnectingPeople = () => {
       <div className="flex gap-8">
         <div className="flex flex-col gap-4 mt-8 md:mt-14">
           <img
-            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src={pic1}
             alt="Person 1"
             className="w-[120px] h-[160px] md:w-[150px] md:h-[200px] rounded-lg shadow-lg object-cover"
           />
           <img
-            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src={pic3}
             alt="Person 2"
             className="w-[120px] h-[160px] md:w-[150px] md:h-[200px] rounded-lg shadow-lg object-cover"
           />
         </div>
         <div className="flex flex-col gap-4 mb-8 md:mb-14">
           <img
-            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src={pic4}
             alt="Person 3"
             className="w-[120px] h-[160px] md:w-[150px] md:h-[200px] rounded-lg shadow-lg object-cover"
           />
           <img
-            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src={pic2}
             alt="Person 4"
             className="w-[120px] h-[160px] md:w-[150px] md:h-[200px] rounded-lg shadow-lg object-cover"
           />
