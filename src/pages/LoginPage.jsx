@@ -39,7 +39,7 @@ const LoginPage = () => {
           <input onClick={()=>setShowPassword(!showPassword)} type="checkbox" className="checkbox" />
            Show Password
           </label>
-          <div><a className="link link-hover">Forgot your password?</a></div>
+          <div><Link to='/forgetPassword'>Forgot your password?</Link></div>
           </div>
           <button className="btn bg-r-accent mt-4 text-white">Login</button>
         </fieldset>
