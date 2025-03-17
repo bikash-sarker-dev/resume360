@@ -28,16 +28,16 @@ const Navbar = () => {
         Home
       </Link>
       <Link to="" className="cursor-pointer hover:text-gray-300 transition-all">
-        Vlog
+        Blog
       </Link>
       <Link to="" className="cursor-pointer hover:text-gray-300 transition-all">
         Info
       </Link>
       <Link to="" className="cursor-pointer hover:text-gray-300 transition-all">
-        about
+        About
       </Link>
       <Link to="" className="cursor-pointer hover:text-gray-300 transition-all">
-        menu 5
+        Menu 5
       </Link>
     </>
   ];
