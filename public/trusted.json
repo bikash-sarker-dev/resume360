@@ -7,7 +7,25 @@
       },
       {
         "id": 2,
-        "name": "Company B",
-        "icon": "/images/company-b.png"
-      }]
+        "name": "Transistor",
+        "icon": "../src/assets/images/about/trusted/transistor.png"
+      },
+
+      {
+        "id": 3,
+        "name": "Reform",
+        "icon": "../src/assets/images/about/trusted/reform-removebg-preview.png"
+      },
+      {
+        "id": 4,
+        "name": "SavvyCal",
+        "icon": "../src/assets/images/about/trusted/savvycal-removebg-preview.png"
+      }
+    
+    
+    
+    
+    
+    
+    ]
   }
