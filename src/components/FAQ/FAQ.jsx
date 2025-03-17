@@ -42,7 +42,23 @@ const FAQ = () => {
   <div className="collapse-title font-semibold">Do you store my resume on your servers?</div>
   <div className="collapse-content text-sm">We store your resume only if you have an account and choose to save it. Otherwise, we do not keep any personal data after you close the page.</div>
 </div>
-
+{/* Technical & Support Questions */}
+<h3 className='text-xl font-bold my-4'>Technical & Support FAQ</h3>
+<div className="collapse collapse-plus bg-[rgb(134,171,223,0.2)] border border-[rgb(134,171,223)]">
+  <input type="radio" name="my-accordion-3" />
+  <div className="collapse-title font-semibold">My resume isn't downloading properly. What should I do?</div>
+  <div className="collapse-content text-sm">Try clearing your browser cache, disabling ad blockers, or switching to a different browser. If the issue persists, contact our support team.</div>
+</div>
+<div className="collapse collapse-plus bg-[rgb(134,171,223,0.2)] border border-[rgb(134,171,223)]">
+  <input type="radio" name="my-accordion-3" />
+  <div className="collapse-title font-semibold">Can I access my resume from a different device?</div>
+  <div className="collapse-content text-sm">Yes, if you have an account, you can log in from any device and access your saved resumes.</div>
+</div>
+<div className="collapse collapse-plus bg-[rgb(134,171,223,0.2)] border border-[rgb(134,171,223)]">
+  <input type="radio" name="my-accordion-3" />
+  <div className="collapse-title font-semibold">How can I contact customer support?</div>
+  <div className="collapse-content text-sm">You can reach our support team via email available on our website.</div>
+</div>
 
   </div>;
 };
