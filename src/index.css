@@ -30,7 +30,6 @@ body {
   max-width: 1170px;
   margin: 0 auto;
 }
-<<<<<<< HEAD
 
 
 /* 
@@ -138,6 +137,3 @@ a.active::after {
 .logo-container div:nth-child(4) {
   animation-delay: 1.2s;
 }
-
-=======
->>>>>>> 4e0e69f74c8dbe5c21c33970e36142ae4bc85539
