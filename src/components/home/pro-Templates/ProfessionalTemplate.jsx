@@ -4,11 +4,13 @@ import resume2 from "../../../assets/images/resume/resume2.png";
 import resume3 from "../../../assets/images/resume/resume3.png";
 import resume4 from "../../../assets/images/resume/resume4.png";
 import resume5 from "../../../assets/images/resume/resume5.png";
-import SectionHead from "../../header/section-head/SectionHead";
-import ButtonTemplate from "./ButtonTemplate";
+import ButtonTemplate from "../pro-Templates/ButtonTemplate"
+import  SectionHead from "../../../components/header/section-head/SectionHead"
+
+
 
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
 import "swiper/css";
@@ -52,6 +54,7 @@ const ProfessionalTemplate = () => {
           handleCv={handleCv}
           handleCoverLetter={handleCoverLetter}
         />
+      
       </div>
       <div className="mt-10 mx-5 ">
         {resume && (
