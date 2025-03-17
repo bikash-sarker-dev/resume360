@@ -24,7 +24,7 @@ const Trusted = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {companies.map((company) => ( 
               <div key={company.id} className="bg-r-info rounded-md text-center py-8 px-4 shadow-lg">
-                <div className="flex  justify-around items-center">
+                <div className="flex gap-2 items-center justify-center">
                   <img
                     src={company.icon}
                     alt={company.name}
