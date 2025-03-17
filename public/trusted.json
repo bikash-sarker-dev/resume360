@@ -2,8 +2,8 @@
     "companies": [
       {
         "id": 1,
-        "name": "Company A",
-        "icon": "/images/company-a.png"
+        "name": "Tuple",
+        "icon": "../src/assets/images/about/trusted/tuple.png"
       },
       {
         "id": 2,
