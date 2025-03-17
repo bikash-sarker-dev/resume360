@@ -54,14 +54,13 @@ export default function Register() {
    }
    updateUserInfo(profile)
    .then((res)=>{
-     console.log(res.user)
+    //  console.log(res.user)
    })
    .catch(error => {
      setErrorMessage(error.message)
    })
    })
    .catch(error => {
-     // console.log(error.message)
      setErrorMessage(error.message)
      setUser(null)
      Swal.fire({
