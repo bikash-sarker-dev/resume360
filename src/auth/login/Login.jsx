@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 export default function Login() {
 
+    const {signInUser,setUser} = useAuth()
+    const navigate = useNavigate()
     const [showPassword,setShowPassword]=useState(false)
 
     const handleLogin = (event) => {
@@ -12,6 +16,31 @@ export default function Login() {
       const password = form.password.value;
       const user = {email,password}
       // console.log(user);
+
+      // SignInUser
+    signInUser(email,password)
+    .then(result => {
+      // console.log(result.user)
+      setUser(result.user)
+      Swal.fire({
+        title: 'Success',
+        text: 'Login successfully',
+        icon: 'success',
+        confirmButtonText: 'Done'
+      })
+      navigate('/')
+      form.reset()
+    })
+    .catch(error => {
+      // console.log(error.message)
+      setUser(null)
+      Swal.fire({
+        title: 'Error',
+        text: error.message,
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      })
+    })
     }
   return (
     <div>
