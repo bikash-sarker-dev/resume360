@@ -1,11 +1,12 @@
 import React from "react";
+import { IoIosNotificationsOutline } from "react-icons/io";
 
 const NavbarDashboard = () => {
   return (
     <div>
-      <div>
-        <div>
-          <label className="input">
+      <div className="flex gap-5">
+        <div className="w-4/5 flex gap-2">
+          <label className="input w-full">
             <svg
               className="h-[1em] opacity-50"
               xmlns="http://www.w3.org/2000/svg"
@@ -22,16 +23,26 @@ const NavbarDashboard = () => {
                 <path d="m21 21-4.3-4.3"></path>
               </g>
             </svg>
-            <input type="search" required placeholder="Search" />
+            <input
+              className="w-full"
+              type="search"
+              required
+              placeholder="Search"
+            />
           </label>
+          <button className="btn">Search</button>
         </div>
-        <div>
+        <div className="w-1/6">
           <div className="indicator">
-            <span className="indicator-item badge badge-secondary">12</span>
-            <button className="btn">inbox</button>
+            <span className="indicator-item badge w-6 h-6 text-r-text bg-r-primary rounded-full">
+              12
+            </span>
+            <button className="btn">
+              <IoIosNotificationsOutline />
+            </button>
           </div>
         </div>
-        <div>
+        <div className="w-1/6">
           <h4>user name</h4>
           <div className="avatar">
             <div className="w-24 rounded-full">
