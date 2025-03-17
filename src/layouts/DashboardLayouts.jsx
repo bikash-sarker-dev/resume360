@@ -1,4 +1,5 @@
 import React from "react";
+import NavbarDashboard from "../dashboard/headNavbar/NavbarDashboard";
 import Sidebar from "../dashboard/sideBar/Sidebar";
 
 const DashboardLayouts = () => {
@@ -12,6 +13,7 @@ const DashboardLayouts = () => {
           className="col-span-10 ml-10
         "
         >
+          <NavbarDashboard />
           right side
         </div>
       </div>
