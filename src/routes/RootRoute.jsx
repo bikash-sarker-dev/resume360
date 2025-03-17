@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router";
 
 import React from "react";
+import DashboardLayouts from "../layouts/DashboardLayouts";
 import MainLayout from "../layouts/MainLayout";
 import ErrorPage from "../pages/ErrorPage";
 import HomePage from "../pages/HomePage";
@@ -36,6 +37,7 @@ const RootRoute = () => {
         <Route path="/templates" element={<TemplatePage />} />
         <Route path="/personal-info" element={<PersonalInfoPage />} />
       </Route>
+      <Route path="/dashboard" element={<DashboardLayouts />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
