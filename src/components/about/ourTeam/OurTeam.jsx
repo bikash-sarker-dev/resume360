@@ -32,8 +32,8 @@ const OurTeam = () => {
           <div key={team.id} className="card bg-base-100 shadow-sm">
             <figure className="hover:scale-105 transition-transform duration-300 ease-in-out">
               <img
-                className="h-[250px] object-cover w-full"
-                src={team.thumbnail}
+                className="h-[300px] object-cover w-full"
+                src={team.image}
                 alt={team.title}
               />
             </figure>
@@ -45,8 +45,8 @@ const OurTeam = () => {
               <div className="card-actions flex ">
                 {/* <div className="w-12 h-12 rounded-full mr-3"> */}
                 <i className="w-12 h-12 rounded-full  fa-brands fa-facebook"></i>
-                <i className="w-12 h-12 rounded-full  fa-brands fa-facebook"></i>
-                <i className="w-12 h-12 rounded-full  fa-brands fa-facebook"></i>
+                <i className="w-12 h-12 rounded-full  fa-brands fa-linkedin"></i>
+                <i className="w-12 h-12 rounded-full  fa-brands fa-twitter"></i>
                  
                 {/* </div> */}
                 
