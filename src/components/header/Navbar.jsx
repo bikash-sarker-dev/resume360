@@ -45,6 +45,7 @@ const Navbar = () => {
             >
               Vlog
             </Link>
+         
             <Link
               to=""
               className="cursor-pointer hover:text-gray-300 transition-all"
