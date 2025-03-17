@@ -51,6 +51,12 @@ const Navbar = () => {
             >
               Info
             </Link>
+            <Link
+              to="/faq"
+              className="cursor-pointer hover:text-gray-300 transition-all"
+            >
+              FAQ
+            </Link>
           </ul>
 
           {/* Login Button (Desktop) */}
