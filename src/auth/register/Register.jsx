@@ -72,16 +72,16 @@ export default function Register() {
    })
 
     };
-    
+
     // google signin
     const handleGoogleLogin = () => {
         signInWithGoogle()
         .then(result => {
-        //   console.log(result.user)
+        // console.log(result.user)
           setUser(result.user)
           Swal.fire({
             title: 'Success',
-            text: 'Login successfully',
+            text: 'Login With Google Successfully',
             icon: 'success',
             confirmButtonText: 'Done'
           })
@@ -92,6 +92,26 @@ export default function Register() {
           setUser(null)
         })
       }
+
+    // github signin
+    const handleGithubLogin = () => {
+        signInWithGithub()
+           .then(result => {
+             setUser(result.user)
+            //  console.log(result.user)
+             Swal.fire({
+               title: 'Success',
+               text: 'Login With Github Successfully',
+               icon: 'success',
+               confirmButtonText: 'Done'
+             })
+             navigate('/')
+           })
+           .catch(error => {
+            //  console.log(error)
+             setUser(null)
+           })
+     }
   return (
     <div>
         <div className="hero bg-background">
@@ -99,11 +119,11 @@ export default function Register() {
           <div className="text-center lg:text-left w-8/12 mx-auto">
             <h1 className="text-3xl mb-6 lg:text-3xl font-semibold">Instant Access</h1>
             <div className="flex flex-col space-y-4">
-              <button className="btn bg-r-accent text-white flex items-center justify-center gap-2 p-3 rounded-lg whitespace-nowrap w-8/12">
-              <i className="fa-brands fa-github"></i> Continue with Github
-              </button>
-              <button onClick={handleGoogleLogin} className="btn bg-r-accent text-white flex items-center justify-center gap-2 p-3 rounded-lg whitespace-nowrap w-8/12">
+            <button onClick={handleGoogleLogin} className="btn bg-r-accent text-white flex items-center justify-center gap-2 p-3 rounded-lg whitespace-nowrap w-8/12">
                 <i className="fa-brands fa-google"></i> Continue with Google
+              </button>
+              <button onClick={handleGithubLogin} className="btn bg-r-accent text-white flex items-center justify-center gap-2 p-3 rounded-lg whitespace-nowrap w-8/12">
+              <i className="fa-brands fa-github"></i> Continue with Github
               </button>
             </div>
           </div>

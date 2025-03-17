@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 export default function Login() {
 
-    const {signInUser,setUser,signInWithGoogle} = useAuth()
+    const {signInUser,setUser,signInWithGoogle,signInWithGithub} = useAuth()
     const navigate = useNavigate()
     const [showPassword,setShowPassword]=useState(false)
 
@@ -63,6 +63,26 @@ export default function Login() {
     })
     }
 
+     // github signin
+        const handleGithubLogin = () => {
+            signInWithGithub()
+               .then(result => {
+                 setUser(result.user)
+                //  console.log(result.user)
+                 Swal.fire({
+                   title: 'Success',
+                   text: 'Login With Github Successfully',
+                   icon: 'success',
+                   confirmButtonText: 'Done'
+                 })
+                 navigate('/')
+               })
+               .catch(error => {
+                //  console.log(error)
+                 setUser(null)
+               })
+         }
+
   return (
     <div>
       <div className="card-body">
@@ -90,7 +110,7 @@ export default function Login() {
         <div className="text-center text-3xl">
         <i onClick={handleGoogleLogin} className="fa-brands fa-google mr-5 cursor-pointer"></i>
         <i className="fa-brands fa-facebook mr-5 cursor-pointer"></i>
-        <i className="fa-brands fa-github cursor-pointer"></i>
+        <i onClick={handleGithubLogin} className="fa-brands fa-github cursor-pointer"></i>
         </div>
       </div>
     </div>
