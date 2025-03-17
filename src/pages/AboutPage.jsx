@@ -4,15 +4,18 @@ import Trusted from "../components/about/trusted/Trusted";
 import ConnectingPeople from "../components/about/connectingPeople/ConnectingPeople";
 import OurMission from "../components/about/ourMission/OurMission";
 import OurValues from "../components/about/ourValues/OurValues";
+import FromBlog from "../components/about/fromBlog/FromBlog";
 
 const AboutPage = () => {
   return (
     <div>
       <ConnectingPeople></ConnectingPeople>
       <OurMission></OurMission>
-     <OurTeam></OurTeam>
+    
      <OurValues></OurValues>
      <Trusted></Trusted>
+     <OurTeam></OurTeam>
+     <FromBlog></FromBlog>
 
     </div>
   );
