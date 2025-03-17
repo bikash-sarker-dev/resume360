@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 export default function Login() {
 
-    const {signInUser,setUser} = useAuth()
+    const {signInUser,setUser,signInWithGoogle} = useAuth()
     const navigate = useNavigate()
     const [showPassword,setShowPassword]=useState(false)
 
@@ -42,6 +42,27 @@ export default function Login() {
       })
     })
     }
+
+     // google signin
+    const handleGoogleLogin = () => {
+    signInWithGoogle()
+    .then(result => {
+    // console.log(result.user)
+    setUser(result.user)
+    Swal.fire({
+     title: 'Success',
+     text: 'Login successfully',
+     icon: 'success',
+     confirmButtonText: 'Done'
+    })
+    navigate('/')
+    })
+    .catch(error => {
+    // console.log(error)
+    setUser(null)
+    })
+    }
+
   return (
     <div>
       <div className="card-body">
@@ -67,9 +88,9 @@ export default function Login() {
        </form>
         <div className="divider">OR</div>
         <div className="text-center text-3xl">
-        <i className="fa-brands fa-google mr-5"></i>
-        <i className="fa-brands fa-facebook mr-5"></i>
-        <i className="fa-brands fa-apple"></i>
+        <i onClick={handleGoogleLogin} className="fa-brands fa-google mr-5 cursor-pointer"></i>
+        <i className="fa-brands fa-facebook mr-5 cursor-pointer"></i>
+        <i className="fa-brands fa-github cursor-pointer"></i>
         </div>
       </div>
     </div>

@@ -72,6 +72,26 @@ export default function Register() {
    })
 
     };
+    
+    // google signin
+    const handleGoogleLogin = () => {
+        signInWithGoogle()
+        .then(result => {
+        //   console.log(result.user)
+          setUser(result.user)
+          Swal.fire({
+            title: 'Success',
+            text: 'Login successfully',
+            icon: 'success',
+            confirmButtonText: 'Done'
+          })
+          navigate('/')
+        })
+        .catch(error => {
+          // console.log(error)
+          setUser(null)
+        })
+      }
   return (
     <div>
         <div className="hero bg-background">
@@ -82,7 +102,7 @@ export default function Register() {
               <button className="btn bg-r-accent text-white flex items-center justify-center gap-2 p-3 rounded-lg whitespace-nowrap w-8/12">
               <i className="fa-brands fa-github"></i> Continue with Github
               </button>
-              <button className="btn bg-r-accent text-white flex items-center justify-center gap-2 p-3 rounded-lg whitespace-nowrap w-8/12">
+              <button onClick={handleGoogleLogin} className="btn bg-r-accent text-white flex items-center justify-center gap-2 p-3 rounded-lg whitespace-nowrap w-8/12">
                 <i className="fa-brands fa-google"></i> Continue with Google
               </button>
             </div>
