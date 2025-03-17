@@ -1,0 +1,13 @@
+{
+    "companies": [
+      {
+        "id": 1,
+        "name": "Company A",
+        "icon": "/images/company-a.png"
+      },
+      {
+        "id": 2,
+        "name": "Company B",
+        "icon": "/images/company-b.png"
+      }]
+  }

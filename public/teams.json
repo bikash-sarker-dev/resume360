@@ -1,0 +1,33 @@
+{
+    "teams": [
+      {
+        "id": 1,
+        "name": "John Doe",
+        "title" :"Software Engineer",
+        "description": "hdjshjhfjshfdfhfjhd"
+        
+
+      },
+      {
+        "id": 2,
+        "name": "John Doe",
+        "title" :"Software Engineer",
+        "description": "hdjshjhfjshfdfhfjhd"
+        
+
+      },
+      {
+        "id": 3,
+        "name": "John Doe",
+        "title" :"Software Engineer",
+        "description": "hdjshjhfjshfdfhfjhd"
+        
+
+      }
+   
+    ]
+  }
+  
+
+
+  
