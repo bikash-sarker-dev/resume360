@@ -19,7 +19,7 @@ const Trusted = () => {
 
   return (
     <div className="bg-r-info-card py-24">
-        <h1 className='text-center'>Trusted by.....</h1>
+        <h1 className='text-center text-xl font-bold'>Trusted by the world's most innovative teams</h1>
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {companies.map((company) => ( 
