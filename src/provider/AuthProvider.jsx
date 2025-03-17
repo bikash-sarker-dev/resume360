@@ -38,15 +38,16 @@ export default function AuthProvider({children}) {
         return signOut(auth)
     }
 
+     // forget password
+     const forgetPassword = (email) => {
+        return sendPasswordResetEmail(auth, email)
+    }
+
     // update user info
   const updateUserInfo = (profile) => {
     return updateProfile(auth.currentUser,profile)
   }
 
-    // forget password
-    const forgetPassword = (email) => {
-        return sendPasswordResetEmail(auth, email)
-    }
 
   useEffect(()=>{
     const unSubscribe = onAuthStateChanged(auth,currentUser => {
