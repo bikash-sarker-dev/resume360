@@ -1,9 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
+
 
 export default function Register() {
 
+    const {createUser,setUser,signInWithGithub,updateUserInfo,signInWithGoogle} = useAuth()
+    const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false);
+    const [errorMessage,setErrorMessage]=useState('')
 
     const handleRegister = (event) => {
       event.preventDefault();
@@ -11,8 +17,61 @@ export default function Register() {
       const email = form.email.value;
       const name = form.name.value;
       const password = form.password.value;
+      const newUser = {name,email}
+
+       setErrorMessage('')
     
+    // password validation
+
+    const regex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
+    if(!regex.test(password)){
+        setErrorMessage('Please give a valid password with at lease one Uppercase, one Lowercase and length must be 6 character or more.')
+        Swal.fire({
+          title: 'Error',
+          text: errorMessage,
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        })
+        return;
+      }
   
+   // CreateUser
+   createUser(email,password)
+   .then(result => {
+     setUser(result.user)
+     form.reset();
+     navigate('/')
+     Swal.fire({
+       title: 'Success',
+       text: 'Register Successfully',
+       icon: 'success',
+       confirmButtonText: 'Done'
+     })
+     // UpdateUser
+   const profile = {
+     displayName: name,
+   }
+   updateUserInfo(profile)
+   .then((res)=>{
+     console.log(res.user)
+   })
+   .catch(error => {
+     setErrorMessage(error.message)
+   })
+   })
+   .catch(error => {
+     // console.log(error.message)
+     setErrorMessage(error.message)
+     setUser(null)
+     Swal.fire({
+       title: 'Error',
+       text: error.message,
+       icon: 'error',
+       confirmButtonText: 'Ok'
+     })
+   })
+
     };
   return (
     <div>
