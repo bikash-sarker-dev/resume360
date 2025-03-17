@@ -109,7 +109,7 @@ export default function Login() {
         <div className="divider">OR</div>
         <div className="text-center text-3xl">
         <i onClick={handleGoogleLogin} className="fa-brands fa-google mr-5 cursor-pointer"></i>
-        <i className="fa-brands fa-facebook mr-5 cursor-pointer"></i>
+        {/* <i className="fa-brands fa-facebook mr-5 cursor-pointer"></i> */}
         <i onClick={handleGithubLogin} className="fa-brands fa-github cursor-pointer"></i>
         </div>
       </div>

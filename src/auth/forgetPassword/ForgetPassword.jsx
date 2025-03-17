@@ -1,10 +1,44 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
+import useAuth from '../../hooks/useAuth'
+import Swal from 'sweetalert2'
 
 export default function ForgetPassword() {
+
+  const {forgetPassword,user} = useAuth()
+  const navigate = useNavigate()
+
+  const handleForgetPassword = (event) => {
+    event.preventDefault()
+    const form = event.target;
+    const email = form.email.value;
+
+    forgetPassword(email)
+        .then(result => {
+          // console.log(result.user)
+          Swal.fire({
+            title: 'Success',
+            text: 'Passward Reset Email Sent! Please Check Your Mail',
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          })
+          navigate('/login')
+          form.reset()
+        })
+        .catch(error => {
+          // console.log(error.message)
+          Swal.fire({
+            title: 'Error',
+            text: error.message,
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
+        })
+  }
+
   return (
     <div>
-    <form>
+    <form  onSubmit={handleForgetPassword}>
       <fieldset className="fieldset">
         <label className="fieldset-label">Email</label>
         <input type="email" name="email" className="input w-full" placeholder="Enter Your Email" />
