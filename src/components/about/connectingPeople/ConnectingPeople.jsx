@@ -16,7 +16,7 @@ const ConnectingPeople = () => {
           cupidatat mollit aute velit. Et labore commodo nulla aliqua proident
           mollit ullamco exercitation tempor. Sint aliqua anim nulla sunt
           mollit id pariatur in voluptate cillum. Eu voluptate tempor esse
-          minim amet fugiat veniam occaecat aliqua.
+          minim amet fugiat veniam occaecat aliqua....
         </p>
       </div>
 
