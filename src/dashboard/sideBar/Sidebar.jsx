@@ -27,7 +27,7 @@ const Sidebar = () => {
         </label>
       </div>
 
-      <div className="drawer-side bg-r-accent min-h-screen pl-5">
+      <div className="drawer-side bg-r-primary min-h-screen pl-5">
         <label
           htmlFor="my-drawer-2"
           aria-label="close sidebar"
