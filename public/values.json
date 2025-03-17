@@ -3,17 +3,47 @@
       {
         "id": 1,
         "title": "Be World Class",
-        "description": "bdjsdbbhhhffhhfbfhffhfhf"
+        "description": "We strive for excellence in everything we do, ensuring that our users receive the highest-quality tools and resources to build their careers. Our goal is to set industry standards and continuously innovate."
       },
       {
-        "id": 1,
-        "title": "Be World Class",
-        "description": "bdjsdbbhhhffhhfbfhffhfhf"
+        "id": 2,
+        "title": "Share Everything You Know",
+        "description": "Knowledge is meant to be shared. We believe in transparency, open-source learning, and empowering our users with insights that help them stand out in the job market."
       },
     
       {
-        "id": 1,
-        "title": "Be World Class",
-        "description": "bdjsdbbhhhffhhfbfhffhfhf"
-      }]
+        "id": 3,
+        "title": "Be Supportive",
+        "description": "Job hunting can be challenging, and we are here to make it easier. Whether through intuitive features, customer support, or a user-friendly experience, we ensure that everyone feels supported throughout their journeyf"
+      },
+      {
+        "id": 4,
+        "title": "Take Responsibility",
+        "description": "We take ownership of our work and the impact it has on users. We are committed to maintaining the accuracy, reliability, and security of our platform to ensure the best possible experience"
+      },
+      {
+        "id": 5,
+        "title": "Always Learning",
+        "description": "The job market is constantly evolving, and so are we. We embrace continuous learning, stay updated with industry trends, and integrate new technologies to provide users with the best tools for success."
+      },
+      {
+        "id": 6,
+        "title": "Enjoy Downtime",
+        "description": "We believe in balance. While hard work and innovation drive us, taking breaks and recharging are just as important for sustained creativity and productivity."
+      }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ]
   }

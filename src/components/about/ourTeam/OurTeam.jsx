@@ -23,7 +23,7 @@ const OurTeam = () => {
           Our Team
         </h2>
         <p className="text-lg md:text-xl text-gray-600 mt-3">
-          We're a dynamic group of indiv.......
+          We're a dynamic group of individuals who are passionate about what we do and dedicated to delivering the best results for our clients.
         </p>
       </div>
 

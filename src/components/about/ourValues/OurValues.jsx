@@ -68,13 +68,13 @@ const OurValues = () => {
             <div className='mt-6 py-8'>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">Our Values</h2>
                 <p className='w-full sm:w-3/4 md:w-2/3 lg:w-1/2  text-gray-700'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus incidunt fuga illo! 
-                    Distinctio, suscipit! Minus corrupti eaque dolore dicta ipsam vero fugit iure repudiandae.
+                At Resume360, we believe in empowering job seekers by providing a seamless and accessible platform to create professional resumes. Our core values define how we operate and what we stand for:
+                    
                 </p>
             </div>
 
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
                 {values.map((value, index) => (
                     <div key={index} className="">
                         <h3 className="text-lg sm:text-xl font-semibold mb-2">{value.title}</h3>

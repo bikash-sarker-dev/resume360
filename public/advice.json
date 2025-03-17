@@ -1,0 +1,43 @@
+{
+    "advices": [
+      {
+        "id": 1,
+        "date": "Mar 16,2025",
+        "image": "../src/assets/images/about/fromBlog/blog1.jpg",
+        "name": " Michael Foster",
+        "title" : "Expert Hiring Strategies to Attract Top Talent and Grow Your Busines",
+        "description" : "Want to take your business to the next level? Our experts share actionable insights on how to optimize your hiring process, attract top talent, and build a strong professional brand. Whether you're a startup or an established company, these strategies will help you scale efficiently."
+
+
+      },
+      {
+        "id": 2,
+        "date": "Feb 20,2025",
+        "image": "../src/assets/images/about/fromBlog/blog2.jpg",
+        "name": " Lindsay Walton",
+        "title" : "The Power of a Strong Resume: How It Can Shape Your Career",
+        "description" : "Your resume is your first impression—make it count! In this post, we explore key resume-building strategies, common mistakes to avoid, and how to use our online resume builder to create a standout CV that gets noticed by recruiters."
+
+
+
+
+      },
+
+      {
+        "id": 3,
+        "date": "Mar 14,2025",
+        "image":  "../src/assets/images/about/fromBlog/blog3.jpg", 
+        "name": " Tom Cook",
+        "title" : "Job Market Trends: What Employers Are Looking for in 2025",
+        "description" : "The hiring landscape is constantly evolving. Stay ahead of the competition with our deep dive into the latest job market trends, in-demand skills, and resume tips that will set you apart in 2025 and beyond."
+
+
+      }
+    
+    
+    
+    
+    
+    
+    ]
+  }
