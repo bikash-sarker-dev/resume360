@@ -1,8 +1,22 @@
 import { Route, Routes } from "react-router";
 
 import React from "react";
+import Userabout from "../components/user/Userabout";
+import UserEducation from "../components/user/UserEducation";
+import UserExp from "../components/user/UserExp";
+import UserLink from "../components/user/UserLink";
+import UserProject from "../components/user/UserProject";
+import UserSkill from "../components/user/UserSkill";
 import DashboardLayouts from "../layouts/DashboardLayouts";
 import MainLayout from "../layouts/MainLayout";
+import ChatPage from "../pages/DashboardPage/ChatPage";
+import DashboardHomePage from "../pages/DashboardPage/DashboardHomePage";
+import DashboardUserPage from "../pages/DashboardPage/DashboardUserPage";
+import NotificationPage from "../pages/DashboardPage/NotificationPage";
+import OrderDetails from "../pages/DashboardPage/OrderDetails";
+import OrderListPage from "../pages/DashboardPage/OrderListPage";
+import ReviewsPage from "../pages/DashboardPage/ReviewsPage";
+import SecurityPage from "../pages/DashboardPage/SecurityPage";
 import ErrorPage from "../pages/ErrorPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
@@ -11,12 +25,6 @@ import RegisterPage from "../pages/RegisterPage";
 import TemplatePage from "../pages/TemplatePage";
 import User from "../pages/User";
 import AboutPage from "./../pages/AboutPage";
-import Userabout from "../components/user/Userabout";
-import UserEducation from "../components/user/UserEducation";
-import UserSkill from "../components/user/UserSkill";
-import UserExp from "../components/user/UserExp";
-import UserProject from "../components/user/UserProject";
-import UserLink from "../components/user/UserLink";
 
 const RootRoute = () => {
   return (
@@ -26,18 +34,32 @@ const RootRoute = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/user" element={<User />} >
+        <Route path="/user" element={<User />}>
           <Route index element={<Userabout />} /> {/* Default: /user */}
-          <Route path="usereducation" element={<UserEducation />} /> {/* /user/education */}
+          <Route path="usereducation" element={<UserEducation />} />{" "}
+          {/* /user/education */}
           <Route path="userskill" element={<UserSkill />} /> {/* /user/skill */}
           <Route path="userexp" element={<UserExp />} /> {/* /user/exp */}
-          <Route path="userproject" element={<UserProject />} /> {/* /user/project */}
+          <Route path="userproject" element={<UserProject />} />{" "}
+          {/* /user/project */}
           <Route path="userlink" element={<UserLink />} /> {/* /user/link */}
         </Route>
         <Route path="/templates" element={<TemplatePage />} />
         <Route path="/personal-info" element={<PersonalInfoPage />} />
       </Route>
-      <Route path="/dashboard" element={<DashboardLayouts />} />
+
+      {/* dashboard route working start  */}
+      <Route path="/dashboard" element={<DashboardLayouts />}>
+        <Route path="/dashboard/home" element={<DashboardHomePage />} />
+        <Route path="/dashboard/users" element={<DashboardUserPage />} />
+        <Route path="/dashboard/order-list" element={<OrderListPage />} />
+        <Route path="/dashboard/order-details" element={<OrderDetails />} />
+        <Route path="/dashboard/reviews" element={<ReviewsPage />} />
+        <Route path="/dashboard/security" element={<SecurityPage />} />
+        <Route path="/dashboard/notification" element={<NotificationPage />} />
+        <Route path="/dashboard/chat" element={<ChatPage />} />
+      </Route>
+      {/* dashboard route working end  */}
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );

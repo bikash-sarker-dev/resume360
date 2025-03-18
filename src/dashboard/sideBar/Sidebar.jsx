@@ -43,7 +43,7 @@ const Sidebar = () => {
           <li>
             <NavLink
               className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
-              to=""
+              to="/dashboard/home"
             >
               <GoHome className="text-3xl " />{" "}
               <span className="text-lg">Dashboard</span>
@@ -52,7 +52,7 @@ const Sidebar = () => {
           <li>
             <NavLink
               className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
-              to=""
+              to="/dashboard/users"
             >
               <FiUserCheck className="text-3xl " />{" "}
               <span className="text-lg">Users</span>
