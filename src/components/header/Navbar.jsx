@@ -60,7 +60,11 @@ const Navbar = () => {
       <Link to="/faq" className="cursor-pointer hover:text-gray-300 transition-all">
         FAQ
       </Link>
+<<<<<<< HEAD
     </>
+=======
+    </>,
+>>>>>>> 64cdb3fe4c4a8c7f410a7aa426c396229e8a86bd
   ];
 
   return (
@@ -72,6 +76,7 @@ const Navbar = () => {
           }`}
         >
           <div className="flex items-center justify-between w-10/12 mx-auto">
+<<<<<<< HEAD
           {/* Logo */}
           <div className="text-2xl font-serif ">
             Resumes<span className="font-bold text-r-primary">360</span>
@@ -117,6 +122,39 @@ const Navbar = () => {
                 >{ menuOpen ? <FiX></FiX> : <FiMenu></FiMenu>}</div>
            
           </button>
+=======
+            {/* Logo */}
+            <div className="text-2xl font-serif ">
+              Resumes<span className="font-bold text-r-primary">360</span>
+            </div>
+
+            {/* Desktop Navigation */}
+            <ul className="hidden md:flex ml-20  space-x-6  text-lg font-medium">
+              {menu}
+            </ul>
+
+            {/* Login Button (Desktop) */}
+            <div className="flex gap-4">
+              <Link to="/login">
+                <button className="hidden lg:block shadow shadow-r-primary px-6 py-2 rounded-lg text-lg font-semibold duration-500 text-r-accent hover:text-r-text hover:bg-r-primary transition">
+                  Login
+                </button>
+              </Link>
+              <Link to="/register">
+                <button className="hidden lg:block shadow shadow-r-primary px-6 py-2 rounded-lg text-lg font-semibold duration-500 text-r-accent hover:text-r-text hover:bg-r-primary transition">
+                  register
+                </button>
+              </Link>
+            </div>
+
+            {/* Mobile hamburger Button */}
+            <button
+              className="lg:hidden text-3xl  px-2 focus:outline-none z-30"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              <div>{menuOpen ? <FiX></FiX> : <FiMenu></FiMenu>}</div>
+            </button>
+>>>>>>> 64cdb3fe4c4a8c7f410a7aa426c396229e8a86bd
           </div>
         </header>
 
