@@ -6,9 +6,9 @@ import { LuMessageCircleMore } from "react-icons/lu";
 const NavbarDashboard = () => {
   return (
     <div className="bg-r-info-card p-4">
-      <div className="flex gap-5 items-center">
+      <div className="flex gap-5 items-center justify-between lg:justify-normal">
         {/* search part start  */}
-        <div className="w-[70%] flex gap-2">
+        <div className="lg:w-[70%] w-64 hidden sm:block sm:flex gap-2">
           <label className="input w-full">
             <svg
               className="h-[1em] opacity-50"
@@ -35,8 +35,9 @@ const NavbarDashboard = () => {
           </label>
           <button className="btn">Search</button>
         </div>
+
         {/* notification indicator part  */}
-        <div className="w-[20%] sm:space-x-6 text-center">
+        <div className="xl:w-[20%] w-72 space-x-4 text-center">
           <div className="indicator">
             <span className="indicator-item badge w-6 h-6 text-r-text bg-r-primary rounded-full">
               12
@@ -65,7 +66,9 @@ const NavbarDashboard = () => {
             </button>
           </div>
         </div>
-        <div className="divider divider-horizontal  m-0"></div>
+
+        <div className="divider divider-horizontal m-0"></div>
+
         {/* user setting part  */}
         <div className="w-[10%] flex items-center   gap-4 pr-4">
           <h4 className="font-semibold opacity-80 hidden  xl:block ">
