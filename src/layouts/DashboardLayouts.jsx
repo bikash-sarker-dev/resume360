@@ -6,14 +6,14 @@ import Sidebar from "../dashboard/sideBar/Sidebar";
 const DashboardLayouts = () => {
   return (
     <main>
-      <div className="grid grid-cols-12 ">
+      <div className="flex">
         {/* side bar start  */}
-        <div className="col-span-2 ">
+        <div className="w-auto ">
           <Sidebar />
         </div>
         {/* dashboard body part  */}
         <div
-          className="col-span-10 ml-9 
+          className="w-[85%]
         "
         >
           <NavbarDashboard />
