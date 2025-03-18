@@ -71,7 +71,7 @@ const NavbarDashboard = () => {
           <h4 className="font-semibold opacity-80">Bikash Sarker</h4>
           <div className="avatar">
             <div className="w-12 h-12  rounded-full">
-              <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+              <img src="https://st2.depositphotos.com/1006318/5909/v/450/depositphotos_59094701-stock-illustration-businessman-profile-icon.jpg" />
             </div>
           </div>
         </div>
