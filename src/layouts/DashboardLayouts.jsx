@@ -14,7 +14,7 @@ const DashboardLayouts = () => {
         "
         >
           <NavbarDashboard />
-          right side
+          <div className="p-10">right side</div>
         </div>
       </div>
     </main>
