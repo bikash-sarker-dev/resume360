@@ -61,7 +61,7 @@ const Sidebar = () => {
           <li>
             <NavLink
               className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
-              to=""
+              to="/dashboard/order-list"
             >
               <IoListOutline className="text-3xl " />{" "}
               <span className="text-lg">Order List</span>
@@ -70,7 +70,7 @@ const Sidebar = () => {
           <li>
             <NavLink
               className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
-              to=""
+              to="/dashboard/order-details"
             >
               <AiOutlineRead className="text-3xl " />{" "}
               <span className="text-lg">Order Details</span>
@@ -79,7 +79,7 @@ const Sidebar = () => {
           <li>
             <NavLink
               className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
-              to=""
+              to="/dashboard/reviews"
             >
               <IoReaderOutline className="text-3xl " />{" "}
               <span className="text-lg">Reviews</span>
@@ -88,7 +88,7 @@ const Sidebar = () => {
           <li>
             <NavLink
               className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
-              to=""
+              to="/dashboard/chat"
             >
               <IoChatboxEllipsesOutline className="text-3xl " />{" "}
               <span className="text-lg">Chat</span>
@@ -97,7 +97,7 @@ const Sidebar = () => {
           <li>
             <NavLink
               className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
-              to=""
+              to="/dashboard/security"
             >
               <GrShieldSecurity className="text-3xl " />{" "}
               <span className="text-lg">Security</span>
@@ -106,7 +106,7 @@ const Sidebar = () => {
           <li>
             <NavLink
               className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
-              to=""
+              to="/dashboard/notification"
             >
               <MdOutlineEditNotifications className="text-3xl " />{" "}
               <span className="text-lg">NotifiCation Setting</span>
@@ -115,7 +115,7 @@ const Sidebar = () => {
           <li>
             <NavLink
               className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
-              to=""
+              to="/dashboard/users"
             >
               <IoIosLogOut className="text-3xl " />{" "}
               <span className="text-lg">LogOut</span>
