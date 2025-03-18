@@ -17,7 +17,7 @@ const ColumnCharts = () => {
       plotOptions: {
         bar: {
           horizontal: false,
-          columnWidth: "50%",
+          columnWidth: "40%",
           endingShape: "rounded",
         },
       },
@@ -35,7 +35,7 @@ const ColumnCharts = () => {
       fill: {
         opacity: 1,
       },
-      colors: ["#008FFB"],
+      colors: ["#40cdc3"],
     },
   });
   return (
