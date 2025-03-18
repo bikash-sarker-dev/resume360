@@ -1,4 +1,4 @@
-import PersonalInfo from "../information-input/personal-info/PersonalInfo"
+import EducationList from "./education/EducationList";
 import StepperComponents from "./stepper/StepperComponents";
 
 const InformationInput = () => {
@@ -7,7 +7,8 @@ const InformationInput = () => {
             <div className="">
                 <div className="max-w-7xl mx-auto pt-30">
                     <StepperComponents/>
-                    <PersonalInfo/>
+                    {/* <PersonalInfo/> */}
+                    <EducationList></EducationList>
                 </div>
             </div>
         </>
