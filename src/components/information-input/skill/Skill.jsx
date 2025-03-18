@@ -19,7 +19,7 @@ const Skill = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
+    <div className="p-4">
       <h2 className="text-2xl font-bold mb-4">Add Skill</h2>
       <div className="border rounded p-4 bg-gray-100">
         <div className="flex flex-wrap gap-2">
@@ -46,16 +46,6 @@ const Skill = () => {
             onKeyDown={handleKeyDown}
           />
         </div>
-      </div>
-
-      {/* Navigation buttons */}
-      <div className="flex justify-between mt-6">
-        <button className="px-6 py-2 bg-gray-400 text-white rounded-full hover:bg-gray-500">
-          Previous
-        </button>
-        <button className="px-6 py-2 bg-gray-400 text-white rounded-full hover:bg-gray-500">
-          Next
-        </button>
       </div>
     </div>
   );
