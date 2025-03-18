@@ -1,118 +1,139 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 export default function Login() {
+  const { signInUser, setUser, signInWithGoogle, signInWithGithub } = useAuth();
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
-    const {signInUser,setUser,signInWithGoogle,signInWithGithub} = useAuth()
-    const navigate = useNavigate()
-    const [showPassword,setShowPassword]=useState(false)
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    const user = { email, password };
+    // console.log(user);
 
-    const handleLogin = (event) => {
-      event.preventDefault()
-      const form = event.target;
-      const email = form.email.value;
-      const password = form.password.value;
-      const user = {email,password}
-      // console.log(user);
-
-      // SignInUser
-    signInUser(email,password)
-    .then(result => {
-      // console.log(result.user)
-      setUser(result.user)
-      Swal.fire({
-        title: 'Success',
-        text: 'Login successfully',
-        icon: 'success',
-        confirmButtonText: 'Done'
+    // SignInUser
+    signInUser(email, password)
+      .then((result) => {
+        // console.log(result.user)
+        setUser(result.user);
+        Swal.fire({
+          title: "Success",
+          text: "Login successfully",
+          icon: "success",
+          confirmButtonText: "Done",
+        });
+        navigate("/");
+        form.reset();
       })
-      navigate('/')
-      form.reset()
-    })
-    .catch(error => {
-      // console.log(error.message)
-      setUser(null)
-      Swal.fire({
-        title: 'Error',
-        text: error.message,
-        icon: 'error',
-        confirmButtonText: 'Ok'
-      })
-    })
-    }
+      .catch((error) => {
+        // console.log(error.message)
+        setUser(null);
+        Swal.fire({
+          title: "Error",
+          text: error.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      });
+  };
 
-     // google signin
-    const handleGoogleLogin = () => {
+  // google signin
+  const handleGoogleLogin = () => {
     signInWithGoogle()
-    .then(result => {
-    // console.log(result.user)
-    setUser(result.user)
-    Swal.fire({
-     title: 'Success',
-     text: 'Login successfully',
-     icon: 'success',
-     confirmButtonText: 'Done'
-    })
-    navigate('/')
-    })
-    .catch(error => {
-    // console.log(error)
-    setUser(null)
-    })
-    }
+      .then((result) => {
+        // console.log(result.user)
+        setUser(result.user);
+        Swal.fire({
+          title: "Success",
+          text: "Login successfully",
+          icon: "success",
+          confirmButtonText: "Done",
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        // console.log(error)
+        setUser(null);
+      });
+  };
 
-     // github signin
-        const handleGithubLogin = () => {
-            signInWithGithub()
-               .then(result => {
-                 setUser(result.user)
-                //  console.log(result.user)
-                 Swal.fire({
-                   title: 'Success',
-                   text: 'Login With Github Successfully',
-                   icon: 'success',
-                   confirmButtonText: 'Done'
-                 })
-                 navigate('/')
-               })
-               .catch(error => {
-                //  console.log(error)
-                 setUser(null)
-               })
-         }
+  // github signin
+  const handleGithubLogin = () => {
+    signInWithGithub()
+      .then((result) => {
+        setUser(result.user);
+        //  console.log(result.user)
+        Swal.fire({
+          title: "Success",
+          text: "Login With Github Successfully",
+          icon: "success",
+          confirmButtonText: "Done",
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        //  console.log(error)
+        setUser(null);
+      });
+  };
 
   return (
     <div>
       <div className="card-body">
         <h2 className="text-xl lg:text-2xl font-bold mb-4">Login</h2>
-       <form  onSubmit={handleLogin}>
-       <fieldset className="fieldset">
-          <label className="fieldset-label">Email</label>
-          <input type="email" name="email" className="input w-full" placeholder="Enter Email" />
-          <label className="fieldset-label">Password</label>
-          <div className="relative">
-            <input type={showPassword ? "text" : "password"} name="password" className="input w-full pr-10" placeholder="Enter Password" required />
-            <span className="absolute inset-y-0 right-3 flex items-center cursor-pointer text-gray-500" onClick={() => setShowPassword(!showPassword)}>
-            {showPassword ? (
-                <i className="fa-solid fa-eye"></i>
+        <form onSubmit={handleLogin}>
+          <fieldset className="fieldset">
+            <label className="fieldset-label">Email</label>
+            <input
+              type="email"
+              name="email"
+              className="input w-full"
+              placeholder="Enter Email"
+            />
+            <label className="fieldset-label">Password</label>
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                className="input w-full pr-10"
+                placeholder="Enter Password"
+                required
+              />
+              <span
+                className="absolute inset-y-0 right-3 flex items-center cursor-pointer text-gray-500"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <i className="fa-solid fa-eye"></i>
                 ) : (
-                <i className="fa-solid fa-eye-slash"></i>
+                  <i className="fa-solid fa-eye-slash"></i>
                 )}
-            </span>
-          </div>
-          <div><Link to='/forgetPassword'>Forgot your password?</Link></div>
-          <button className="btn bg-r-accent mt-4 text-white">Login</button>
-        </fieldset>
-       </form>
+              </span>
+            </div>
+            <div>
+              <Link to="/forgetPassword">Forgot your password?</Link>
+            </div>
+            <button className="btn bg-r-accent mt-4 text-white">Login</button>
+          </fieldset>
+        </form>
         <div className="divider">OR</div>
         <div className="text-center text-3xl">
-        <i onClick={handleGoogleLogin} className="fa-brands fa-google mr-5 cursor-pointer"></i>
-        {/* <i className="fa-brands fa-facebook mr-5 cursor-pointer"></i> */}
-        <i onClick={handleGithubLogin} className="fa-brands fa-github cursor-pointer"></i>
+          <i
+            onClick={handleGoogleLogin}
+            className="fa-brands fa-google mr-5 cursor-pointer"
+          ></i>
+          {/* <i className="fa-brands fa-facebook mr-5 cursor-pointer"></i> */}
+          <i
+            onClick={handleGithubLogin}
+            className="fa-brands fa-github cursor-pointer"
+          ></i>
         </div>
       </div>
     </div>
-  )
+  );
 }
