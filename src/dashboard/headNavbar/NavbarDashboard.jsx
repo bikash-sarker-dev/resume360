@@ -8,7 +8,7 @@ const NavbarDashboard = () => {
     <div className="bg-r-info-card p-4">
       <div className="flex gap-5 items-center">
         {/* search part start  */}
-        <div className="w-6/8 flex gap-2">
+        <div className="w-[70%] flex gap-2">
           <label className="input w-full">
             <svg
               className="h-[1em] opacity-50"
@@ -36,7 +36,7 @@ const NavbarDashboard = () => {
           <button className="btn">Search</button>
         </div>
         {/* notification indicator part  */}
-        <div className="w-1/8 space-x-6 text-center">
+        <div className="w-[20%] sm:space-x-6 text-center">
           <div className="indicator">
             <span className="indicator-item badge w-6 h-6 text-r-text bg-r-primary rounded-full">
               12
@@ -67,8 +67,10 @@ const NavbarDashboard = () => {
         </div>
         <div className="divider divider-horizontal  m-0"></div>
         {/* user setting part  */}
-        <div className="w-1/8 flex items-center  mr-6 gap-5">
-          <h4 className="font-semibold opacity-80">Bikash Sarker</h4>
+        <div className="w-[10%] flex items-center   gap-4 pr-4">
+          <h4 className="font-semibold opacity-80 hidden  xl:block ">
+            Bikash Sarker
+          </h4>
           <div className="avatar">
             <div className="w-12 h-12  rounded-full">
               <img src="https://st2.depositphotos.com/1006318/5909/v/450/depositphotos_59094701-stock-illustration-businessman-profile-icon.jpg" />
