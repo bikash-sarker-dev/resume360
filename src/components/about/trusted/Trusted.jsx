@@ -19,6 +19,7 @@ const Trusted = () => {
 
   return (
    <div  className="container mx-auto py-16">
+    
      <div className="bg-r-info-card py-24">
         <h1 className='text-center text-xl font-bold'>Trusted by the world's most innovative teams</h1>
       <div className="container mx-auto px-4">
