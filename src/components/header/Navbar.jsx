@@ -53,7 +53,10 @@ const Navbar = () => {
       <Link to="" className="cursor-pointer hover:text-gray-300 transition-all">
         Info
       </Link>
-      <Link to="" className="cursor-pointer hover:text-gray-300 transition-all">
+      <Link
+        to="/about"
+        className="cursor-pointer hover:text-gray-300 transition-all"
+      >
         About
       </Link>
       <Link
