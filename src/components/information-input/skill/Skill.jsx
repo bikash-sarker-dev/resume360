@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Skill = () => {
-  const [skills, setSkills] = useState(["html", "css", "js"]);
+  const [skills, setSkills] = useState([]);
   const [input, setInput] = useState("");
 
   const handleKeyDown = (e) => {
