@@ -33,7 +33,7 @@ const SocialLinkForm = ({ addSocialLink, onClose }) => {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="my-6 grid gap-4">
+        <form onSubmit={handleSubmit} className="mt-6 grid gap-4">
           <div>
             <TextField
               select
@@ -66,9 +66,9 @@ const SocialLinkForm = ({ addSocialLink, onClose }) => {
           {/* Buttons */}
           <div className="border-t border-gray-300 pt-6 flex justify-end gap-4">
             <button type="button" onClick={onClose}
-              className="px-4 py-2 rounded-lg text-slate-900 text-sm bg-gray-200 hover:bg-gray-300">Close</button>
+              className="cursor-pointer rounded-full text-white bg-r-secondary py-2 px-5">Close</button>
             <button type="submit"
-              className="px-4 py-2 rounded-lg text-white text-sm bg-blue-600 hover:bg-blue-700">Save</button>
+              className="cursor-pointer rounded-full text-white bg-r-primary py-2 px-5">Save</button>
           </div>
         </form>
       </div>
