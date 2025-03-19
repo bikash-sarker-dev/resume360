@@ -1,14 +1,26 @@
 import React from "react";
+import { Outlet } from "react-router";
+import NavbarDashboard from "../dashboard/headNavbar/NavbarDashboard";
 import Sidebar from "../dashboard/sideBar/Sidebar";
 
 const DashboardLayouts = () => {
   return (
     <main>
-      <div className="grid grid-cols-12">
-        <div className="col-span-2">
+      <div className="flex">
+        {/* side bar start  */}
+        <div className="w-auto ">
           <Sidebar />
         </div>
-        <div className="col-span-10">right side</div>
+        {/* dashboard body part  */}
+        <div
+          className="lg:w-[85%] w-[100%]
+        "
+        >
+          <NavbarDashboard />
+          <div className="p-10">
+            <Outlet />
+          </div>
+        </div>
       </div>
     </main>
   );
