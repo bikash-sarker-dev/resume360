@@ -1,7 +1,7 @@
 import React from "react";
 
 const CardChanging = () => {
-  return <div>CardChanging</div>;
+  return <div>card changing tab aaaaaaaaaaaaaaaaaaaaaaaaaaa</div>;
 };
 
 export default CardChanging;
