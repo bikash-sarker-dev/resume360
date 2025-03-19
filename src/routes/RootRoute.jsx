@@ -9,6 +9,7 @@ import UserProject from "../components/user/UserProject";
 import UserSkill from "../components/user/UserSkill";
 import DashboardLayouts from "../layouts/DashboardLayouts";
 import MainLayout from "../layouts/MainLayout";
+import AddInformation from "../pages/AddInformation";
 import ChatPage from "../pages/DashboardPage/ChatPage";
 import DashboardHomePage from "../pages/DashboardPage/DashboardHomePage";
 import DashboardUserPage from "../pages/DashboardPage/DashboardUserPage";
@@ -22,13 +23,11 @@ import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import PersonalInfoPage from "../pages/PersonalInfoPage";
 import RegisterPage from "../pages/RegisterPage";
-import TemplatePage from "../pages/TemplatePage";
+import TemplatesPage from "../pages/TemplatesPage";
 import User from "../pages/User";
 import AboutPage from "./../pages/AboutPage";
-import AddInformation from "../pages/AddInformation";
 import FaqPage from "./../pages/FaqPage";
 import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
-
 
 const RootRoute = () => {
   return (
@@ -50,9 +49,9 @@ const RootRoute = () => {
           {/* /user/project */}
           <Route path="userlink" element={<UserLink />} /> {/* /user/link */}
         </Route>
-        <Route path="/templates" element={<TemplatePage />} />
+        <Route path="/templates" element={<TemplatesPage />} />
         <Route path="/personal-info" element={<PersonalInfoPage />} />
-        <Route path="/add-information" element={<AddInformation/>} />
+        <Route path="/add-information" element={<AddInformation />} />
       </Route>
 
       {/* dashboard route working start  */}
