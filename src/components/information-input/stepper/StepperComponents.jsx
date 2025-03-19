@@ -56,7 +56,7 @@ const StepperComponents = () => {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box className="mb-10" sx={{ width: '100%' }}>
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map((label, index) => {
           const stepProps = {};
