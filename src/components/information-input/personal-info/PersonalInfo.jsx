@@ -23,7 +23,7 @@ const PersonalInfo = () => {
     return (
         <>
         <h2 className="text-2xl font-bold mb-4">Add Personal Info</h2>
-            <div className='md:grid grid-cols-2 gap-4'>
+            <div className='md:grid grid-cols-2 gap-4 px-4 space-y-5'>
                 <TextField
                     className='w-full'
                     required
