@@ -50,14 +50,23 @@ const Navbar = () => {
       <Link to="" className="cursor-pointer hover:text-gray-300 transition-all">
         Blog
       </Link>
-      <Link to="" className="cursor-pointer hover:text-gray-300 transition-all">
-        Info
+      <Link
+        to="/add-information"
+        className="cursor-pointer hover:text-gray-300 transition-all"
+      >
+        Add Information
       </Link>
       <Link
         to="/about"
         className="cursor-pointer hover:text-gray-300 transition-all"
       >
         About
+      </Link>
+      <Link
+        to="/templates"
+        className="cursor-pointer hover:text-gray-300 transition-all"
+      >
+        Templates
       </Link>
       <Link
         to="/faq"
@@ -82,36 +91,6 @@ const Navbar = () => {
               Resumes<span className="font-bold text-r-primary">360</span>
             </div>
 
-<<<<<<< HEAD
-          {/* Desktop Navigation */}
-          <ul className="hidden lg:flex space-x-6 text-lg font-medium">
-            <Link
-              to="/"
-              className="cursor-pointer hover:text-gray-300 transition-all"
-            >
-              Home
-            </Link>
-            <Link
-              to=""
-              className="cursor-pointer hover:text-gray-300 transition-all"
-            >
-              Vlog
-            </Link>
-            <Link
-              to="/templates"
-              className="cursor-pointer hover:text-gray-300 transition-all"
-            >
-             Templates
-            </Link>
-         
-            <Link
-              to=""
-              className="cursor-pointer hover:text-gray-300 transition-all"
-            >
-              Info
-            </Link>
-          </ul>
-=======
             {/* Desktop Navigation */}
             <ul className="hidden md:flex ml-20  space-x-6  text-lg font-medium">
               {menu}
@@ -144,7 +123,6 @@ const Navbar = () => {
                 </div>
               </>
             )}
->>>>>>> 617ed37f7fcad4d60828d926ac41f412527e61ca
 
             {/* Mobile hamburger Button */}
             <button
