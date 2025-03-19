@@ -22,16 +22,16 @@ const PersonalInfo = () => {
 
     return (
         <>
-            <div className='grid grid-cols-2 gap-4'>
+            <div className='md:grid grid-cols-2 gap-4'>
                 <TextField
-                    className=''
+                    className='w-full'
                     required
                     id="outlined-required"
                     label="Full Name"
                     defaultValue=""
                     helperText="Please enter your full name"
                 />
-                <div className="flex flex-col row-span-3 justify-center items-center border-2 border-dashed border-r-accent rounded-lg text-center">
+                <div className="md:flex flex-col row-span-3 justify-center items-center border-2 border-dashed border-r-accent rounded-lg text-center">
                     {!image ? (
                         <>
                             <label htmlFor="image-upload" className="cursor-pointer flex flex-col items-center">
@@ -58,7 +58,7 @@ const PersonalInfo = () => {
                     )}
                 </div>
                 <TextField
-                    className=''
+                    className='w-full'
                     required
                     id="outlined-required"
                     label="Phone Number"
@@ -67,7 +67,7 @@ const PersonalInfo = () => {
                     helperText="Please enter your phone number"
                 />
                 <TextField
-                    className=''
+                    className='w-full'
                     required
                     id="outlined-required"
                     label="Email"
@@ -76,7 +76,7 @@ const PersonalInfo = () => {
                     helperText="Please enter your email"
                 />
                 <TextField
-                    className='col-span-2'
+                    className='col-span-2 w-full'
                     required
                     id="outlined-required"
                     label="Address"
@@ -84,7 +84,7 @@ const PersonalInfo = () => {
                     helperText="Please enter your short address"
                 />
                 <TextField
-                    className='col-span-2'
+                    className='col-span-2 w-full'
                     required
                     id="outlined-required"
                     label="About Me"
@@ -93,9 +93,9 @@ const PersonalInfo = () => {
                     multiline
                     rows={4} // Adjust the number of rows as needed
                 />
-                <div className='grid grid-cols-3 gap-4 col-span-2'>
+                <div className='md:grid grid-cols-3 gap-4 col-span-2'>
                     <TextField
-                        className=''
+                        className='w-full'
                         required
                         id="outlined-required"
                         label="Date of Birth"
@@ -103,7 +103,7 @@ const PersonalInfo = () => {
                         helperText="Please enter your Date of Birth"
                     />
                     <TextField
-                        className=''
+                        className='w-full'
                         required
                         id="outlined-required"
                         label="Gender"
@@ -111,7 +111,7 @@ const PersonalInfo = () => {
                         helperText="Please enter your gender"
                     />
                     <TextField
-                        className=''
+                        className='w-full'
                         required
                         id="outlined-required"
                         label="Nationality"
