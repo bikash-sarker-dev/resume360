@@ -50,14 +50,23 @@ const Navbar = () => {
       <Link to="" className="cursor-pointer hover:text-gray-300 transition-all">
         Blog
       </Link>
-      <Link to="" className="cursor-pointer hover:text-gray-300 transition-all">
-        Info
+      <Link
+        to="/add-information"
+        className="cursor-pointer hover:text-gray-300 transition-all"
+      >
+        Add Information
       </Link>
       <Link
         to="/about"
         className="cursor-pointer hover:text-gray-300 transition-all"
       >
         About
+      </Link>
+      <Link
+        to="/templates"
+        className="cursor-pointer hover:text-gray-300 transition-all"
+      >
+        Templates
       </Link>
       <Link
         to="/faq"
