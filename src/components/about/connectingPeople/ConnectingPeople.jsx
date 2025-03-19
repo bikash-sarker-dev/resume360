@@ -7,10 +7,10 @@ import pic4 from "../../../../src/assets/images/about/connecting/pic5.jpg"
 
 const ConnectingPeople = () => {
   return (
-    <div className="container mx-auto py-16">
+    <div className="max-w-7xl mx-auto py-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4  md:p-12 lg:p-16">
     
-    <div className="md:col-span-6 lg:col-span-7 text-center md:text-left">
+    <div className="md:col-span-6 lg:col-span-8 text-center md:text-left">
       <h1 className="text-3xl md:text-5xl font-bold w-2/3">
         We're changing <br className="hidden md:block" /> the way people
         connect
@@ -23,7 +23,7 @@ const ConnectingPeople = () => {
     </div>
 
  
-    <div className="md:col-span-6 lg:col-span-5 flex  ">
+    <div className="md:col-span-6 lg:col-span-4 flex  ">
       <div className="flex gap-8">
         <div className="flex flex-col gap-4 mt-8 md:mt-14">
           <img
