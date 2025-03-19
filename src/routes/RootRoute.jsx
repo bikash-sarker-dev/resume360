@@ -25,18 +25,9 @@ import RegisterPage from "../pages/RegisterPage";
 import TemplatePage from "../pages/TemplatePage";
 import User from "../pages/User";
 import AboutPage from "./../pages/AboutPage";
-<<<<<<< HEAD
-import Userabout from "../components/user/Userabout";
-import UserEducation from "../components/user/UserEducation";
-import UserSkill from "../components/user/UserSkill";
-import UserExp from "../components/user/UserExp";
-import UserProject from "../components/user/UserProject";
-import UserLink from "../components/user/UserLink";
 import AddInformation from "../pages/AddInformation";
-=======
 import FaqPage from "./../pages/FaqPage";
 import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
->>>>>>> 617ed37f7fcad4d60828d926ac41f412527e61ca
 
 const RootRoute = () => {
   return (
