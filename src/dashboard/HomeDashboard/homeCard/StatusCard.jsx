@@ -4,7 +4,7 @@ import { FaCloudDownloadAlt, FaUsers } from "react-icons/fa";
 
 const StatusCard = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-5">
       {/* card 1  */}
       <div className="bg-r-info shadow-md rounded-lg p-6 ">
         <div className="flex items-center justify-between gap-3">
