@@ -11,6 +11,8 @@ import RegisterPage from "../pages/RegisterPage";
 import TemplatePage from "../pages/TemplatePage";
 import User from "../pages/User";
 import AboutPage from "./../pages/AboutPage";
+import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
+import FaqPage from "./../pages/FaqPage";
 import Userabout from "../components/user/Userabout";
 import UserEducation from "../components/user/UserEducation";
 import UserSkill from "../components/user/UserSkill";
@@ -25,6 +27,8 @@ const RootRoute = () => {
         <Route index element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/forgetPassword" element={<ForgetPasswordPage/>} />
+        <Route path="/faq" element={<FaqPage/>} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/user" element={<User />} >
           <Route index element={<Userabout />} /> {/* Default: /user */}
