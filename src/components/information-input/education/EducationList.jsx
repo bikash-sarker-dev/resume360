@@ -16,9 +16,12 @@ const EducationList = () => {
     <div className="max-w-5xl mx-auto p-4">
       {/* Button to open Modal */}
       <div className="flex justify-end mb-6">
-        <Button variant="contained" color="primary" onClick={() => setOpenModal(true)}>
+        <button
+          className="rounded-full text-white bg-r-primary py-2 px-5"
+          onClick={() => setOpenModal(true)}
+        >
           Add Education
-        </Button>
+        </button>
       </div>
 
       {/* Modal Form */}
