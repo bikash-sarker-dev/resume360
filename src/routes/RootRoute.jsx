@@ -29,6 +29,7 @@ import AddInformation from "../pages/AddInformation";
 import FaqPage from "./../pages/FaqPage";
 import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
 
+
 const RootRoute = () => {
   return (
     <Routes>
