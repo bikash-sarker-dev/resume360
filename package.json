@@ -16,6 +16,7 @@
     "@mui/material": "^6.4.7",
     "@tailwindcss/vite": "^4.0.13",
     "firebase": "^11.4.0",
+    "framer-motion": "^12.5.0",
     "lottie-react": "^2.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
