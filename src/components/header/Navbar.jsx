@@ -1,11 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
+  const { signOutUser, user, setUser } = useAuth();
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [lastScroll, setLastScroll] = useState(0);
   const [hidden, setHidden] = useState(false);
+
+  // Signout
+  const handleSignOut = () => {
+    // console.log('logOut')
+    signOutUser()
+      .then(() => {
+        Swal.fire({
+          title: "Success",
+          text: "Logout successfully",
+          icon: "success",
+          confirmButtonText: "Done",
+        });
+        setUser(null);
+      })
+      .catch((error) => {});
+  };
 
   // Handle scroll behavior (hide on scroll down, show on scroll up)
   useEffect(() => {
@@ -33,11 +53,17 @@ const Navbar = () => {
       <Link to="" className="cursor-pointer hover:text-gray-300 transition-all">
         Info
       </Link>
-      <Link to="" className="cursor-pointer hover:text-gray-300 transition-all">
+      <Link
+        to="/about"
+        className="cursor-pointer hover:text-gray-300 transition-all"
+      >
         About
       </Link>
-      <Link to="" className="cursor-pointer hover:text-gray-300 transition-all">
-        Menu 5
+      <Link
+        to="/faq"
+        className="cursor-pointer hover:text-gray-300 transition-all"
+      >
+        FAQ
       </Link>
     </>,
   ];
@@ -60,20 +86,34 @@ const Navbar = () => {
             <ul className="hidden md:flex ml-20  space-x-6  text-lg font-medium">
               {menu}
             </ul>
-
-            {/* Login Button (Desktop) */}
-            <div className="flex gap-4">
-              <Link to="/login">
-                <button className="hidden lg:block shadow shadow-r-primary px-6 py-2 rounded-lg text-lg font-semibold duration-500 text-r-accent hover:text-r-text hover:bg-r-primary transition">
-                  Login
-                </button>
-              </Link>
-              <Link to="/register">
-                <button className="hidden lg:block shadow shadow-r-primary px-6 py-2 rounded-lg text-lg font-semibold duration-500 text-r-accent hover:text-r-text hover:bg-r-primary transition">
-                  register
-                </button>
-              </Link>
-            </div>
+            {user ? (
+              <>
+                <Link>
+                  <button
+                    onClick={handleSignOut}
+                    className="hidden lg:block shadow shadow-r-primary px-6 py-2 rounded-lg text-lg font-semibold duration-500 text-r-accent hover:text-r-text hover:bg-r-primary transition"
+                  >
+                    Logout
+                  </button>
+                </Link>
+              </>
+            ) : (
+              <>
+                {/* Login Button (Desktop) */}
+                <div className="flex gap-4">
+                  <Link to="/login">
+                    <button className="hidden lg:block shadow shadow-r-primary px-6 py-2 rounded-lg text-lg font-semibold duration-500 text-r-accent hover:text-r-text hover:bg-r-primary transition">
+                      Login
+                    </button>
+                  </Link>
+                  <Link to="/register">
+                    <button className="hidden lg:block shadow shadow-r-primary px-6 py-2 rounded-lg text-lg font-semibold duration-500 text-r-accent hover:text-r-text hover:bg-r-primary transition">
+                      register
+                    </button>
+                  </Link>
+                </div>
+              </>
+            )}
 
             {/* Mobile hamburger Button */}
             <button

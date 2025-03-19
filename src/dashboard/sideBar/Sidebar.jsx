@@ -1,9 +1,21 @@
 import React from "react";
+import { AiOutlineRead } from "react-icons/ai";
 import { FaBars } from "react-icons/fa";
+import { FiUserCheck } from "react-icons/fi";
+import { GoHome } from "react-icons/go";
+import { GrShieldSecurity } from "react-icons/gr";
+import { IoIosLogOut } from "react-icons/io";
+import {
+  IoChatboxEllipsesOutline,
+  IoListOutline,
+  IoReaderOutline,
+} from "react-icons/io5";
+import { MdOutlineEditNotifications } from "react-icons/md";
+import { NavLink } from "react-router";
 
 const Sidebar = () => {
   return (
-    <div className="drawer lg:drawer-open">
+    <div className="drawer lg:drawer-open bg-r-primary ">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col items-start justify-center">
         {/* Page content here */}
@@ -14,19 +26,110 @@ const Sidebar = () => {
           <FaBars className="text-xl" />
         </label>
       </div>
-      <div className="drawer-side">
+
+      <div className="drawer-side bg-r-primary min-h-screen pl-5">
         <label
           htmlFor="my-drawer-2"
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+        <div className=" mt-5">
+          <h2 className="text-3xl font-extrabold text-center text-r-text">
+            Resume360
+          </h2>
+        </div>
+        <ul className="menu text-base-content min-h-full w-80 p-4 space-y-4">
           {/* Sidebar content here */}
           <li>
-            <a>Sidebar Item 1</a>
+            <NavLink
+              className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
+              to="/dashboard/home"
+            >
+              <GoHome className="text-3xl " />{" "}
+              <span className="text-lg">Dashboard</span>
+            </NavLink>
           </li>
           <li>
-            <a>Sidebar Item 2</a>
+            <NavLink
+              className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
+              to="/dashboard/users"
+            >
+              <FiUserCheck className="text-3xl " />{" "}
+              <span className="text-lg">Users</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
+              to="/dashboard/order-list"
+            >
+              <IoListOutline className="text-3xl " />{" "}
+              <span className="text-lg">Order List</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
+              to="/dashboard/order-details"
+            >
+              <AiOutlineRead className="text-3xl " />{" "}
+              <span className="text-lg">Order Details</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
+              to="/dashboard/reviews"
+            >
+              <IoReaderOutline className="text-3xl " />{" "}
+              <span className="text-lg">Reviews</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
+              to="/dashboard/chat"
+            >
+              <IoChatboxEllipsesOutline className="text-3xl " />{" "}
+              <span className="text-lg">Chat</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
+              to="/dashboard/security"
+            >
+              <GrShieldSecurity className="text-3xl " />{" "}
+              <span className="text-lg">Security</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
+              to="/dashboard/notification"
+            >
+              <MdOutlineEditNotifications className="text-3xl " />{" "}
+              <span className="text-lg">NotifiCation Setting</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
+              to="/dashboard/users"
+            >
+              <IoIosLogOut className="text-3xl " />{" "}
+              <span className="text-lg">LogOut</span>
+            </NavLink>
+          </li>
+          <div className="divider"></div>
+          <li>
+            <NavLink
+              className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
+              to="/"
+            >
+              <IoIosLogOut className="text-3xl " />{" "}
+              <span className="text-lg">Go to Home</span>
+            </NavLink>
           </li>
         </ul>
       </div>
