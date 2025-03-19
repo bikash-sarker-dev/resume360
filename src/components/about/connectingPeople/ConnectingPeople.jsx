@@ -1,5 +1,4 @@
 
-
 import React from "react";
 import pic1 from "../../../../src/assets/images/about/connecting/pic1.jpg"
 import pic2 from "../../../../src/assets/images/about/connecting/pic2.jpg"
@@ -17,7 +16,9 @@ const ConnectingPeople = () => {
         connect
       </h1>
       <p className="py-4 md:py-6 text-gray-500 text-sm md:text-base w-3/4">
-      In today’s fast-paced digital world, your resume is your first impression. Our online resume builder is revolutionizing the way job seekers and employers connect by providing an easy-to-use platform that creates professional, customizable resumes in minutes. Whether you're a recent graduate or an experienced professional, our tool helps you showcase your skills, experience, and personality in a way that sets you apart. With powerful features, a user-friendly interface, and expert guidance, we’re making the job application process smoother, faster, and more effective than ever before.
+      In today’s fast-paced digital world, your resume is your first impression. Our online resume builder is revolutionizing the way job seekers and employers connect by providing an easy-to-use platform that creates professional, customizable resumes in minutes. Whether you're a recent graduate or an experienced professional, our tool helps you showcase your skills, experience,
+       and personality in a way that sets you apart. With powerful features, a user-friendly interface, and expert guidance,
+        we’re making the job application process smoother, faster, and more effective than ever before.
       </p>
     </div>
 
