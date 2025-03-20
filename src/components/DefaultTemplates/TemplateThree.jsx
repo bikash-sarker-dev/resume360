@@ -78,6 +78,16 @@ const TemplateThree = () => {
       </div>
 
       
+      <div className="mt-6">
+        <h3 className="text-xl font-semibold text-blue-600">REFERENCES</h3>
+        <div className="mt-4 text-sm text-gray-700">
+          <p><strong>Akio Tomika</strong></p>
+          <p>Email: hello@reallygreatsite.com</p>
+          <p>Phone: (123) 456-7890</p>
+        </div>
+      </div>
+
+      
     </div>
   );;
 };
