@@ -29,6 +29,7 @@ import AboutPage from "./../pages/AboutPage";
 import FaqPage from "./../pages/FaqPage";
 import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
 
+
 const RootRoute = () => {
   return (
     <Routes>
@@ -52,6 +53,7 @@ const RootRoute = () => {
         <Route path="/templates" element={<TemplatesPage />} />
         <Route path="/personal-info" element={<PersonalInfoPage />} />
         <Route path="/add-information" element={<AddInformation />} />
+       
       </Route>
 
       {/* dashboard route working start  */}
