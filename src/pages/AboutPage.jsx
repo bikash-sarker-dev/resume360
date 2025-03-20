@@ -20,6 +20,9 @@ const AboutPage = () => {
      <FromBlog></FromBlog>
      
 
+    
+     
+
      
 
   
