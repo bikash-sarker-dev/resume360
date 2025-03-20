@@ -4,6 +4,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { TemplateTab } from "../components/TemplatePage/TemplateTab";
 
+
 const TemplatesPage = () => {
 const [templetes,setTemplates]=useState([])
 useEffect(() => {
