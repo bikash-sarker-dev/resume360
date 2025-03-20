@@ -47,6 +47,36 @@ const TemplateThree = () => {
         </div>
       </div>
 
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <div>
+          <h3 className="text-xl font-semibold text-blue-600">EDUCATION</h3>
+          <div className="mt-4">
+            <h4 className="font-semibold text-gray-800">North State University</h4>
+            <p className="text-sm text-gray-600">Masters of Science | May 2030 - May 2032</p>
+            <p className="text-sm text-gray-700">GPA: 3.35 | Most Impactful Thesis Award</p>
+          </div>
+
+          <div className="mt-4">
+            <h4 className="font-semibold text-gray-800">City College</h4>
+            <p className="text-sm text-gray-600">Bachelor of Science | Jun 2026 - Jun 2030</p>
+            <p className="text-sm text-gray-700">GPA: 3.75 | Specialization in Enterprise Systems</p>
+          </div>
+        </div>
+
+        
+        <div>
+          <h3 className="text-xl font-semibold text-blue-600">SKILLS</h3>
+          <ul className="list-disc list-inside text-gray-700 text-sm mt-4">
+            <li>System Analysis</li>
+            <li>User Research</li>
+            <li>Machine Learning</li>
+            <li>Agile Methodology</li>
+            <li>Database Modelling</li>
+          </ul>
+        </div>
+      </div>
+
       
     </div>
   );;
