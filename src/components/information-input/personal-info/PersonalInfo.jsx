@@ -3,6 +3,7 @@ import { TextField, Button, MenuItem } from "@mui/material";
 import { useState } from "react";
 import { FiUploadCloud } from "react-icons/fi";
 import SectionHead from '../../header/section-head/SectionHead';
+import LivePreview from '../live-preview/LivePreview';
 
 const PersonalInfo = () => {
     const [image, setImage] = useState(null);
@@ -132,7 +133,7 @@ const PersonalInfo = () => {
                     </div>
                 </div>
                 <div>
-                    <img src="https://i.ibb.co.com/pBTDf678/Whats-App-Image-2025-03-20-at-13-20-15-8709966e.jpg" alt="resume" />
+                    <LivePreview></LivePreview>
                 </div>
             </div>
         </>

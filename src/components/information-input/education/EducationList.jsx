@@ -3,6 +3,7 @@ import EducationForm from "./EducationForm";
 import EducationCard from "./EducationCard";
 import { Button } from "@mui/material";
 import SectionHead from "../../header/section-head/SectionHead";
+import LivePreview from "../live-preview/LivePreview";
 
 const EducationList = () => {
   const [educations, setEducations] = useState([]);
@@ -44,8 +45,7 @@ const EducationList = () => {
           ))}
         </div>
         <div>
-          
-          <img src="https://i.ibb.co.com/pBTDf678/Whats-App-Image-2025-03-20-at-13-20-15-8709966e.jpg" alt="resume" />
+          <LivePreview></LivePreview>
         </div>
       </div>
     </div>
