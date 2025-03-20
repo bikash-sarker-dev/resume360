@@ -4,17 +4,29 @@ import pic1 from "../../../../src/assets/images/about/connecting/pic1.jpg"
 import pic2 from "../../../../src/assets/images/about/connecting/pic2.jpg"
 import pic3 from "../../../../src/assets/images/about/connecting/pic3.jpg"
 import pic4 from "../../../../src/assets/images/about/connecting/pic5.jpg"
+import { motion } from "framer-motion";
 
 const ConnectingPeople = () => {
   return (
-    <div className="container mx-auto py-16">
+    <div className="max-w-7xl mx-auto py-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4  md:p-12 lg:p-16">
     
-    <div className="md:col-span-6 lg:col-span-7 text-center md:text-left">
-      <h1 className="text-3xl md:text-5xl font-bold w-2/3">
+    <div className="md:col-span-6 lg:col-span-8 text-center md:text-left">
+      {/* <h1 className="text-3xl md:text-5xl font-bold w-2/3">
         We're changing <br className="hidden md:block" /> the way people
         connect
-      </h1>
+      </h1> */}
+
+
+<motion.h1
+            className="text-3xl md:text-5xl font-bold w-2/3"
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.5, ease: "easeOut" }} 
+          >
+            We're changing <br className="hidden md:block" /> the way people
+            connect
+          </motion.h1>
       <p className="py-4 md:py-6 text-gray-500 text-sm md:text-base w-3/4">
       In today’s fast-paced digital world, your resume is your first impression. Our online resume builder is revolutionizing the way job seekers and employers connect by providing an easy-to-use platform that creates professional, customizable resumes in minutes. Whether you're a recent graduate or an experienced professional, our tool helps you showcase your skills, experience,
        and personality in a way that sets you apart. With powerful features, a user-friendly interface, and expert guidance,
@@ -23,7 +35,7 @@ const ConnectingPeople = () => {
     </div>
 
  
-    <div className="md:col-span-6 lg:col-span-5 flex  ">
+    <div className="md:col-span-6 lg:col-span-4 flex  ">
       <div className="flex gap-8">
         <div className="flex flex-col gap-4 mt-8 md:mt-14">
           <img
