@@ -6,6 +6,7 @@ import OurMission from "../components/about/ourMission/OurMission";
 import OurValues from "../components/about/ourValues/OurValues";
 import FromBlog from "../components/about/fromBlog/FromBlog";
 import TemplateTwo from "../components/DefaultTemplates/TemplateTwo"
+import TemplateFive from "../components/DefaultTemplates/TemplateFive";
 
 const AboutPage = () => {
   return (
@@ -17,6 +18,9 @@ const AboutPage = () => {
      <Trusted></Trusted>
      <OurTeam></OurTeam>
      <FromBlog></FromBlog>
+     
+
+     
 
   
 
