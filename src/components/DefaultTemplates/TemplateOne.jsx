@@ -4,7 +4,7 @@ const TemplateOne = () => {
   return (
     <div className="container pb-8 pt-28 lg:pb-12">
       <div className="bg-white p-16">
-        <h1 className="text-4xl font-bold mb-3">DANIEL GALLEGO</h1>
+        <h1 className="text-4xl font-bold mb-3">DANIEL GALLEGO 4</h1>
         <h2 className="text-2xl font-bold mb-2">UX DESIGNER</h2>
         <p className="mb-2">
           <i className="fa-solid fa-location-dot mr-2"></i>Dhaka, Bangladesh |{" "}
