@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
@@ -6,18 +6,13 @@ import useAuth from "../../hooks/useAuth";
 export default function Register() {
   const {createUser,setUser,signInWithGithub,updateUserInfo,signInWithGoogle} = useAuth();
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword1, setShowPassword1] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleRegister = (event) => {
     event.preventDefault();
-    // if (password !== confirmPassword) {
-    //   setErrorMessage("Passwords do not match!");
-    //   return;
-    // }
-    // setErrorMessage("");
+    console.log(errorMessage)
 
     const form = event.target;
     const name = form.name.value;
@@ -27,10 +22,10 @@ export default function Register() {
     const confirmPassword = form.confirmPassword.value;
 
     if (password !== confirmPassword) {
-      setErrorMessage("Passwords do not match!");
+
       Swal.fire({
         title: "Error",
-        text: errorMessage,
+        text: "Passwords do not match!",
         icon: "error",
         confirmButtonText: "Ok",
       });
@@ -46,12 +41,9 @@ export default function Register() {
     const regex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
     if (!regex.test(password)) {
-      setErrorMessage(
-        "Please give a valid password with at lease one Uppercase, one Lowercase and length must be 6 character or more."
-      );
       Swal.fire({
         title: "Error",
-        text: errorMessage,
+        text:  "Please give a valid password with at lease one Uppercase, one Lowercase and length must be 6 character or more.",
         icon: "error",
         confirmButtonText: "Ok",
       });
@@ -66,7 +58,7 @@ export default function Register() {
         navigate("/");
         Swal.fire({
           title: "Success",
-          text: "Register Successfully",
+          text: "Registration is Successfully Completed",
           icon: "success",
           confirmButtonText: "Done",
         });
@@ -79,7 +71,13 @@ export default function Register() {
             //  console.log(res.user)
           })
           .catch((error) => {
-            setErrorMessage(error.message);
+            Swal.fire({
+              title: "Error",
+              text:  "Update is Unsuccessful",
+              icon: "error",
+              confirmButtonText: "Ok",
+            });
+            return;
           });
       })
       .catch((error) => {
@@ -87,7 +85,7 @@ export default function Register() {
         setUser(null);
         Swal.fire({
           title: "Error",
-          text: error.message,
+          text: "Registration is Unsuccessful",
           icon: "error",
           confirmButtonText: "Ok",
         });
@@ -202,7 +200,7 @@ export default function Register() {
                   <label className="fieldset-label">Password</label>
                   <div className="relative">
                     <input
-                      type={showPassword ? "text" : "password"}
+                      type={showPassword1 ? "text" : "password"}
                       name="password"
                       className="input w-full pr-10"
                       placeholder="Enter Password"
@@ -210,9 +208,9 @@ export default function Register() {
                     />
                     <span
                       className="absolute inset-y-0 right-3 flex items-center cursor-pointer text-gray-500"
-                      onClick={() => setShowPassword(!showPassword)}
+                      onClick={() => setShowPassword1(!showPassword1)}
                     >
-                      {showPassword ? (
+                      {showPassword1 ? (
                         <i className="fa-solid fa-eye"></i>
                       ) : (
                         <i className="fa-solid fa-eye-slash"></i>
@@ -223,7 +221,7 @@ export default function Register() {
                   <label className="fieldset-label">Confirm Password</label>
                   <div className="relative">
                     <input
-                      type={showPassword ? "text" : "password"}
+                      type={showPassword2 ? "text" : "password"}
                       name="confirmPassword"
                       className="input w-full pr-10"
                       placeholder="Enter Comfirm Password"
@@ -231,9 +229,9 @@ export default function Register() {
                     />
                     <span
                       className="absolute inset-y-0 right-3 flex items-center cursor-pointer text-gray-500"
-                      onClick={() => setShowPassword(!showPassword)}
+                      onClick={() => setShowPassword2(!showPassword2)}
                     >
-                      {showPassword ? (
+                      {showPassword2 ? (
                         <i className="fa-solid fa-eye"></i>
                       ) : (
                         <i className="fa-solid fa-eye-slash"></i>
@@ -253,8 +251,21 @@ export default function Register() {
                   </button>
                 </fieldset>
               </form>
+              <div className="divider">OR</div>
+        <div className="text-center text-3xl">
+          <i
+            onClick={handleGoogleLogin}
+            className="fa-brands fa-google mr-5 cursor-pointer"
+          ></i>
+          <i
+            onClick={handleGithubLogin}
+            className="fa-brands fa-github cursor-pointer"
+          ></i>
+        </div>
               <div className="text-center">
-                <h1>
+                <p>Already have an account? <span className="underline"><Link  to='/login' className="text-r-accent">Login here</Link></span>
+                        </p>
+                {/* <h1>
                   Already have an account?{" "}
                   <span className="underline">
                     <Link to="/login" className="text-r-accent">
@@ -262,7 +273,7 @@ export default function Register() {
                       Login here
                     </Link>
                   </span>
-                </h1>
+                </h1> */}
               </div>
             </div>
           </div>

@@ -12,7 +12,7 @@ const LoginPage = () => {
       <p className="py-6 w-10/12 mx-auto lg:mx-0">
         Immerse yourself in a hassle-free login journey with our intuitively designed login form. Effortless access your account.</p>
         <p>Don't have an account? <span className="underline"><Link  to='/register' className="text-r-accent">Register here</Link></span>
-      </p>
+        </p>
     </div>
    <div className="card w-full md:w-8/12">
    <Login></Login>

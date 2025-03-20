@@ -35,7 +35,7 @@ export default function Login() {
         setUser(null);
         Swal.fire({
           title: "Error",
-          text: error.message,
+          text: "Email or Password is wrong please check",
           icon: "error",
           confirmButtonText: "Ok",
         });
@@ -50,7 +50,7 @@ export default function Login() {
         setUser(result.user);
         Swal.fire({
           title: "Success",
-          text: "Login successfully",
+          text: "Login with Google successfully",
           icon: "success",
           confirmButtonText: "Done",
         });
