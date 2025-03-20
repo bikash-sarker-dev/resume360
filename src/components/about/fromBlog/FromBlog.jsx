@@ -1,6 +1,7 @@
 
 
 import React, { useEffect, useState } from 'react';
+import { motion } from "framer-motion";
 
 const FromBlog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -20,16 +21,30 @@ const FromBlog = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {blogs.map((blog) => (
-          <div key={blog.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="relative">
-              <img src={blog.image} alt={blog.title} className="w-full h-96 object-cover" />
+          <motion.div
+            key={blog.id}
+            className="bg-white rounded-lg shadow-lg overflow-hidden"
+            initial={{ scale: 1 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            <div className="relative overflow-hidden">
+              <motion.img
+                src={blog.image}
+                alt={blog.title}
+                className="w-full h-96 object-cover"
+                initial={{ scale: 1 }}
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              />
               <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-4 h-40">
                 <p className="text-sm">{blog.date} - {blog.name}</p>
                 <h2 className="text-lg font-semibold">{blog.title}</h2>
                 <p className="text-sm">{blog.description}</p>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
