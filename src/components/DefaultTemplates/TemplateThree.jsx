@@ -17,6 +17,14 @@ const TemplateThree = () => {
         </div>
       </div>
 
+      <div className="mt-6">
+        <h3 className="text-xl font-semibold text-blue-600">PERSONAL PROFILE</h3>
+        <p className="text-gray-700 mt-2 text-sm">
+          I am a software developer and systems architect with a background in designing, coding,
+          and testing intricate systems. My expertise lies in C#, Java, and Ruby programming languages.
+        </p>
+      </div>
+
       
     </div>
   );;
