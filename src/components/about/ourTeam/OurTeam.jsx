@@ -1,23 +1,20 @@
+
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const OurTeam = () => {
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
     fetch("/teams.json")
-    .then(res =>res.json())
-    .then(data => {
-        setTeams(data.teams)
-    })
-      
+      .then((res) => res.json())
+      .then((data) => {
+        setTeams(data.teams);
+      });
   }, []);
-
-
-
 
   return (
     <div className="container mx-auto py-16">
-     
       <div className="mb-6">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
           Our Team
@@ -29,30 +26,35 @@ const OurTeam = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 mt-8">
         {teams.map((team) => (
-          <div key={team.id} className="card bg-base-100 shadow-sm">
-            <figure className="hover:scale-105 transition-transform duration-300 ease-in-out">
-              <img
+          <motion.div
+            key={team.id}
+            className="card bg-base-100 shadow-sm overflow-hidden"
+            initial={{ scale: 1 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            <figure className="overflow-hidden">
+              <motion.img
                 className="h-[300px] object-cover w-full"
                 src={team.image}
                 alt={team.title}
+                initial={{ scale: 1 }}
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
               />
             </figure>
             <div className="card-body flex flex-col justify-between space-y-2">
               <h2 className="card-title">{team.name}</h2>
               <span>{team.title}</span>
-              
-              <p className="">{team.description}</p>
-              <div className="card-actions flex ">
-                {/* <div className="w-12 h-12 rounded-full mr-3"> */}
-                <i className="w-12 h-12 rounded-full  fa-brands fa-facebook"></i>
-                <i className="w-12 h-12 rounded-full  fa-brands fa-linkedin"></i>
-                <i className="w-12 h-12 rounded-full  fa-brands fa-twitter"></i>
-                 
-                {/* </div> */}
-                
+              <p>{team.description}</p>
+              <div className="card-actions flex space-x-4 text-xl">
+                <i className="fa-brands fa-facebook hover:text-blue-600 transition-colors"></i>
+                <i className="fa-brands fa-linkedin hover:text-blue-700 transition-colors"></i>
+                <i className="fa-brands fa-twitter hover:text-blue-400 transition-colors"></i>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
@@ -60,3 +62,4 @@ const OurTeam = () => {
 };
 
 export default OurTeam;
+
