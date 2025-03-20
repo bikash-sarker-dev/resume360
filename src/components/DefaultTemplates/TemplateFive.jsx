@@ -2,8 +2,10 @@ import React from 'react';
 
 const TemplateFive = () => {
     return (
-        <div className="max-w-3xl mx-auto p-6 shadow-lg bg-white">
+        <div className="container mx-auto pb-8 pt-28 lg:pb-12">
         {/* Header Section */}
+
+        <div className='bg-white shadow-lg rounded-lg p-16'>
         <div className="text-center">
           <h1 className="text-3xl font-bold">John Smith</h1>
           <h2 className="text-xl text-gray-600">Software Development Engineer in Test</h2>
@@ -130,6 +132,8 @@ const TemplateFive = () => {
   </ul>
 </section>
 <h1 className='mb-10'></h1>
+        </div>
+       
       </div>
     );
   };
