@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import Lottie from "lottie-react";
+import resumeLottieData from "../../assets/animation/resume2.json"
 
 export default function Register() {
   const {createUser,setUser,signInWithGithub,updateUserInfo,signInWithGoogle} = useAuth();
   const navigate = useNavigate();
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
 
   const handleRegister = (event) => {
     event.preventDefault();
-    console.log(errorMessage)
 
     const form = event.target;
     const name = form.name.value;
@@ -33,8 +33,6 @@ export default function Register() {
     }
 
     const newUser = { name,profession,email };
-
-    setErrorMessage("");
 
     // password validation
 
@@ -135,24 +133,8 @@ export default function Register() {
     <div>
       <div className="hero bg-background">
         <div className="hero-content flex-1 flex-col lg:flex-row w-full mx-auto lg:mx-0 gap-10">
-          <div className="text-center lg:text-left w-8/12 mx-auto">
-            <h1 className="text-3xl mb-6 lg:text-3xl font-semibold">
-              Instant Access
-            </h1>
-            <div className="flex flex-col space-y-4">
-              <button
-                onClick={handleGoogleLogin}
-                className="btn bg-r-accent text-white flex items-center justify-center gap-2 p-3 rounded-lg whitespace-nowrap w-8/12"
-              >
-                <i className="fa-brands fa-google"></i> Continue with Google
-              </button>
-              <button
-                onClick={handleGithubLogin}
-                className="btn bg-r-accent text-white flex items-center justify-center gap-2 p-3 rounded-lg whitespace-nowrap w-8/12"
-              >
-                <i className="fa-brands fa-github"></i> Continue with Github
-              </button>
-            </div>
+          <div>
+            <Lottie animationData={resumeLottieData}></Lottie>
           </div>
           <div className="card w-full md:w-7/12">
             <div className="card-body">
@@ -262,19 +244,9 @@ export default function Register() {
             className="fa-brands fa-github cursor-pointer"
           ></i>
         </div>
-              <div className="text-center">
-                <p>Already have an account? <span className="underline"><Link  to='/login' className="text-r-accent">Login here</Link></span>
-                        </p>
-                {/* <h1>
-                  Already have an account?{" "}
-                  <span className="underline">
-                    <Link to="/login" className="text-r-accent">
-                      {" "}
-                      Login here
-                    </Link>
-                  </span>
-                </h1> */}
-              </div>
+            <div className="text-center">
+              <p>Already have an account? <span className="underline"><Link  to='/login' className="text-r-accent">Login here</Link></span></p>
+            </div>
             </div>
           </div>
         </div>
