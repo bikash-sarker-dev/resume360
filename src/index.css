@@ -32,8 +32,8 @@ body {
 }
 
 
-/* 
-this is for navbar active button , after setup all router then active this 
+
+/* this is for navbar active button , after setup all router then active this  */
 
 
 a {
@@ -47,31 +47,28 @@ a {
   transition: color 0.3s ease-in-out;
 }
 
-Active  color
 
 a.active {
-  color: #40cdc3;
+  color: #effbfa;
 }
 
-Underline animation
  
-a.active::after {
+a::after {
   content: "";
   position: absolute;
   left: 50%;
   bottom: -4px;
   width: 0;
   height: 3px;
-  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  background: #effbfa;
   transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
   transform: translateX(-50%);
 }
 
-Expand underline on active
-
+ul > a:hover::after,
 a.active::after {
   width: 100%;
-} */
+}
 
 
 /* for slide naimation in hero text */
