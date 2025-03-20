@@ -2,7 +2,7 @@ import React from "react";
 
 const TemplateThree = () => {
   return (
-    <div className="max-w-4xl mb-5 pt-24 mx-auto bg-white shadow-lg p-10 rounded-lg">
+    <div className="max-w-4xl mb-5 pt-24 mx-auto bg-white shadow-lg p-16 rounded-lg">
       
       <div className="text-center flex justify-between border-b pb-5">
         <div className="text-left">
