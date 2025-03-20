@@ -4,24 +4,39 @@ import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 
 export default function Register() {
-  const {
-    createUser,
-    setUser,
-    signInWithGithub,
-    updateUserInfo,
-    signInWithGoogle,
-  } = useAuth();
+  const {createUser,setUser,signInWithGithub,updateUserInfo,signInWithGoogle} = useAuth();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleRegister = (event) => {
     event.preventDefault();
+    // if (password !== confirmPassword) {
+    //   setErrorMessage("Passwords do not match!");
+    //   return;
+    // }
+    // setErrorMessage("");
+
     const form = event.target;
     const name = form.name.value;
     const profession = form.profession.value;
     const email = form.email.value;
     const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
+
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords do not match!");
+      Swal.fire({
+        title: "Error",
+        text: errorMessage,
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+      return;
+    }
+
     const newUser = { name,profession,email };
 
     setErrorMessage("");
@@ -183,6 +198,7 @@ export default function Register() {
                       <i className="fa-solid fa-envelope"></i>
                     </span>
                   </div>
+                  {/* password */}
                   <label className="fieldset-label">Password</label>
                   <div className="relative">
                     <input
@@ -203,6 +219,28 @@ export default function Register() {
                       )}
                     </span>
                   </div>
+                  {/* confirm password */}
+                  <label className="fieldset-label">Confirm Password</label>
+                  <div className="relative">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      name="confirmPassword"
+                      className="input w-full pr-10"
+                      placeholder="Enter Comfirm Password"
+                      required
+                    />
+                    <span
+                      className="absolute inset-y-0 right-3 flex items-center cursor-pointer text-gray-500"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? (
+                        <i className="fa-solid fa-eye"></i>
+                      ) : (
+                        <i className="fa-solid fa-eye-slash"></i>
+                      )}
+                    </span>
+                  </div>
+
                   <div className="flex justify-between items-center mt-2">
                     <label className="fieldset-label">
                       <input type="checkbox" className="checkbox" required /> I
