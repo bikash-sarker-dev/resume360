@@ -39,15 +39,16 @@ const RootRoute = () => {
         <Route path="/forgetPassword" element={<ForgetPasswordPage />} />
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/about" element={<AboutPage />} />
+
+
+        {/* user page routes  */}
         <Route path="/user" element={<User />}>
-          <Route index element={<Userabout />} /> {/* Default: /user */}
-          <Route path="usereducation" element={<UserEducation />} />{" "}
-          {/* /user/education */}
-          <Route path="userskill" element={<UserSkill />} /> {/* /user/skill */}
-          <Route path="userexp" element={<UserExp />} /> {/* /user/exp */}
-          <Route path="userproject" element={<UserProject />} />{" "}
-          {/* /user/project */}
-          <Route path="userlink" element={<UserLink />} /> {/* /user/link */}
+          <Route index element={<Userabout />} />
+          <Route path="usereducation" element={<UserEducation />} />
+          <Route path="userskill" element={<UserSkill />} /> 
+          <Route path="userexp" element={<UserExp />} /> 
+          <Route path="userproject" element={<UserProject />} />
+          <Route path="userlink" element={<UserLink />} /> 
         </Route>
         <Route path="/templates" element={<TemplatesPage />} />
         <Route path="/personal-info" element={<PersonalInfoPage />} />
