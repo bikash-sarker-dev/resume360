@@ -47,7 +47,10 @@ const Navbar = () => {
       >
         Home
       </Link>
-      <Link to="" className="cursor-pointer hover:text-gray-300 transition-all">
+      <Link
+        to="/blog"
+        className="cursor-pointer hover:text-gray-300 transition-all"
+      >
         Blog
       </Link>
       <Link
