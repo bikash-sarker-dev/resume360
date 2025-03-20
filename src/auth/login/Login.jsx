@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import SectionHead from "../../components/header/section-head/SectionHead";
 
 export default function Login() {
   const { signInUser, setUser, signInWithGoogle, signInWithGithub } = useAuth();
@@ -85,7 +86,9 @@ export default function Login() {
   return (
     <div>
       <div className="card-body">
-        <h2 className="text-xl lg:text-2xl font-bold mb-4">Login</h2>
+      <SectionHead
+        title={"Login"}
+      />
         <form onSubmit={handleLogin}>
           <fieldset className="fieldset">
             <label className="fieldset-label">Email</label>
