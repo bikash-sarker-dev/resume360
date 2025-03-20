@@ -26,7 +26,7 @@ const FromBlog = () => {
             className="bg-white rounded-lg shadow-lg overflow-hidden"
           >
             <div className="relative overflow-hidden">
-              {/* Apply motion only to the image */}
+              
               <motion.img
                 src={blog.image}
                 alt={blog.title}
