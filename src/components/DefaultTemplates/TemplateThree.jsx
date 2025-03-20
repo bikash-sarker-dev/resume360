@@ -25,6 +25,28 @@ const TemplateThree = () => {
         </p>
       </div>
 
+      <div className="mt-6">
+        <h3 className="text-xl font-semibold text-blue-600">WORK EXPERIENCE</h3>
+        <div className="mt-4">
+          <h4 className="font-semibold text-gray-800">Senior Software Engineer</h4>
+          <p className="text-sm text-gray-600">The Systems Design Group | Jan 2034 - June 2038</p>
+          <ul className="list-disc list-inside text-gray-700 text-sm mt-2">
+            <li>Led a team of 10 engineers to develop a new architecture, increasing system performance by 40%.</li>
+            <li>Successfully implemented automated testing protocols, reducing bug-related incidents by 40%.</li>
+          </ul>
+        </div>
+
+        <div className="mt-4">
+          <h4 className="font-semibold text-gray-800">Software Developer</h4>
+          <p className="text-sm text-gray-600">The Systems Design Inc. | Sept 2030 - Dec 2033</p>
+          <ul className="list-disc list-inside text-gray-700 text-sm mt-2">
+            <li>Optimized database queries, improving application performance by 30%.</li>
+            <li>Completed a major project 1 week ahead of schedule and 15% under budget.</li>
+            <li>Implemented automated testing, reducing bug reports by 40%.</li>
+          </ul>
+        </div>
+      </div>
+
       
     </div>
   );;
