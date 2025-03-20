@@ -13,11 +13,11 @@ const OurValues = () => {
     }, []);
 
     return (
-        <div className="container mx-auto py-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+        <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
             
             <div className='w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden'>
                 <img 
-                    src="https://img.freepik.com/free-photo/authentic-small-youthful-marketing-agency_23-2150167428.jpg?t=st=1742181704~exp=1742185304~hmac=f93b040943214af9b4c94cd166309c1717c5c6052b4e85f3e32b955e90f5d40b&w=1380" 
+                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                     alt="Our Values"
                     className="w-full h-full object-cover"
                 />
