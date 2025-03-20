@@ -10,6 +10,8 @@ import EducationList from "../education/EducationList";
 import PersonalInfo from "../personal-info/PersonalInfo";
 import Skill from "../skill/skill";
 import SocialLinksList from "../social-links/SocialLinksList";
+import LivePreview from '../live-preview/LivePreview';
+import SectionHead from '../../header/section-head/SectionHead';
 
 const renderStepContent = (step) => {
   switch (step) {
@@ -83,7 +85,13 @@ const StepperComponents = () => {
       {activeStep === steps.length ? (
         <React.Fragment>
           <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
+            <SectionHead
+              subTitle={"This is your final output of resume"}
+              title={"Final Result"}
+            />
+            <div className='flex justify-center'>
+              <LivePreview></LivePreview>
+            </div>
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Box sx={{ flex: '1 1 auto' }} />
