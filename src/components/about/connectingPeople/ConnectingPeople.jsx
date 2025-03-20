@@ -20,9 +20,9 @@ const ConnectingPeople = () => {
 
 <motion.h1
             className="text-3xl md:text-5xl font-bold w-2/3"
-            initial={{ opacity: 0, y: 50 }} 
+            initial={{ opacity: 0, y: 20 }} 
             animate={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 1, ease: "easeOut" }} 
+            transition={{ duration: 0.5, ease: "easeOut" }} 
           >
             We're changing <br className="hidden md:block" /> the way people
             connect
