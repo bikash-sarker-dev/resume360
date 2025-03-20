@@ -18,6 +18,8 @@ const AboutPage = () => {
      <OurTeam></OurTeam>
      <FromBlog></FromBlog>
 
+     <TemplateTwo></TemplateTwo>
+
   
 
     </div>
