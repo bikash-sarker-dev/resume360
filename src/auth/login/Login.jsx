@@ -89,12 +89,17 @@ export default function Login() {
         <form onSubmit={handleLogin}>
           <fieldset className="fieldset">
             <label className="fieldset-label">Email</label>
+            <div className="relative">
             <input
               type="email"
               name="email"
               className="input w-full"
-              placeholder="Enter Email"
+              placeholder="Enter Your Email"
             />
+            <span className="absolute inset-y-0 right-3 flex items-center text-gray-500">
+              <i className="fa-solid fa-envelope"></i>
+            </span>
+            </div>
             <label className="fieldset-label">Password</label>
             <div className="relative">
               <input
@@ -132,6 +137,9 @@ export default function Login() {
             onClick={handleGithubLogin}
             className="fa-brands fa-github cursor-pointer"
           ></i>
+        </div>
+        <div className="text-center">
+          <p>Already have an account? <span className="underline"><Link  to='/register' className="text-r-accent">Register here</Link></span></p>
         </div>
       </div>
     </div>
