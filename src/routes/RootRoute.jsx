@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router";
 
 import React from "react";
+import TemplateOne from "../components/DefaultTemplates/TemplateOne";
 import Userabout from "../components/user/Userabout";
 import UserEducation from "../components/user/UserEducation";
 import UserExp from "../components/user/UserExp";
@@ -10,6 +11,7 @@ import UserSkill from "../components/user/UserSkill";
 import DashboardLayouts from "../layouts/DashboardLayouts";
 import MainLayout from "../layouts/MainLayout";
 import AddInformation from "../pages/AddInformation";
+import BlogPage from "../pages/BlogPage";
 import ChatPage from "../pages/DashboardPage/ChatPage";
 import DashboardHomePage from "../pages/DashboardPage/DashboardHomePage";
 import DashboardUserPage from "../pages/DashboardPage/DashboardUserPage";
@@ -51,10 +53,12 @@ const RootRoute = () => {
           <Route path="userlink" element={<UserLink />} /> 
         </Route>
         <Route path="/templates" element={<TemplatesPage />} />
+
         <Route path="/personal-info" element={<PersonalInfoPage />} />
         <Route path="/add-information" element={<AddInformation />} />
+        <Route path="/templateOne" element={<TemplateOne />} />
+        <Route path="/blog" element={<BlogPage />} />
       </Route>
-
       {/* dashboard route working start  */}
       <Route path="/dashboard" element={<DashboardLayouts />}>
         <Route path="/dashboard/home" element={<DashboardHomePage />} />

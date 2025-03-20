@@ -44,7 +44,10 @@ const Navbar = () => {
       <NavLink to="/" className="cursor-pointer w-8/12  transition-all">
         Home
       </NavLink>
-      <NavLink to="/dashboard" className="cursor-pointer w-8/12 transition-all">
+      <NavLink
+        to="/dashboard/home"
+        className="cursor-pointer w-8/12 transition-all"
+      >
         Dashboard
       </NavLink>
       <NavLink
