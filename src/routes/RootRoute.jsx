@@ -50,6 +50,7 @@ const RootRoute = () => {
           <Route path="userlink" element={<UserLink />} /> {/* /user/link */}
         </Route>
         <Route path="/templates" element={<TemplatesPage />} />
+       
         <Route path="/personal-info" element={<PersonalInfoPage />} />
         <Route path="/add-information" element={<AddInformation />} />
       </Route>
