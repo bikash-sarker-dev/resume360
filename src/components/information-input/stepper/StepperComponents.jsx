@@ -5,13 +5,13 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-
 import EducationList from "../education/EducationList";
 import PersonalInfo from "../personal-info/PersonalInfo";
 import Skill from "../skill/skill";
 import SocialLinksList from "../social-links/SocialLinksList";
 import LivePreview from '../live-preview/LivePreview';
 import SectionHead from '../../header/section-head/SectionHead';
+import Project from '../project/Project';
 
 const renderStepContent = (step) => {
   switch (step) {
@@ -23,12 +23,14 @@ const renderStepContent = (step) => {
       return <Skill />;
     case 3:
       return <SocialLinksList />;
+    case 4:
+      return <Project/>;
     default:
       return <Typography>Unknown Step</Typography>;
   }
 };
 
-const steps = ['Personal Info', 'Education', 'Skills', 'Social Links'];
+const steps = ['Personal Info', 'Education', 'Skills', 'Social Links', 'Project'];
 
 const StepperComponents = () => {
   const [activeStep, setActiveStep] = React.useState(0);
