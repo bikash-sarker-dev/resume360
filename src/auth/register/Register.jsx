@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import Lottie from "lottie-react";
 import resumeLottieData from "../../assets/animation/resume2.json"
+import SectionHead from "../../components/header/section-head/SectionHead";
 
 export default function Register() {
   const {createUser,setUser,signInWithGithub,updateUserInfo,signInWithGoogle} = useAuth();
@@ -138,7 +139,9 @@ export default function Register() {
           </div>
           <div className="card w-full md:w-7/12">
             <div className="card-body">
-              <h2 className="text-xl lg:text-2xl font-bold mb-4">Register</h2>
+            <SectionHead
+              title={"Register"}
+            />
               <form onSubmit={handleRegister}>
                 <fieldset className="fieldset">
                   <label className="fieldset-label">Name</label>
