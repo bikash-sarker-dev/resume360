@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import SectionHead from "../../components/header/section-head/SectionHead";
 
 export default function Login() {
   const { signInUser, setUser, signInWithGoogle, signInWithGithub } = useAuth();
@@ -35,7 +36,7 @@ export default function Login() {
         setUser(null);
         Swal.fire({
           title: "Error",
-          text: error.message,
+          text: "Email or Password is wrong please check",
           icon: "error",
           confirmButtonText: "Ok",
         });
@@ -50,7 +51,7 @@ export default function Login() {
         setUser(result.user);
         Swal.fire({
           title: "Success",
-          text: "Login successfully",
+          text: "Login with Google successfully",
           icon: "success",
           confirmButtonText: "Done",
         });
@@ -85,16 +86,23 @@ export default function Login() {
   return (
     <div>
       <div className="card-body">
-        <h2 className="text-xl lg:text-2xl font-bold mb-4">Login</h2>
+      <SectionHead
+        title={"Login"}
+      />
         <form onSubmit={handleLogin}>
           <fieldset className="fieldset">
             <label className="fieldset-label">Email</label>
+            <div className="relative">
             <input
               type="email"
               name="email"
               className="input w-full"
-              placeholder="Enter Email"
+              placeholder="Enter Your Email"
             />
+            <span className="absolute inset-y-0 right-3 flex items-center text-gray-500">
+              <i className="fa-solid fa-envelope"></i>
+            </span>
+            </div>
             <label className="fieldset-label">Password</label>
             <div className="relative">
               <input
@@ -132,6 +140,9 @@ export default function Login() {
             onClick={handleGithubLogin}
             className="fa-brands fa-github cursor-pointer"
           ></i>
+        </div>
+        <div className="text-center">
+          <p>Already have an account? <span className="underline"><Link  to='/register' className="text-r-accent">Register here</Link></span></p>
         </div>
       </div>
     </div>

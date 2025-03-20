@@ -29,7 +29,7 @@ export default function ForgetPassword() {
           // console.log(error.message)
           Swal.fire({
             title: 'Error',
-            text: error.message,
+            text: "Email is Wrong! Please Check",
             icon: 'error',
             confirmButtonText: 'Ok'
           })
