@@ -1,4 +1,5 @@
 
+
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
@@ -26,14 +27,7 @@ const OurTeam = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 mt-8">
         {teams.map((team) => (
-          <motion.div
-            key={team.id}
-            className="card bg-base-100 shadow-sm overflow-hidden"
-            initial={{ scale: 1 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-          >
+          <div key={team.id} className="card bg-base-100 shadow-sm overflow-hidden">
             <figure className="overflow-hidden">
               <motion.img
                 className="h-[300px] object-cover w-full"
@@ -41,6 +35,7 @@ const OurTeam = () => {
                 alt={team.title}
                 initial={{ scale: 1 }}
                 whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               />
             </figure>
@@ -54,7 +49,7 @@ const OurTeam = () => {
                 <i className="fa-brands fa-twitter hover:text-blue-400 transition-colors"></i>
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>
@@ -62,4 +57,5 @@ const OurTeam = () => {
 };
 
 export default OurTeam;
+
 

@@ -21,15 +21,12 @@ const FromBlog = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {blogs.map((blog) => (
-          <motion.div
+          <div
             key={blog.id}
             className="bg-white rounded-lg shadow-lg overflow-hidden"
-            initial={{ scale: 1 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             <div className="relative overflow-hidden">
+              
               <motion.img
                 src={blog.image}
                 alt={blog.title}
@@ -44,7 +41,7 @@ const FromBlog = () => {
                 <p className="text-sm">{blog.description}</p>
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>
@@ -52,6 +49,7 @@ const FromBlog = () => {
 };
 
 export default FromBlog;
+
 
 
 
