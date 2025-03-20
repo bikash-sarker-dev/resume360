@@ -9,6 +9,7 @@ import UserProject from "../components/user/UserProject";
 import UserSkill from "../components/user/UserSkill";
 import DashboardLayouts from "../layouts/DashboardLayouts";
 import MainLayout from "../layouts/MainLayout";
+import AddInformation from "../pages/AddInformation";
 import ChatPage from "../pages/DashboardPage/ChatPage";
 import DashboardHomePage from "../pages/DashboardPage/DashboardHomePage";
 import DashboardUserPage from "../pages/DashboardPage/DashboardUserPage";
@@ -22,11 +23,12 @@ import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import PersonalInfoPage from "../pages/PersonalInfoPage";
 import RegisterPage from "../pages/RegisterPage";
-import TemplatePage from "../pages/TemplatePage";
+import TemplatesPage from "../pages/TemplatesPage";
 import User from "../pages/User";
 import AboutPage from "./../pages/AboutPage";
 import FaqPage from "./../pages/FaqPage";
 import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
+import TemplateThree from "../components/DefaultTemplates/TemplateThree";
 
 const RootRoute = () => {
   return (
@@ -38,18 +40,21 @@ const RootRoute = () => {
         <Route path="/forgetPassword" element={<ForgetPasswordPage />} />
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/resume" element={<TemplateThree />} />
+
+
+        {/* user page routes  */}
         <Route path="/user" element={<User />}>
-          <Route index element={<Userabout />} /> {/* Default: /user */}
-          <Route path="usereducation" element={<UserEducation />} />{" "}
-          {/* /user/education */}
-          <Route path="userskill" element={<UserSkill />} /> {/* /user/skill */}
-          <Route path="userexp" element={<UserExp />} /> {/* /user/exp */}
-          <Route path="userproject" element={<UserProject />} />{" "}
-          {/* /user/project */}
-          <Route path="userlink" element={<UserLink />} /> {/* /user/link */}
+          <Route index element={<Userabout />} />
+          <Route path="usereducation" element={<UserEducation />} />
+          <Route path="userskill" element={<UserSkill />} /> 
+          <Route path="userexp" element={<UserExp />} /> 
+          <Route path="userproject" element={<UserProject />} />
+          <Route path="userlink" element={<UserLink />} /> 
         </Route>
-        <Route path="/templates" element={<TemplatePage />} />
+        <Route path="/templates" element={<TemplatesPage />} />
         <Route path="/personal-info" element={<PersonalInfoPage />} />
+        <Route path="/add-information" element={<AddInformation />} />
       </Route>
 
       {/* dashboard route working start  */}
