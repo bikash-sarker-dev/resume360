@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import SectionHead from '../../header/section-head/SectionHead'
 
 
 export const Blogs = () => {
@@ -17,13 +18,11 @@ const [Blogs,setBlogs]=useState([])
   return (
     <div className='container mx-auto py-16'>
         <div className='text-center mb-6'>
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 ">
-     Latest Insights & Career Tips
-  </h2>
-  <p className="text-lg md:text-xl text-gray-600 mt-3">
-    Stay updated with expert advice on resume writing, job searching, and career growth. 
-    Explore trending topics to boost your professional journey!
-  </p>
+     
+ 
+   <SectionHead title={"Latest Insights & Career Tips"} 
+   subTitle={`Stay updated with expert advice on resume writing, job searching, and career growth. 
+    Explore trending topics to boost your professional journey`}/>
         </div>
 
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 mt-8'>
