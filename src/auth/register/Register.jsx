@@ -18,10 +18,11 @@ export default function Register() {
   const handleRegister = (event) => {
     event.preventDefault();
     const form = event.target;
-    const email = form.email.value;
     const name = form.name.value;
+    const profession = form.profession.value;
+    const email = form.email.value;
     const password = form.password.value;
-    const newUser = { name, email };
+    const newUser = { name,profession,email };
 
     setErrorMessage("");
 
@@ -158,6 +159,16 @@ export default function Register() {
                       <i className="fa-solid fa-user"></i>
                     </span>
                   </div>
+
+                  <label className="fieldset-label">Profession</label>
+                    <select defaultValue="default" className="select select-bordered w-full" name='profession' required type='text'>
+                    <option disabled value="default">select profession</option>
+                    <option value="student">Web Developer</option>
+                    <option value="tutor">Teacher</option>
+                    <option value="admin">UI/UX Designer</option>
+                    <option value="admin">Mechanical Engineer</option>
+                    <option value="admin">Chemist</option>
+                    </select>
 
                   <label className="fieldset-label">Email</label>
                   <div className="relative">
