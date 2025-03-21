@@ -11,6 +11,7 @@ export default function Register() {
   const navigate = useNavigate();
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
+  const [conditions, setConditions] = useState(false);
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -33,7 +34,8 @@ export default function Register() {
       return;
     }
 
-    const newUser = { name,profession,email };
+    const newUser = { name,profession,email,password,conditions };
+    console.log(newUser)
 
     // password validation
 
@@ -226,14 +228,27 @@ export default function Register() {
 
                   <div className="flex justify-between items-center mt-2">
                     <label className="fieldset-label">
-                      <input type="checkbox" className="checkbox" required /> I
+                      <input type="checkbox" name="conditions" value={conditions? "true" : "false"} className="checkbox"  onClick={() => setConditions(!conditions)} required /> I
                       accept the Terms and Conditions
                     </label>
                   </div>
-
-                  <button className="btn bg-r-accent mt-4 text-white">
+                  {
+                    conditions? 
+                    <>
+                    <button className="btn bg-r-accent mt-4 text-white">
                     Create Account
                   </button>
+                    </>
+                    :
+                    <>
+                    <button disabled className="btn bg-r-accent mt-4 text-white">
+                    Create Account
+                  </button>
+                    </>
+                  }
+                  {/* <button className="btn bg-r-accent mt-4 text-white">
+                    Create Account
+                  </button> */}
                 </fieldset>
               </form>
               <div className="divider">OR</div>
