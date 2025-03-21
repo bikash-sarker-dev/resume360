@@ -12,6 +12,7 @@ import SocialLinksList from "../social-links/SocialLinksList";
 import LivePreview from '../live-preview/LivePreview';
 import SectionHead from '../../header/section-head/SectionHead';
 import ProjectList from '../project/ProjectList';
+import ExperienceList from '../expreance/ExperienceList';
 
 const renderStepContent = (step) => {
   switch (step) {
@@ -25,12 +26,14 @@ const renderStepContent = (step) => {
       return <SocialLinksList />;
     case 4:
       return <ProjectList/>;
+    case 5:
+      return <ExperienceList/>;
     default:
       return <Typography>Unknown Step</Typography>;
   }
 };
 
-const steps = ['Personal Info', 'Education', 'Skills', 'Social Links', 'Project'];
+const steps = ['Personal Info', 'Education', 'Skills', 'Social Links', 'Project', 'Experience'];
 
 const StepperComponents = () => {
   const [activeStep, setActiveStep] = React.useState(0);
