@@ -13,6 +13,7 @@ import LivePreview from '../live-preview/LivePreview';
 import SectionHead from '../../header/section-head/SectionHead';
 import ProjectList from '../project/ProjectList';
 import ExperienceList from '../expreance/ExperienceList';
+import ErrorPage from '../../../pages/ErrorPage';
 
 const renderStepContent = (step) => {
   switch (step) {
@@ -29,7 +30,7 @@ const renderStepContent = (step) => {
     case 5:
       return <ExperienceList/>;
     default:
-      return <Typography>Unknown Step</Typography>;
+      return <ErrorPage></ErrorPage>;
   }
 };
 
