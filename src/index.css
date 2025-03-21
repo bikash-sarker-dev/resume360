@@ -31,28 +31,8 @@ body {
   margin: 0 auto;
 }
 
-
-
 /* this is for navbar active button , after setup all router then active this  */
 
-
-a {
-  position: relative;
-  display: inline-block;
-  padding: 10px 15px;
-  color: #030b0b;
-  font-size: 16px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.3s ease-in-out;
-}
-
-
-a.active {
-  color: #effbfa;
-}
-
- 
 a::after {
   content: "";
   position: absolute;
@@ -69,7 +49,6 @@ ul > a:hover::after,
 a.active::after {
   width: 100%;
 }
-
 
 /* for slide naimation in hero text */
 @keyframes slideUp {
@@ -101,7 +80,6 @@ a.active::after {
 .slide-up-btn {
   animation-delay: 0.9s;
 }
-
 
 /* this is for brand logo motion  */
 
