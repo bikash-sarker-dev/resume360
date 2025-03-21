@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
-import { Link, useNavigate } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 
@@ -41,42 +41,30 @@ const Navbar = () => {
 
   const menu = [
     <>
-      <Link
-        to="/"
-        className="cursor-pointer hover:text-gray-300 transition-all"
-      >
+      <NavLink to="/" className="cursor-pointer w-8/12  transition-all">
         Home
-      </Link>
-      <Link
-        to="/blog"
-        className="cursor-pointer hover:text-gray-300 transition-all"
+      </NavLink>
+      <NavLink
+        to="/dashboard/home"
+        className="cursor-pointer w-8/12 transition-all"
       >
-        Blog
-      </Link>
-      <Link
+        Dashboard
+      </NavLink>
+      <NavLink
         to="/add-information"
-        className="cursor-pointer hover:text-gray-300 transition-all"
+        className="cursor-pointer w-8/12 transition-all"
       >
-        Add Information
-      </Link>
-      <Link
-        to="/about"
-        className="cursor-pointer hover:text-gray-300 transition-all"
-      >
+        AddInfo
+      </NavLink>
+      <NavLink to="/about" className="cursor-pointer w-8/12 transition-all">
         About
-      </Link>
-      <Link
-        to="/templates"
-        className="cursor-pointer hover:text-gray-300 transition-all"
-      >
+      </NavLink>
+      <NavLink to="/templates" className="cursor-pointer w-8/12 transition-all">
         Templates
-      </Link>
-      <Link
-        to="/faq"
-        className="cursor-pointer hover:text-gray-300 transition-all"
-      >
+      </NavLink>
+      <NavLink to="/faq" className="cursor-pointer w-8/12 transition-all">
         FAQ
-      </Link>
+      </NavLink>
     </>,
   ];
 
@@ -84,18 +72,18 @@ const Navbar = () => {
     <>
       <div className=" ">
         <header
-          className={`fixed  top-0 left-0  w-full bg-r-info/80  text-r-text  backdrop-blur-sm z-50 px-4 py-3  shadow-md transition-transform duration-500 ${
+          className={`fixed  top-0 left-0  w-full bg-r-primary  text-r-text  z-50  py-1  shadow-md transition-transform duration-500 ${
             hidden ? "-translate-y-full" : "translate-y-0"
           }`}
         >
           <div className="flex items-center justify-between w-10/12 mx-auto">
             {/* Logo */}
             <div className="text-2xl font-serif ">
-              Resumes<span className="font-bold text-r-primary">360</span>
+              Resumes<span className="font-bold text-r-background">360</span>
             </div>
 
             {/* Desktop Navigation */}
-            <ul className="hidden md:flex ml-20  space-x-6  text-lg font-medium">
+            <ul className="hidden md:flex ml-20  space-x-2  text-lg font-medium">
               {menu}
             </ul>
             {user ? (
@@ -112,15 +100,15 @@ const Navbar = () => {
             ) : (
               <>
                 {/* Login Button (Desktop) */}
-                <div className="flex gap-4">
+                <div className="flex gap-">
                   <Link to="/login">
-                    <button className="hidden lg:block shadow shadow-r-primary px-6 py-2 rounded-lg text-lg font-semibold duration-500 text-r-accent hover:text-r-text hover:bg-r-primary transition">
+                    <button className="hidden lg:block shadow-sm hover:shadow-sm shadow-r-text  px-6 py-2 rounded-lg text-lg font-semibold duration-500 text-r-text hover:text-r-card hover:bg-r-primary transition">
                       Login
                     </button>
                   </Link>
                   <Link to="/register">
-                    <button className="hidden lg:block shadow shadow-r-primary px-6 py-2 rounded-lg text-lg font-semibold duration-500 text-r-accent hover:text-r-text hover:bg-r-primary transition">
-                      register
+                    <button className="hidden lg:block shadow-sm hover:shadow-sm shadow-r-text px-6 py-2 rounded-lg text-lg font-semibold duration-500 text-r-text hover:text-r-card hover:bg-r-primary transition">
+                      Register
                     </button>
                   </Link>
                 </div>
@@ -139,23 +127,30 @@ const Navbar = () => {
 
         {/* Mobile Dropdown Menu */}
         <div
-          className={`lg:hidden z-30 fixed top-0 rounded-3xl backdrop-blur-3xl opacity-30  right-10 w-[300px]  text-r-text transition-all duration-500 ease-in-out ${
+          className={`md:hidden z-30 fixed top-0 rounded-3xl backdrop-blur-3xl opacity-30  bg-r-primary right-10 w-[300px]  text-r-text transition-all duration-500 ease-in-out ${
             menuOpen
               ? "opacity-100 z-0 translate-y-0 top-16"
               : "opacity-0  -translate-y-full pointer-events-none"
           }`}
         >
           <ul
-            className="flex flex-col items-center space-y-4 py-6 text-lg"
+            className="flex flex-col  items-center space-y-4 py-6 text-lg"
             onClick={() => setMenuOpen(false)}
           >
             {menu}
+          </ul>
+          <div className=" items-center justify-center">
             <Link to="/login">
-              <button className="shadow shadow-r-primary px-6 py-3 rounded-lg text-lg font-semibold duration-500 text-r-text hover:text-r-text hover:bg-r-primary transition">
+              <button className="shadow-sm hover:shadow-none shadow-r-text px-6 py-3 rounded-lg text-lg font-semibold duration-500 text-r-text hover:text-r-text hover:bg-r-info transition">
                 Login
               </button>
             </Link>
-          </ul>
+            <Link to="/register">
+              <button className="shadow-sm hover:shadow-none shadow-r-text  px-6 py-3 rounded-lg text-lg font-semibold duration-500 text-r-text hover:text-r-text hover:bg-r-info transition">
+                Register
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </>
