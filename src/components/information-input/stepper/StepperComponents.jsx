@@ -11,7 +11,7 @@ import Skill from "../skill/skill";
 import SocialLinksList from "../social-links/SocialLinksList";
 import LivePreview from '../live-preview/LivePreview';
 import SectionHead from '../../header/section-head/SectionHead';
-import Project from '../project/Project';
+import ProjectList from '../project/ProjectList';
 
 const renderStepContent = (step) => {
   switch (step) {
@@ -24,7 +24,7 @@ const renderStepContent = (step) => {
     case 3:
       return <SocialLinksList />;
     case 4:
-      return <Project/>;
+      return <ProjectList/>;
     default:
       return <Typography>Unknown Step</Typography>;
   }
