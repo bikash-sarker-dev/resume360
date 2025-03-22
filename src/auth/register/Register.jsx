@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import Lottie from "lottie-react";
 import resumeLottieData from "../../assets/animation/resume2.json"
 import SectionHead from "../../components/header/section-head/SectionHead";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 export default function Register() {
   const {createUser,setUser,signInWithGithub,updateUserInfo,signInWithGoogle} = useAuth();
@@ -12,6 +13,7 @@ export default function Register() {
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
   const [conditions, setConditions] = useState(false);
+  const axiosPublic = useAxiosPublic()
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -34,7 +36,7 @@ export default function Register() {
       return;
     }
 
-    const newUser = { name,profession,email,password,conditions };
+    const newUser = { name,profession,email,password,conditions};
     console.log(newUser)
 
     // password validation
@@ -55,22 +57,32 @@ export default function Register() {
     createUser(email, password)
       .then((result) => {
         setUser(result.user);
-        form.reset();
-        navigate("/");
-        Swal.fire({
-          title: "Success",
-          text: "Registration is Successfully Completed",
-          icon: "success",
-          confirmButtonText: "Done",
-        });
+        
         // UpdateUser
         const profile = {
           displayName: name,
         };
         updateUserInfo(profile)
-          .then((res) => {
-            //  console.log(res.user)
-          })
+
+        .then((res)=>{
+          axiosPublic.post('/users', newUser)
+          .then(res => {
+            console.log(res.data)
+          if(res.data.insertedId){
+            console.log('user added to the database');
+            form.reset();
+            Swal.fire({
+              title: 'Success',
+              text: 'Registration is Successfully Completed',
+              icon: 'success',
+              confirmButtonText: 'Done'
+            })
+            navigate("/");
+          }
+          // console.log(res.data)
+        })
+        })
+        
           .catch((error) => {
             Swal.fire({
               title: "Error",
@@ -82,7 +94,6 @@ export default function Register() {
           });
       })
       .catch((error) => {
-        setErrorMessage(error.message);
         setUser(null);
         Swal.fire({
           title: "Error",
