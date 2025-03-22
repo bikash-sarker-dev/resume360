@@ -54,11 +54,22 @@ const Banner = () => {
 
         {/* Button */}
         <div className="space-x-5">
-          <button className="shadow shadow-r-primary px-6 py-3 rounded-4xl text-lg font-semibold duration-500 text-r-accent hover:text-r-text hover:bg-r-primary transition slide-up slide-up-btn">
-            {slides[activeIndex].buttonText}
+          <button
+            href="#_"
+            class="relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-bold  text-r-text bg-r-background rounded-lg group slide-up slide-up-btn"
+          >
+            <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-r-primary rounded-full group-hover:w-56 group-hover:h-56"></span>
+            <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-r-secondary"></span>
+            <span class="relative">{slides[activeIndex].buttonText}</span>
           </button>
-          <button className="shadow shadow-r-primary px-6 py-3 rounded-4xl text-lg font-semibold duration-500 text-white hover:text-r-text hover:bg-r-background bg-r-primary transition slide-up slide-up-btn">
-            more
+          <button
+            href="#_"
+            class="relative    items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow hover:bg-white group slide-up slide-up-btn"
+          >
+            <span class="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+            <span class="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
+              More
+            </span>
           </button>
         </div>
       </div>
