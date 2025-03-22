@@ -7,14 +7,13 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import EducationList from "../education/EducationList";
 import PersonalInfo from "../personal-info/PersonalInfo";
-import Skill from "../skill/skill";
+import Skill from '../skill/Skill';
 import SocialLinksList from "../social-links/SocialLinksList";
 import LivePreview from '../live-preview/LivePreview';
 import SectionHead from '../../header/section-head/SectionHead';
 import ProjectList from '../project/ProjectList';
 import ExperienceList from '../expreance/ExperienceList';
 import ErrorPage from '../../../pages/ErrorPage';
-import FinalOutput from '../live-preview/FinalOutput';
 
 const renderStepContent = (step) => {
   switch (step) {
@@ -98,7 +97,6 @@ const StepperComponents = () => {
             />
             <div className='flex justify-center'>
               <LivePreview></LivePreview>
-              <FinalOutput></FinalOutput>
             </div>
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>

@@ -5,7 +5,7 @@ import { FiUploadCloud } from "react-icons/fi";
 import SectionHead from '../../header/section-head/SectionHead';
 import LivePreview from '../live-preview/LivePreview';
 import { ResumeContext } from '../../../contextApi/resume-context/ResumeContext';
-import FinalOutput from '../live-preview/FinalOutput';
+
 
 
 const PersonalInfo = () => {

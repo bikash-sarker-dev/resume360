@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ExperienceForm from "./ExperienceForm";
 import ExperienceCard from "./ExperienceCard";
 import SectionHead from "../../header/section-head/SectionHead";
+import { ResumeContext } from "../../../contextApi/resume-context/ResumeContext";
 import LivePreview from "../live-preview/LivePreview";
 
-const ExperienceList = () => {
-  const [experiences, setExperiences] = useState([]);
-  const [openModal, setOpenModal] = useState(false);
 
+const ExperienceList = () => {
+  const [openModal, setOpenModal] = useState(false);
+  const { resumeData, updateSection } = useContext(ResumeContext);
+
+  // Add experience and update context
   const addExperience = (newExperience) => {
-    setExperiences([...experiences, newExperience]);
+    const updatedExperiences = [...resumeData.experience, newExperience];
+    updateSection("experience", updatedExperiences);
   };
 
   return (
@@ -35,11 +39,14 @@ const ExperienceList = () => {
 
       <div className="grid grid-cols-2">
         <div className="grid grid-cols-2 gap-4">
-          {experiences.map((exp, index) => (
+          {resumeData.experience.map((exp, index) => (
             <ExperienceCard key={index} experience={exp} />
           ))}
         </div>
+
+        {/* LivePreview or FinalOutput */}
         <div>
+          {/* <LivePreview /> */}
           <LivePreview />
         </div>
       </div>

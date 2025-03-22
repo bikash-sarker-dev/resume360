@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import SocialLinkForm from "./SocialLinkForm";
 import {
   Table,
@@ -8,26 +8,24 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Button,
-  Typography,
 } from "@mui/material";
 import LivePreview from "../live-preview/LivePreview";
 import SectionHead from "../../header/section-head/SectionHead";
+import { ResumeContext } from "../../../contextApi/resume-context/ResumeContext";
 
 const SocialLinksList = () => {
-  const [socialLinks, setSocialLinks] = useState([]);
+  const { resumeData, updateSection } = useContext(ResumeContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const addSocialLink = (link) => {
-    setSocialLinks([...socialLinks, link]);
+    updateSection("socialLinks", [...resumeData.socialLinks, link]);
   };
 
   return (
     <div className="p-4">
-      <SectionHead
-        subTitle={"Add your Social Links"}
-        title={"Add Social Links"}
-      />
+      <SectionHead subTitle={"Add your Social Links"} title={"Add Social Links"} />
+
+      {/* Add Button */}
       <div className="flex justify-center mb-4">
         <button
           onClick={() => setIsModalOpen(true)}
@@ -38,7 +36,7 @@ const SocialLinksList = () => {
       </div>
 
       <div className="grid grid-cols-2 gap-4">
-        {/* Material UI Table */}
+        {/* Social Links Table */}
         <TableContainer component={Paper} elevation={3}>
           <Table>
             <TableHead sx={{ backgroundColor: "#f3f4f6" }}>
@@ -48,7 +46,7 @@ const SocialLinksList = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {socialLinks.map((social, index) => (
+              {resumeData.socialLinks.map((social, index) => (
                 <TableRow key={index}>
                   <TableCell>{social.platform}</TableCell>
                   <TableCell>
@@ -63,7 +61,7 @@ const SocialLinksList = () => {
                   </TableCell>
                 </TableRow>
               ))}
-              {socialLinks.length === 0 && (
+              {resumeData.socialLinks.length === 0 && (
                 <TableRow>
                   <TableCell colSpan={2} align="center">
                     No Social Links Added
@@ -73,8 +71,10 @@ const SocialLinksList = () => {
             </TableBody>
           </Table>
         </TableContainer>
+
+        {/* Live Preview */}
         <div>
-          <LivePreview></LivePreview>
+          <LivePreview />
         </div>
       </div>
 
