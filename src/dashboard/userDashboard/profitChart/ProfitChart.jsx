@@ -35,7 +35,7 @@ const ProfitChart = () => {
     
       return (
         <div style={{ width: '50%', margin: 'auto' }}>
-          <h3 className='text-2xl font-bold text-center bg-base-200 '>Profit Gain This Month</h3>
+          <h3 className='text-2xl font-bold text-center bg-base-200 '>Profit Gain This Month.</h3>
           <Pie data={data} options={options} />
         </div>
       );
