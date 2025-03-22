@@ -34,7 +34,7 @@ const renderStepContent = (step) => {
   }
 };
 
-const steps = ['Personal Info', 'Education', 'Skills', 'Social Links', 'Project', 'Experience'];
+const steps = ['Your Info', 'Edu', 'Skills', 'Links', 'Project', 'Experience'];
 
 const StepperComponents = () => {
   const [activeStep, setActiveStep] = React.useState(0);
