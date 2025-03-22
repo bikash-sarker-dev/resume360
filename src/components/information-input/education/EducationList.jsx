@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import EducationForm from "./EducationForm";
 import EducationCard from "./EducationCard";
-import { Button } from "@mui/material";
 import SectionHead from "../../header/section-head/SectionHead";
 import LivePreview from "../live-preview/LivePreview";
+import { ResumeContext } from "../../../contextApi/resume-context/ResumeContext";
 
 const EducationList = () => {
-  const [educations, setEducations] = useState([]);
+  const { resumeData, updateSection } = useContext(ResumeContext);
   const [openModal, setOpenModal] = useState(false);
 
   const addEducation = (newEducation) => {
-    console.log("Added Education:", newEducation);
-    setEducations([...educations, newEducation]);
+    const updatedEducation = [...resumeData.education, newEducation];
+    updateSection("education", updatedEducation);
   };
 
   return (
@@ -20,8 +20,8 @@ const EducationList = () => {
         subTitle={"Add your education information"}
         title={"Add Education"}
       />
+
       <div className="flex justify-center">
-        {/* Open Modal Button */}
         <button
           onClick={() => setOpenModal(true)}
           className="rounded-full text-white bg-r-primary py-2 px-5"
@@ -40,12 +40,14 @@ const EducationList = () => {
       {/* Education Cards */}
       <div className="grid grid-cols-2">
         <div className="grid grid-cols-2 gap-4">
-          {educations.map((edu, index) => (
+          {resumeData.education.map((edu, index) => (
             <EducationCard className="h-fit" key={index} education={edu} />
           ))}
         </div>
+
+        {/* Live Preview */}
         <div>
-          <LivePreview></LivePreview>
+          <LivePreview />
         </div>
       </div>
     </div>
