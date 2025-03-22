@@ -14,6 +14,7 @@ import SectionHead from '../../header/section-head/SectionHead';
 import ProjectList from '../project/ProjectList';
 import ExperienceList from '../expreance/ExperienceList';
 import ErrorPage from '../../../pages/ErrorPage';
+import FinalOutput from '../live-preview/FinalOutput';
 
 const renderStepContent = (step) => {
   switch (step) {
@@ -97,6 +98,7 @@ const StepperComponents = () => {
             />
             <div className='flex justify-center'>
               <LivePreview></LivePreview>
+              <FinalOutput></FinalOutput>
             </div>
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
