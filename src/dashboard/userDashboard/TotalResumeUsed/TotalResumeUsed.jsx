@@ -40,7 +40,7 @@ const TotalResumeUsed = () => {
         <div className="flex flex-col items-center justify-center  bg-base-200 p-4">
           <div className="card w-96 bg-base-100 shadow-xl p-6 text-center">
             <div className="card-body">
-              <h2 className="card-title text-xl font-semibold text-gray-700">Resume Template Usage</h2>
+              <h2 className="card-title text-xl font-bold text-gray-700">Resume Template Usage</h2>
               <Bar data={data} options={options} />
             </div>
           </div>
