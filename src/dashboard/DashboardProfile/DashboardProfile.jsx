@@ -41,7 +41,29 @@ const DashboardProfile = () => {
         </div>
 
         <div className="md:col-span-2">
-          
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-2xl font-bold">Jeremy Rose</h2>
+              <p className="text-gray-500 flex items-center"><FaMapMarkerAlt className="mr-2" /> New York, NY</p>
+              <p className="text-blue-500">Product Designer</p>
+              <div className="flex items-center mt-2">
+                <span className="text-lg font-bold">8.6</span>
+                <div className="flex text-yellow-400 ml-2">
+                  {[...Array(5)].map((_, i) => (
+                    <FaStar key={i} />
+                  ))}
+                </div>
+              </div>
+            </div>
+            <button
+            href="#_"
+            class="relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-bold shadow-md text-r-text bg-r-background rounded-lg group slide-up slide-up-btn"
+          >
+            <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-r-primary rounded-full group-hover:w-56 group-hover:h-56"></span>
+            <span class="absolute inset-0 w-full h-full  rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-r-primary "></span>
+            <span class="relative">Contacts</span>
+          </button>
+          </div>
 
           <div className="flex space-x-4 border-b mt-4 pb-2">
             <button 
