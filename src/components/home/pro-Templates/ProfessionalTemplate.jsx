@@ -61,6 +61,10 @@ const ProfessionalTemplate = () => {
           <div>
             <Swiper
               slidesPerView={3}
+              breakpoints={{
+                768: { slidesPerView: 2 }, 
+                0: { slidesPerView: 1 }, 
+              }}
               spaceBetween={30}
               freeMode={true}
               autoplay={{
