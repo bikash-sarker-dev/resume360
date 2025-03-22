@@ -74,27 +74,27 @@ const ProfessionalTemplate = () => {
               className="mySwiper"
             >
               <SwiperSlide>
-                <div>
+                <div className="p-5 bg-r-primary/25 border border-r-primary backdrop-blur-lg rounded-xl">
                   <img src={resume1} alt="resume image one" />
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div>
+                <div className="p-5 bg-r-primary/25 border border-r-primary backdrop-blur-lg rounded-xl">
                   <img src={resume2} alt="resume image one" />
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div>
+                <div className="p-5 bg-r-primary/25 border border-r-primary backdrop-blur-lg rounded-xl">
                   <img src={resume3} alt="resume image one" />
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div>
+                <div className="p-5 bg-r-primary/25 border border-r-primary backdrop-blur-lg rounded-xl">
                   <img src={resume4} alt="resume image one" />
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div>
+                <div className="p-5 bg-r-primary/25 border border-r-primary backdrop-blur-lg rounded-xl">
                   <img src={resume5} alt="resume image one" />
                 </div>
               </SwiperSlide>
