@@ -19,18 +19,11 @@ const StepsSection = () => {
       </h2>
 
       <div className="grid md:grid-cols-2 items-center md:gap-8 gap-8 max-md:max-w-md mx-auto">
-        {/* Resume Mockup Image */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          viewport={{ once: false }}
-          className="md:h-[470px]"
-        >
+       
+        
           <img src={ResumeMockup} className="w-full h-full object-cover md:object-contain" />
-        </motion.div>
+        
 
-        {/* Steps List - Appears one by one */}
         <div className="space-y-4 max-md:text-center">
           {steps.map((step, index) => (
             <motion.div
