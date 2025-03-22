@@ -23,7 +23,22 @@ const DashboardProfile = () => {
       
       <div className="max-w-5xl mx-auto p-6  shadow-md rounded-md grid md:grid-cols-3 gap-6 "> 
         
-        
+        <div className="p-4  rounded-md bg-r-info shadow-lg backdrop-blur-md">
+          <img 
+            src="https://t4.ftcdn.net/jpg/02/24/86/95/360_F_224869519_aRaeLneqALfPNBzg0xxMZXghtvBXkfIA.jpg" 
+            className="rounded-md w-full" 
+            alt="Profile" 
+          />
+          <div className="mt-6">
+            <h3 className="text-lg font-semibold">Work</h3>
+            <p className="text-gray-700 mt-1">Spotify New York</p>
+            <p className="text-gray-500 text-sm">170 William Street, NY</p>
+          </div>
+          <div className="mt-6">
+            <h3 className="text-lg font-semibold">Skills</h3>
+            <p className="text-gray-700 mt-1">Branding, UI/UX, Web Design</p>
+          </div>
+        </div>
 
         <div className="md:col-span-2">
           
