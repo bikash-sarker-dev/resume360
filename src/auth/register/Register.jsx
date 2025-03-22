@@ -1,41 +1,52 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import Lottie from "lottie-react";
+import resumeLottieData from "../../assets/animation/resume2.json"
+import SectionHead from "../../components/header/section-head/SectionHead";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 export default function Register() {
-  const {
-    createUser,
-    setUser,
-    signInWithGithub,
-    updateUserInfo,
-    signInWithGoogle,
-  } = useAuth();
+  const {createUser,setUser,signInWithGithub,updateUserInfo,signInWithGoogle} = useAuth();
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [showPassword1, setShowPassword1] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
+  const [conditions, setConditions] = useState(false);
+  const axiosPublic = useAxiosPublic()
 
   const handleRegister = (event) => {
     event.preventDefault();
-    const form = event.target;
-    const email = form.email.value;
-    const name = form.name.value;
-    const password = form.password.value;
-    const newUser = { name, email };
 
-    setErrorMessage("");
+    const form = event.target;
+    const name = form.name.value;
+    const profession = form.profession.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
+
+    if (password !== confirmPassword) {
+
+      Swal.fire({
+        title: "Error",
+        text: "Passwords do not match!",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+      return;
+    }
+
+    const newUser = { name,profession,email,password,conditions};
+    console.log(newUser)
 
     // password validation
 
     const regex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
     if (!regex.test(password)) {
-      setErrorMessage(
-        "Please give a valid password with at lease one Uppercase, one Lowercase and length must be 6 character or more."
-      );
       Swal.fire({
         title: "Error",
-        text: errorMessage,
+        text:  "Please give a valid password with at lease one Uppercase, one Lowercase and length must be 6 character or more.",
         icon: "error",
         confirmButtonText: "Ok",
       });
@@ -46,32 +57,47 @@ export default function Register() {
     createUser(email, password)
       .then((result) => {
         setUser(result.user);
-        form.reset();
-        navigate("/");
-        Swal.fire({
-          title: "Success",
-          text: "Register Successfully",
-          icon: "success",
-          confirmButtonText: "Done",
-        });
+        
         // UpdateUser
         const profile = {
           displayName: name,
         };
         updateUserInfo(profile)
-          .then((res) => {
-            //  console.log(res.user)
-          })
+
+        .then((res)=>{
+          axiosPublic.post('/users', newUser)
+          .then(res => {
+            console.log(res.data)
+          if(res.data.insertedId){
+            console.log('user added to the database');
+            form.reset();
+            Swal.fire({
+              title: 'Success',
+              text: 'Registration is Successfully Completed',
+              icon: 'success',
+              confirmButtonText: 'Done'
+            })
+            navigate("/");
+          }
+          // console.log(res.data)
+        })
+        })
+        
           .catch((error) => {
-            setErrorMessage(error.message);
+            Swal.fire({
+              title: "Error",
+              text:  "Update is Unsuccessful",
+              icon: "error",
+              confirmButtonText: "Ok",
+            });
+            return;
           });
       })
       .catch((error) => {
-        setErrorMessage(error.message);
         setUser(null);
         Swal.fire({
           title: "Error",
-          text: error.message,
+          text: "Registration is Unsuccessful",
           icon: "error",
           confirmButtonText: "Ok",
         });
@@ -121,28 +147,14 @@ export default function Register() {
     <div>
       <div className="hero bg-background">
         <div className="hero-content flex-1 flex-col lg:flex-row w-full mx-auto lg:mx-0 gap-10">
-          <div className="text-center lg:text-left w-8/12 mx-auto">
-            <h1 className="text-3xl mb-6 lg:text-3xl font-semibold">
-              Instant Access
-            </h1>
-            <div className="flex flex-col space-y-4">
-              <button
-                onClick={handleGoogleLogin}
-                className="btn bg-r-accent text-white flex items-center justify-center gap-2 p-3 rounded-lg whitespace-nowrap w-8/12"
-              >
-                <i className="fa-brands fa-google"></i> Continue with Google
-              </button>
-              <button
-                onClick={handleGithubLogin}
-                className="btn bg-r-accent text-white flex items-center justify-center gap-2 p-3 rounded-lg whitespace-nowrap w-8/12"
-              >
-                <i className="fa-brands fa-github"></i> Continue with Github
-              </button>
-            </div>
+          <div>
+            <Lottie animationData={resumeLottieData}></Lottie>
           </div>
           <div className="card w-full md:w-7/12">
             <div className="card-body">
-              <h2 className="text-xl lg:text-2xl font-bold mb-4">Register</h2>
+            <SectionHead
+              title={"Register"}
+            />
               <form onSubmit={handleRegister}>
                 <fieldset className="fieldset">
                   <label className="fieldset-label">Name</label>
@@ -159,6 +171,16 @@ export default function Register() {
                     </span>
                   </div>
 
+                  <label className="fieldset-label">Profession</label>
+                    <select defaultValue="default" className="select select-bordered w-full" name='profession' required type='text'>
+                    <option disabled value="default">select profession</option>
+                    <option value="student">Web Developer</option>
+                    <option value="tutor">Teacher</option>
+                    <option value="admin">UI/UX Designer</option>
+                    <option value="admin">Mechanical Engineer</option>
+                    <option value="admin">Chemist</option>
+                    </select>
+
                   <label className="fieldset-label">Email</label>
                   <div className="relative">
                     <input
@@ -172,10 +194,11 @@ export default function Register() {
                       <i className="fa-solid fa-envelope"></i>
                     </span>
                   </div>
+                  {/* password */}
                   <label className="fieldset-label">Password</label>
                   <div className="relative">
                     <input
-                      type={showPassword ? "text" : "password"}
+                      type={showPassword1 ? "text" : "password"}
                       name="password"
                       className="input w-full pr-10"
                       placeholder="Enter Password"
@@ -183,38 +206,76 @@ export default function Register() {
                     />
                     <span
                       className="absolute inset-y-0 right-3 flex items-center cursor-pointer text-gray-500"
-                      onClick={() => setShowPassword(!showPassword)}
+                      onClick={() => setShowPassword1(!showPassword1)}
                     >
-                      {showPassword ? (
+                      {showPassword1 ? (
                         <i className="fa-solid fa-eye"></i>
                       ) : (
                         <i className="fa-solid fa-eye-slash"></i>
                       )}
                     </span>
                   </div>
+                  {/* confirm password */}
+                  <label className="fieldset-label">Confirm Password</label>
+                  <div className="relative">
+                    <input
+                      type={showPassword2 ? "text" : "password"}
+                      name="confirmPassword"
+                      className="input w-full pr-10"
+                      placeholder="Enter Comfirm Password"
+                      required
+                    />
+                    <span
+                      className="absolute inset-y-0 right-3 flex items-center cursor-pointer text-gray-500"
+                      onClick={() => setShowPassword2(!showPassword2)}
+                    >
+                      {showPassword2 ? (
+                        <i className="fa-solid fa-eye"></i>
+                      ) : (
+                        <i className="fa-solid fa-eye-slash"></i>
+                      )}
+                    </span>
+                  </div>
+
                   <div className="flex justify-between items-center mt-2">
                     <label className="fieldset-label">
-                      <input type="checkbox" className="checkbox" required /> I
+                      <input type="checkbox" name="conditions" value={conditions? "true" : "false"} className="checkbox"  onClick={() => setConditions(!conditions)} required /> I
                       accept the Terms and Conditions
                     </label>
                   </div>
-
-                  <button className="btn bg-r-accent mt-4 text-white">
+                  {
+                    conditions? 
+                    <>
+                    <button className="btn bg-r-accent mt-4 text-white">
                     Create Account
                   </button>
+                    </>
+                    :
+                    <>
+                    <button disabled className="btn bg-r-accent mt-4 text-white">
+                    Create Account
+                  </button>
+                    </>
+                  }
+                  {/* <button className="btn bg-r-accent mt-4 text-white">
+                    Create Account
+                  </button> */}
                 </fieldset>
               </form>
-              <div className="text-center">
-                <h1>
-                  Already have an account?{" "}
-                  <span className="underline">
-                    <Link to="/login" className="text-r-accent">
-                      {" "}
-                      Login here
-                    </Link>
-                  </span>
-                </h1>
-              </div>
+              <div className="divider">OR</div>
+        <div className="text-center text-3xl">
+          <i
+            onClick={handleGoogleLogin}
+            className="fa-brands fa-google mr-5 cursor-pointer"
+          ></i>
+          <i
+            onClick={handleGithubLogin}
+            className="fa-brands fa-github cursor-pointer"
+          ></i>
+        </div>
+            <div className="text-center">
+              <p>Already have an account? <span className="underline"><Link  to='/login' className="text-r-accent">Login here</Link></span></p>
+            </div>
             </div>
           </div>
         </div>
