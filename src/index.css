@@ -33,19 +33,37 @@ body {
 
 /* this is for navbar active button , after setup all router then active this  */
 
+#root > header > div > div > ul > a,
+#root > header > div > header > div > ul > a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 15px;
+  color: #030b0b;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+#root > header > div > div > ul > a.active,
+#root > header > div > header > div > ul > a.active {
+  color: #effbfa;
+}
+
 a::after {
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -4px;
+  bottom: 7px;
   width: 0;
-  height: 3px;
+  height: 1px;
   background: #effbfa;
   transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
   transform: translateX(-50%);
 }
 
-ul > a:hover::after,
+#root > header > div > div > ul > a:hover::after,
+#root > header > div > header > div > ul > a:hover::after,
 a.active::after {
   width: 100%;
 }
@@ -68,7 +86,6 @@ a.active::after {
   opacity: 0; /* Ensures elements are hidden before animation starts */
 }
 
-/* Delayed animations */
 .slide-up-h1 {
   animation-delay: 0.3s;
 }
@@ -85,11 +102,11 @@ a.active::after {
 
 @keyframes slideInRight {
   from {
-    transform: translateX(100%);
+    transform: translatey(100%);
     opacity: 0;
   }
   to {
-    transform: translateX(0);
+    transform: translatey(0);
     opacity: 1;
   }
 }
@@ -97,7 +114,9 @@ a.active::after {
 .logo-container div {
   opacity: 0;
   transform: translateX(100%);
-  animation: slideInRight 0.5s ease-in-out forwards;
+  animation: slideInRight linear forwards;
+  animation-timeline: view();
+  animation-range: entry 0% cover 30%;
 }
 
 .logo-container div:nth-child(1) {
