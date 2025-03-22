@@ -1,25 +1,48 @@
 import * as React from 'react';
 import { TextField, Button, MenuItem } from "@mui/material";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { FiUploadCloud } from "react-icons/fi";
 import SectionHead from '../../header/section-head/SectionHead';
 import LivePreview from '../live-preview/LivePreview';
+import { ResumeContext } from '../../../contextApi/resume-context/ResumeContext';
+import FinalOutput from '../live-preview/FinalOutput';
+
 
 const PersonalInfo = () => {
+    const { resumeData, updateSection } = useContext(ResumeContext);
     const [image, setImage] = useState(null);
     const [fileName, setFileName] = useState("");
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        updateSection('personalInfo', {
+            ...resumeData.personalInfo,
+            [name]: value            
+        });
+    };
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         if (file) {
-            setImage(URL.createObjectURL(file));
+            const imageURL = URL.createObjectURL(file);
+            setImage(imageURL);
             setFileName(file.name);
+            updateSection('personalInfo', {
+                ...resumeData.personalInfo,
+                profileImage: imageURL,
+                imageName: file.name
+            });
         }
     };
 
     const handleRemoveImage = () => {
         setImage(null);
         setFileName("");
+        updateSection('personalInfo', {
+            ...resumeData.personalInfo,
+            profileImage: null,
+            imageName: ""
+        });
     };
 
     return (
@@ -33,9 +56,9 @@ const PersonalInfo = () => {
                     <TextField
                         className='w-full'
                         required
-                        id="outlined-required"
+                        name="fullName"
                         label="Full Name"
-                        defaultValue=""
+                        onChange={handleChange}
                         helperText="Please enter your full name"
                     />
                     <div className="md:flex flex-col row-span-3 justify-center items-center border-2 border-dashed border-r-accent rounded-lg text-center">
@@ -48,7 +71,7 @@ const PersonalInfo = () => {
                                 </label>
                                 <input
                                     type="file"
-                                    accept="image/png, image/jpg, image/jpeg, image/svg, image/webp, image/gif"
+                                    accept="image/*"
                                     onChange={handleImageChange}
                                     className="hidden"
                                     id="image-upload"
@@ -64,58 +87,60 @@ const PersonalInfo = () => {
                             </div>
                         )}
                     </div>
+
                     <TextField
                         className='w-full'
                         required
-                        id="outlined-required"
+                        name="phone"
                         label="Phone Number"
-                        defaultValue=""
                         type='number'
+                        onChange={handleChange}
                         helperText="Please enter your phone number"
                     />
                     <TextField
                         className='w-full'
                         required
-                        id="outlined-required"
+                        name="email"
                         label="Email"
-                        defaultValue=""
                         type='email'
+                        onChange={handleChange}
                         helperText="Please enter your email"
                     />
                     <TextField
                         className='col-span-2 w-full'
                         required
-                        id="outlined-required"
+                        name="address"
                         label="Address"
-                        defaultValue=""
+                        onChange={handleChange}
                         helperText="Please enter your short address"
                     />
                     <TextField
                         className='col-span-2 w-full'
                         required
-                        id="outlined-required"
+                        name="about"
                         label="About Me"
-                        defaultValue=""
-                        helperText="Please enter your about"
                         multiline
-                        rows={4} // Adjust the number of rows as needed
+                        rows={4}
+                        onChange={handleChange}
+                        helperText="Please enter your about"
                     />
                     <div className='md:grid grid-cols-3 gap-4 col-span-2'>
                         <TextField
                             className='w-full'
                             required
-                            id="outlined-required"
+                            name="dob"
                             label="Date of Birth"
-                            defaultValue=""
+                            onChange={handleChange}
                             helperText="Please enter your Date of Birth"
                         />
                         <TextField
                             className="w-full"
                             required
-                            id="outlined-required"
+                            name="gender"
                             select
                             label="Gender"
-                            defaultValue=""
+                            value={resumeData.personalInfo.gender || ''}  // ✅ Add this line
+                            onChange={handleChange}
                             helperText="Please select your gender"
                         >
                             <MenuItem value="Male">Male</MenuItem>
@@ -125,15 +150,17 @@ const PersonalInfo = () => {
                         <TextField
                             className='w-full'
                             required
-                            id="outlined-required"
+                            name="nationality"
                             label="Nationality"
-                            defaultValue=""
+                            onChange={handleChange}
                             helperText="Please enter your nationality"
                         />
                     </div>
                 </div>
+
+                {/* Optional: Live Preview */}
                 <div>
-                    <LivePreview></LivePreview>
+                    <LivePreview />
                 </div>
             </div>
         </>
