@@ -1,8 +1,7 @@
 import { createUserWithEmailAndPassword, GoogleAuthProvider, GithubAuthProvider,onAuthStateChanged,signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, sendPasswordResetEmail } from "firebase/auth";
-import { createContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { auth } from "../firebase/firebase.config";
-
-export const AuthContext = createContext(null)
+import {AuthContext} from "../contextApi/AuthenticationContext"
 
 export default function AuthProvider({children}) {
     const [user,setUser]=useState(null);
