@@ -1,19 +1,25 @@
-import React, { useEffect, useState } from "react";
+import Lottie from "lottie-react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
-import useAuth from "../../hooks/useAuth";
-import Lottie from "lottie-react";
-import resumeLottieData from "../../assets/animation/resume2.json"
+import resumeLottieData from "../../assets/animation/resume2.json";
 import SectionHead from "../../components/header/section-head/SectionHead";
+import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 export default function Register() {
-  const {createUser,setUser,signInWithGithub,updateUserInfo,signInWithGoogle} = useAuth();
+  const {
+    createUser,
+    setUser,
+    signInWithGithub,
+    updateUserInfo,
+    signInWithGoogle,
+  } = useAuth();
   const navigate = useNavigate();
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
   const [conditions, setConditions] = useState(false);
-  const axiosPublic = useAxiosPublic()
+  const axiosPublic = useAxiosPublic();
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -24,9 +30,9 @@ export default function Register() {
     const email = form.email.value;
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
+    const terms = true;
 
     if (password !== confirmPassword) {
-
       Swal.fire({
         title: "Error",
         text: "Passwords do not match!",
@@ -36,8 +42,8 @@ export default function Register() {
       return;
     }
 
-    const newUser = { name,profession,email,password,conditions};
-    console.log(newUser)
+    const newUser = { name, profession, email, password, terms };
+    console.log(newUser);
 
     // password validation
 
@@ -46,7 +52,7 @@ export default function Register() {
     if (!regex.test(password)) {
       Swal.fire({
         title: "Error",
-        text:  "Please give a valid password with at lease one Uppercase, one Lowercase and length must be 6 character or more.",
+        text: "Please give a valid password with at lease one Uppercase, one Lowercase and length must be 6 character or more.",
         icon: "error",
         confirmButtonText: "Ok",
       });
@@ -57,36 +63,34 @@ export default function Register() {
     createUser(email, password)
       .then((result) => {
         setUser(result.user);
-        
+
         // UpdateUser
         const profile = {
           displayName: name,
         };
         updateUserInfo(profile)
+          .then((res) => {
+            axiosPublic.post("/users", newUser).then((res) => {
+              console.log(res.data);
+              if (res.data.message) {
+                console.log("user added to the database");
+                form.reset();
+                Swal.fire({
+                  title: "Success",
+                  text: "Registration is Successfully Completed",
+                  icon: "success",
+                  confirmButtonText: "Done",
+                });
+                navigate("/");
+              }
+              // console.log(res.data)
+            });
+          })
 
-        .then((res)=>{
-          axiosPublic.post('/users', newUser)
-          .then(res => {
-            console.log(res.data)
-          if(res.data.insertedId){
-            console.log('user added to the database');
-            form.reset();
-            Swal.fire({
-              title: 'Success',
-              text: 'Registration is Successfully Completed',
-              icon: 'success',
-              confirmButtonText: 'Done'
-            })
-            navigate("/");
-          }
-          // console.log(res.data)
-        })
-        })
-        
           .catch((error) => {
             Swal.fire({
               title: "Error",
-              text:  "Update is Unsuccessful",
+              text: "Update is Unsuccessful",
               icon: "error",
               confirmButtonText: "Ok",
             });
@@ -152,9 +156,7 @@ export default function Register() {
           </div>
           <div className="card w-full md:w-7/12">
             <div className="card-body">
-            <SectionHead
-              title={"Register"}
-            />
+              <SectionHead title={"Register"} />
               <form onSubmit={handleRegister}>
                 <fieldset className="fieldset">
                   <label className="fieldset-label">Name</label>
@@ -172,14 +174,22 @@ export default function Register() {
                   </div>
 
                   <label className="fieldset-label">Profession</label>
-                    <select defaultValue="default" className="select select-bordered w-full" name='profession' required type='text'>
-                    <option disabled value="default">select profession</option>
+                  <select
+                    defaultValue="default"
+                    className="select select-bordered w-full"
+                    name="profession"
+                    required
+                    type="text"
+                  >
+                    <option disabled value="default">
+                      select profession
+                    </option>
                     <option value="student">Web Developer</option>
                     <option value="tutor">Teacher</option>
                     <option value="admin">UI/UX Designer</option>
                     <option value="admin">Mechanical Engineer</option>
                     <option value="admin">Chemist</option>
-                    </select>
+                  </select>
 
                   <label className="fieldset-label">Email</label>
                   <div className="relative">
@@ -239,43 +249,59 @@ export default function Register() {
 
                   <div className="flex justify-between items-center mt-2">
                     <label className="fieldset-label">
-                      <input type="checkbox" name="conditions" value={conditions? "true" : "false"} className="checkbox"  onClick={() => setConditions(!conditions)} required /> I
-                      accept the Terms and Conditions
+                      <input
+                        type="checkbox"
+                        name="conditions"
+                        value={conditions ? "true" : "false"}
+                        className="checkbox"
+                        onClick={() => setConditions(!conditions)}
+                        required
+                      />{" "}
+                      I accept the Terms and Conditions
                     </label>
                   </div>
-                  {
-                    conditions? 
+                  {conditions ? (
                     <>
-                    <button className="btn bg-r-accent mt-4 text-white">
-                    Create Account
-                  </button>
+                      <button className="btn bg-r-accent mt-4 text-white">
+                        Create Account
+                      </button>
                     </>
-                    :
+                  ) : (
                     <>
-                    <button disabled className="btn bg-r-accent mt-4 text-white">
-                    Create Account
-                  </button>
+                      <button
+                        disabled
+                        className="btn bg-r-accent mt-4 text-white"
+                      >
+                        Create Account
+                      </button>
                     </>
-                  }
+                  )}
                   {/* <button className="btn bg-r-accent mt-4 text-white">
                     Create Account
                   </button> */}
                 </fieldset>
               </form>
               <div className="divider">OR</div>
-        <div className="text-center text-3xl">
-          <i
-            onClick={handleGoogleLogin}
-            className="fa-brands fa-google mr-5 cursor-pointer"
-          ></i>
-          <i
-            onClick={handleGithubLogin}
-            className="fa-brands fa-github cursor-pointer"
-          ></i>
-        </div>
-            <div className="text-center">
-              <p>Already have an account? <span className="underline"><Link  to='/login' className="text-r-accent">Login here</Link></span></p>
-            </div>
+              <div className="text-center text-3xl">
+                <i
+                  onClick={handleGoogleLogin}
+                  className="fa-brands fa-google mr-5 cursor-pointer"
+                ></i>
+                <i
+                  onClick={handleGithubLogin}
+                  className="fa-brands fa-github cursor-pointer"
+                ></i>
+              </div>
+              <div className="text-center">
+                <p>
+                  Already have an account?{" "}
+                  <span className="underline">
+                    <Link to="/login" className="text-r-accent">
+                      Login here
+                    </Link>
+                  </span>
+                </p>
+              </div>
             </div>
           </div>
         </div>
