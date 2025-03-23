@@ -2,45 +2,45 @@
   "teams": [
     {
       "id": 1,
-      "image": "../src/assets/images/about/team/pic 1.jpg",
-      "name": "Alvi Doe",
-      "title": "Software Engineer",
-      "description": "Alvi is a skilled software engineer with expertise in full-stack development, focusing on creating efficient and scalable applications."
+      "image": "../src/assets/images/about/team/pic 1.png",
+      "name": "Bikash Sarker",
+      "title": "Backend Developer",
+      "description": "Bikash is a skilled software engineer with expertise in full-stack development, focusing on creating efficient and scalable applications."
     },
     {
       "id": 2,
-      "image": "../src/assets/images/about/team/pic2.jpg",
-      "name": "John Doe",
-      "title": "Software Engineer",
-      "description": "John is passionate about writing clean and maintainable code. He has a strong background in backend development and cloud computing."
+      "image": "../src/assets/images/about/team/pic 2.jpg",
+      "name": "Sadia Afrin",
+      "title": "Front-End Developer",
+      "description": "Sadia is passionate about writing clean and maintainable code. She has a strong background in front-end development and cloud computing."
     },
     {
       "id": 3,
-      "image": "../src/assets/images/about/team/pic3.jpg",
-      "name": "Jane Smith",
+      "image": "../src/assets/images/about/team/pic 3.jpg",
+      "name": "Joynal Abedin",
       "title": "UI/UX Designer",
-      "description": "Jane specializes in creating user-friendly and visually appealing designs. She focuses on improving the user experience and enhancing interface design."
+      "description": "Joynal specializes in creating user-friendly and visually appealing designs. Hee focuses on improving the user experience and enhancing interface design."
     },
     {
       "id": 4,
-      "image": "../src/assets/images/about/team/pic4.jpg",
-      "name": "Alex Johnson",
-      "title": "DevOps Engineer",
-      "description": "Alex is an expert in automation and cloud infrastructure. His goal is to ensure smooth integration and continuous delivery processes."
+      "image": "../src/assets/images/about/team/pic 4.jpg",
+      "name": "TAMJID AHMED",
+      "title": "Front-End Developer",
+      "description": "Tamjid is an expert in front-end and cloud infrastructure. His goal is to ensure smooth integration and continuous delivery processes."
     },
     {
       "id": 5,
-      "image": "../src/assets/images/about/team/pic5.jpg",
-      "name": "Emily Davis",
-      "title": "Product Manager",
-      "description": "Emily leads product development teams by aligning business goals with technical execution. She ensures projects are delivered on time and meet user needs."
+      "image": "../src/assets/images/about/team/pic 6.jpg",
+      "name": "Fatema Hanif",
+      "title": "Front-End Developer",
+      "description": "Fatema Hanif is a Front-End Developer specializing in creating seamless, user-friendly web applications. She ensures intuitive designs and high-performance interfaces."
     },
     {
       "id": 6,
-      "image": "../src/assets/images/about/team/pic6.jpg",
-      "name": "Michael Brown",
-      "title": "Quality Assurance Engineer",
-      "description": "Michael is committed to maintaining high-quality standards in software development. He designs comprehensive testing strategies to ensure flawless releases."
+      "image": "../src/assets/images/about/team/pic 5.jpg",
+      "name": "MD ADNAN MAHMUD",
+      "title": "Backend Developer",
+      "description": "Adnan is committed to maintaining high-quality standards in software development. He designs comprehensive testing strategies to ensure flawless releases."
     }
   ]
 }
