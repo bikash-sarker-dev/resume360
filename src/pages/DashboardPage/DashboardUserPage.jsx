@@ -1,9 +1,5 @@
 import React from "react";
-import TotalUserRegistered from "../../dashboard/userDashboard/totalUserRegistered/TotalUserRegistered";
-import TotalUsewrLoggedIn from "../../dashboard/userDashboard/TotalUserLoggedIn/TotalUsewrLoggedIn";
-import TotalResumeUsed from "../../dashboard/userDashboard/TotalResumeUsed/TotalResumeUsed";
-import ProfitChart from "../../dashboard/userDashboard/profitChart/ProfitChart";
-import DownloadTracker from "../../dashboard/userDashboard/downloadTracker/DownloadTracker";
+
 import UserDashboard from "../../dashboard/userDashboard/userDashboard/UserDashboard";
 
 const DashboardUserPage = () => {
