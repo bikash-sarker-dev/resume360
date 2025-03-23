@@ -4,11 +4,12 @@ import TotalUsewrLoggedIn from "../../dashboard/userDashboard/TotalUserLoggedIn/
 import TotalResumeUsed from "../../dashboard/userDashboard/TotalResumeUsed/TotalResumeUsed";
 import ProfitChart from "../../dashboard/userDashboard/profitChart/ProfitChart";
 import DownloadTracker from "../../dashboard/userDashboard/downloadTracker/DownloadTracker";
+import UserDashboard from "../../dashboard/userDashboard/userDashboard/UserDashboard";
 
 const DashboardUserPage = () => {
   return <div>
 
-   <div className= "grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+   {/* <div className= "grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
    <TotalUserRegistered></TotalUserRegistered>
    <TotalUsewrLoggedIn></TotalUsewrLoggedIn>
    </div>
@@ -18,7 +19,9 @@ const DashboardUserPage = () => {
    </div>
    <div className="flex justify-center items-center">
         <DownloadTracker />
-      </div>
+      </div> */}
+
+      <UserDashboard></UserDashboard>
   </div>;
 };
 
