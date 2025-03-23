@@ -1,48 +1,48 @@
 import React, { useContext, useState } from "react";
-import EducationForm from "./EducationForm";
-import EducationCard from "./EducationCard";
+import ProjectForm from "./ProjectForm";
+import ProjectCard from "./ProjectCard";
 import SectionHead from "../../header/section-head/SectionHead";
 import LivePreview from "../live-preview/LivePreview";
 import { ResumeContext } from "../../../contextApi/resume-context/ResumeContext";
 
-const EducationList = () => {
+const ProjectList = () => {
   const { resumeData, updateSection } = useContext(ResumeContext);
   const [openModal, setOpenModal] = useState(false);
 
-  const addEducation = (newEducation) => {
-    const updatedEducation = [...resumeData.education, newEducation];
-    updateSection("education", updatedEducation);
+  const addProject = (newProject) => {
+    updateSection("projects", [...resumeData.projects, newProject]);
   };
 
   return (
     <div className="p-4">
-      <SectionHead
-        subTitle={"Add your education information"}
-        title={"Add Education"}
-      />
+      <SectionHead subTitle={"Add your projects"} title={"Add Project"} />
 
-      <div className="flex justify-center">
+      {/* Add Button */}
+      <div className="flex justify-center mb-4">
         <button
           onClick={() => setOpenModal(true)}
           className="rounded-full text-white bg-r-primary py-2 px-5"
         >
-          Add Education
+          Add Project
         </button>
       </div>
 
-      {/* Modal Form */}
-      <EducationForm
+      {/* Project Form Modal */}
+      <ProjectForm
         open={openModal}
         handleClose={() => setOpenModal(false)}
-        addEducation={addEducation}
+        addProject={addProject}
       />
 
-      {/* Education Cards */}
-      <div className="grid grid-cols-2">
+      {/* Project Cards & Preview */}
+      <div className="grid grid-cols-2 gap-4">
         <div className="grid grid-cols-2 gap-4">
-          {resumeData.education.map((edu, index) => (
-            <EducationCard className="h-fit" key={index} education={edu} />
+          {resumeData.projects.map((proj, index) => (
+            <ProjectCard key={index} project={proj} />
           ))}
+          {resumeData.projects.length === 0 && (
+            <p className="text-center col-span-2">No Projects Added</p>
+          )}
         </div>
 
         {/* Live Preview */}
@@ -54,4 +54,4 @@ const EducationList = () => {
   );
 };
 
-export default EducationList;
+export default ProjectList;
