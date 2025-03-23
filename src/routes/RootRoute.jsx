@@ -30,6 +30,7 @@ import User from "../pages/User";
 import AboutPage from "./../pages/AboutPage";
 import FaqPage from "./../pages/FaqPage";
 import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
+import DashboardProfile from "../dashboard/DashboardProfile/DashboardProfile";
 
 const RootRoute = () => {
   return (
@@ -69,6 +70,7 @@ const RootRoute = () => {
         <Route path="/dashboard/security" element={<SecurityPage />} />
         <Route path="/dashboard/notification" element={<NotificationPage />} />
         <Route path="/dashboard/chat" element={<ChatPage />} />
+        <Route path="/dashboard/profile" element={<DashboardProfile />} />
       </Route>
       {/* dashboard route working end  */}
       <Route path="*" element={<ErrorPage />} />

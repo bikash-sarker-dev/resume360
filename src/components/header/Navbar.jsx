@@ -41,7 +41,7 @@ const Navbar = () => {
 
   const menu = [
     <>
-      <NavLink to="/" className="cursor-pointer w-8/12  transition-all">
+      <NavLink to="/" className="cursor-pointer w-8/12   transition-all">
         Home
       </NavLink>
       <NavLink
@@ -72,7 +72,7 @@ const Navbar = () => {
     <>
       <div className=" ">
         <header
-          className={`fixed  top-0 left-0  w-full bg-r-primary  text-r-text  z-50  py-1  shadow-md transition-transform duration-500 ${
+          className={`fixed  top-0 left-0  w-full bg-r-primary  text-r-text  z-50  py-3 sm:py-2  shadow-md transition-transform duration-500 ${
             hidden ? "-translate-y-full" : "translate-y-0"
           }`}
         >
@@ -100,15 +100,27 @@ const Navbar = () => {
             ) : (
               <>
                 {/* Login Button (Desktop) */}
-                <div className="flex gap-">
+                <div className="flex gap-5">
                   <Link to="/login">
-                    <button className="hidden lg:block shadow-sm hover:shadow-sm shadow-r-text  px-6 py-2 rounded-lg text-lg font-semibold duration-500 text-r-text hover:text-r-card hover:bg-r-primary transition">
-                      Login
+                    <button
+                      href="#_"
+                      class="relative hidden lg:block  items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group"
+                    >
+                      <span class="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                      <span class="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
+                        Login
+                      </span>
                     </button>
                   </Link>
                   <Link to="/register">
-                    <button className="hidden lg:block shadow-sm hover:shadow-sm shadow-r-text px-6 py-2 rounded-lg text-lg font-semibold duration-500 text-r-text hover:text-r-card hover:bg-r-primary transition">
-                      Register
+                    <button
+                      href="#_"
+                      class="relative hidden lg:block   items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group"
+                    >
+                      <span class="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                      <span class="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
+                        Register
+                      </span>
                     </button>
                   </Link>
                 </div>
@@ -139,18 +151,31 @@ const Navbar = () => {
           >
             {menu}
           </ul>
-          <div className=" items-center justify-center">
-            <Link to="/login">
-              <button className="shadow-sm hover:shadow-none shadow-r-text px-6 py-3 rounded-lg text-lg font-semibold duration-500 text-r-text hover:text-r-text hover:bg-r-info transition">
-                Login
-              </button>
-            </Link>
-            <Link to="/register">
-              <button className="shadow-sm hover:shadow-none shadow-r-text  px-6 py-3 rounded-lg text-lg font-semibold duration-500 text-r-text hover:text-r-text hover:bg-r-info transition">
-                Register
-              </button>
-            </Link>
-          </div>
+          <div onClick={() => setMenuOpen(false)}
+           className="flex gap-5 justify-center mb-5">
+                  <Link to="/login">
+                    <button
+                      href="#_"
+                      class="relative   items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group"
+                    >
+                      <span class="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                      <span class="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
+                        Login
+                      </span>
+                    </button>
+                  </Link>
+                  <Link to="/register">
+                    <button
+                      href="#_"
+                      class="relative    items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group"
+                    >
+                      <span class="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                      <span class="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
+                        Register
+                      </span>
+                    </button>
+                  </Link>
+                </div>
         </div>
       </div>
     </>

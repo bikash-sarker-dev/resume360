@@ -7,7 +7,7 @@ import {
   
   const EducationCard = ({ education }) => {
     return (
-      <Card className="shadow-lg rounded-2xl">
+      <Card className="shadow-lg rounded-2xl h-fit">
         <CardContent>
           <Typography variant="h5" className="font-semibold text-gray-800">
             {education.school || "School Name"}
