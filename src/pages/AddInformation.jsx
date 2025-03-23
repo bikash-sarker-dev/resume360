@@ -4,7 +4,6 @@ const AddInformation = () => {
     return (
         <>
           <InformationInput></InformationInput>
-          
         </>
     );
 };
