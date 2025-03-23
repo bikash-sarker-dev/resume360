@@ -5,11 +5,15 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-
 import EducationList from "../education/EducationList";
 import PersonalInfo from "../personal-info/PersonalInfo";
-import Skill from "../skill/skill";
+import Skill from '../skill/Skill';
 import SocialLinksList from "../social-links/SocialLinksList";
+import LivePreview from '../live-preview/LivePreview';
+import SectionHead from '../../header/section-head/SectionHead';
+import ProjectList from '../project/ProjectList';
+import ExperienceList from '../expreance/ExperienceList';
+import ErrorPage from '../../../pages/ErrorPage';
 
 const renderStepContent = (step) => {
   switch (step) {
@@ -21,12 +25,16 @@ const renderStepContent = (step) => {
       return <Skill />;
     case 3:
       return <SocialLinksList />;
+    case 4:
+      return <ProjectList/>;
+    case 5:
+      return <ExperienceList/>;
     default:
-      return <Typography>Unknown Step</Typography>;
+      return <ErrorPage></ErrorPage>;
   }
 };
 
-const steps = ['Personal Info', 'Education', 'Skills', 'Social Links'];
+const steps = ['Your Info', 'Edu', 'Skills', 'Links', 'Project', 'Experience'];
 
 const StepperComponents = () => {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -83,7 +91,13 @@ const StepperComponents = () => {
       {activeStep === steps.length ? (
         <React.Fragment>
           <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
+            <SectionHead
+              subTitle={"This is your final output of resume"}
+              title={"Final Result"}
+            />
+            <div className='flex justify-center'>
+              <LivePreview></LivePreview>
+            </div>
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Box sx={{ flex: '1 1 auto' }} />
