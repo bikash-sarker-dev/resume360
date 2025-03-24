@@ -26,7 +26,7 @@ const OurTeam = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 mt-8">
         {teams.map((team) => (
           <div key={team.id} className="card bg-base-100 shadow-sm overflow-hidden">
-            <figure className="overflow-hidden h-[300px] w-full">
+            <figure className="overflow-hidden h-[300px] w-full bg-gray-200">
               <motion.img
                 className="h-full w-full object-cover"
                 src={team.image}
