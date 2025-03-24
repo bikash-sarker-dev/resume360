@@ -1,0 +1,38 @@
+[
+    {
+      "name": "Alice Johnson",
+      "email": "alice.johnson@example.com",
+      "date_created": "2024-03-15",
+      "role": "admin",
+      "status": "active"
+    },
+    {
+      "name": "Bob Smith",
+      "email": "bob.smith@example.com",
+      "date_created": "2024-02-10",
+      "role": "user",
+      "status": "inactive"
+    },
+    {
+      "name": "Charlie Brown",
+      "email": "charlie.brown@example.com",
+      "date_created": "2024-05-20",
+      "role": "user",
+      "status": "active"
+    },
+    {
+      "name": "David Wilson",
+      "email": "david.wilson@example.com",
+      "date_created": "2024-01-05",
+      "role": "admin",
+      "status": "suspended"
+    },
+    {
+      "name": "Emma Davis",
+      "email": "emma.davis@example.com",
+      "date_created": "2024-06-01",
+      "role": "user",
+      "status": "active"
+    }
+  ]
+  
