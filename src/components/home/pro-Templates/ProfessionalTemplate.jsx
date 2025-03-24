@@ -61,6 +61,10 @@ const ProfessionalTemplate = () => {
           <div>
             <Swiper
               slidesPerView={3}
+              breakpoints={{
+                768: { slidesPerView: 2 }, 
+                0: { slidesPerView: 1 }, 
+              }}
               spaceBetween={30}
               freeMode={true}
               autoplay={{
@@ -74,27 +78,27 @@ const ProfessionalTemplate = () => {
               className="mySwiper"
             >
               <SwiperSlide>
-                <div>
+                <div className="p-5 bg-r-primary/25 border border-r-primary backdrop-blur-lg rounded-xl">
                   <img src={resume1} alt="resume image one" />
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div>
+                <div className="p-5 bg-r-primary/25 border border-r-primary backdrop-blur-lg rounded-xl">
                   <img src={resume2} alt="resume image one" />
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div>
+                <div className="p-5 bg-r-primary/25 border border-r-primary backdrop-blur-lg rounded-xl">
                   <img src={resume3} alt="resume image one" />
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div>
+                <div className="p-5 bg-r-primary/25 border border-r-primary backdrop-blur-lg rounded-xl">
                   <img src={resume4} alt="resume image one" />
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div>
+                <div className="p-5 bg-r-primary/25 border border-r-primary backdrop-blur-lg rounded-xl">
                   <img src={resume5} alt="resume image one" />
                 </div>
               </SwiperSlide>
