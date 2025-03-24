@@ -21,7 +21,7 @@ const DashboardProfile = () => {
   return (
     <div className="bg-r-primary/5 pt-0 sm:pt-5 min-h-screen backdrop-blur-lg">
       
-      <div className="max-w-5xl mx-auto p-6  shadow-md rounded-md grid md:grid-cols-3 gap-6 "> 
+      <div className="w-11/12 mx-auto p-6  shadow-md rounded-md grid md:grid-cols-3 gap-6 "> 
         
         <div className="p-4  rounded-md bg-r-info shadow-lg backdrop-blur-md">
           <img 

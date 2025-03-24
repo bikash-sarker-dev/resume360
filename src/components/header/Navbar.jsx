@@ -3,6 +3,7 @@ import { FiMenu, FiX } from "react-icons/fi";
 import { Link, NavLink, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import "./navbar.css"
 
 const Navbar = () => {
   const { signOutUser, user, setUser } = useAuth();
@@ -77,7 +78,7 @@ const Navbar = () => {
           }`}
         >
           <div className="flex items-center justify-between w-10/12 mx-auto">
-            {/* Logo */}
+           
             <div className="text-2xl font-serif ">
               Resumes<span className="font-bold text-r-background">360</span>
             </div>
@@ -128,7 +129,6 @@ const Navbar = () => {
               </>
             )}
 
-            {/* Mobile hamburger Button */}
             <button
               className="lg:hidden text-3xl  px-2 focus:outline-none z-30"
               onClick={() => setMenuOpen(!menuOpen)}
@@ -140,7 +140,7 @@ const Navbar = () => {
 
         {/* Mobile Dropdown Menu */}
         <div
-          className={`md:hidden z-30 fixed top-0 rounded-3xl backdrop-blur-3xl opacity-30  bg-r-primary right-10 w-[300px]  text-r-text transition-all duration-500 ease-in-out ${
+          className={`lg:hidden z-30 fixed top-0 rounded-3xl backdrop-blur-3xl opacity-30  bg-r-primary right-10 w-[300px]  text-r-text transition-all duration-500 ease-in-out ${
             menuOpen
               ? "opacity-100 z-0 translate-y-0 top-16"
               : "opacity-0  -translate-y-full pointer-events-none"
