@@ -31,8 +31,8 @@ const LivePreview = () => {
 
 
     return (
-        <div className="container pb-8 lg:pb-12">
-            <div className="bg-white p-16">
+        <div className="mx-auto pb-8 lg:pb-12">
+            <div className="bg-white p-12">
                 <h1 className="font-bold mb-3">{personalInfo.fullName || "Your Name"}</h1>
                 <h2 className="text-[12px] font-bold mb-2">UX DESIGNER</h2>
                 <p className="text-[10px] mb-2">
