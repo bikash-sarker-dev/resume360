@@ -17,7 +17,7 @@ const DashboardLayouts = () => {
         "
         >
           <NavbarDashboard />
-          <div className="p-10">
+          <div className="">
             <Outlet />
           </div>
         </div>
