@@ -5,12 +5,9 @@ import { FiUserCheck } from "react-icons/fi";
 import { GoHome } from "react-icons/go";
 import { GrShieldSecurity } from "react-icons/gr";
 import { IoIosLogOut } from "react-icons/io";
-import {
-  IoChatboxEllipsesOutline,
-  IoListOutline,
-  IoReaderOutline,
-} from "react-icons/io5";
+import { IoChatboxEllipsesOutline, IoReaderOutline } from "react-icons/io5";
 import { MdOutlineEditNotifications } from "react-icons/md";
+import { RiUserSettingsLine } from "react-icons/ri";
 import { NavLink } from "react-router";
 
 const Sidebar = () => {
@@ -61,10 +58,10 @@ const Sidebar = () => {
           <li>
             <NavLink
               className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
-              to="/dashboard/order-list"
+              to="/dashboard/profile"
             >
-              <IoListOutline className="text-3xl " />{" "}
-              <span className="text-[17px]">Order List</span>
+              <RiUserSettingsLine className="text-3xl " />{" "}
+              <span className="text-[17px]">Profile</span>
             </NavLink>
           </li>
           <li>
