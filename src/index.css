@@ -33,45 +33,6 @@ body {
 
 
 
-/* this is for navbar active button , after setup all router then active this  */
-
-#root > header > div > div > ul > a,
-#root > header > div > header > div > ul > a {
-  position: relative;
-  display: inline-block;
-  padding: 10px 15px;
-  color: #030b0b;
-  font-size: 16px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.3s ease-in-out;
-}
-
-#root > header > div > div > ul > a.active,
-#root > header > div > header > div > ul > a.active {
-  color: #effbfa;
-}
-
-
- 
-a::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 7px;
-  width: 0;
-  height: 1px;
-  background: #effbfa;
-  transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
-  transform: translateX(-50%);
-}
-
-
-#root > header > div > div > ul > a:hover::after,
-#root > header > div > header > div > ul > a:hover::after,
-a.active::after {
-  width: 100%;
-}
 
 
 /* for slide naimation in hero text */
