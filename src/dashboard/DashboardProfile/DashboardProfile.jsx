@@ -113,7 +113,43 @@ const DashboardProfile = () => {
       </div>
     </div>
 
-      
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-r-background bg-opacity-50 z-50">
+          <div className="bg-gradient-to-br from-r-info via-r-card to-r-info p-6 rounded-lg shadow-lg w-10/12 relative">
+            <button onClick={() => setIsModalOpen(false)} className="absolute top-2  right-2 text-r-text text-xl"><FaTimes className="h-10 w-10"></FaTimes></button>
+            <h2 className="text-xl font-bold  mb-4">Edit Profile</h2>
+            <form onSubmit={handleSubmit} className="space-y-3">
+              {/* Personal Info */}
+              <input type="text" name="name" value={profile.name} onChange={handleChange} placeholder="Name" className="w-full bg-transparent  p-2 focus:outline-none border-b border-r-primary" />
+              <input type="text" name="location" value={profile.location} onChange={handleChange} placeholder="Location" className="w-full bg-transparent  p-2 focus:outline-none border-b border-r-primary" />
+              <input type="text" name="role" value={profile.role} onChange={handleChange} placeholder="Role" className="w-full bg-transparent  p-2 focus:outline-none border-b border-r-primary" />
+
+              {/* Basic Info */}
+              <input type="text" name="birthday" value={profile.birthday} onChange={handleChange} placeholder="Birthday" className="w-full bg-transparent  p-2 focus:outline-none border-b border-r-primary" />
+              <input type="text" name="gender" value={profile.gender} onChange={handleChange} placeholder="Gender" className="w-full bg-transparent  p-2 focus:outline-none border-b border-r-primary" />
+
+              {/* Contact Info */}
+              <input type="text" name="phone" value={profile.phone} onChange={handleChange} placeholder="Phone" className="w-full bg-transparent  p-2 focus:outline-none border-b border-r-primary" />
+              <input type="text" name="email" value={profile.email} onChange={handleChange} placeholder="Email" className="w-full bg-transparent  p-2 focus:outline-none border-b border-r-primary" />
+              <input type="text" name="website" value={profile.website} onChange={handleChange} placeholder="Website" className="w-full bg-transparent  p-2 focus:outline-none border-b border-r-primary" />
+
+              {/* Work Info */}
+              <input type="text" name="work" value={profile.work} onChange={handleChange} placeholder="Workplace" className="w-full bg-transparent  p-2 focus:outline-none border-b border-r-primary" />
+              <input type="text" name="address" value={profile.address} onChange={handleChange} placeholder="Work Address" className="w-full bg-transparent  p-2 focus:outline-none border-b border-r-primary" />
+
+              {/* Career Progress */}
+              {profile.progress.map((item, index) => (
+                <div key={index} className="flex space-x-2">
+                  <input type="text" value={item.description} onChange={(e) => handleProgressChange(index, "description", e.target.value)} className="w-3/4 bg-transparent  p-2 focus:outline-none border-b border-r-primary" />
+                  <input type="text" value={item.year} onChange={(e) => handleProgressChange(index, "year", e.target.value)} className="w-1/4 bg-transparent  p-2 focus:outline-none border-b border-r-primary" />
+                </div>
+              ))}
+
+              <button type="submit" className="px-4 py-2 bg-white text-teal-600 font-bold rounded-md hover:bg-gray-100">Save</button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
