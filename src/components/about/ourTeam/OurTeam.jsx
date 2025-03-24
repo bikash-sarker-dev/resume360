@@ -17,9 +17,7 @@ const OurTeam = () => {
   return (
     <div className="container mx-auto py-16">
       <div className="mb-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-          Our Team
-        </h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Our Team</h2>
         <p className="text-lg md:text-xl text-gray-600 mt-3">
           We're a dynamic group of individuals who are passionate about what we do and dedicated to delivering the best results for our clients.
         </p>
@@ -28,9 +26,9 @@ const OurTeam = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 mt-8">
         {teams.map((team) => (
           <div key={team.id} className="card bg-base-100 shadow-sm overflow-hidden">
-            <figure className="overflow-hidden">
+            <figure className="overflow-hidden h-[300px] w-full bg-gray-200">
               <motion.img
-                className="h-[300px] object-cover w-full"
+                className="h-full w-full object-cover"
                 src={team.image}
                 alt={team.title}
                 initial={{ scale: 1 }}
