@@ -7,7 +7,7 @@ import {
     TextField,
 } from "@mui/material";
 
-const ProjectForm = ({ open, handleClose, addProject }) => {
+const ProjectForm = ({ addProject }) => {
     const [project, setProject] = useState({
         projectName: "",
         description: "",
@@ -33,28 +33,22 @@ const ProjectForm = ({ open, handleClose, addProject }) => {
             server: "",
             features: "",
         });
-        handleClose();
     };
 
     return (
         <>
-            <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth >
-                <DialogTitle className="text-r-primary" > Add Project </DialogTitle>
-                < DialogContent dividers >
-                    <form className="grid grid-cols-2 gap-3" >
-                        <TextField className="col-span-2" label="Project Name" name="projectName" value={project.projectName} onChange={handleChange} required />
-                        <TextField className="col-span-2" label="Description" name="description" value={project.description} onChange={handleChange} multiline rows={3} required />
-                        <TextField label="Live Link" name="live" value={project.live} onChange={handleChange} />
-                        <TextField label="Client Repo Link" name="client" value={project.client} onChange={handleChange} />
-                        <TextField label="Server Repo Link" name="server" value={project.server} onChange={handleChange} />
-                        <TextField className="col-span-2" label="Features (One per line)" name="features" value={project.features} onChange={handleChange} multiline rows={4} helperText="Enter each feature in a new line" />
-                    </form>
-                </DialogContent>
-                < DialogActions >
-                    <button className='cursor-pointer rounded-full text-white bg-r-secondary py-2 px-5' onClick={handleClose} > Cancel </button>
+            <div>
+                <form className="grid grid-cols-2 gap-3" >
+                    <TextField className="col-span-2" label="Project Name" name="projectName" value={project.projectName} onChange={handleChange} required />
+                    <TextField className="col-span-2" label="Description" name="description" value={project.description} onChange={handleChange} multiline rows={3} required />
+                    <TextField label="Live Link" name="live" value={project.live} onChange={handleChange} />
+                    <TextField label="Client Repo Link" name="client" value={project.client} onChange={handleChange} />
+                    <TextField label="Server Repo Link" name="server" value={project.server} onChange={handleChange} />
+                    <TextField className="col-span-2" label="Features (One per line)" name="features" value={project.features} onChange={handleChange} multiline rows={4} helperText="Enter each feature in a new line" />
                     < button className='cursor-pointer rounded-full text-white bg-r-primary py-2 px-5' onClick={handleSubmit} > Add </button>
-                </DialogActions>
-            </Dialog>
+                </form>
+
+            </div>
         </>
 
     );
