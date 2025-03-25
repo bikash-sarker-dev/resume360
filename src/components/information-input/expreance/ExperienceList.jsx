@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import ExperienceForm from "./ExperienceForm";
-import SectionHead from "../../header/section-head/SectionHead";
 import { ResumeContext } from "../../../contextApi/resume-context/ResumeContext";
-import LivePreview from "../live-preview/LivePreview";
+
 
 
 const ExperienceList = () => {

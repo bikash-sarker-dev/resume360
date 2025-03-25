@@ -1,6 +1,4 @@
 import { useContext, useState } from "react";
-import SectionHead from "../../header/section-head/SectionHead";
-import LivePreview from "../live-preview/LivePreview";
 import { ResumeContext } from "../../../contextApi/resume-context/ResumeContext";
 
 const Skill = () => {
