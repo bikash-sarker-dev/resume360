@@ -1,7 +1,5 @@
 import React, { useContext, useState } from "react";
 import ProjectForm from "./ProjectForm";
-import SectionHead from "../../header/section-head/SectionHead";
-import LivePreview from "../live-preview/LivePreview";
 import { ResumeContext } from "../../../contextApi/resume-context/ResumeContext";
 
 const ProjectList = () => {

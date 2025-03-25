@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
 import SocialLinkForm from "./SocialLinkForm";
-import LivePreview from "../live-preview/LivePreview";
-import SectionHead from "../../header/section-head/SectionHead";
 import { ResumeContext } from "../../../contextApi/resume-context/ResumeContext";
 
 const SocialLinksList = () => {
