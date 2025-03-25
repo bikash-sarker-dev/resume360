@@ -48,7 +48,7 @@ const EducationForm = ({ addEducation }) => {
         <TextField label="End Year" name="endYear" value={education.endYear} onChange={handleChange} helperText="Please enter end year" />
         <TextField className="col-span-2" label="Grade" name="grade" value={education.grade} onChange={handleChange} helperText="Please enter your grade" />
         <TextField className="col-span-2" label="Description" name="description" value={education.description} onChange={handleChange} multiline rows={3} helperText="Please enter description" />
-        <button className='cursor-pointer rounded-full text-white bg-r-primary py-2 px-5' onClick={handleSubmit} variant="contained" color="primary">Add</button>
+        <button className='col-span-2 cursor-pointer rounded-full text-white bg-r-primary py-2 px-5' onClick={handleSubmit} variant="contained" color="primary">Add</button>
       </form>
     </div>
   );
