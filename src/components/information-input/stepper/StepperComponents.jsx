@@ -22,19 +22,19 @@ const renderStepContent = (step) => {
     case 1:
       return <EducationList />;
     case 2:
-      return <Skill />;
+      return <ExperienceList />;
     case 3:
-      return <SocialLinksList />;
+      return <ProjectList />;
     case 4:
-      return <ProjectList/>;
+      return <SocialLinksList />;
     case 5:
-      return <ExperienceList/>;
+      return <Skill />;
     default:
       return <ErrorPage></ErrorPage>;
   }
 };
 
-const steps = ['Your Info', 'Edu', 'Skills', 'Links', 'Project', 'Experience'];
+const steps = ['Profile', 'Education', 'Experience', 'Project', 'Additional'];
 
 const StepperComponents = () => {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -64,68 +64,87 @@ const StepperComponents = () => {
   };
 
   return (
-    <Box className="mb-10" sx={{ width: '100%' }}>
-      <Stepper activeStep={activeStep} alternativeLabel>
-        {steps.map((label, index) => {
-          const stepProps = {};
-          const labelProps = {};
+    <div className='grid grid-cols-2 gap-4'>
+      <Box className="mb-10 bg-white rounded-2xl py-10 px-6 shadow-xl" sx={{ width: '100%' }}>
+        <Stepper activeStep={activeStep} alternativeLabel>
+          {steps.map((label, index) => {
+            const stepProps = {};
+            const labelProps = {};
 
-          if (isStepSkipped(index)) {
-            stepProps.completed = false;
-          }
+            if (isStepSkipped(index)) {
+              stepProps.completed = false;
+            }
 
-          return (
-            <Step key={label} {...stepProps}>
-              <StepLabel
-                {...labelProps}
-                sx={{
-                  color: activeStep === index ? 'r-primary' : 'text.secondary', // Apply r-primary color for active step
-                }}
+            return (
+              <Step key={label} {...stepProps}>
+                <StepLabel
+                  {...labelProps}
+                  sx={{
+                    color: activeStep === index ? 'r-primary' : 'text.secondary', // Apply r-primary color for active step
+                  }}
+                >
+                  {label}
+                </StepLabel>
+              </Step>
+            );
+          })}
+        </Stepper>
+        {activeStep === steps.length ? (
+          <React.Fragment>
+            <Typography sx={{ mt: 2, mb: 1 }}>
+              <SectionHead
+                subTitle={"This is your final output of resume"}
+                title={"Final Result"}
+              />
+              <div className='flex justify-center'>
+                <LivePreview></LivePreview>
+              </div>
+            </Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+              <Box sx={{ flex: '1 1 auto' }} />
+              <Button onClick={handleReset}>Reset</Button>
+            </Box>
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+              <button
+                className='rounded-full text-white bg-r-primary py-2 px-5'
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                sx={{ mr: 1 }}
               >
-                {label}
-              </StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-      {activeStep === steps.length ? (
-        <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            <SectionHead
-              subTitle={"This is your final output of resume"}
-              title={"Final Result"}
-            />
-            <div className='flex justify-center'>
-              <LivePreview></LivePreview>
-            </div>
-          </Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <Box sx={{ flex: '1 1 auto' }} />
-            <Button onClick={handleReset}>Reset</Button>
-          </Box>
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          <Box sx={{ mt: 2, mb: 1 }}>
-            {renderStepContent(activeStep)}
-          </Box>
-          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <button
-              className='rounded-full text-white bg-r-primary py-2 px-5'
-              disabled={activeStep === 0}
-              onClick={handleBack}
-              sx={{ mr: 1 }}
-            >
-              Back
-            </button>
-            <Box sx={{ flex: '1 1 auto' }} />
-            <button className='rounded-full text-white bg-r-primary py-2 px-5' onClick={handleNext}>
-              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-            </button>
-          </Box>
-        </React.Fragment>
-      )}
-    </Box>
+                Back
+              </button>
+              <Box sx={{ flex: '1 1 auto' }} />
+              <button className='rounded-full text-white bg-r-primary py-2 px-5' onClick={handleNext}>
+                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+              </button>
+            </Box>
+            <Box sx={{ mt: 2, mb: 1 }}>
+              {renderStepContent(activeStep)}
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+              <button
+                className='rounded-full text-white bg-r-primary py-2 px-5'
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                sx={{ mr: 1 }}
+              >
+                Back
+              </button>
+              <Box sx={{ flex: '1 1 auto' }} />
+              <button className='rounded-full text-white bg-r-primary py-2 px-5' onClick={handleNext}>
+                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+              </button>
+            </Box>
+          </React.Fragment>
+        )}
+      </Box>
+      <div>
+        <LivePreview></LivePreview>
+      </div>
+    </div>
   );
 };
 

@@ -2,8 +2,6 @@ import * as React from 'react';
 import { TextField, Button, MenuItem } from "@mui/material";
 import { useState, useContext } from "react";
 import { FiUploadCloud } from "react-icons/fi";
-import SectionHead from '../../header/section-head/SectionHead';
-import LivePreview from '../live-preview/LivePreview';
 import { ResumeContext } from '../../../contextApi/resume-context/ResumeContext';
 
 
@@ -47,11 +45,7 @@ const PersonalInfo = () => {
 
     return (
         <>
-            <SectionHead
-                subTitle={"Add your personal information"}
-                title={"Add Personal Info"}
-            />
-            <div className='grid grid-cols-2'>
+            <div className='grid grid-cols-1'>
                 <div className='md:grid grid-cols-2 gap-4 px-4 space-y-5 mt-5'>
                     <TextField
                         className='w-full'
@@ -159,9 +153,9 @@ const PersonalInfo = () => {
                 </div>
 
                 {/* Optional: Live Preview */}
-                <div>
+                {/* <div>
                     <LivePreview />
-                </div>
+                </div> */}
             </div>
         </>
     );
