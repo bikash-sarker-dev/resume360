@@ -15,7 +15,7 @@ const PersonalInfo = () => {
         const { name, value } = e.target;
         updateSection('personalInfo', {
             ...resumeData.personalInfo,
-            [name]: value            
+            [name]: value
         });
     };
 
@@ -54,6 +54,14 @@ const PersonalInfo = () => {
                         label="Full Name"
                         onChange={handleChange}
                         helperText="Please enter your full name"
+                    />
+                    <TextField
+                        className='w-full'
+                        required
+                        name="jobTitle"
+                        label="Job Title"
+                        onChange={handleChange}
+                        helperText="Please enter your job title"
                     />
                     <div className="md:flex flex-col row-span-3 justify-center items-center border-2 border-dashed border-r-accent rounded-lg text-center">
                         {!image ? (
