@@ -151,11 +151,6 @@ const PersonalInfo = () => {
                         />
                     </div>
                 </div>
-
-                {/* Optional: Live Preview */}
-                {/* <div>
-                    <LivePreview />
-                </div> */}
             </div>
         </>
     );

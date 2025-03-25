@@ -14,20 +14,14 @@ const ProjectList = () => {
 
   return (
     <div className="p-4">
-      <SectionHead subTitle={"Add your projects"} title={"Add Project"} />
-
       {/* Project Cards & Preview */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4">
         {/* Project Form Modal */}
         <ProjectForm
           open={openModal}
           handleClose={() => setOpenModal(false)}
           addProject={addProject}
         />
-        {/* Live Preview */}
-        <div>
-          <LivePreview />
-        </div>
       </div>
     </div>
   );

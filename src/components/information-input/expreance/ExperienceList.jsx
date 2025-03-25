@@ -16,20 +16,11 @@ const ExperienceList = () => {
 
   return (
     <div className="p-4">
-      <SectionHead
-        subTitle={"Add your professional experiences"}
-        title={"Add Experience"}
-      />
-
-      <div className="grid grid-cols-2 gap-4 mt-4">
+      <div className="grid grid-cols-1 gap-4 mt-4">
         <div>
           <ExperienceForm
             addExperience={addExperience}
           />
-        </div>
-        <div>
-          {/* <LivePreview /> */}
-          <LivePreview />
         </div>
       </div>
     </div>
