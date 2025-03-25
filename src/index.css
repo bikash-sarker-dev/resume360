@@ -8,7 +8,7 @@
 @plugin "daisyui";
 
 /* theme custom color  */
-@theme {
+ @theme {
   --color-r-primary: #40cdc3;
   --color-r-secondary: #86abdf;
   --color-r-accent: #6d81d9;
@@ -17,7 +17,45 @@
   --color-r-info: #ccf2ef;
   --color-r-info-card: #daebf5;
   --color-r-card: #e6f8f7;
-}
+} 
+
+
+
+ /* @theme {
+  --color-r-primary: #6C63FF;
+  --color-r-secondary: #B388FF;
+  --color-r-accent: #4A47A3;
+  --color-r-text: #2C2C2C;
+  --color-r-background: #F8FAFC;
+  --color-r-info: #D1C4E9;
+  --color-r-info-card: #EDE7F6;
+  --color-r-card: #F3E5F5;
+} */
+
+
+
+
+
+
+
+ /* @theme {
+  --color-r-primary: #60a5fa;
+  --color-r-secondary: #9a9cdf;
+  --color-r-accent: #374251;
+  --color-r-text: #111827;
+  --color-r-background: #f3f4f6;
+  --color-r-info: #E0E7FF;
+  --color-r-info-card: #FDF2E9;
+  --color-r-card: #FEF3C7;
+}  */
+
+
+
+
+
+
+
+/* ............................. */
 
 body {
   font-family: "Inter", sans-serif;

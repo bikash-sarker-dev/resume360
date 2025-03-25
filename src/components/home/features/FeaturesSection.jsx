@@ -17,7 +17,7 @@ const FeaturesSection = () => {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-md:max-w-md mx-auto text-center">
-          <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all">
+          <div className="bg-r-background rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all">
             <div className="p-8">
               <div className="mb-5 flex justify-center">
                 <BiCustomize className="size-10 text-r-accent"></BiCustomize>
