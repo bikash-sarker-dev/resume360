@@ -28,6 +28,7 @@ import User from "../pages/User";
 import AboutPage from "./../pages/AboutPage";
 import FaqPage from "./../pages/FaqPage";
 import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
+import { Demo } from "../components/Demo/Demo";
 
 
 const RootRoute = () => {
@@ -53,6 +54,10 @@ const RootRoute = () => {
         <Route path="/templates" element={<TemplatesPage />} />
         <Route path="/personal-info" element={<PersonalInfoPage />} />
         <Route path="/add-information" element={<AddInformation />} />
+
+
+        {/* Demo */}
+        <Route path="/demo" element={<Demo></Demo>}></Route>
        
       </Route>
 
