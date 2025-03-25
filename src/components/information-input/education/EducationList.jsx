@@ -14,18 +14,11 @@ const EducationList = () => {
 
   return (
     <div className="p-4">
-      <SectionHead
-        subTitle={"Add your education information"}
-        title={"Add Education"}
-      />
       {/* Education Cards */}
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-1">
         <EducationForm
           addEducation={addEducation}
         />
-        <div>
-          <LivePreview />
-        </div>
       </div>
     </div>
   );
