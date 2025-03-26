@@ -78,7 +78,7 @@ const StepperComponents = () => {
                 <StepLabel
                   {...labelProps}
                   sx={{
-                    color: activeStep === index ? 'r-primary' : 'text.secondary', // Apply r-primary color for active step
+                    color: activeStep === index ? 'r-primary' : 'text.secondary',
                   }}
                 >
                   {label}
@@ -106,14 +106,15 @@ const StepperComponents = () => {
         ) : (
           <React.Fragment>
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-              <button
-                className='rounded-full text-white bg-r-primary py-2 px-5'
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-              >
-                Back
-              </button>
+              {activeStep !== 0 && (
+                <button
+                  className='rounded-full text-white bg-r-primary py-2 px-5'
+                  onClick={handleBack}
+                  sx={{ mr: 1 }}
+                >
+                  Back
+                </button>
+              )}
               <Box sx={{ flex: '1 1 auto' }} />
               <button className='rounded-full text-white bg-r-primary py-2 px-5' onClick={handleNext}>
                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
@@ -121,20 +122,6 @@ const StepperComponents = () => {
             </Box>
             <Box sx={{ mt: 2, mb: 1 }}>
               {renderStepContent(activeStep)}
-            </Box>
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-              <button
-                className='rounded-full text-white bg-r-primary py-2 px-5'
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-              >
-                Back
-              </button>
-              <Box sx={{ flex: '1 1 auto' }} />
-              <button className='rounded-full text-white bg-r-primary py-2 px-5' onClick={handleNext}>
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-              </button>
             </Box>
           </React.Fragment>
         )}
