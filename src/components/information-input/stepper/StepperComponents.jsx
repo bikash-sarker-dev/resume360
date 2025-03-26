@@ -13,7 +13,7 @@ import SectionHead from '../../header/section-head/SectionHead';
 import ProjectList from '../project/ProjectList';
 import ExperienceList from '../expreance/ExperienceList';
 import ErrorPage from '../../../pages/ErrorPage';
-import Accordition from '../accordition/Accordition';
+import Accordions from '../accordions/Accordions';
 
 const renderStepContent = (step) => {
   switch (step) {
@@ -26,7 +26,7 @@ const renderStepContent = (step) => {
     case 3:
       return <ProjectList />;
     case 4:
-      return <Accordition/>;
+      return <Accordions/>;
     default:
       return <ErrorPage></ErrorPage>;
   }
