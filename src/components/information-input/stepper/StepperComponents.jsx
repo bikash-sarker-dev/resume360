@@ -7,13 +7,13 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import EducationList from "../education/EducationList";
 import PersonalInfo from "../personal-info/PersonalInfo";
-import Skill from '../skill/Skill';
 import SocialLinksList from "../social-links/SocialLinksList";
 import LivePreview from '../live-preview/LivePreview';
 import SectionHead from '../../header/section-head/SectionHead';
 import ProjectList from '../project/ProjectList';
 import ExperienceList from '../expreance/ExperienceList';
 import ErrorPage from '../../../pages/ErrorPage';
+import Accordition from '../accordition/Accordition';
 
 const renderStepContent = (step) => {
   switch (step) {
@@ -26,9 +26,7 @@ const renderStepContent = (step) => {
     case 3:
       return <ProjectList />;
     case 4:
-      return <SocialLinksList />;
-    case 5:
-      return <Skill />;
+      return <Accordition/>;
     default:
       return <ErrorPage></ErrorPage>;
   }
