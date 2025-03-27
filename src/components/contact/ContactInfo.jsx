@@ -12,11 +12,11 @@ const ContactInfo = () => {
                     We're Just a Message Away – Let Us Help You!
                 </h4>
                 
-                {/* <Marquee speed={40} gradient={false} className=" py-4 rounded-lg shadow-lg">
+                <Marquee speed={40} gradient={false} className=" py-4 rounded-lg shadow-lg">
                     <h2 className="text-lg sm:text-xl md:text-2xl text-r-text font-bold mt-1">
                         Our Support Team is Available 24/7 – We’re Always Ready to Help! For Urgent Assistance, Call Us at (347)-748-3331.
                     </h2>
-                </Marquee> */}
+                </Marquee>
             </div>
         </div>
     );
