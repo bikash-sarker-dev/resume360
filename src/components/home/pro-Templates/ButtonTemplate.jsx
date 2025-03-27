@@ -2,7 +2,7 @@ import React from "react";
 
 const ButtonTemplate = ({ handleResume, handleCv, handleCoverLetter }) => {
   return (
-    <div className="space-x-10 text-center mt-8">
+    <div className="space-x-10 text-center mt-6">
       <button
         onClick={handleResume}
         className="relative inline-flex items-center justify-center px-10 py-4 overflow-hidden  font-bold  text-r-text bg-r-background rounded-lg group slide-up slide-up-btn"
