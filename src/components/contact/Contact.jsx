@@ -45,38 +45,7 @@ const Contact = () => {
 <section id="contact" className="text-black  grid grid-cols-1 md:grid-cols-2 gap-10 rounded-lg shadow-lg">
        
        <div className="flex justify-center items-center h-full">
-         {/* <motion.h3
-           className="text-4xl font-bold text-center md:text-left"
-           initial={{ opacity: 0, x: -50 }}
-           animate={{ opacity: 1, x: 0 }}
-           transition={{ duration: 0.8 }}
-         >
-           Contact Information
-         </motion.h3>
-         <motion.p
-           className="text-xl"
-           initial={{ opacity: 0, x: -50 }}
-           animate={{ opacity: 1, x: 0 }}
-           transition={{ duration: 1 }}
-         >
-           <strong>Fatema Hanif</strong> 
-         </motion.p>
-         <motion.p
-           className="text-xl"
-           initial={{ opacity: 0, x: -50 }}
-           animate={{ opacity: 1, x: 0 }}
-           transition={{ duration: 1.2 }}
-         >
-           <strong>Email:</strong> fatemahanif16@gmail.com
-         </motion.p>
-         <motion.p
-           className="text-xl"
-           initial={{ opacity: 0, x: -50 }}
-           animate={{ opacity: 1, x: 0 }}
-           transition={{ duration: 1.4 }}
-         >
-           <strong>Phone:</strong> +1 (347) 748-3331
-         </motion.p> */}
+    
 
 
          <Lottie animationData={helpDesk} className="w-full h-full">
