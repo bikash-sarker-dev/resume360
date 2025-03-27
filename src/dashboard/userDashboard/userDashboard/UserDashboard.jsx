@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
+import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 const UserDashboard = () => {
     const [users, setUsers] = useState([]);
@@ -48,10 +49,10 @@ const UserDashboard = () => {
                                 </td>
                                 <td className="flex space-x-2">
                                     <button className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
-                                        Edit
+                                    <FaEdit />
                                     </button>
                                     <button className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
-                                        Delete
+                                    <FaTrashAlt /> 
                                     </button>
                                 </td>
                             </tr>
