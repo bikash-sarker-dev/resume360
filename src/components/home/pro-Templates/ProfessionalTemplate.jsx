@@ -52,6 +52,9 @@ const ProfessionalTemplate = () => {
           handleResume={handleResume}
           handleCv={handleCv}
           handleCoverLetter={handleCoverLetter}
+          resume={resume}
+          cv={cv}
+          coverLetter={coverLetter}
         />
       </div>
       <div className="container">
