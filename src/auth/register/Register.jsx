@@ -6,6 +6,8 @@ import resumeLottieData from "../../assets/animation/resume2.json";
 import SectionHead from "../../components/header/section-head/SectionHead";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import google from "../../assets/icons/google.png"
+import github from "../../assets/icons/github.png"
 
 export default function Register() {
   const {
@@ -73,7 +75,7 @@ export default function Register() {
             axiosPublic.post("/users", newUser).then((res) => {
               console.log(res.data);
               if (res.data.message) {
-                console.log("user added to the database");
+                // console.log("user added to the database");
                 form.reset();
                 Swal.fire({
                   title: "Success",
@@ -129,24 +131,24 @@ export default function Register() {
   };
 
   // github signin
-  const handleGithubLogin = () => {
-    signInWithGithub()
-      .then((result) => {
-        setUser(result.user);
-        //  console.log(result.user)
-        Swal.fire({
-          title: "Success",
-          text: "Login With Github Successfully",
-          icon: "success",
-          confirmButtonText: "Done",
-        });
-        navigate("/");
-      })
-      .catch((error) => {
-        //  console.log(error)
-        setUser(null);
-      });
-  };
+  // const handleGithubLogin = () => {
+  //   signInWithGithub()
+  //     .then((result) => {
+  //       setUser(result.user);
+  //       //  console.log(result.user)
+  //       Swal.fire({
+  //         title: "Success",
+  //         text: "Login With Github Successfully",
+  //         icon: "success",
+  //         confirmButtonText: "Done",
+  //       });
+  //       navigate("/");
+  //     })
+  //     .catch((error) => {
+  //       //  console.log(error)
+  //       setUser(null);
+  //     });
+  // };
   return (
     <div>
       <div className="hero bg-background">
@@ -276,31 +278,27 @@ export default function Register() {
                       </button>
                     </>
                   )}
-                  {/* <button className="btn bg-r-accent mt-4 text-white">
-                    Create Account
-                  </button> */}
                 </fieldset>
               </form>
               <div className="divider">OR</div>
               <div className="text-center text-3xl">
-                <i
-                  onClick={handleGoogleLogin}
-                  className="fa-brands fa-google mr-5 cursor-pointer"
-                ></i>
-                <i
-                  onClick={handleGithubLogin}
-                  className="fa-brands fa-github cursor-pointer"
-                ></i>
+              {/* Google Button */}
+              <button  onClick={handleGoogleLogin} className="btn w-full border-[1px] border-gray-400 text-r-accent bg-white shadow-2xl">
+              <img className="w-9 bg-transparent" src={google} alt="" />
+              Sign in with Google
+              </button>
+              {/* Github Button */}
+              {/* <button  onClick={handleGithubLogin} className="btn w-full border-[1px] border-gray-400 text-r-accent bg-white shadow-2xl mt-4">
+              <img className="w-7 bg-transparent" src={github} alt="" />
+              Sign in with GitHub
+              </button> */}
               </div>
               <div className="text-center">
-                <p>
-                  Already have an account?{" "}
-                  <span className="underline">
-                    <Link to="/login" className="text-r-accent">
-                      Login here
-                    </Link>
-                  </span>
-                </p>
+              <p className="mt-2">
+              Already have an account?{" "}
+              <span className="underline">
+              <Link to="/login" className="text-r-accent">Login here</Link></span>
+              </p>
               </div>
             </div>
           </div>
