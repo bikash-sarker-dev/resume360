@@ -18,7 +18,7 @@ const Sidebar = () => {
 
   // Signout
     const handleSignOut = () => {
-      console.log('logOut')
+      // console.log('logOut')
       signOutUser()
         .then(() => {
           Swal.fire({
