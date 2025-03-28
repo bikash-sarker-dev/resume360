@@ -43,11 +43,14 @@ const FeaturesSection = () => {
               </div>
               <h3 className="text-r-text text-lg font-semibold mb-3">{feature.title}</h3>
               <p className="text-slate-500 text-sm font-medium leading-relaxed">{feature.desc}</p>
-              <Link className="underline mt-2">Read More</Link>
             </motion.div>
           );
         })}
       </div>
+      <div className="text-center mt-10 text-2xl font-medium text-r-accent">
+      <Link to='/features' className="underline">Read More</Link>
+      </div>
+     
     </div>
   );
 };
