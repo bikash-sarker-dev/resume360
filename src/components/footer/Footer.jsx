@@ -3,39 +3,19 @@ import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="relative  bg-r-info  text-r-text pt-16 pb-8 px-8 md:px-16">
-      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-16 text-center md:text-left">
+    <footer className="relative   bg-r-info  text-r-text pt-16 pb-8 px-8 md:px-16">
+      <div className="container">
+      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-4 gap-16 text-center md:text-left">
         {/* Brand Section */}
-        <div className=" flex md:flex-row md:w-max items-center flex-col w-full space-x-5  lg:space-x-20">
-          <div className="text-3xl font-serif ">
+
+        <div className="text-3xl font-serif  flex flex-col  justify-center  ">
+          <h1>
             Resumes<span className="font-bold text-r-primary">360</span>
-          </div>
-
-          {/* Social & Legal Links */}
-
-          <div className=" ">
-            <h3 className="text-xl mt-5 md:mt-0 font-semibold">
-              Stay Connected
-            </h3>
-
-            <div className="mt-3 flex justify-center md:justify-start space-x-4">
-              <a href="#" className="hover:text-gray-400 text-2xl">
-                <FaFacebookF />
-              </a>
-              <a href="#" className="hover:text-gray-400 text-2xl">
-                <FaTwitter />
-              </a>
-              <a href="#" className="hover:text-gray-400 text-2xl">
-                <FaLinkedinIn />
-              </a>
-            </div>
-          </div>
+          </h1>
+          <p className="text-base">this is our virtual resume builder wevsite , stay with me .</p>
         </div>
 
-        {/* Social & Legal Links */}
-
-        {/* Navigation Links */}
-        <div className="flex flex-col md:ml-16 ml-0 text-left items-center">
+        <div className="flex flex-col  text-left items-center">
           <h3 className="text-xl ml-[-20px] font-semibold">Menu</h3>
           <ul className="mt-3 space-y-2">
             <li>
@@ -69,11 +49,27 @@ const Footer = () => {
             </li>
           </ul>
         </div>
+        <div className=" flex flex-col items-center justify-center">
+          <h3 className="text-xl mt-5 md:mt-0 font-semibold">Stay Connected</h3>
+
+          <div className="mt-3 flex justify-center md:justify-start space-x-4">
+            <a href="#" className="hover:text-gray-400 text-2xl">
+              <FaFacebookF />
+            </a>
+            <a href="#" className="hover:text-gray-400 text-2xl">
+              <FaTwitter />
+            </a>
+            <a href="#" className="hover:text-gray-400 text-2xl">
+              <FaLinkedinIn />
+            </a>
+          </div>
+        </div>
       </div>
 
       {/* Copyright */}
       <div className="relative z-10 text-center text-gray-400 mt-10 border-t border-gray-600 pt-5">
         &copy; {new Date().getFullYear()} innovativeDevs. All rights reserved.
+      </div>
       </div>
     </footer>
   );
