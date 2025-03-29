@@ -6,7 +6,7 @@ import 'swiper/css/navigation';
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { Autoplay, FreeMode, Pagination, Navigation } from "swiper/modules";
-import { Rating } from '@material-tailwind/react';
+import Rating from 'react-rating';
 
 export const Testimonials = () => {
   const[testimonials,setTestimonials]=useState([]);
@@ -60,13 +60,12 @@ export const Testimonials = () => {
        </div>
        <h3 className='text-2xl font-semibold mt-3 text-center'>{testimonial.profession}</h3>
       </div>
-        <div className=''>
-       <Rating
-        style={{ maxWidth: 180 }}
-        value={testimonial.rating}
-        className='text-yellow-500'
-        readOnly
-        />
+        <div>
+        <Rating
+        className='text-yellow-300 text-2xl'
+        initialRating={testimonial.rating}
+        emptySymbol="far fa-star"       
+        fullSymbol="fas fa-star"/>
        </div>
       </div>
         <p className='text-center w-11/12 md:w-10/12 lg:w-9/12 mx-auto mt-6'>{testimonial.review}</p>
