@@ -3,7 +3,7 @@
       "_id": 1,
       "name": "John Doe",
       "authorImage": "https://i.ibb.co.com/c2j7Tt5/guide5.jpg",
-      "review": "I got hired within a week after using this resume builder! The templates are amazing.",
+      "review":"This resume builder helped me secure a job within a week! The templates are     amazing, and the overall experience was fantastic. It truly made my resume stand out.",
       "rating": 5,
       "profession": "Frontend Developer"
     },
@@ -11,7 +11,7 @@
       "_id": 2,
       "name": "Sarah Miller",
       "authorImage": "https://i.ibb.co.com/x7b5RkP/guide4.jpg",
-      "review": "The AI suggestions improved my resume, and I landed my dream job at Amazon!",
+      "review":"The AI suggestions significantly improved my resume, and I landed my dream job at Amazon. The guidance provided was precise and incredibly useful.",
       "rating": 5,
       "profession": "Software Engineer"
     },
@@ -19,7 +19,7 @@
       "_id": 3,
       "name": "Mark Lee",
       "authorImage": "https://i.ibb.co.com/YBWKXJ5/person1.jpg",
-      "review": "The templates are outstanding! My resume now looks professional and modern.",
+      "review":"The templates are outstanding! My resume now looks modern and professional, giving me the confidence I needed. Great for anyone seeking a polished resume.",
       "rating": 4,
       "profession": "Teacher"
     },
@@ -27,7 +27,7 @@
       "_id": 4,
       "name": "Emily Johnson",
       "authorImage": "https://i.ibb.co.com/c2j7Tt5/guide5.jpg",
-      "review": "I was struggling with ATS rejection. After using this tool, I finally got interviews!",
+      "review":"I was struggling with ATS rejection, but after using this tool, I finally started getting interviews! The customization options are fantastic and easy to use.",
       "rating": 5,
       "profession": "UI/UX Designer"
     },
@@ -35,7 +35,7 @@
       "_id": 5,
       "name": "David Brown",
       "authorImage": "https://i.ibb.co.com/YBWKXJ5/person1.jpg",
-      "review": "I landed my first job with a resume built here! Super easy and efficient.",
+      "review":"I landed my first job thanks to this resume builder! It's super easy to use, and the templates are both stylish and professional.",
       "rating": 4,
       "profession": "Mechenical Engineer"
     }

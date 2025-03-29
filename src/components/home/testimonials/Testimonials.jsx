@@ -49,7 +49,18 @@ export const Testimonials = () => {
         key={testimonial._id}
         >
         <div className='mx-20 my-10'>
-       <div className='text-center'>
+      <div className='grid grid-cols-2 justify-between items-center text-center'>
+      <div>
+      <div className='flex justify-center items-center'>
+       <div className="w-12 h-12 rounded-full mr-3">
+          <img className="h-full w-full object-cover rounded-full" src={testimonial.authorImage}/>
+        </div>
+        <div class="divider divider-horizontal"></div>
+        <h3 className='text-3xl text-r-accent font-bold'>{testimonial.name}</h3>
+       </div>
+       <h3 className='text-2xl font-semibold mt-3 text-center'>{testimonial.profession}</h3>
+      </div>
+        <div className=''>
        <Rating
         style={{ maxWidth: 180 }}
         value={testimonial.rating}
@@ -57,12 +68,8 @@ export const Testimonials = () => {
         readOnly
         />
        </div>
-        <div className="w-12 h-12 rounded-full mx-auto my-3">
-          <img className="h-full w-full object-cover rounded-full" src={testimonial.authorImage}/>
-        </div>
-        <h3 className='text-3xl text-r-accent font-bold text-center'>{testimonial.name}</h3>
-        <h3 className='text-2xl font-semibold text-center my-3'>{testimonial.profession}</h3>
-        <p className='text-center'>{testimonial.review}</p>
+      </div>
+        <p className='text-center w-11/12 md:w-10/12 lg:w-9/12 mx-auto mt-6'>{testimonial.review}</p>
         </div>
         </SwiperSlide>)
         }

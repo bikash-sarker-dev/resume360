@@ -57,7 +57,7 @@ export default function Login() {
           icon: "success",
           confirmButtonText: "Done",
         });
-        navigate("/");
+        navigate("/middleware");
       })
       .catch((error) => {
         // console.log(error)
