@@ -123,7 +123,7 @@ export default function Register() {
           icon: "success",
           confirmButtonText: "Done",
         });
-        navigate("/");
+        navigate("/socialMiddleware");
       })
       .catch((error) => {
         // console.log(error)
