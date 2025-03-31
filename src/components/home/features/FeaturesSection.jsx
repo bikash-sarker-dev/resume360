@@ -6,6 +6,7 @@ import { FaRegFileAlt } from "react-icons/fa";
 import { LuSquareDashedMousePointer } from "react-icons/lu";
 import { PiReadCvLogo } from "react-icons/pi";
 import { VscPreview } from "react-icons/vsc";
+import { Link } from "react-router";
 
 const features = [
   { icon: BiCustomize, title: "Customizable Templates", desc: "Users can choose from multiple pre-designed resume templates." },
@@ -46,6 +47,10 @@ const FeaturesSection = () => {
           );
         })}
       </div>
+      <div className="text-center mt-10 text-2xl font-medium text-r-accent">
+      <Link to='/features' className="underline">Read More</Link>
+      </div>
+     
     </div>
   );
 };
