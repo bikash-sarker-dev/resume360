@@ -5,7 +5,7 @@ const RegisterPage = () => {
  
 
   return (
-    <div className="container py-8 lg:pt-24 lg:pb-12">
+    <div className="container py-6 lg:pt-14 lg:pb-12">
       <Register></Register>
     </div>
   );

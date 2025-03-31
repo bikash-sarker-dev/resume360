@@ -31,6 +31,8 @@ import AboutPage from "./../pages/AboutPage";
 import FaqPage from "./../pages/FaqPage";
 import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
 import DashboardProfile from "../dashboard/DashboardProfile/DashboardProfile";
+import FeaturesPage from "../pages/FeaturesPage";
+import SocialMiddlewarePage from "../pages/SocialMiddlewarePage";
 
 const RootRoute = () => {
   return (
@@ -42,8 +44,8 @@ const RootRoute = () => {
         <Route path="/forgetPassword" element={<ForgetPasswordPage />} />
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/about" element={<AboutPage />} />
-
-
+        <Route path="/features" element={<FeaturesPage />} />
+        <Route path="/socialMiddleware" element={<SocialMiddlewarePage />} />
         {/* user page routes  */}
         <Route path="/user" element={<User />}>
           <Route index element={<Userabout />} />
