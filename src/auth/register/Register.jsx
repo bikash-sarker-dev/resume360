@@ -9,6 +9,9 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import google from "../../assets/icons/google.png"
 // import github from "../../assets/icons/github.png"
 
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api =`https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
 export default function Register() {
   const {createUser, setUser, signInWithGithub, updateUserInfo, signInWithGoogle} = useAuth();
   const navigate = useNavigate();
@@ -19,23 +22,24 @@ export default function Register() {
   const [showInput, setShowInput] = useState(false);
   const axiosPublic = useAxiosPublic();
 
-  const handleSelectChange = (event) => {
+  const handleSelectChange =(event) => {
     const selectedValue = event.target.value;
     setProfession(selectedValue);
     setShowInput(selectedValue === "others");
   };
 
-  const handleRegister = (event) => {
-   event.preventDefault();
-
+  const handleRegister = async (event) => {
+    event.preventDefault();
+  
     const form = event.target;
     const name = form.name.value;
-    const image = form.image.value;
     const email = form.email.value;
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
+    const profession = form.profession.value;
+    const imageFile = form.image.files[0]; 
     const terms = true;
-
+  
     if (password !== confirmPassword) {
       Swal.fire({
         title: "Error",
@@ -45,72 +49,105 @@ export default function Register() {
       });
       return;
     }
-
-    const newUser = { name, profession, email, image, password, terms };
-    console.log(newUser);
-
-    // password validation
-
+  
+    // Password validation
     const regex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-
     if (!regex.test(password)) {
       Swal.fire({
         title: "Error",
-        text: "Please give a valid password with at lease one Uppercase, one Lowercase and length must be 6 character or more.",
+        text: "Password must contain at least one uppercase, one lowercase letter, and be at least 6 characters long.",
         icon: "error",
         confirmButtonText: "Ok",
       });
       return;
     }
-
-    // CreateUser
-    createUser(email, password)
-      .then((result) => {
-        setUser(result.user);
-
-        // UpdateUser
-        const profile = {
-          displayName: name,
-          photoURL: image
-        };
-        updateUserInfo(profile)
-          .then((res) => {
-            axiosPublic.post("/users", newUser).then((res) => {
-              console.log(res.data);
-              if (res.data.message) {
-                // console.log("user added to the database");
-                form.reset();
-                Swal.fire({
-                  title: "Success",
-                  text: "Registration is Successfully Completed",
-                  icon: "success",
-                  confirmButtonText: "Done",
+  
+    if (!imageFile) {
+      Swal.fire({
+        title: "Error",
+        text: "Please upload an image.",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+      return;
+    }
+  
+    // Upload image to ImgBB
+    const formData = new FormData();
+    formData.append("image", imageFile);
+  
+    try {
+      const imgRes = await fetch(image_hosting_api, {
+        method: "POST",
+        body: formData,
+      });
+  
+      const imgData = await imgRes.json();
+  
+      if (imgData.success) {
+        const imageUrl = imgData.data.display_url;
+  
+        // Create new user object
+        const newUser = { name, profession, email, image: imageUrl, password, terms };
+        console.log(newUser)
+  
+        // Create user in Firebase
+        createUser(email, password)
+          .then((result) => {
+            setUser(result.user);
+  
+            // Update Firebase user profile
+            const profile = { displayName: name, photoURL: imageUrl };
+            updateUserInfo(profile)
+              .then(() => {
+                // Save user to the database
+                axiosPublic.post("/users", newUser).then((res) => {
+                  if (res.data.message) {
+                    form.reset();
+                    Swal.fire({
+                      title: "Success",
+                      text: "Registration is successfully completed",
+                      icon: "success",
+                      confirmButtonText: "Done",
+                    });
+                    navigate("/");
+                  }
                 });
-                navigate("/");
-              }
-              // console.log(res.data)
-            });
+              })
+              .catch(() => {
+                Swal.fire({
+                  title: "Error",
+                  text: "Profile update failed.",
+                  icon: "error",
+                  confirmButtonText: "Ok",
+                });
+              });
           })
-
-          .catch((error) => {
+          .catch(() => {
+            setUser(null);
             Swal.fire({
               title: "Error",
-              text: "Update is Unsuccessful",
+              text: "Registration failed.",
               icon: "error",
               confirmButtonText: "Ok",
             });
-            return;
           });
-      })
-      .catch((error) => {
-        setUser(null);
+      } else {
         Swal.fire({
           title: "Error",
-          text: "Registration is Unsuccessful",
+          text: "Image upload failed. Please try again.",
           icon: "error",
           confirmButtonText: "Ok",
         });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Error",
+        text: "An error occurred while uploading the image.",
+        icon: "error",
+        confirmButtonText: "Ok",
       });
+    }
   };
 
   // google signin
@@ -213,6 +250,7 @@ export default function Register() {
                       name="image"
                       className="file-input file-input-bordered w-full"
                       placeholder="Upload Your Image"
+                      required
                     />
 
                   <label className="fieldset-label">Email</label>
