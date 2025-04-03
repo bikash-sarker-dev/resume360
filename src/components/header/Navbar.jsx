@@ -71,20 +71,21 @@ const Navbar = () => {
 
   return (
     <>
+      
       <div className=" ">
         <header
-          className={`fixed  top-0 left-0  w-full bg-r-primary  text-r-text  z-50  py-3 sm:py-2  shadow-md transition-transform duration-500 ${
+          className={`fixed   top-0 left-0  w-full bg-r-primary  text-r-text  z-50  py-3 sm:py-2  shadow-md transition-transform duration-500 ${
             hidden ? "-translate-y-full" : "translate-y-0"
           }`}
         >
-          <div className="flex items-center justify-between w-10/12 mx-auto">
+          <div className="flex container items-center justify-between w-10/12 mx-auto">
            
             <div className="text-2xl font-serif ">
               Resumes<span className="font-bold text-r-background">360</span>
             </div>
 
             {/* Desktop Navigation */}
-            <ul className="hidden md:flex ml-20  space-x-2  text-lg font-medium">
+            <ul className="hidden lg:flex ml-20  space-x-2  text-lg font-medium">
               {menu}
             </ul>
             {user ? (

@@ -8,10 +8,14 @@ import { Subscriptions } from "../components/home/Subscriptions/Subscriptions";
 import Banner from "../components/Banner/Banner";
 import FeaturesSection from "./../components/home/features/FeaturesSection";
 import StepsSection from "./../components/home/stepsBySteps/StepsSection";
+import Festibal from "../components/header/Festibal";
 
 const HomePage = () => {
   return (
     <div>
+      <div className="  mt-10">
+        <Festibal></Festibal>
+      </div>
       <Banner />
       <BrandLogo />
       <FeaturesSection />
