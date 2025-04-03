@@ -1,9 +1,68 @@
-import { useState } from "react";
-import { FaStar, FaMapMarkerAlt, FaEdit, FaCross, FaTimes } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { FaStar, FaMapMarkerAlt, FaEdit, FaCross, FaTimes, FaCamera } from "react-icons/fa";
 import { FiPhone, FiMail } from "react-icons/fi";
+import useAuth from "../../hooks/useAuth";
+
+import { updateProfile } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const DashboardProfile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const auth = getAuth()
+  const { user } = useAuth(); 
+  const [users, setUser] = useState({
+    photoURL: user?.photoURL || "https://www.shutterstock.com/image-vector/male-default-avatar-profile-icon-600nw-1725062341.jpg",
+  });
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser({ photoURL: currentUser.photoURL });
+      }
+    });
+  }, [auth]);
+  
+  
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+  
+    const formData = new FormData();
+    formData.append("image", file);
+  
+    try {
+      const response = await fetch(
+        `https://api.imgbb.com/1/upload?key=4aa34a6921e0ffee4d933681c503ef39`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+  
+      const data = await response.json();
+      if (data.success) {
+        const imageUrl = data.data.display_url;
+        console.log("Uploaded Image URL:", imageUrl);
+  
+        // ✅ Update Local State
+        setUser({ ...users, photoURL: imageUrl });
+  
+        // ✅ Update Firebase Authentication User
+        await updateProfile(user, {
+          photoURL: imageUrl,
+        });
+  
+        alert("Image uploaded and profile updated successfully!");
+      } else {
+        alert("Image upload failed!");
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+  console.log(user)
+  
+
   const [profile, setProfile] = useState({
     name: "Jeremy Rose",
     location: "New York, NY",
@@ -43,20 +102,34 @@ const DashboardProfile = () => {
     <div className="bg-r-primary/20 pt-0 sm:pt-5 min-h-screen backdrop-blur-lg">
         <div className="w-11/12 mx-auto p-6 shadow-xl rounded-xl grid md:grid-cols-3 gap-6 bg-gradient-to-br from-r-info via-r-card to-r-info text-r-text">
       
-      <div className="p-6 rounded-xl bg-opacity-30 backdrop-blur-xl shadow-lg border border-r-primary/50 relative overflow-hidden">
-        <div className="flex items-center justify-center">
+      <div className="pt-4 rounded-xl bg-opacity-30 sm:min-w-50 backdrop-blur-xl shadow-lg border border-primary/50 relative overflow-hidden">
+      <div className="flex items-center justify-center">
+      <div className="relative">
         <img
-          src="https://t4.ftcdn.net/jpg/02/24/86/95/360_F_224869519_aRaeLneqALfPNBzg0xxMZXghtvBXkfIA.jpg"
-          className="rounded-full h-80 w-80  object-cover border border-r-primary/50 hover:scale-105 transition-transform duration-300"
-          alt="Profile"
+          src={users.photoURL}
+          className="rounded-full xl:h-60 xl:w-60 md:h-40 md:w-40 h-80 w-80 object-cover border border-primary/50 hover:scale-105 transition-transform duration-300"
+          alt="Profile photo"
         />
-        </div>
-        <div className="mt-6 space-y-2">
+        <label htmlFor="upload-image">
+          <div className="absolute bottom-8 sm:bottom-6 sm:right-6 md:bottom-2 md:right-2 xl:bottom-6 xl:right-6 right-8 bg-blue-600 text-white p-3 rounded-full cursor-pointer hover:scale-110 transition-transform">
+            <FaCamera className="h-5 w-5"></FaCamera>
+          </div>
+        </label>
+        <input
+          type="file"
+          id="upload-image"
+          accept="image/*"
+          style={{ display: "none" }}
+          onChange={handleImageUpload}
+        />
+      </div>
+    </div>
+        <div className="mt-6 p-5 space-y-2">
           <h3 className="text-lg font-bold text-purple-400">Work</h3>
           <p className="text-r-text">{profile.work}</p>
           <p className="text-r-text">{profile.address}</p>
         </div>
-        <div className="mt-6">
+        <div className=" p-5">
           <h3 className="text-lg font-bold text-purple-400">Skills</h3>
           <p className="text-r-text">{profile.skills}</p>
         </div>
@@ -64,7 +137,7 @@ const DashboardProfile = () => {
 
      
       <div className="md:col-span-2">
-        <div className="flex items-center justify-between border-b border-r-primary/50 pb-4">
+        <div className="flex items-center justify-between border-b border-primary/50 pb-4">
           <div>
             <h2 className="text-3xl font-extrabold text-r-text">{profile.name}</h2>
             <p className="text-r-text flex items-center mt-1">
@@ -85,7 +158,7 @@ const DashboardProfile = () => {
           </button>
         </div>
 
-        <div className="mt-6 p-6 rounded-xl bg-opacity-30 backdrop-blur-xl border border-r-primary/50 shadow-lg">
+        <div className="mt-6 p-6 rounded-xl bg-opacity-30 backdrop-blur-xl border border-primary/50 shadow-lg">
           <h3 className="text-lg font-bold text-purple-400">Contact Information</h3>
           <p className="flex items-center text-r-text mt-2">
             <FiPhone className="mr-2 text-blue-400" /> {profile.phone}
@@ -96,13 +169,13 @@ const DashboardProfile = () => {
           <p className="text-r-text mt-2">{profile.website}</p>
         </div>
 
-        <div className="mt-6 p-6 rounded-xl bg-opacity-30 backdrop-blur-xl border border-r-primary/50 shadow-lg">
+        <div className="mt-6 p-6 rounded-xl bg-opacity-30 backdrop-blur-xl border border-primary/50 shadow-lg">
           <h3 className="text-lg font-bold text-purple-400">Basic Information</h3>
           <p className="text-r-text">Birthday: {profile.birthday}</p>
           <p className="text-r-text">Gender: {profile.gender}</p>
         </div>
 
-        <div className="mt-6 p-6 rounded-xl bg-opacity-30 backdrop-blur-xl border border-r-primary/50 shadow-lg">
+        <div className="mt-6 p-6 rounded-xl bg-opacity-30 backdrop-blur-xl border border-primary/50 shadow-lg">
           <h3 className="text-lg font-bold text-purple-400">Career Progress</h3>
           <ul className="mt-3 space-y-3">
             {profile.progress.map((item, index) => (
