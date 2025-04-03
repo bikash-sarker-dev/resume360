@@ -13,7 +13,6 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@material-tailwind/react": "^2.1.10",
-    "@mui/icons-material": "^6.4.8",
     "@mui/material": "^6.4.7",
     "@tailwindcss/vite": "^4.0.13",
     "apexcharts": "^4.5.0",
