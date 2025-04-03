@@ -31,6 +31,7 @@ import AboutPage from "./../pages/AboutPage";
 import FaqPage from "./../pages/FaqPage";
 import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
 import DashboardProfile from "../dashboard/DashboardProfile/DashboardProfile";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
 
 const RootRoute = () => {
   return (
@@ -54,7 +55,7 @@ const RootRoute = () => {
           <Route path="userlink" element={<UserLink />} /> 
         </Route>
         <Route path="/templates" element={<TemplatesPage />} />
-
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/personal-info" element={<PersonalInfoPage />} />
         <Route path="/add-information" element={<AddInformation />} />
         <Route path="/templateOne" element={<TemplateOne />} />
