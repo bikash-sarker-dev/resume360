@@ -5,17 +5,14 @@ import { FiUserCheck } from "react-icons/fi";
 import { GoHome } from "react-icons/go";
 import { GrShieldSecurity } from "react-icons/gr";
 import { IoIosLogOut } from "react-icons/io";
-import {
-  IoChatboxEllipsesOutline,
-  IoListOutline,
-  IoReaderOutline,
-} from "react-icons/io5";
+import { IoChatboxEllipsesOutline, IoReaderOutline } from "react-icons/io5";
 import { MdOutlineEditNotifications } from "react-icons/md";
+import { RiUserSettingsLine } from "react-icons/ri";
 import { NavLink } from "react-router";
 
 const Sidebar = () => {
   return (
-    <div className="drawer lg:drawer-open bg-r-primary ">
+    <div className="drawer lg:drawer-open bg-r-primary lg:w-[265px] grid-cols-1 ">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col items-start justify-center">
         {/* Page content here */}
@@ -27,7 +24,7 @@ const Sidebar = () => {
         </label>
       </div>
 
-      <div className="drawer-side bg-r-primary min-h-screen pl-5">
+      <div className="drawer-side bg-r-primary min-h-screen pl-2">
         <label
           htmlFor="my-drawer-2"
           aria-label="close sidebar"
@@ -38,7 +35,7 @@ const Sidebar = () => {
             Resume360
           </h2>
         </div>
-        <ul className="menu text-base-content min-h-full w-80 p-4 space-y-4">
+        <ul className="menu text-base-content min-h-full w-80  space-y-4">
           {/* Sidebar content here */}
           <li>
             <NavLink
@@ -46,7 +43,7 @@ const Sidebar = () => {
               to="/dashboard/home"
             >
               <GoHome className="text-3xl " />{" "}
-              <span className="text-lg">Dashboard</span>
+              <span className="text-[17px]">Dashboard</span>
             </NavLink>
           </li>
           <li>
@@ -55,16 +52,16 @@ const Sidebar = () => {
               to="/dashboard/users"
             >
               <FiUserCheck className="text-3xl " />{" "}
-              <span className="text-lg">Users</span>
+              <span className="text-[17px]">Users</span>
             </NavLink>
           </li>
           <li>
             <NavLink
               className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
-              to="/dashboard/order-list"
+              to="/dashboard/profile"
             >
-              <IoListOutline className="text-3xl " />{" "}
-              <span className="text-lg">Order List</span>
+              <RiUserSettingsLine className="text-3xl " />{" "}
+              <span className="text-[17px]">Profile</span>
             </NavLink>
           </li>
           <li>
@@ -73,7 +70,7 @@ const Sidebar = () => {
               to="/dashboard/order-details"
             >
               <AiOutlineRead className="text-3xl " />{" "}
-              <span className="text-lg">Order Details</span>
+              <span className="text-[17px]">Order Details</span>
             </NavLink>
           </li>
           <li>
@@ -82,7 +79,7 @@ const Sidebar = () => {
               to="/dashboard/reviews"
             >
               <IoReaderOutline className="text-3xl " />{" "}
-              <span className="text-lg">Reviews</span>
+              <span className="text-[17px]">Reviews</span>
             </NavLink>
           </li>
           <li>
@@ -91,7 +88,7 @@ const Sidebar = () => {
               to="/dashboard/chat"
             >
               <IoChatboxEllipsesOutline className="text-3xl " />{" "}
-              <span className="text-lg">Chat</span>
+              <span className="text-[17px]">Chat</span>
             </NavLink>
           </li>
           <li>
@@ -100,7 +97,7 @@ const Sidebar = () => {
               to="/dashboard/security"
             >
               <GrShieldSecurity className="text-3xl " />{" "}
-              <span className="text-lg">Security</span>
+              <span className="text-[17px]">Security</span>
             </NavLink>
           </li>
           <li>
@@ -109,7 +106,7 @@ const Sidebar = () => {
               to="/dashboard/notification"
             >
               <MdOutlineEditNotifications className="text-3xl " />{" "}
-              <span className="text-lg">NotifiCation Setting</span>
+              <span className="text-[17px]">NotifiCation Setting</span>
             </NavLink>
           </li>
           <li>
@@ -118,7 +115,7 @@ const Sidebar = () => {
               to="/dashboard/users"
             >
               <IoIosLogOut className="text-3xl " />{" "}
-              <span className="text-lg">LogOut</span>
+              <span className="text-[17px]">LogOut</span>
             </NavLink>
           </li>
           <div className="divider"></div>
@@ -128,7 +125,7 @@ const Sidebar = () => {
               to="/"
             >
               <IoIosLogOut className="text-3xl " />{" "}
-              <span className="text-lg">Go to Home</span>
+              <span className="text-[17px]">Go to Home</span>
             </NavLink>
           </li>
         </ul>

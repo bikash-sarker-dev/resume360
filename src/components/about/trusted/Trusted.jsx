@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Marquee from "react-fast-marquee";
 
 const Trusted = () => {
   const [companies, setCompanies] = useState([]);
@@ -18,15 +19,18 @@ const Trusted = () => {
   
 
   return (
-   <div  className="container mx-auto py-16">
+   <div  className=" mx-auto py-16">
     
      <div className="bg-r-info-card py-24">
-        <h1 className='text-center text-xl font-bold'>Trusted by the world's most innovative teams</h1>
+        <h1 className='text-center text-2xl font-bold'>Trusted by the world's most innovative teams</h1>
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {companies.map((company) => ( 
               <div key={company.id} className=" rounded-md text-center py-8 px-4 shadow-lg">
-                <div className="flex gap-2 items-center justify-center">
+
+                
+
+                <Marquee > <div className="flex gap-2 items-center justify-center">
                   <img
                     src={company.icon}
                     alt={company.name}
@@ -34,7 +38,7 @@ const Trusted = () => {
                     loading="lazy"
                   />
                   <h1 className="text-2xl font-bold">{company.name}</h1>
-                </div>
+                </div> </Marquee>
               </div>
           ))}
         </div>
@@ -45,3 +49,6 @@ const Trusted = () => {
 };
 
 export default Trusted;
+
+
+

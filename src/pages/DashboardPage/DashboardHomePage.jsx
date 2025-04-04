@@ -7,7 +7,7 @@ const DashboardHomePage = () => {
   return (
     <div>
       <StatusCard />
-      <div className="lg:flex gap-10 mt-20">
+      <div className="lg:flex gap-10 mt-5 p-10">
         <div className="lg:w-2/3">
           <ColumnCharts />
         </div>
