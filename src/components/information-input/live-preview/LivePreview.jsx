@@ -3,7 +3,7 @@ import { ResumeContext } from "../../../contextApi/resume-context/ResumeContext"
 
 const LivePreview = () => {
     const { resumeData } = useContext(ResumeContext);
-    // const { personalInfo, education, skills, socialLinks, projects, experience } = resumeData;
+    const { personalInfo, education, skills, socialLinks, projects, experience } = resumeData;
     console.log(resumeData);
 
     // const handleSaveResume = async () => {
@@ -43,21 +43,18 @@ const LivePreview = () => {
             <div className="max-w-4xl mx-auto p-8 bg-white text-black shadow-xl">
 
                 {/* Title */}
-                <h1 className={titleClass}><p className="text-center">Lorem Ipsum</p></h1>
-                <h1 className={subtitleClass}>Front End Developer</h1>
+                <h1 className={titleClass}><p className="text-center">{personalInfo.fullName || 'Your Full Name'}</p></h1>
+                <h1 className={subtitleClass}>{personalInfo.jobTitle || 'Job Title'}</h1>
 
                 {/* Contact Info */}
                 <p className={`${textClass} mb-6 text-center italic`}>
-                    Location | Phone Number | Email <br /> LinkedIn / Portfolio / GitHub
+                {personalInfo.address || 'City, Country'} | {personalInfo.phone || 'Phone Number'} | {personalInfo.email || 'useremail@email.com'} <br /> LinkedIn / Portfolio / GitHub
                 </p>
 
                 {/* Summary */}
                 <h2 className={headerClass}>About</h2>
                 <p className={`${textClass} mb-6`}>
-                    Highly motivated and detail-oriented Frontend Developer with 3+ years of
-                    experience in building responsive web applications. Proficient in React,
-                    Tailwind CSS, and JavaScript frameworks. Passionate about creating
-                    user-friendly experiences and clean code.
+                    {personalInfo.about || 'Highly motivated and detail-oriented Frontend Developer with 3+ years of experience in building responsive web applications. Proficient in React, Tailwind CSS, and JavaScript frameworks. Passionate about creating user-friendly experiences and clean code.'}
                 </p>
 
                 {/* Skills */}
