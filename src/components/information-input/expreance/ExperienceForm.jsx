@@ -4,21 +4,23 @@ import { TextField } from "@mui/material";
 const ExperienceForm = ({ addExperience }) => {
   const [company, setCompany] = useState("");
   const [position, setPosition] = useState("");
-  const [duration, setDuration] = useState("");
+  const [startMonth, setStartMonth] = useState("");
+  const [endMonth, setEndMonth] = useState("");
   const [description, setDescription] = useState("");
 
   const handleSubmit = () => {
-    if (company && position && duration) {
-      addExperience({ company, position, duration, description });
+    if (company && position && startMonth && endMonth) {
+      addExperience({ company, position, startMonth, endMonth, description });
       setCompany("");
       setPosition("");
-      setDuration("");
+      setStartMonth("");
+      setEndMonth("");
       setDescription("");
     }
   };
 
   return (
-    <from className="grid grid-cols-1 gap-4">
+    <form className="grid grid-cols-1 gap-4">
       <TextField
         label="Company Name"
         fullWidth
@@ -35,14 +37,28 @@ const ExperienceForm = ({ addExperience }) => {
         required
         helperText="Enter position"
       />
-      <TextField
-        label="Duration (e.g., Jan 2020 - Dec 2023)"
-        fullWidth
-        value={duration}
-        onChange={(e) => setDuration(e.target.value)}
-        required
-        helperText="Enter duration"
-      />
+      <div className="grid grid-cols-2 gap-4">
+        <TextField
+          label="Start Month"
+          fullWidth
+          type="month"
+          InputLabelProps={{ shrink: true }}
+          value={startMonth}
+          onChange={(e) => setStartMonth(e.target.value)}
+          required
+          helperText="Start date"
+        />
+        <TextField
+          label="End Month"
+          fullWidth
+          type="month"
+          InputLabelProps={{ shrink: true }}
+          value={endMonth}
+          onChange={(e) => setEndMonth(e.target.value)}
+          required
+          helperText="End date"
+        />
+      </div>
       <TextField
         label="Description"
         fullWidth
@@ -52,10 +68,14 @@ const ExperienceForm = ({ addExperience }) => {
         onChange={(e) => setDescription(e.target.value)}
         helperText="Enter description"
       />
-      <button className="cursor-pointer rounded-full text-white bg-r-primary py-2 px-5" onClick={handleSubmit} variant="contained" color="primary">
+      <button
+        type="button"
+        className="cursor-pointer rounded-full text-white bg-r-primary py-2 px-5"
+        onClick={handleSubmit}
+      >
         Add
       </button>
-    </from>
+    </form>
   );
 };
 
