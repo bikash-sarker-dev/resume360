@@ -41,7 +41,7 @@ const User = () => {
             Link</NavLink>
            </div>
 
-           <div className="h-[200px] w-11/12  bg-white  mt-10 rounded-3xl">
+           <div className="min-h-[200px] w-11/12  bg-white text-left p-4 text-xl mt-10 rounded-3xl">
               <Outlet></Outlet>
            </div>
 
