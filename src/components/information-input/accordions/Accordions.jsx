@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SocialLinksList from "../social-links/SocialLinksList";
 import Skill from "../skill/Skill";
+import ResumeLanguageSection from "../language/ResumeLanguageSection ";
 
 const AccordionItem = ({ index, title, content, isOpen, toggle }) => {
   return (
@@ -33,6 +34,7 @@ const Accordions = () => {
   const items = [
     { title: "Add Skill", content: <Skill /> },
     { title: "Add Link", content: <SocialLinksList /> },
+    { title: "Language", content: <ResumeLanguageSection /> }
   ];
 
   return (
