@@ -14,6 +14,7 @@ import ProjectList from '../project/ProjectList';
 import ExperienceList from '../expreance/ExperienceList';
 import ErrorPage from '../../../pages/ErrorPage';
 import Accordions from '../accordions/Accordions';
+import ResumeDownload from '../resume-download/ResumeDownload';
 
 const renderStepContent = (step) => {
   switch (step) {
@@ -95,7 +96,7 @@ const StepperComponents = () => {
                 title={"Final Result"}
               />
               <div className='flex justify-center'>
-                <LivePreview></LivePreview>
+                <ResumeDownload></ResumeDownload>
               </div>
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>

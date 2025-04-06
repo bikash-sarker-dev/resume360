@@ -4,12 +4,13 @@ export const ResumeContext = createContext();
 
 const ResumeProvider = ({ children }) => {
   const [resumeData, setResumeData] = useState({
-    personalInfo: {},
+    personalInfo: [],
     education: [],
     skills: [],
     socialLinks: [],
     projects: [],
     experience: [],
+    languages: [], 
   });
 
   const updateSection = (section, data) => {
