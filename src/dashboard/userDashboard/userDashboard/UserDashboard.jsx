@@ -40,10 +40,7 @@ const UserDashboard = () => {
                             Swal.fire('Error!', 'User could not be deleted.', 'error');
                         }
                     })
-                    .catch((error) => {
-                        console.error('Error during delete fetch:', error);
-                        Swal.fire('Error!', 'Failed to communicate with the server.', 'error');
-                    });
+                   
             }
         });
     };
