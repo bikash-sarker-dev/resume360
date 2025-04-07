@@ -4,12 +4,12 @@ const UserProject = () => {
 
     const projects = [
         {
-          name: "Task Manager",
-          title: "Task Management Web Application",
-          liveLink: "https://your-live-link.com",
-          clientRepo: "https://github.com/yourname/task-client",
-          serverRepo: "https://github.com/yourname/task-server",
-          features: [
+            projectName: "Task Manager",
+            description: "Task Management Web Application",
+            live: "https://your-live-link.com",
+            client: "https://github.com/yourname/task-client",
+            server: "https://github.com/yourname/task-server",
+            features: [
             "User Authentication",
             "Real-time Updates",
             "Drag and Drop Tasks",
@@ -17,16 +17,16 @@ const UserProject = () => {
           ],
         },
         {
-          name: "Blog Platform",
-          title: "Modern Blogging Platform",
-          liveLink: "https://your-blog-link.com",
-          clientRepo: "https://github.com/yourname/blog-client",
-          serverRepo: "https://github.com/yourname/blog-server",
-          features: [
-            "JWT Auth",
-            "Markdown Editor",
-            "Comment System",
-            "SEO Friendly",
+            projectName: "Task Manager",
+            description: "Task Management Web Application",
+            live: "https://your-live-link.com",
+            client: "https://github.com/yourname/task-client",
+            server: "https://github.com/yourname/task-server",
+            features: [
+            "User Authentication",
+            "Real-time Updates",
+            "Drag and Drop Tasks",
+            "Responsive Design",
           ],
         },
       ];
@@ -42,13 +42,13 @@ const UserProject = () => {
             className="bg-white border border-gray-200 shadow-sm w-full rounded-xl p-6 mb-6 space-y-4 transition hover:shadow-md"
           >
             <div>
-              <h3 className="text-xl font-semibold text-indigo-600">{project.name}</h3>
-              <p className="text-gray-700">{project.title}</p>
+              <h3 className="text-xl font-semibold text-indigo-600">{project.projectName}</h3>
+              <p className="text-gray-700">{project.description}</p>
             </div>
   
             <div className="flex flex-wrap gap-3">
               <a
-                href={project.liveLink}
+                href={project.live}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-1 bg-green-100 text-r-text rounded-full text-sm hover:bg-green-700 transition"
@@ -56,7 +56,7 @@ const UserProject = () => {
                 Live Site
               </a>
               <a
-                href={project.clientRepo}
+                href={project.client}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-1 bg-blue-100 text-r-text rounded-full text-sm hover:bg-blue-700 transition"
@@ -64,7 +64,7 @@ const UserProject = () => {
                 Client Repo
               </a>
               <a
-                href={project.serverRepo}
+                href={project.server}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-1 bg-gray-100 text-r-text rounded-full text-sm hover:bg-gray-800 transition"
