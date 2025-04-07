@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-// const TermsAndConditions = () => {
-//   const [isAccepted, setIsAccepted] = useState(false);
+
 
 
 
