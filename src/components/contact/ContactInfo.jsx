@@ -6,10 +6,12 @@ const ContactInfo = () => {
         <div className="container mx-auto py-16 px-4 md:px-8">
             <div className="text-center space-y-6">
                 <h2 className="text-3xl sm:text-4xl md:text-5xl text-r-text font-bold mt-1">
-                    Need Assistance? Our Awesome Team is Here to Support You – Feel Free to Reach Out!
+                    Need Assistance? <br/>
+                   
                 </h2>
                 <h4 className="text-lg sm:text-xl md:text-2xl text-r-text opacity-70">
-                    We're Just a Message Away – Let Us Help You!
+                Our Awesome Team is Here to Support You Feel Free to Reach Out!
+                   
                 </h4>
                 
                 <Marquee speed={40} gradient={false} className=" py-4 rounded-lg shadow-lg">

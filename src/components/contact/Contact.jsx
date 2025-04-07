@@ -48,7 +48,7 @@ const Contact = () => {
     
 
 
-         <Lottie animationData={helpDesk} className="w-full h-full">
+         <Lottie animationData={helpDesk} className="">
 
          </Lottie>
 
