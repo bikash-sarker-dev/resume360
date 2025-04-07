@@ -1,10 +1,25 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
+
+// const TermsAndConditions = () => {
+//   const [isAccepted, setIsAccepted] = useState(false);
+
+//   const handleCheckboxChange = () => {
+//     setIsAccepted(!isAccepted);
+//   };
 
 const TermsAndConditions = () => {
   const [isAccepted, setIsAccepted] = useState(false);
+  const navigate = useNavigate(); 
 
   const handleCheckboxChange = () => {
     setIsAccepted(!isAccepted);
+  };
+
+  const handleAccept = () => {
+    if (isAccepted) {
+      navigate('/register'); 
+    }
   };
 
 
@@ -138,6 +153,7 @@ const TermsAndConditions = () => {
       <button
         disabled={!isAccepted}
         className={`btn mt-4 ${isAccepted ? 'btn-primary' : 'btn-disabled'}`}
+        onClick={handleAccept}
         
       >
         Accept
