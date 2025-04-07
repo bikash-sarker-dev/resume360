@@ -11,10 +11,10 @@ const User = () => {
       ? "text-blue-600 border-b-2 border-blue-600 pb-1"
       : "text-gray-600 hover:text-blue-600";
   return <>
-    <div className="min-h-screen bg-r-background">
+    <div className="min-h-screen  bg-r-background">
       <div className="h-[400px] bg-r-info"></div>
-      <div className="">
-        <div className=" h-[600px] bg-r-card w-10/12 mx-auto rounded-3xl shadow-2xl relative top-[-200px]">
+      <div className="container">
+        <div className=" min-h-[600px] bg-r-card w-10/12 mx-auto rounded-3xl shadow-2xl relative top-[-200px]">
            <div className="text-center relative  top-[-100px]  flex justify-center flex-col items-center">
            <img src={user?.photoURL} alt="profile picture"  className=" w-[200px] h-[200px] rounded-full shadow-xl object-cover"/>
           
