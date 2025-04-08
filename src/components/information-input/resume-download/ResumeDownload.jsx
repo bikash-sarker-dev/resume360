@@ -12,14 +12,14 @@ const ResumeDownload = () => {
             <PDFDownloadLink
                 document={<ResumePDF resumeData={resumeData} />}
                 fileName={`${resumeData?.personalInfo?.fullName || 'resume'}.pdf`}
-                className="btn"
+                className="self-start rounded-full bg-r-primary text-white py-2 px-6 transition duration-200"
             >
                 {({ loading }) => (loading ? 'Preparing PDF...' : 'Download PDF')}
             </PDFDownloadLink>
 
             <button
                 onClick={() => generateDocx(resumeData)}
-                className="btn bg-blue-500 text-white rounded px-4 py-2"
+                className="self-start rounded-full bg-r-primary text-white py-2 px-6 transition duration-200"
             >
                 Download DOCX
             </button>
