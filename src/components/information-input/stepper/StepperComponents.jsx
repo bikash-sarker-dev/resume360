@@ -27,7 +27,7 @@ const renderStepContent = (step) => {
     case 3:
       return <ProjectList />;
     case 4:
-      return <Accordions/>;
+      return <Accordions />;
     default:
       return <ErrorPage></ErrorPage>;
   }
@@ -91,13 +91,9 @@ const StepperComponents = () => {
         {activeStep === steps.length ? (
           <React.Fragment>
             <Typography sx={{ mt: 2, mb: 1 }}>
-              <SectionHead
-                subTitle={"This is your final output of resume"}
-                title={"Final Result"}
-              />
-              <div className='flex justify-center'>
+              <Box>
                 <ResumeDownload></ResumeDownload>
-              </div>
+              </Box>
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
               <Box sx={{ flex: '1 1 auto' }} />
