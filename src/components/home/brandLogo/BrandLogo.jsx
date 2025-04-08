@@ -1,38 +1,40 @@
 import React from "react";
-import { FaAmazon, FaApple, FaGoogle, FaMicrosoft } from "react-icons/fa";
+import Marquee from "react-fast-marquee";
+import logo1 from "../../../assets/images/brandlogo/bdjobslogo.gif";
+import logo2 from "../../../assets/images/brandlogo/careerjet.png";
+import logo4 from "../../../assets/images/brandlogo/indeed.png";
+import logo3 from "../../../assets/images/brandlogo/myjobs-logo.png";
+import logo5 from "../../../assets/images/brandlogo/seek2.png";
+import logo6 from "../../../assets/images/brandlogo/skill-logo.png";
 
 const BrandLogo = () => {
   return (
-    <div className="container">
-      <div className="bg-r-info-card py-10">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-center mb-6">
-            Our Trusted Brands
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center justify-center text-center logo-container">
-            {/* Google */}
-            <div className="flex flex-col items-center">
-              <FaGoogle className="text-5xl text-red-500" />
-              <span className="mt-2 font-semibold">Google</span>
-            </div>
-            {/* Microsoft */}
-            <div className="flex flex-col items-center">
-              <FaMicrosoft className="text-5xl text-blue-600" />
-              <span className="mt-2 font-semibold">Microsoft</span>
-            </div>
-            {/* Apple */}
-            <div className="flex flex-col items-center">
-              <FaApple className="text-5xl text-gray-800" />
-              <span className="mt-2 font-semibold">Apple</span>
-            </div>
-            {/* Amazon */}
-            <div className="flex flex-col items-center">
-              <FaAmazon className="text-5xl text-yellow-600" />
-              <span className="mt-2 font-semibold">Amazon</span>
-            </div>
+    <div className="bg-r-info-card py-28">
+      <Marquee>
+        <div className=" flex space-x-5 ">
+          <div className="max-w-64 border rounded-md p-1  bg-r-background">
+            <img src={logo1} alt="brand logo" className="min-h-32" />
+          </div>
+          <div className="max-w-64 border rounded-md p-1  bg-r-background">
+            <img src={logo2} alt="brand logo" className="min-h-32" />
+          </div>
+          <div className="max-w-64 border rounded-md p-1  bg-r-background">
+            <img src={logo3} alt="brand logo" className="min-h-32" />
+          </div>
+          <div className="max-w-64 border rounded-md p-1  bg-r-background">
+            <img src={logo4} alt="brand logo" className="min-h-32" />
+          </div>
+          <div className="max-w-64 border rounded-md p-1  bg-r-background">
+            <img src={logo1} alt="brand logo" className="min-h-32" />
+          </div>
+          <div className="max-w-64 border rounded-md p-1  bg-r-background">
+            <img src={logo5} alt="brand logo" className="min-h-32" />
+          </div>
+          <div className="max-w-64 border rounded-md p-1  bg-r-background mr-4">
+            <img src={logo6} alt="brand logo" className="min-h-32" />
           </div>
         </div>
-      </div>
+      </Marquee>
     </div>
   );
 };
