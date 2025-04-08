@@ -1,66 +1,71 @@
 {
-    "subscriptions": [
-      {
-        "id": 1,
-        "name": "Free",
-        "price": 0,
-        "description": "Get started with basic resume templates and essential features for free.",
-        "popularityBadge": "Basic",
-        "features": [
-          { "name": "Basic Resume Templates", "available": true },
-          { "name": "Advanced Resume Templates", "available": false },
-          { "name": "Customization (Fonts, Colors, Layouts)", "available": false },
-          { "name": "Multiple File Formats (PDF, DOCX, TXT)", "available": false },
-          { "name": "AI-powered Content Suggestions", "available": false },
-          { "name": "Grammar and Spell Checker", "available": false },
-          { "name": "Save Multiple Resumes", "available": false },
-          { "name": "AI-powered Cover Letter Generator", "available": false },
-          { "name": "Resume Analytics & Tracking", "available": false },
-          { "name": "Priority Customer Support", "available": false }
-        ],
-        "isPremium": false
-      },
-      {
-        "id": 2,
-        "name": "Pro",
-        "price": 9.99,
-        "description": "Unlock advanced templates, AI suggestions, and customization options.",
-        "popularityBadge": "Most Popular",
-       
-        "features": [
-          { "name": "Basic Resume Templates", "available": true },
-          { "name": "Advanced Resume Templates", "available": true },
-          { "name": "Customization (Fonts, Colors, Layouts)", "available": true },
-          { "name": "Multiple File Formats (PDF, DOCX, TXT)", "available": true },
-          { "name": "AI-powered Content Suggestions", "available": true },
-          { "name": "Grammar and Spell Checker", "available": true },
-          { "name": "Save Multiple Resumes", "available": true },
-          { "name": "AI-powered Cover Letter Generator", "available": false },
-          { "name": "Resume Analytics & Tracking", "available": false },
-          { "name": "Priority Customer Support", "available": false }
-        ],
-        "isPremium": true
-      },
-      {
-        "id": 3,
-        "name": "Elite",
-        "price": 19.99,
-        "description": "Get full access to AI tools, analytics, and priority support for career growth.",
-        "popularityBadge": "Premium Choice",
-        "features": [
-          { "name": "Basic Resume Templates", "available": true },
-          { "name": "Advanced Resume Templates", "available": true },
-          { "name": "Customization (Fonts, Colors, Layouts)", "available": true },
-          { "name": "Multiple File Formats (PDF, DOCX, TXT)", "available": true },
-          { "name": "AI-powered Content Suggestions", "available": true },
-          { "name": "Grammar and Spell Checker", "available": true },
-          { "name": "Save Multiple Resumes", "available": true },
-          { "name": "AI-powered Cover Letter Generator", "available": true },
-          { "name": "Resume Analytics & Tracking", "available": true },
-          { "name": "Priority Customer Support", "available": true }
-        ],
-        "isPremium": true
-      }
-    ]
-  }
-  
+  "subscriptions": [
+    {
+      "id": 1,
+      "name": "Free",
+      "price": 0,
+      "description": "Get started with basic resume templates and essential features for free.",
+      "popularityBadge": "Basic",
+      "features": [
+        { "name": "Basic Resume Templates", "available": true },
+        { "name": "Advanced Resume Templates", "available": false },
+        {
+          "name": "Customization (Fonts, Colors, Layouts)",
+          "available": false
+        },
+        {
+          "name": "Multiple File Formats (PDF, DOCX, TXT)",
+          "available": false
+        },
+        { "name": "AI-powered Content Suggestions", "available": false },
+        { "name": "Grammar and Spell Checker", "available": false },
+        { "name": "Save Multiple Resumes", "available": false },
+        { "name": "AI-powered Cover Letter Generator", "available": false },
+        { "name": "Resume Analytics & Tracking", "available": false },
+        { "name": "Priority Customer Support", "available": false }
+      ],
+      "isPremium": false
+    },
+    {
+      "id": 2,
+      "name": "Pro",
+      "price": 9.99,
+      "description": "Unlock advanced templates, AI suggestions, and customization options.",
+      "popularityBadge": "Most Popular",
+
+      "features": [
+        { "name": "Basic Resume Templates", "available": true },
+        { "name": "Advanced Resume Templates", "available": true },
+        { "name": "Customization (Fonts, Colors, Layouts)", "available": true },
+        { "name": "Multiple File Formats (PDF, DOCX, TXT)", "available": true },
+        { "name": "AI-powered Content Suggestions", "available": true },
+        { "name": "Grammar and Spell Checker", "available": true },
+        { "name": "Save Multiple Resumes", "available": true },
+        { "name": "AI-powered Cover Letter Generator", "available": false },
+        { "name": "Resume Analytics & Tracking", "available": false },
+        { "name": "Priority Customer Support", "available": false }
+      ],
+      "isPremium": true
+    },
+    {
+      "id": 3,
+      "name": "Elite",
+      "price": 19.99,
+      "description": "Get full access to AI tools, analytics, and priority support for career growth.",
+      "popularityBadge": "Premium Choice",
+      "features": [
+        { "name": "Basic Resume Templates", "available": true },
+        { "name": "Advanced Resume Templates", "available": true },
+        { "name": "Customization (Fonts, Colors, Layouts)", "available": true },
+        { "name": "Multiple File Formats (PDF, DOCX, TXT)", "available": true },
+        { "name": "AI-powered Content Suggestions", "available": true },
+        { "name": "Grammar and Spell Checker", "available": true },
+        { "name": "Save Multiple Resumes", "available": true },
+        { "name": "AI-powered Cover Letter Generator", "available": true },
+        { "name": "Resume Analytics & Tracking", "available": true },
+        { "name": "Priority Customer Support", "available": true }
+      ],
+      "isPremium": true
+    }
+  ]
+}

@@ -7,6 +7,7 @@ import { LuSquareDashedMousePointer } from "react-icons/lu";
 import { PiReadCvLogo } from "react-icons/pi";
 import { VscPreview } from "react-icons/vsc";
 import { Link } from "react-router";
+import SectionHead from "../../header/section-head/SectionHead";
 
 const features = [
   {
@@ -46,12 +47,10 @@ const FeaturesSection = () => {
 
   return (
     <div className="max-w-6xl mx-auto py-16 px-4">
-      <p className="text-center mb-5 text-r-primary">
-        Discover Our Exclusive Features
-      </p>
-      <h2 className="md:text-4xl text-2xl font-bold text-center mb-14 text-r-text">
-        Our Features
-      </h2>
+      <SectionHead
+        subTitle={"Discover Our Exclusive Features"}
+        title={"Our Features"}
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-md:max-w-md mx-auto text-center mt-10">
         {features.map((feature, index) => {
