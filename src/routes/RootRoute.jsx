@@ -8,10 +8,12 @@ import UserExp from "../components/user/UserExp";
 import UserLink from "../components/user/UserLink";
 import UserProject from "../components/user/UserProject";
 import UserSkill from "../components/user/UserSkill";
+import DashboardProfile from "../dashboard/DashboardProfile/DashboardProfile";
 import DashboardLayouts from "../layouts/DashboardLayouts";
 import MainLayout from "../layouts/MainLayout";
 import AddInformation from "../pages/AddInformation";
 import BlogPage from "../pages/BlogPage";
+import ContactPage from "../pages/ContactPage";
 import ChatPage from "../pages/DashboardPage/ChatPage";
 import DashboardHomePage from "../pages/DashboardPage/DashboardHomePage";
 import DashboardUserPage from "../pages/DashboardPage/DashboardUserPage";
@@ -26,14 +28,11 @@ import LoginPage from "../pages/LoginPage";
 import PersonalInfoPage from "../pages/PersonalInfoPage";
 import RegisterPage from "../pages/RegisterPage";
 import TemplatesPage from "../pages/TemplatesPage";
+import TermsAndConditionsPage from "../pages/TermsAndConditionsPage";
 import User from "../pages/User";
 import AboutPage from "./../pages/AboutPage";
 import FaqPage from "./../pages/FaqPage";
 import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
-import DashboardProfile from "../dashboard/DashboardProfile/DashboardProfile";
-import FeaturesPage from "../pages/FeaturesPage";
-import SocialMiddlewarePage from "../pages/SocialMiddlewarePage";
-import CoverOne from "../components/DefaultCoverLetterTemplates/CoverOne";
 
 const RootRoute = () => {
   return (
@@ -45,17 +44,17 @@ const RootRoute = () => {
         <Route path="/forgetPassword" element={<ForgetPasswordPage />} />
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/features" element={<FeaturesPage />} />
-        <Route path="/socialMiddleware" element={<SocialMiddlewarePage />} />
-        <Route path="/coverOne" element={<CoverOne/>} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/terms" element={<TermsAndConditionsPage />} />
+
         {/* user page routes  */}
         <Route path="/user" element={<User />}>
           <Route index element={<Userabout />} />
           <Route path="usereducation" element={<UserEducation />} />
-          <Route path="userskill" element={<UserSkill />} /> 
-          <Route path="userexp" element={<UserExp />} /> 
+          <Route path="userskill" element={<UserSkill />} />
+          <Route path="userexp" element={<UserExp />} />
           <Route path="userproject" element={<UserProject />} />
-          <Route path="userlink" element={<UserLink />} /> 
+          <Route path="userlink" element={<UserLink />} />
         </Route>
         <Route path="/templates" element={<TemplatesPage />} />
 
