@@ -9,29 +9,29 @@ import { IoChatboxEllipsesOutline, IoReaderOutline } from "react-icons/io5";
 import { MdOutlineEditNotifications } from "react-icons/md";
 import { RiUserSettingsLine } from "react-icons/ri";
 import { NavLink, useNavigate } from "react-router";
-import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const Sidebar = () => {
-  const { signOutUser, user, setUser} = useAuth();
+  const { signOutUser, user, setUser } = useAuth();
   const navigate = useNavigate();
 
   // Signout
-    const handleSignOut = () => {
-      // console.log('logOut')
-      signOutUser()
-        .then(() => {
-          Swal.fire({
-            title: "Success",
-            text: "Logout successfully",
-            icon: "success",
-            confirmButtonText: "Done",
-          });
-          navigate('/');
-          setUser(null);
-        })
-        .catch((error) => {});
-    };
+  const handleSignOut = () => {
+    // console.log('logOut')
+    signOutUser()
+      .then(() => {
+        Swal.fire({
+          title: "Success",
+          text: "Logout successfully",
+          icon: "success",
+          confirmButtonText: "Done",
+        });
+        navigate("/");
+        setUser(null);
+      })
+      .catch((error) => {});
+  };
 
   return (
     <div className="drawer lg:drawer-open bg-r-primary lg:w-[265px] grid-cols-1 ">

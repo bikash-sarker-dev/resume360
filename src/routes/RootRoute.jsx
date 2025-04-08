@@ -26,6 +26,7 @@ import ErrorPage from "../pages/ErrorPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import PersonalInfoPage from "../pages/PersonalInfoPage";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
 import RegisterPage from "../pages/RegisterPage";
 import TemplatesPage from "../pages/TemplatesPage";
 import TermsAndConditionsPage from "../pages/TermsAndConditionsPage";
@@ -57,7 +58,7 @@ const RootRoute = () => {
           <Route path="userlink" element={<UserLink />} />
         </Route>
         <Route path="/templates" element={<TemplatesPage />} />
-
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/personal-info" element={<PersonalInfoPage />} />
         <Route path="/add-information" element={<AddInformation />} />
         <Route path="/templateOne" element={<TemplateOne />} />
