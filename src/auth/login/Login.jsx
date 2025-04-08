@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
-import useAuth from "../../hooks/useAuth";
+import google from "../../assets/icons/google.png";
 import SectionHead from "../../components/header/section-head/SectionHead";
+import useAuth from "../../hooks/useAuth";
 
 export default function Login() {
   const { signInUser, setUser, signInWithGoogle, signInWithGithub } = useAuth();
@@ -55,7 +56,7 @@ export default function Login() {
           icon: "success",
           confirmButtonText: "Done",
         });
-        navigate("/");
+        navigate("/socialMiddleware");
       })
       .catch((error) => {
         // console.log(error)
@@ -64,44 +65,42 @@ export default function Login() {
   };
 
   // github signin
-  const handleGithubLogin = () => {
-    signInWithGithub()
-      .then((result) => {
-        setUser(result.user);
-        //  console.log(result.user)
-        Swal.fire({
-          title: "Success",
-          text: "Login With Github Successfully",
-          icon: "success",
-          confirmButtonText: "Done",
-        });
-        navigate("/");
-      })
-      .catch((error) => {
-        //  console.log(error)
-        setUser(null);
-      });
-  };
+  // const handleGithubLogin = () => {
+  //   signInWithGithub()
+  //     .then((result) => {
+  //       setUser(result.user);
+  //       //  console.log(result.user)
+  //       Swal.fire({
+  //         title: "Success",
+  //         text: "Login With Github Successfully",
+  //         icon: "success",
+  //         confirmButtonText: "Done",
+  //       });
+  //       navigate("/");
+  //     })
+  //     .catch((error) => {
+  //       //  console.log(error)
+  //       setUser(null);
+  //     });
+  // };
 
   return (
     <div>
       <div className="card-body">
-      <SectionHead
-        title={"Login"}
-      />
+        <SectionHead title={"Login"} />
         <form onSubmit={handleLogin}>
           <fieldset className="fieldset">
             <label className="fieldset-label">Email</label>
             <div className="relative">
-            <input
-              type="email"
-              name="email"
-              className="input w-full"
-              placeholder="Enter Your Email"
-            />
-            <span className="absolute inset-y-0 right-3 flex items-center text-gray-500">
-              <i className="fa-solid fa-envelope"></i>
-            </span>
+              <input
+                type="email"
+                name="email"
+                className="input w-full"
+                placeholder="Enter Your Email"
+              />
+              <span className="absolute inset-y-0 right-3 flex items-center text-gray-500">
+                <i className="fa-solid fa-envelope"></i>
+              </span>
             </div>
             <label className="fieldset-label">Password</label>
             <div className="relative">
@@ -131,18 +130,29 @@ export default function Login() {
         </form>
         <div className="divider">OR</div>
         <div className="text-center text-3xl">
-          <i
+          {/* Google Button */}
+          <button
             onClick={handleGoogleLogin}
-            className="fa-brands fa-google mr-5 cursor-pointer"
-          ></i>
-          {/* <i className="fa-brands fa-facebook mr-5 cursor-pointer"></i> */}
-          <i
-            onClick={handleGithubLogin}
-            className="fa-brands fa-github cursor-pointer"
-          ></i>
+            className="btn w-full border-[1px] border-gray-400 text-r-accent bg-white shadow-2xl"
+          >
+            <img className="w-9 bg-transparent" src={google} alt="" />
+            Sign in with Google
+          </button>
+          {/* Github Button */}
+          {/* <button  onClick={handleGithubLogin} className="btn w-full border-[1px] border-gray-400 text-r-accent bg-white shadow-2xl mt-4">
+          <img className="w-7 bg-transparent" src={github} alt="" />
+          Sign in with GitHub
+          </button> */}
         </div>
         <div className="text-center">
-          <p>Already have an account? <span className="underline"><Link  to='/register' className="text-r-accent">Register here</Link></span></p>
+          <p className="mt-2">
+            Already have an account?{" "}
+            <span className="underline">
+              <Link to="/register" className="text-r-accent">
+                Register here
+              </Link>
+            </span>
+          </p>
         </div>
       </div>
     </div>
