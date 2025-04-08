@@ -42,9 +42,20 @@ const OurTeam = () => {
               <span>{team.title}</span>
               <p>{team.description}</p>
               <div className="card-actions flex space-x-4 text-xl">
-                <i className="fa-brands fa-facebook hover:text-blue-600 transition-colors"></i>
-                <i className="fa-brands fa-linkedin hover:text-blue-700 transition-colors"></i>
-                <i className="fa-brands fa-twitter hover:text-blue-400 transition-colors"></i>
+               
+                {team.socialLinks && (
+                  <>
+                    <a href={team.socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">
+                      <i className="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href={team.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-blue-700 transition-colors">
+                      <i className="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href={team.socialLinks.github} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
+                      <i className="fa-brands fa-github"></i>
+                    </a>
+                  </>
+                )}
               </div>
             </div>
           </div>
