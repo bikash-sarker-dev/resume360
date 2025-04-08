@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "teams": [
     {
@@ -74,3 +75,51 @@
     }
   ]
 }
+=======
+{
+  "teams": [
+    {
+      "id": 1,
+      "image": "../src/assets/images/about/team/pic 1.png",
+      "name": "Bikash Sarker",
+      "title": "Backend Developer",
+      "description": "Bikash specializes in building scalable and efficient backend systems, ensuring robust server-side logic and database management."
+    },
+    {
+      "id": 2,
+      "image": "../src/assets/images/about/team/pic 2.png",
+      "name": "Sadia Afrin",
+      "title": "Front-End Developer",
+      "description": "Sadia is an expert in crafting responsive and dynamic web interfaces, ensuring a seamless user experience with clean and maintainable code."
+    },
+    {
+      "id": 3,
+      "image": "../src/assets/images/about/team/pic 3.png",
+      "name": "Joynal Abedin",
+      "title": "UI/UX Designer",
+      "description": "Joynal focuses on designing intuitive and visually appealing user interfaces, enhancing user experience through thoughtful design principles."
+    },
+    {
+      "id": 4,
+      "image": "../src/assets/images/about/team/pic 4.png",
+      "name": "TAMJID AHMED",
+      "title": "Front-End Developer",
+      "description": "Tamjid specializes in front-end development, ensuring smooth user interactions and seamless integration with cloud infrastructure."
+    },
+    {
+      "id": 5,
+      "image": "../src/assets/images/about/team/pic 6.png",
+      "name": "Fatema Hanif",
+      "title": "Front-End Developer",
+      "description": "Fatema creates responsive and high-performance web applications, ensuring user-friendly interfaces with optimized front-end code."
+    },
+    {
+      "id": 6,
+      "image": "../src/assets/images/about/team/pic 5.png",
+      "name": "MD ADNAN MAHMUD",
+      "title": "Backend Developer",
+      "description": "Adnan designs and develops secure, scalable backend systems, focusing on API development, database management, and system optimization."
+    }
+  ]
+}
+>>>>>>> a9d27b861847cd58ddfa3995010e7e21e4535225

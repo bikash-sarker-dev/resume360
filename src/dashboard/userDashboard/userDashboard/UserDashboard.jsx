@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
-import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 const UserDashboard = () => {
     const [users, setUsers] = useState([]);
