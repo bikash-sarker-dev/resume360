@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 
 import { updateProfile } from "firebase/auth";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import axios from "axios";
 
 const DashboardProfile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,6 +19,7 @@ const DashboardProfile = () => {
     onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser({ photoURL: currentUser.photoURL });
+        fetchUserProfile(currentUser.uid)
       }
     });
   }, [auth]);
@@ -80,6 +82,30 @@ const DashboardProfile = () => {
     gender: "",
     progress: [{ description: "", year: "" }]
   });
+
+  const fetchUserProfile = async (userId) => {
+    try {
+      const response = await axios.get(`https://resume360-server.vercel.app/profile/${userId}`);
+      const userData = response.data;
+      setProfile({
+        name: userData.name,
+        email: userData.email,
+        role: userData.role,
+        location: userData.location,
+        work: userData.work,
+        address: userData.address,
+        skills: userData.skills,
+        phone: userData.phone,
+        website: userData.website,
+        birthday: userData.birthday,
+        gender: userData.gender,
+        progress: userData.progress || [{ description: "", year: "" }],
+      });
+    } catch (error) {
+      console.error("Error fetching user profile:", error);
+    }
+  };
+
   
   
 
@@ -111,10 +137,23 @@ const DashboardProfile = () => {
   };
   
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Updated Profile Data:", profile); 
-    setIsModalOpen(false); 
+
+    try {
+      // If profile exists, update, else create a new profile
+      if (profile.id) {
+        await axios.put(`https://resume360-server.vercel.app/profile/${profile.id}`, profile);
+        alert("Profile updated successfully!");
+      } else {
+        await axios.post("https://resume360-server.vercel.app/profile", profile);
+        alert("Profile created successfully!");
+      }
+      setIsModalOpen(false); // Close the modal
+    } catch (error) {
+      console.error("Error saving profile:", error);
+      alert("Error saving profile. Please try again.");
+    }
   };
 
   const addProgressEntry = () => {
@@ -159,7 +198,7 @@ const DashboardProfile = () => {
         </div>
         <div className=" p-5">
           <h3 className="text-lg font-bold text-purple-400">Skills</h3>
-          <p className="text-r-text flex flex-wrap  gap-3">{profile.skills.map(skill => <h1 className="shadow-md  w-max py-1 px-3 rounded-2xl bg-r-info ">{skill}</h1>)}</p>
+          <p className="text-r-text flex flex-wrap  gap-3">{profile.skills.map((skill)  => <h1 className="shadow-md  w-max py-1 px-3 rounded-2xl bg-r-info ">{skill}</h1>)}</p>
         </div>
       </div>
 

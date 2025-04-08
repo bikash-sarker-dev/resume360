@@ -36,7 +36,7 @@ const Banner = () => {
   }, [slides.length]);
 
   return (
-    <div className="relative container h-[900px] md:h-[650px]  bg-[url('https://i.ibb.co.com/8L2s2krX/Chat-GPT-Image-Mar-31-2025-11-3.png')] bg-cover bg-center  text-r-text flex flex-col md:flex-row items-center pt-[0px] pb-[80px] ">
+    <div className="relative container  h-[900px] md:h-[650px]  bg-[url('https://i.ibb.co.com/8L2s2krX/Chat-GPT-Image-Mar-31-2025-11-3.png')] bg-cover bg-center  text-r-text flex flex-col md:flex-row items-center pt-[70px] pb-[80px] ">
       <div className="absolute inset-0 bg-black opacity-60 z-0"></div>
       {/* Left Content (Changes Dynamically) */}
       <div
