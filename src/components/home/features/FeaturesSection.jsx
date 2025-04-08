@@ -53,7 +53,7 @@ const FeaturesSection = () => {
         Our Features
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-md:max-w-md mx-auto text-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-md:max-w-md mx-auto text-center mt-10">
         {features.map((feature, index) => {
           const isInView = useInView(refs[index], { margin: "-100px" });
 
