@@ -32,6 +32,8 @@ import FaqPage from "./../pages/FaqPage";
 import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
 import DashboardProfile from "../dashboard/DashboardProfile/DashboardProfile";
 
+import { SubscriptionDetail } from "../pages/SubscriptionDetail";
+
 const RootRoute = () => {
   return (
     <Routes>
@@ -42,6 +44,8 @@ const RootRoute = () => {
         <Route path="/forgetPassword" element={<ForgetPasswordPage />} />
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="subscribe/:id" element={<SubscriptionDetail/>}/>
+
 
 
         {/* user page routes  */}
