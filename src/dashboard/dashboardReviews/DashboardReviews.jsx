@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import SectionHead from '../../components/header/section-head/SectionHead';
 
 export default function DashboardReviews() {
     const[testimonials,setTestimonials]=useState([]);
@@ -7,10 +8,14 @@ export default function DashboardReviews() {
           .then(res => res.json())
           .then(data => setTestimonials(data))
       },[])
-console.log(testimonials)
+// console.log(testimonials)
   return (
     <div className="mx-auto w-11/12 p-4">
-    <h1 className="text-2xl font-bold mb-4 text-center">Reviews</h1>
+    <div className="mb-4">
+    <SectionHead
+      title={"Reviews"}
+    />
+    </div>
     <div className="overflow-x-auto">
         <table className="table w-full border border-gray-300">
             <thead>
