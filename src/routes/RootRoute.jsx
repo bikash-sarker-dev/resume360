@@ -33,6 +33,7 @@ import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
 import DashboardProfile from "../dashboard/DashboardProfile/DashboardProfile";
 import FeaturesPage from "../pages/FeaturesPage";
 import SocialMiddlewarePage from "../pages/SocialMiddlewarePage";
+import CoverOne from "../components/DefaultCoverLetterTemplates/CoverOne";
 
 const RootRoute = () => {
   return (
@@ -46,6 +47,7 @@ const RootRoute = () => {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/features" element={<FeaturesPage />} />
         <Route path="/socialMiddleware" element={<SocialMiddlewarePage />} />
+        <Route path="/coverOne" element={<CoverOne/>} />
         {/* user page routes  */}
         <Route path="/user" element={<User />}>
           <Route index element={<Userabout />} />
