@@ -1,10 +1,12 @@
-import React from 'react';
+
+
 
 const ResumeDownload = () => {
+
     return (
-        <div>
-            <h1>resume download</h1>
-        </div>
+        <>
+            <button className="btn">Resume Download</button>
+        </>
     );
 };
 
