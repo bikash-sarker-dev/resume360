@@ -1,6 +1,4 @@
 import { useContext, useState } from "react";
-import SectionHead from "../../header/section-head/SectionHead";
-import LivePreview from "../live-preview/LivePreview";
 import { ResumeContext } from "../../../contextApi/resume-context/ResumeContext";
 
 const Skill = () => {
@@ -24,9 +22,7 @@ const Skill = () => {
 
   return (
     <div className="p-4">
-      <SectionHead subTitle={"Add your skill"} title={"Add Skill"} />
-
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4">
         {/* Skills input & list */}
         <div className="border rounded p-4 bg-gray-100">
           <div className="flex flex-wrap gap-2">
@@ -53,11 +49,6 @@ const Skill = () => {
               onKeyDown={handleKeyDown}
             />
           </div>
-        </div>
-
-        {/* Live Preview */}
-        <div>
-          <LivePreview />
         </div>
       </div>
     </div>
