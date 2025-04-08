@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, NavLink, Outlet } from "react-router";
 import useAuth from "../hooks/useAuth";
+import { FaEdit } from "react-icons/fa";
 
 const User = () => {
   const {user} = useAuth()
@@ -42,6 +43,7 @@ const User = () => {
            </div>
 
            <div className="min-h-[200px] w-11/12  bg-white text-left p-4 text-xl mt-10 rounded-3xl">
+           <FaEdit></FaEdit>
               <Outlet></Outlet>
            </div>
 
