@@ -1,80 +1,88 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider, GithubAuthProvider,onAuthStateChanged,signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, sendPasswordResetEmail } from "firebase/auth";
-import { useEffect, useState } from "react"
+import {
+  createUserWithEmailAndPassword,
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
+import { useEffect, useState } from "react";
+import { AuthContext } from "../contextApi/AuthenticationContext";
 import { auth } from "../firebase/firebase.config";
-import {AuthContext} from "../contextApi/AuthenticationContext"
 
-export default function AuthProvider({children}) {
-    const [user,setUser]=useState(null);
-    const [loading,setLoading]=useState(true);
-    const googleProvider = new GoogleAuthProvider();
-    const githubProvider = new GithubAuthProvider();
-   
-    // Create User
-    const createUser = (email,password) => {
-        setLoading(true)
-        return createUserWithEmailAndPassword(auth,email,password)
-    }
+export default function AuthProvider({ children }) {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
-    // SignIn User
-    const signInUser = (email,password) => {
-        setLoading(true)
-        return signInWithEmailAndPassword(auth,email,password)
-    }
+  // Create User
+  const createUser = (email, password) => {
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
 
-    // SignIn With Google
-    const signInWithGoogle = () => {
-        return signInWithPopup(auth,googleProvider)
-    }
+  // SignIn User
+  const signInUser = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
-    // SignIn With Github
-    const signInWithGithub = () => {
-        return signInWithPopup(auth,githubProvider)
-    }
+  // SignIn With Google
+  const signInWithGoogle = () => {
+    return signInWithPopup(auth, googleProvider);
+  };
 
-    // SignOut User
-    const signOutUser = () => {
-        setLoading(false)
-        return signOut(auth)
-    }
+  // SignIn With Github
+  const signInWithGithub = () => {
+    return signInWithPopup(auth, githubProvider);
+  };
 
-     // forget password
-     const forgetPassword = (email) => {
-        return sendPasswordResetEmail(auth, email)
-    }
+  // SignOut User
+  const signOutUser = () => {
+    setLoading(false);
+    return signOut(auth);
+  };
 
-    // update user info
+  // forget password
+  const forgetPassword = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  };
+
+  // update user info
   const updateUserInfo = (profile) => {
-    return updateProfile(auth.currentUser,profile)
-  }
+    return updateProfile(auth.currentUser, profile);
+  };
 
+  useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        console.log(currentUser);
+        setUser(currentUser);
+        setLoading(false);
+      }
+      return () => {
+        unSubscribe();
+      };
+    });
+  }, []);
 
-  useEffect(()=>{
-    const unSubscribe = onAuthStateChanged(auth,currentUser => {
-        if(currentUser){
-            setUser(currentUser)
-            setLoading(false)
-        }
-        return () => {
-            unSubscribe();
-        }
-    })
-},[])
-
-    const userInfo = {
-        user,
-        setUser,
-        loading,
-        createUser,
-        signInUser,
-        signOutUser,
-        signInWithGoogle,
-        updateUserInfo,
-        signInWithGithub,
-        forgetPassword
-    }
+  const userInfo = {
+    user,
+    setUser,
+    loading,
+    createUser,
+    signInUser,
+    signOutUser,
+    signInWithGoogle,
+    updateUserInfo,
+    signInWithGithub,
+    forgetPassword,
+  };
   return (
-    <AuthContext.Provider value={userInfo}>
-        {children}
-    </AuthContext.Provider>
-  )
+    <AuthContext.Provider value={userInfo}>{children}</AuthContext.Provider>
+  );
 }
