@@ -3,7 +3,7 @@ import { FiMenu, FiX } from "react-icons/fi";
 import { Link, NavLink, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
-import "./navbar.css"
+import "./navbar.css";
 
 const Navbar = () => {
   const { signOutUser, user, setUser } = useAuth();
@@ -73,18 +73,17 @@ const Navbar = () => {
     <>
       <div className=" ">
         <header
-          className={`fixed  top-0 left-0  w-full bg-r-primary  text-r-text  z-50  py-3 sm:py-2  shadow-md transition-transform duration-500 ${
+          className={`fixed   top-0 left-0  w-full bg-r-primary  text-r-text  z-50  py-3 sm:py-2  shadow-md transition-transform duration-500 ${
             hidden ? "-translate-y-full" : "translate-y-0"
           }`}
         >
-          <div className="flex items-center justify-between w-10/12 mx-auto">
-           
+          <div className="flex container items-center justify-between w-10/12 mx-auto">
             <div className="text-2xl font-serif ">
               Resumes<span className="font-bold text-r-background">360</span>
             </div>
 
             {/* Desktop Navigation */}
-            <ul className="hidden md:flex ml-20  space-x-2  text-lg font-medium">
+            <ul className="hidden lg:flex ml-20  space-x-2  text-lg font-medium">
               {menu}
             </ul>
             {user ? (
@@ -93,11 +92,11 @@ const Navbar = () => {
                   <button
                     onClick={handleSignOut}
                     className="relative hidden lg:block  items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group"
-                    >
-                      <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                      <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
-                        Logout
-                      </span>
+                  >
+                    <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                    <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
+                      Logout
+                    </span>
                   </button>
                 </Link>
               </>
@@ -106,9 +105,7 @@ const Navbar = () => {
                 {/* Login Button (Desktop) */}
                 <div className="flex gap-5">
                   <Link to="/login">
-                    <button
-                      className="relative hidden lg:block  items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group"
-                    >
+                    <button className="relative hidden lg:block  items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group">
                       <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
                       <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
                         Login
@@ -116,9 +113,7 @@ const Navbar = () => {
                     </button>
                   </Link>
                   <Link to="/register">
-                    <button
-                      className="relative hidden lg:block   items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group"
-                    >
+                    <button className="relative hidden lg:block   items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group">
                       <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
                       <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
                         Register
@@ -152,29 +147,27 @@ const Navbar = () => {
           >
             {menu}
           </ul>
-          <div onClick={() => setMenuOpen(false)}
-           className="flex gap-5 justify-center mb-5">
-                  <Link to="/login">
-                    <button
-                      className="relative   items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group"
-                    >
-                      <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                      <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
-                        Login
-                      </span>
-                    </button>
-                  </Link>
-                  <Link to="/register">
-                    <button
-                      className="relative    items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group"
-                    >
-                      <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                      <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
-                        Register
-                      </span>
-                    </button>
-                  </Link>
-                </div>
+          <div
+            onClick={() => setMenuOpen(false)}
+            className="flex gap-5 justify-center mb-5"
+          >
+            <Link to="/login">
+              <button className="relative   items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group">
+                <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
+                  Login
+                </span>
+              </button>
+            </Link>
+            <Link to="/register">
+              <button className="relative    items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group">
+                <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
+                  Register
+                </span>
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </>
