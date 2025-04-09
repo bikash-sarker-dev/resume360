@@ -6,7 +6,7 @@ export const ResumeContext = createContext();
 const ResumeProvider = ({ children }) => {
   const {user} = useAuth();
   const [resumeData, setResumeData] = useState({
-    user:[user],
+    user: [user],
     personalInfo: [],
     education: [],
     skills: [],
