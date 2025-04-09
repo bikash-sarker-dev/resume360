@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import SectionHead from '../../components/header/section-head/SectionHead'
 import { useNavigate } from 'react-router';
 import useAuth from '../../hooks/useAuth';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 export default function SocialMiddleware() {
     const {setUser, user} = useAuth();
@@ -9,6 +11,7 @@ export default function SocialMiddleware() {
     const [conditions, setConditions] = useState(false);
     const [profession, setProfession] = useState("");
     const [showInput, setShowInput] = useState(false);
+    const axiosPublic = useAxiosPublic();
 
     const handleSelectChange =(event) => {
         const selectedValue = event.target.value;
@@ -27,8 +30,20 @@ export default function SocialMiddleware() {
         const terms = true;
 
         const data = { name, profession, image, email, terms };
-        console.log(data);
-        navigate('/')
+        // console.log(data);
+
+        axiosPublic.post("/users", data).then((res) => {
+            if (res.data.message) {
+            form.reset();
+            Swal.fire({
+            title: "Success",
+            text: "successfully Updated Data",
+            icon: "success",
+            confirmButtonText: "Done",
+             });
+            navigate("/");
+            }
+        });
     }
   return (
     <div className="card w-11/12 md:w-7/12 mx-auto">
