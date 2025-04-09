@@ -34,6 +34,7 @@ import User from "../pages/User";
 import AboutPage from "./../pages/AboutPage";
 import FaqPage from "./../pages/FaqPage";
 import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
+import CoverLetterEditor from "../components/cover-letter/CoverLetterEditor";
 
 const RootRoute = () => {
   return (
@@ -63,6 +64,7 @@ const RootRoute = () => {
         <Route path="/add-information" element={<AddInformation />} />
         <Route path="/templateOne" element={<TemplateOne />} />
         <Route path="/blog" element={<BlogPage />} />
+        <Route path="/cover-letter" element={<CoverLetterEditor/>} />
       </Route>
       {/* dashboard route working start  */}
       <Route path="/dashboard" element={<DashboardLayouts />}>
