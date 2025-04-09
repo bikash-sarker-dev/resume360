@@ -8,9 +8,31 @@ import { IoIosLogOut } from "react-icons/io";
 import { IoChatboxEllipsesOutline, IoReaderOutline } from "react-icons/io5";
 import { MdOutlineEditNotifications } from "react-icons/md";
 import { RiUserSettingsLine } from "react-icons/ri";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const Sidebar = () => {
+  const { signOutUser, user, setUser } = useAuth();
+  const navigate = useNavigate();
+
+  // Signout
+  const handleSignOut = () => {
+    // console.log('logOut')
+    signOutUser()
+      .then(() => {
+        Swal.fire({
+          title: "Success",
+          text: "Logout successfully",
+          icon: "success",
+          confirmButtonText: "Done",
+        });
+        navigate("/");
+        setUser(null);
+      })
+      .catch((error) => {});
+  };
+
   return (
     <div className="drawer lg:drawer-open bg-r-primary lg:w-[265px] grid-cols-1 ">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -110,13 +132,13 @@ const Sidebar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink
+            <button
+              onClick={handleSignOut}
               className="text-r-background hover:bg-r-secondary hover:text-r-text py-2"
-              to="/dashboard/users"
             >
               <IoIosLogOut className="text-3xl " />{" "}
               <span className="text-[17px]">LogOut</span>
-            </NavLink>
+            </button>
           </li>
           <div className="divider"></div>
           <li>
