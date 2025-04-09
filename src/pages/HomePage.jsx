@@ -9,6 +9,7 @@ import { Testimonials } from "../components/home/testimonials/Testimonials";
 import FeaturesSection from "./../components/home/features/FeaturesSection";
 import StepsSection from "./../components/home/stepsBySteps/StepsSection";
 
+
 const HomePage = () => {
   return (
     <div>
