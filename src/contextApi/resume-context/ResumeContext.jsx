@@ -1,9 +1,12 @@
 import { createContext, useState } from 'react';
+import useAuth from '../../hooks/useAuth';
 
 export const ResumeContext = createContext();
 
 const ResumeProvider = ({ children }) => {
+  const {user} = useAuth();
   const [resumeData, setResumeData] = useState({
+    user:[user],
     personalInfo: [],
     education: [],
     skills: [],
@@ -12,6 +15,7 @@ const ResumeProvider = ({ children }) => {
     experience: [],
     languages: [], 
   });
+
 
   const updateSection = (section, data) => {
     setResumeData((prev) => ({
