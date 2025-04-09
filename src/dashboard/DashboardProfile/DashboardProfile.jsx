@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 
 import axios from "axios";
 import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const DashboardProfile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,88 +17,89 @@ const DashboardProfile = () => {
       "https://www.shutterstock.com/image-vector/male-default-avatar-profile-icon-600nw-1725062341.jpg",
   });
 
+  const axiosPublic = useAxiosPublic()
+
+
+
   useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        setUser({ photoURL: currentUser.photoURL });
-        fetchUserProfile(currentUser.uid);
-      }
-    });
-  }, [auth]);
-
-  const handleImageUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const formData = new FormData();
-    formData.append("image", file);
-
-    try {
-      const response = await fetch(
-        `https://api.imgbb.com/1/upload?key=4aa34a6921e0ffee4d933681c503ef39`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
-      const data = await response.json();
-      if (data.success) {
-        const imageUrl = data.data.display_url;
-        console.log("Uploaded Image URL:", imageUrl);
-
-        // ✅ Update Local State
-        setUser({ ...users, photoURL: imageUrl });
-
-        // ✅ Update Firebase Authentication User
-        await updateProfile(user, {
-          photoURL: imageUrl,
-        });
-
-        alert("Image uploaded and profile updated successfully!");
-      } else {
-        alert("Image upload failed!");
-      }
-    } catch (error) {
-      console.error("Error uploading image:", error);
+    if (user && user.uid) {
+      fetchUserProfile(user.uid);
     }
-  };
+  }, [user]);
+  
 
-  const [profile, setProfile] = useState({
-    name: "",
-    email: "",
-    role: "",
-    location: "",
-    work: "",
-    address: "",
-    skills: [],
-    phone: "",
-    website: "",
-    birthday: "",
-    gender: "",
-    progress: [{ description: "", year: "" }],
-  });
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (currentUser) => {
+  //     if (currentUser) {
+  //       setUser({ photoURL: currentUser.photoURL });
+  //     }
+  //   });
+  // }, [auth]);
 
-  const fetchUserProfile = async (userId) => {
+  // const handleImageUpload = async (e) => {
+  //   const file = e.target.files[0];
+  //   if (!file) return;
+
+  //   const formData = new FormData();
+  //   formData.append("image", file);
+
+  //   try {
+  //     const response = await fetch(
+  //       `https://api.imgbb.com/1/upload?key=4aa34a6921e0ffee4d933681c503ef39`,
+  //       {
+  //         method: "POST",
+  //         body: formData,
+  //       }
+  //     );
+
+  //     const data = await response.json();
+  //     if (data.success) {
+  //       const imageUrl = data.data.display_url;
+  //       console.log("Uploaded Image URL:", imageUrl);
+
+  //       // ✅ Update Local State
+  //       setUser({ ...users, photoURL: imageUrl });
+
+  //       // ✅ Update Firebase Authentication User
+  //       await updateProfile(user, {
+  //         photoURL: imageUrl,
+  //       });
+
+  //       alert("Image uploaded and profile updated successfully!");
+  //     } else {
+  //       alert("Image upload failed!");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error uploading image:", error);
+  //   }
+  // };
+
+  const [profile, setProfile] = useState(null);
+
+  const fetchUserProfile = async (userId ) => {
     try {
       const response = await axios.get(
-        `https://resume360-server.vercel.app/profile/${userId}`
+        `https://resume360-server.vercel.app/profile/${userId }`
       );
       const userData = response.data;
-      setProfile({
-        name: userData.name,
-        email: userData.email,
-        role: userData.role,
-        location: userData.location,
-        work: userData.work,
-        address: userData.address,
-        skills: userData.skills,
-        phone: userData.phone,
-        website: userData.website,
-        birthday: userData.birthday,
-        gender: userData.gender,
-        progress: userData.progress || [{ description: "", year: "" }],
-      });
+  
+      if (userData) {
+        setProfile({
+          name: userData.name || "",
+          email: userData.email || "",
+          role: userData.role || "",
+          location: userData.location || "",
+          work: userData.work || "",
+          address: userData.address || "",
+          skills: userData.skills || [],
+          phone: userData.phone || "",
+          website: userData.website || "",
+          birthday: userData.birthday || "",
+          gender: userData.gender || "",
+          progress: userData.progress || [{ description: "", year: "" }],
+          id: userData._id, 
+        });
+      }
     } catch (error) {
       console.error("Error fetching user profile:", error);
     }
@@ -130,34 +132,44 @@ const DashboardProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(" Profile before submit:", profile);
 
+    
     try {
-      // If profile exists, update, else create a new profile
-      if (profile.id) {
-        await axios.put(
-          `https://resume360-server.vercel.app/profile/${profile.id}`,
+      if (profile?.id) {
+        await axiosPublic.put(
+          `/profile/${profile.id}`,
           profile
         );
         alert("Profile updated successfully!");
       } else {
-        await axios.post(
-          "https://resume360-server.vercel.app/profile",
+        await axiosPublic.post(
+          "/profile",
           profile
         );
         alert("Profile created successfully!");
       }
-      setIsModalOpen(false); // Close the modal
+      setIsModalOpen(false);
     } catch (error) {
       console.error("Error saving profile:", error);
       alert("Error saving profile. Please try again.");
     }
   };
 
+
+  
+
   const addProgressEntry = () => {
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      progress: [...prevProfile.progress, { description: "", year: "" }],
-    }));
+    setProfile((prevProfile) => {
+      if (!prevProfile) return prevProfile;
+  
+      return {
+        ...prevProfile,
+        progress: Array.isArray(prevProfile.progress)
+          ? [...prevProfile.progress, { description: "", year: "" }]
+          : [{ description: "", year: "" }],
+      };
+    });
   };
 
   return (
@@ -181,20 +193,20 @@ const DashboardProfile = () => {
                 id="upload-image"
                 accept="image/*"
                 style={{ display: "none" }}
-                onChange={handleImageUpload}
+                // onChange={handleImageUpload}
               />
             </div>
           </div>
           <div className="mt-6 p-5 space-y-2">
             <h3 className="text-lg font-bold text-purple-400">Work</h3>
-            <p className="text-r-text">{profile.work}</p>
-            <p className="text-r-text">{profile.address}</p>
+            <p className="text-r-text">{profile?.work}</p>
+            <p className="text-r-text">{profile?.address}</p>
           </div>
           <div className=" p-5">
             <h3 className="text-lg font-bold text-purple-400">Skills</h3>
             <p className="text-r-text flex flex-wrap  gap-3">
-              {profile.skills.map((skill) => (
-                <h1 className="shadow-md  w-max py-1 px-3 rounded-2xl bg-r-info ">
+              {(profile?.skills || []).map((skill, index) => (
+                <h1 key={index} className="shadow-md  w-max py-1 px-3 rounded-2xl bg-r-info ">
                   {skill}
                 </h1>
               ))}
@@ -206,14 +218,14 @@ const DashboardProfile = () => {
           <div className="flex items-center justify-between border-b border-primary/50 pb-4">
             <div>
               <h2 className="text-3xl font-extrabold text-r-text">
-                {profile.name}
+                {profile?.name}
               </h2>
               <p className="text-r-text flex items-center mt-1">
                 <FaMapMarkerAlt className="mr-2 text-purple-400" />{" "}
-                {profile.location}
+                {profile?.location}
               </p>
               <p className="text-blue-400 text-lg font-semibold">
-                {profile.role}
+                {profile?.role}
               </p>
             </div>
             <button
@@ -229,13 +241,13 @@ const DashboardProfile = () => {
               Contact Information
             </h3>
             <p className="flex items-center text-r-text mt-2">
-              <FiPhone className="mr-2 text-blue-400" /> {profile.phone}
+              <FiPhone className="mr-2 text-blue-400" /> {profile?.phone}
             </p>
             <p className="flex items-center text-r-text mt-2">
-              <FiMail className="mr-2 text-blue-400" /> {profile.email}
+              <FiMail className="mr-2 text-blue-400" /> {profile?.email}
             </p>
             <a
-              href={profile.website}
+              href={profile?.website}
               className="border-b border-blue-500 text-blue-600"
             >
               my protfolio
@@ -246,8 +258,8 @@ const DashboardProfile = () => {
             <h3 className="text-lg font-bold text-purple-400">
               Basic Information
             </h3>
-            <p className="text-r-text">Birthday: {profile.birthday}</p>
-            <p className="text-r-text">Gender: {profile.gender}</p>
+            <p className="text-r-text">Birthday: {profile?.birthday}</p>
+            <p className="text-r-text">Gender: {profile?.gender}</p>
           </div>
 
           <div className="mt-6 p-6 rounded-xl bg-opacity-30 backdrop-blur-xl border border-primary/50 shadow-lg">
@@ -255,7 +267,7 @@ const DashboardProfile = () => {
               Career Progress
             </h3>
             <ul className="mt-3 space-y-3">
-              {profile.progress.map((item, index) => (
+              {(profile?.progress || []).map((item, index) => (
                 <li
                   key={index}
                   className={`border-l-4 border-${item.color} pl-4 text-r-text`}
@@ -282,7 +294,7 @@ const DashboardProfile = () => {
               <input
                 type="text"
                 name="name"
-                value={profile.name}
+                value={profile?.name}
                 onChange={handleChange}
                 placeholder="Name"
                 className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
@@ -290,7 +302,7 @@ const DashboardProfile = () => {
               <input
                 type="text"
                 name="location"
-                value={profile.location}
+                value={profile?.location}
                 onChange={handleChange}
                 placeholder="Location"
                 className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
@@ -298,7 +310,7 @@ const DashboardProfile = () => {
               <input
                 type="text"
                 name="role"
-                value={profile.role}
+                value={profile?.role}
                 onChange={handleChange}
                 placeholder="Role"
                 className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
@@ -307,14 +319,14 @@ const DashboardProfile = () => {
               <input
                 type="text"
                 name="birthday"
-                value={profile.birthday}
+                value={profile?.birthday}
                 onChange={handleChange}
                 placeholder="Birthday"
                 className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
               />
               <select
                 name="gender"
-                value={profile.gender}
+                value={profile?.gender}
                 onChange={handleChange}
                 className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
               >
@@ -327,7 +339,7 @@ const DashboardProfile = () => {
               <input
                 type="text"
                 name="phone"
-                value={profile.phone}
+                value={profile?.phone}
                 onChange={handleChange}
                 placeholder="Phone"
                 className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
@@ -335,7 +347,7 @@ const DashboardProfile = () => {
               <input
                 type="text"
                 name="email"
-                value={profile.email}
+                value={profile?.email}
                 onChange={handleChange}
                 placeholder="Email"
                 className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
@@ -343,7 +355,7 @@ const DashboardProfile = () => {
               <input
                 type="text"
                 name="website"
-                value={profile.website}
+                value={profile?.website}
                 onChange={handleChange}
                 placeholder="Website"
                 className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
@@ -352,7 +364,7 @@ const DashboardProfile = () => {
               <input
                 type="text"
                 name="work"
-                value={profile.work}
+                value={profile?.work}
                 onChange={handleChange}
                 placeholder="Workplace"
                 className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
@@ -360,7 +372,7 @@ const DashboardProfile = () => {
               <input
                 type="text"
                 name="address"
-                value={profile.address}
+                value={profile?.address}
                 onChange={handleChange}
                 placeholder="Work Address"
                 className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
@@ -370,16 +382,16 @@ const DashboardProfile = () => {
                 type="text"
                 name="skills"
                 value={
-                  Array.isArray(profile.skills)
-                    ? profile.skills.join(", ")
-                    : profile.skills
+                  Array.isArray(profile?.skills)
+                    ? profile?.skills.join(", ")
+                    : profile?.skills
                 }
                 onChange={handleChange}
                 placeholder="Skills (comma-separated)"
                 className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
               />
 
-              {profile.progress.map((item, index) => (
+              {(profile?.progress || []).map((item, index) => (
                 <div key={index} className="flex space-x-2">
                   <input
                     type="text"
