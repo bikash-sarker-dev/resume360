@@ -5,14 +5,17 @@ import "./index.css";
 import RootRoute from "./routes/RootRoute.jsx";
 import AuthProvider from "./provider/AuthProvider.jsx";
 import ResumeProvider from "./contextApi/resume-context/ResumeContext.jsx";
+import CoverLetterProvider from "./contextApi/coverletter-context/CoverLetterContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
       <ResumeProvider>
-        <BrowserRouter>
-          <RootRoute />
-        </BrowserRouter>
+        <CoverLetterProvider>
+          <BrowserRouter>
+            <RootRoute />
+          </BrowserRouter>
+        </CoverLetterProvider>
       </ResumeProvider>
     </AuthProvider>
   </StrictMode>

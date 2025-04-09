@@ -6,24 +6,28 @@ import StepLabel from '@mui/material/StepLabel';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-import LivePreview from '../live-preview/LivePreview';
-
-import ResumeDownload from '../resume-download/ResumeDownload';
+import PersonalInfo from '../personal-info/PersonalInfo';
+import EmployerInfo from '../employerInfo/EmployerInfo';
+import Greeting from '../greeting/Greeting';
+import Introduction from '../introduction/Introduction';
+import ProfessionalExperience from '../professional-experience/ProfessionalExperience';
+import ErrorPage from '../../../pages/ErrorPage';
+import CoverLetterLivePreview from '../cover-letter-live-preview/CoverLetterLivePreview';
 
 const renderStepContent = (step) => {
   switch (step) {
     case 0:
-      return ;
+      return <PersonalInfo/>;
     case 1:
-      return ;
+      return <EmployerInfo/>;
     case 2:
-      return ;
+      return <Greeting/>;
     case 3:
-      return ;
+      return <Introduction/>;
     case 4:
-      return ;
+      return <ProfessionalExperience/>;
     default:
-      return ;
+      return <ErrorPage/>;
   }
 };
 
@@ -86,7 +90,7 @@ const StepperComponents = () => {
           <React.Fragment>
             <Typography sx={{ mt: 2, mb: 1 }}>
               <Box>
-                <ResumeDownload></ResumeDownload>
+                {/* <ResumeDownload></ResumeDownload> */}
               </Box>
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
@@ -118,7 +122,7 @@ const StepperComponents = () => {
         )}
       </Box>
       <div>
-        <LivePreview></LivePreview>
+        <CoverLetterLivePreview></CoverLetterLivePreview>
       </div>
     </div>
   );

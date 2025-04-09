@@ -8,15 +8,15 @@ const CoverLetterProvider = ({ children }) => {
   
   const [CoverLetterData, setCoverLetterData] = useState({
     user: user,
-    personalInfo: {},
-    employer: {},
+    personalInfo: [],
+    employer: [],
     greeting: '',
     introduction: '',
     professionalExperience: '',
     skillsAndQualifications: '',
     goodFit: '',
     closing: '',
-    signature: {},
+    signature: '',
   });
 
   const updateSection = (section, data) => {
