@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router";
 
 import React from "react";
-import CoverOne from "../components/DefaultCoverLetterTemplates/CoverOne";
 import TemplateOne from "../components/DefaultTemplates/TemplateOne";
 import Userabout from "../components/user/Userabout";
 import UserEducation from "../components/user/UserEducation";
@@ -14,7 +13,6 @@ import DashboardLayouts from "../layouts/DashboardLayouts";
 import MainLayout from "../layouts/MainLayout";
 import AddInformation from "../pages/AddInformation";
 import BlogPage from "../pages/BlogPage";
-import ContactPage from "../pages/ContactPage";
 import ChatPage from "../pages/DashboardPage/ChatPage";
 import DashboardHomePage from "../pages/DashboardPage/DashboardHomePage";
 import DashboardUserPage from "../pages/DashboardPage/DashboardUserPage";
@@ -24,19 +22,19 @@ import OrderListPage from "../pages/DashboardPage/OrderListPage";
 import ReviewsPage from "../pages/DashboardPage/ReviewsPage";
 import SecurityPage from "../pages/DashboardPage/SecurityPage";
 import ErrorPage from "../pages/ErrorPage";
-import FeaturesPage from "../pages/FeaturesPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import PersonalInfoPage from "../pages/PersonalInfoPage";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import RegisterPage from "../pages/RegisterPage";
-import SocialMiddlewarePage from "../pages/SocialMiddlewarePage";
 import TemplatesPage from "../pages/TemplatesPage";
-import TermsAndConditionsPage from "../pages/TermsAndConditionsPage";
 import User from "../pages/User";
 import AboutPage from "./../pages/AboutPage";
 import FaqPage from "./../pages/FaqPage";
 import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
+
+import { Pricing } from "../pages/Pricing";
+import { SubscriptionDetail } from "../pages/SubscriptionDetail";
 
 const RootRoute = () => {
   return (
@@ -48,11 +46,8 @@ const RootRoute = () => {
         <Route path="/forgetPassword" element={<ForgetPasswordPage />} />
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/terms" element={<TermsAndConditionsPage />} />
-        <Route path="/features" element={<FeaturesPage />} />
-        <Route path="/socialMiddleware" element={<SocialMiddlewarePage />} />
-        <Route path="/coverOne" element={<CoverOne />} />
+        <Route path="subscribe/:id" element={<SubscriptionDetail />} />
+        <Route path="/pricing" element={<Pricing></Pricing>} />
 
         {/* user page routes  */}
         <Route path="/user" element={<User />}>
