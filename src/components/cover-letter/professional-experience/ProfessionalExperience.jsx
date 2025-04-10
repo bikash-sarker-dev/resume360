@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { TextField } from '@mui/material';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { CoverLetterContext } from '../../../contextApi/coverletter-context/CoverLetterContext';
-
 
 const ProfessionalExperience = () => {
   const { CoverLetterData, updateSection } = useContext(CoverLetterContext);
-  const [experience] = useState(CoverLetterData.professionalExperience || '');
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -20,8 +18,8 @@ const ProfessionalExperience = () => {
         required
         name="professionalExperience"
         label="Professional Experience"
-        value={experience}
-        onChange={(e) => handleChange(e)}
+        value={CoverLetterData.professionalExperience || ''}
+        onChange={handleChange}
         helperText="Describe your professional experience."
         multiline
         rows={4}

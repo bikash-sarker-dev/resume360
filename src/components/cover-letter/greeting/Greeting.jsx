@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { TextField } from '@mui/material';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { CoverLetterContext } from '../../../contextApi/coverletter-context/CoverLetterContext';
-
 
 const Greeting = () => {
   const { CoverLetterData, updateSection } = useContext(CoverLetterContext);
-  const [greeting] = useState(CoverLetterData.greeting || '');
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -20,8 +18,8 @@ const Greeting = () => {
         required
         name="greeting"
         label="Greeting"
-        value={greeting}
-        onChange={(e) => handleChange(e)}
+        value={CoverLetterData.greeting || ''}
+        onChange={handleChange}
         helperText="How would you like to greet the employer?"
       />
     </div>

@@ -56,7 +56,7 @@ const CoverLetterBody = () => {
                     <Typography component="span">Introduction</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <Introduction/>
+                    <Introduction />
                 </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -68,7 +68,7 @@ const CoverLetterBody = () => {
                     <Typography component="span">Professional Experience</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <ProfessionalExperience/>
+                    <ProfessionalExperience />
                 </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -80,7 +80,7 @@ const CoverLetterBody = () => {
                     <Typography component="span">Skills and Qualifications</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <SkillAndQualification/>
+                    <SkillAndQualification />
                 </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -92,7 +92,7 @@ const CoverLetterBody = () => {
                     <Typography component="span">Why You’re a Good Fit</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <GoodFit/>
+                    <GoodFit />
                 </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -104,7 +104,7 @@ const CoverLetterBody = () => {
                     <Typography component="span">Closing</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <Closing/>
+                    <Closing />
                 </AccordionDetails>
             </Accordion>
         </div>

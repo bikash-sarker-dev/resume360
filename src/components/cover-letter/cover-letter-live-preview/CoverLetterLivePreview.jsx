@@ -1,36 +1,39 @@
 import React, { useContext, useState } from "react";
 import { CoverLetterContext } from "../../../contextApi/coverletter-context/CoverLetterContext";
 
-
 const CoverLetterLivePreview = () => {
     const { CoverLetterData } = useContext(CoverLetterContext);
     const [showDemo, setShowDemo] = useState(false);
-    console.log(CoverLetterData);
 
     const demoData = {
         personalInfo: {
-            fullName: "JOHN DOE",
-            jobTitle: "Frontend Developer",
-            address: "New York, USA",
-            phone: "+1 234 567 890",
-            email: "john@example.com",
+            fullName: "MD ADNAN MAHMUD",
+            address: "Dhaka, Bangladesh",
+            cityZip: "Dhaka, 1000",
+            email: "adnan.mahmud.pc@gmail.com",
+            phone: "01641378317",
+            linkedIn: "www.linkedin.com/in/adnanmahmud99",
+            portfolio: "https://adnan-mahmud.web.app/",
+            date: "April 12, 2025"
         },
-        employer: {
-            companyName: "Tech Corp",
-            companyAddress: "123 Business Rd, Tech City",
+        hiringManager: {
+            name: "Adnan Mahmud",
+            company: "TDCL",
+            address: "Dhaka, Bangladesh",
+            cityZip: "Dhaka, 1000"
         },
         greeting: "Dear Hiring Manager,",
-        introduction: "I am writing to express my interest in the Frontend Developer position at Tech Corp.",
-        professionalExperience: "I have over 3 years of experience building scalable web applications using React.",
-        skillsAndQualifications: "I am proficient in JavaScript, React, CSS, and Tailwind CSS.",
-        goodFit: "I believe my technical skills, combined with my passion for web development, make me an ideal fit for your team.",
-        closing: "Thank you for considering my application. I look forward to hearing from you.",
-        signature: "Sincerely, John Doe",
+        introduction: "I am writing to express my interest in the [Job Position] at TDCL, as advertised. With a solid background in Frontend Web Development, combined with my experience in designing and developing web applications, I am confident in my ability to contribute to your team's success.",
+        professionalExperience: "I am currently a Design Team Lead at Empower Next Gen, where I provide design instruction, create sketch designs, guide the team for better outputs, and contribute to design tasks when workload is high. I also advise the Web Developer CTO on improving the website, ensuring user-centered design principles are adhered to. In addition, I have developed a wide range of projects, including a Donation Platform for Bangladesh, a Task Management Application, and a Pet Adoption Platform, using various technologies like React, Node.js, Express, MongoDB, Firebase, and Tailwind CSS.",
+        skillsAndQualifications: "I am also highly skilled in HTML, CSS, JavaScript, React, Node.js, Express, MongoDB, PHP, and Python. Additionally, I have experience in Photoshop, Figma, and other open-source design platforms, which allows me to bring a well-rounded perspective to both the front-end and design aspects of web development.",
+        goodFit: "I would be thrilled to bring my expertise in web development, design, and problem-solving to TDCL. I am confident that my technical skills, coupled with my passion for creating impactful, user-centric web applications, would be a valuable asset to your team.",
+        closing: "Thank you for considering my application. I look forward to the opportunity to discuss how my skills and experience align with the needs of your team. Please feel free to contact me at 01641378317 or via email at adnan.mahmud.pc@gmail.com.",
+        signature: "Sincerely, MD ADNAN MAHMUD"
     };
 
     const {
         personalInfo,
-        employer,
+        hiringManager,
         greeting,
         introduction,
         professionalExperience,
@@ -40,12 +43,10 @@ const CoverLetterLivePreview = () => {
         signature
     } = showDemo ? demoData : CoverLetterData;
 
-    // const titleClass = "text-xl font-bold";
-    // const subtitleClass = "text-sm text-center";
     const headerClass = "font-semibold mb-4";
     const textClass = "text-xs leading-relaxed";
 
-    const isEmpty = !personalInfo?.fullName && !employer?.companyName && !greeting && !introduction && !professionalExperience && !skillsAndQualifications && !goodFit && !closing && !signature;
+    const isEmpty = !personalInfo?.fullName && !hiringManager?.company && !greeting && !introduction && !professionalExperience && !skillsAndQualifications && !goodFit && !closing && !signature;
 
     return (
         <div className="container pb-8 lg:pb-12">
@@ -62,22 +63,49 @@ const CoverLetterLivePreview = () => {
             {!showDemo && isEmpty ? (
                 <p className="text-center mt-4 text-gray-500 italic">No cover letter data provided yet.</p>
             ) : (
-                <div className="max-w-4xl mx-auto p-8 bg-white text-black shadow-xl mt-4">
+                <div className="max-w-4xl mx-auto p-8 bg-white text-black shadow-lg rounded-lg mt-4">
+                    {/* Personal Information */}
+                    <div className="text-center">
+                        <p className="text-lg font-bold text-gray-800">{personalInfo.fullName}</p>
+                        <p className="text-sm text-gray-600">{personalInfo.address}</p>
+                        <p className="text-sm text-gray-600">{personalInfo.cityZip}</p>
+                        <p className="text-sm text-gray-600">{personalInfo.email}</p>
+                        <p className="text-sm text-gray-600">{personalInfo.phone}</p>
+                        <p className="text-sm text-gray-600">
+                            <a href={`https://${personalInfo.linkedIn}`} className="text-blue-600">{personalInfo.linkedIn}</a>
+                        </p>
+                        <p className="text-sm text-gray-600">
+                            <a href={personalInfo.portfolio} className="text-blue-600">{personalInfo.portfolio}</a>
+                        </p>
+                    </div>
+
+                    <div className="mt-6">
+                        <p className="text-sm text-gray-600 text-right">{personalInfo.date}</p>
+                    </div>
+
+                    {/* Hiring Manager Information */}
+                    <div className="mt-6">
+                        <p className="text-lg font-semibold text-gray-800">{hiringManager.name}</p>
+                        <p className="text-sm text-gray-600">{hiringManager.company}</p>
+                        <p className="text-sm text-gray-600">{hiringManager.address}</p>
+                        <p className="text-sm text-gray-600">{hiringManager.cityZip}</p>
+                    </div>
+
                     {/* Greeting */}
                     {greeting && (
-                        <p className={`${textClass} text-center mb-4`}>{greeting}</p>
+                        <p className={`${textClass} text-center mt-6 text-gray-800`}>{greeting}</p>
                     )}
 
                     {/* Introduction */}
                     {introduction && (
-                        <p className={textClass}>{introduction}</p>
+                        <p className={`${textClass} mt-4 text-gray-700`}>{introduction}</p>
                     )}
 
                     {/* Professional Experience */}
                     {professionalExperience && (
                         <>
                             <h2 className={headerClass}>Professional Experience</h2>
-                            <p className={textClass}>{professionalExperience}</p>
+                            <p className={`${textClass} text-gray-700`}>{professionalExperience}</p>
                         </>
                     )}
 
@@ -85,7 +113,7 @@ const CoverLetterLivePreview = () => {
                     {skillsAndQualifications && (
                         <>
                             <h2 className={headerClass}>Skills and Qualifications</h2>
-                            <p className={textClass}>{skillsAndQualifications}</p>
+                            <p className={`${textClass} text-gray-700`}>{skillsAndQualifications}</p>
                         </>
                     )}
 
@@ -93,7 +121,7 @@ const CoverLetterLivePreview = () => {
                     {goodFit && (
                         <>
                             <h2 className={headerClass}>Why I am a Good Fit</h2>
-                            <p className={textClass}>{goodFit}</p>
+                            <p className={`${textClass} text-gray-700`}>{goodFit}</p>
                         </>
                     )}
 
@@ -101,13 +129,13 @@ const CoverLetterLivePreview = () => {
                     {closing && (
                         <>
                             <h2 className={headerClass}>Closing</h2>
-                            <p className={textClass}>{closing}</p>
+                            <p className={`${textClass} text-gray-700`}>{closing}</p>
                         </>
                     )}
 
                     {/* Signature */}
                     {signature && (
-                        <p className={`${textClass} mt-4 text-right`}>{signature}</p>
+                        <p className={`${textClass} mt-4 text-right text-gray-700`}>{signature}</p>
                     )}
                 </div>
             )}
