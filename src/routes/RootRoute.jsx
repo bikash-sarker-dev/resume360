@@ -48,6 +48,7 @@ const RootRoute = () => {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/terms" element={<TermsAndConditionsPage />} />
 
+
         {/* user page routes  */}
         <Route path="/user" element={<User />}>
           <Route index element={<Userabout />} />
