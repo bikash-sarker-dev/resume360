@@ -93,8 +93,8 @@ const Navbar = () => {
                     onClick={handleSignOut}
                     className="relative hidden lg:block  items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group"
                   >
-                    <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                    <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
+                    <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary/50 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                    <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-black">
                       Logout
                     </span>
                   </button>
@@ -106,16 +106,16 @@ const Navbar = () => {
                 <div className="flex gap-5">
                   <Link to="/login">
                     <button className="relative hidden lg:block  items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group">
-                      <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                      <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
+                      <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary/50 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                      <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-black">
                         Login
                       </span>
                     </button>
                   </Link>
                   <Link to="/register">
                     <button className="relative hidden lg:block   items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group">
-                      <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                      <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
+                      <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary/50 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                      <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-black">
                         Register
                       </span>
                     </button>
