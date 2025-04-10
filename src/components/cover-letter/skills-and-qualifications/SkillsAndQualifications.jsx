@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { TextField } from '@mui/material';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { CoverLetterContext } from '../../../contextApi/coverletter-context/CoverLetterContext';
-
 
 const SkillsAndQualifications = () => {
   const { CoverLetterData, updateSection } = useContext(CoverLetterContext);
-  const [skills] = useState(CoverLetterData.skillsAndQualifications || '');
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -20,8 +18,8 @@ const SkillsAndQualifications = () => {
         required
         name="skillsAndQualifications"
         label="Skills and Qualifications"
-        value={skills}
-        onChange={(e) => handleChange(e)}
+        value={CoverLetterData.skillsAndQualifications || ''}
+        onChange={handleChange}
         helperText="List your key skills and qualifications."
         multiline
         rows={4}

@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { TextField } from '@mui/material';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { CoverLetterContext } from '../../../contextApi/coverletter-context/CoverLetterContext';
-
 
 const GoodFit = () => {
   const { CoverLetterData, updateSection } = useContext(CoverLetterContext);
-  const [fit] = useState(CoverLetterData.goodFit || '');
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -20,8 +18,8 @@ const GoodFit = () => {
         required
         name="goodFit"
         label="Why You're a Good Fit"
-        value={fit}
-        onChange={(e) => handleChange(e)}
+        value={CoverLetterData.goodFit || ''}
+        onChange={handleChange}
         helperText="Explain why you are a good fit for this job."
         multiline
         rows={4}

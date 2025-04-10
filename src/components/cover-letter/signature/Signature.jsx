@@ -1,29 +1,38 @@
 import * as React from 'react';
 import { TextField } from '@mui/material';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { CoverLetterContext } from '../../../contextApi/coverletter-context/CoverLetterContext';
-
 
 const Signature = () => {
   const { CoverLetterData, updateSection } = useContext(CoverLetterContext);
-  const [signature] = useState(CoverLetterData.signature || '');
 
   const handleChange = (e) => {
-    const { value } = e.target;
-    updateSection('signature', value);
+    const { name, value } = e.target;
+    updateSection('ending', { 
+      ...CoverLetterData.ending, 
+      [name]: value 
+    });
   };
 
   return (
-    <div className="grid grid-cols-1 px-4 space-y-5 mt-5">
+    <div className="grid grid-cols-1 px-4 gap-4 mt-5">
+      <TextField
+        className="w-full"
+        required
+        name="formalClosing"
+        label="Formal Closing"
+        value={CoverLetterData.ending.formalClosing || ''}
+        onChange={handleChange}
+        helperText="Add a formal closing like 'Sincerely' or 'Best regards'."
+      />
       <TextField
         className="w-full"
         required
         name="signature"
         label="Signature"
-        value={signature}
-        onChange={(e) => handleChange(e)}
-        helperText="Add your signature."
-        rows={4}
+        value={CoverLetterData.ending.signature || ''}
+        onChange={handleChange}
+        helperText="Type your full name or digital signature."
       />
     </div>
   );

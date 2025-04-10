@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { TextField } from '@mui/material';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { CoverLetterContext } from '../../../contextApi/coverletter-context/CoverLetterContext';
-
 
 const Introduction = () => {
   const { CoverLetterData, updateSection } = useContext(CoverLetterContext);
-  const [introduction] = useState(CoverLetterData.introduction || '');
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -20,8 +18,8 @@ const Introduction = () => {
         required
         name="introduction"
         label="Introduction"
-        value={introduction}
-        onChange={(e) => handleChange(e)}
+        value={CoverLetterData.introduction || ''}
+        onChange={handleChange}
         helperText="Introduce yourself to the employer."
         multiline
         rows={4}

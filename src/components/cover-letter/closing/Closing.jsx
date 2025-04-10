@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { TextField } from '@mui/material';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { CoverLetterContext } from '../../../contextApi/coverletter-context/CoverLetterContext';
-
 
 const Closing = () => {
   const { CoverLetterData, updateSection } = useContext(CoverLetterContext);
-  const [closing] = useState(CoverLetterData.closing || '');
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -20,8 +18,8 @@ const Closing = () => {
         required
         name="closing"
         label="Closing"
-        value={closing}
-        onChange={(e) => handleChange(e)}
+        value={CoverLetterData.closing || ''}
+        onChange={handleChange}
         helperText="Conclude your cover letter."
         multiline
         rows={4}

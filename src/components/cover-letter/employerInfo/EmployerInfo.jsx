@@ -1,18 +1,17 @@
 import * as React from 'react';
 import { TextField } from '@mui/material';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { CoverLetterContext } from '../../../contextApi/coverletter-context/CoverLetterContext';
 
 const EmployerInfo = () => {
   const { CoverLetterData, updateSection } = useContext(CoverLetterContext);
-  const [employerName] = useState(CoverLetterData.employer.name || '');
-  const [company] = useState(CoverLetterData.employer.company || '');
-  const [address] = useState(CoverLetterData.employer.address || '');
-  const [cityZip] = useState(CoverLetterData.employer.cityZip || '');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    updateSection('employer', { ...CoverLetterData.employer, [name]: value });
+    updateSection('employer', {
+      ...CoverLetterData.employer,
+      [name]: value,
+    });
   };
 
   return (
@@ -22,7 +21,7 @@ const EmployerInfo = () => {
         required
         name="name"
         label="Hiring Manager's Name"
-        value={employerName}
+        value={CoverLetterData.employer.name || ''}
         onChange={handleChange}
         helperText="Enter the full name of the person you’re addressing."
       />
@@ -31,7 +30,7 @@ const EmployerInfo = () => {
         required
         name="company"
         label="Company Name"
-        value={company}
+        value={CoverLetterData.employer.company || ''}
         onChange={handleChange}
         helperText="Enter the official name of the organization."
       />
@@ -39,7 +38,7 @@ const EmployerInfo = () => {
         required
         name="address"
         label="Company Address"
-        value={address}
+        value={CoverLetterData.employer.address || ''}
         onChange={handleChange}
         helperText="Enter the street address or office location."
       />
@@ -47,7 +46,7 @@ const EmployerInfo = () => {
         required
         name="cityZip"
         label="City, Zip Code"
-        value={cityZip}
+        value={CoverLetterData.employer.cityZip || ''}
         onChange={handleChange}
         helperText="Enter the city and postal code (e.g., New York, NY 10001)."
       />
