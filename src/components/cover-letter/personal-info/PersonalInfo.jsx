@@ -12,9 +12,9 @@ const PersonalInfo = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 px-4 space-y-5 mt-5">
+    <div className="grid grid-cols-2 px-4 gap-4 mt-5">
       <TextField
-        className="w-full"
+        className="col-span-2"
         required
         name="fullName"
         label="Your Name"
@@ -23,7 +23,7 @@ const PersonalInfo = () => {
         helperText="Please enter your full name"
       />
       <TextField
-        className="w-full"
+        className=""
         required
         name="address"
         label="Address"
@@ -32,7 +32,7 @@ const PersonalInfo = () => {
         helperText="Please enter your address"
       />
       <TextField
-        className="w-full"
+        className=""
         required
         name="cityZip"
         label="City, Zip Code"
@@ -41,7 +41,7 @@ const PersonalInfo = () => {
         helperText="Please enter your city and zip code"
       />
       <TextField
-        className="w-full"
+        className=""
         required
         name="email"
         label="Email"
@@ -51,7 +51,7 @@ const PersonalInfo = () => {
         helperText="Please enter your email address"
       />
       <TextField
-        className="w-full"
+        className=""
         required
         name="phone"
         label="Phone Number"
@@ -60,7 +60,7 @@ const PersonalInfo = () => {
         helperText="Please enter your phone number"
       />
       <TextField
-        className="w-full"
+        className=""
         name="linkedIn"
         label="LinkedIn Profile URL"
         value={CoverLetterData.personalInfo.linkedIn || ''}
@@ -68,7 +68,7 @@ const PersonalInfo = () => {
         helperText="Please enter your LinkedIn profile URL"
       />
       <TextField
-        className="w-full"
+        className=""
         name="portfolio"
         label="Portfolio URL"
         value={CoverLetterData.personalInfo.portfolio || ''}
@@ -76,7 +76,7 @@ const PersonalInfo = () => {
         helperText="Please enter your portfolio URL"
       />
       <TextField
-        className="w-full"
+        className="col-span-2"
         required
         name="date"
         label="Date"
