@@ -5,14 +5,13 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-
 import PersonalInfo from '../personal-info/PersonalInfo';
 import EmployerInfo from '../employerInfo/EmployerInfo';
 import Greeting from '../greeting/Greeting';
-import Introduction from '../introduction/Introduction';
-import ProfessionalExperience from '../professional-experience/ProfessionalExperience';
 import ErrorPage from '../../../pages/ErrorPage';
 import CoverLetterLivePreview from '../cover-letter-live-preview/CoverLetterLivePreview';
+import CoverLetterBody from '../cover-letter-body/CoverLetterBody';
+import Signature from '../signature/Signature'
 
 const renderStepContent = (step) => {
   switch (step) {
@@ -23,9 +22,9 @@ const renderStepContent = (step) => {
     case 2:
       return <Greeting/>;
     case 3:
-      return <Introduction/>;
+      return <CoverLetterBody/>;
     case 4:
-      return <ProfessionalExperience/>;
+      return <Signature/>;
     default:
       return <ErrorPage/>;
   }
