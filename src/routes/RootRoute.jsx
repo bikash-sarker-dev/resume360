@@ -34,6 +34,9 @@ import User from "../pages/User";
 import AboutPage from "./../pages/AboutPage";
 import FaqPage from "./../pages/FaqPage";
 import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
+import FeaturesPage from "../pages/FeaturesPage";
+import SocialMiddlewarePage from "../pages/SocialMiddlewarePage";
+import CoverOne from "../components/DefaultCoverLetterTemplates/CoverOne";
 
 const RootRoute = () => {
   return (
@@ -47,6 +50,9 @@ const RootRoute = () => {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/terms" element={<TermsAndConditionsPage />} />
+        <Route path="/features" element={<FeaturesPage />} />
+        <Route path="/socialMiddleware" element={<SocialMiddlewarePage />} />
+        <Route path="/coverOne" element={<CoverOne/>} />
 
         {/* user page routes  */}
         <Route path="/user" element={<User />}>
