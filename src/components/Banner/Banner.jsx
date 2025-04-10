@@ -4,25 +4,28 @@ const Banner = () => {
   const slides = [
     {
       image:
-        "https://i.ibb.co.com/8gLWCDBH/Chat-GPT-Image-Mar-31-2025-11-34-58-PM-removebg-preview.png",
+        "https://i.ibb.co.com/PGWqTZ4L/template11.png",
       title: "Explore the Beauty",
       description:
         "Discover stunning landscapes and vibrant colors in every frame.",
       buttonText: "Discover More",
+      background: "https://i.ibb.co.com/Cp0Z51k8/Chat-GPT-Image-Apr-10-2025-04-01-48-PM.png",
     },
     {
-      image: "./assets/resume2.png",
+      image: "https://i.ibb.co.com/Rky7z0r7/template2.png",
       title: "A New Perspective",
       description:
         "Experience breathtaking visuals from unique angles and views.",
       buttonText: "View More",
+      background: "https://i.ibb.co.com/Cp0Z51k8/Chat-GPT-Image-Apr-10-2025-04-01-48-PM.png",
     },
     {
-      image: "./assets/resume1.png",
+      image: "https://i.ibb.co.com/ymZD3KKc/template3.png",
       title: "Unforgettable Moments",
       description:
         "Capture memories that will last a lifetime with our visuals.",
       buttonText: "Get Started",
+      background: "https://i.ibb.co.com/8L2s2krX/Chat-GPT-Image-Mar-31-2025-11-3.png",
     },
   ];
 
@@ -37,8 +40,14 @@ const Banner = () => {
   }, [slides.length]);
 
   return (
-    <div className="relative container  h-[900px] md:h-[650px]  bg-[url('https://i.ibb.co.com/8L2s2krX/Chat-GPT-Image-Mar-31-2025-11-3.png')] bg-cover bg-center  text-r-text flex flex-col md:flex-row items-center pt-[70px] pb-[80px] ">
-      <div className="absolute inset-0 bg-black opacity-60 z-0"></div>
+    <div
+  className="relative w-full h-[900px] md:h-[650px] bg-cover bg-center text-r-text flex flex-col md:flex-row items-center pt-[70px] pb-[80px]"
+  style={{
+    backgroundImage: `url(${slides[activeIndex].background})`,
+  }}
+><div className="absolute inset-0 bg-black opacity-60 z-0"></div>
+
+    <div className="relative container  h-[900px] md:h-[650px]  bg-[url('')] bg-cover bg-center  text-r-text flex flex-col md:flex-row items-center pt-[70px] pb-[80px] ">
       {/* Left Content (Changes Dynamically) */}
       <div
         key={activeIndex} // Forces re-render to trigger animation
@@ -50,15 +59,15 @@ const Banner = () => {
         </h1>
 
         {/* Description */}
-        <p className="text-lg text-r-accent mb-6 slide-up slide-up-p">
+        <p className="text-lg text-r-background mb-6 slide-up slide-up-p">
           {slides[activeIndex].description}
         </p>
 
         {/* Button */}
         <div className="space-x-5">
-          <button className="relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-bold  text-r-text bg-r-background rounded-lg group slide-up slide-up-btn">
+          <button className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-mono font-bold  text-r-text bg-r-background rounded-lg group slide-up slide-up-btn">
             <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-r-primary rounded-full group-hover:w-56 group-hover:h-56"></span>
-            <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-r-primary "></span>
+            <span className="absolute inset-0 w-full h-full  rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-r-primary "></span>
             <span className="relative">{slides[activeIndex].buttonText}</span>
           </button>
           <button className="relative    items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow hover:bg-white group slide-up slide-up-btn">
@@ -71,25 +80,25 @@ const Banner = () => {
       </div>
 
       {/* Slider img Section */}
-      <div className="relative w-full  lg:w-2/3 h-full flex justify-center  items-center">
+      <div className="relative w-full mt-8  lg:w-2/3 h-full flex justify-center  items-center">
         {slides.map((slide, index) => (
           <div
             key={index}
-            className={`absolute  mr-[-0px] lg:mr-[-100px]  w-full h-full flex justify-center items-center transition-opacity duration-700 ease-in-out ${
+            className={`absolute   mr-[-0px] lg:mr-[-80px]  w-full h-full flex justify-center items-center transition-opacity duration-700 ease-in-out ${
               index === activeIndex ? "opacity-100" : "opacity-0"
             }`}
           >
             <img
               src={slide.image}
               alt={`Slide ${index}`}
-              className="w-[80%] h-[80%] mr-[-0px] lg:mr-[-100px] sm:w-full sm:h-[70%] lg:w-[80%] lg:h-[80%] xl:w-[80%]  xl:h-[80%] object-contain lg:object-contain"
+              className="w-[80%] h-[90%] mt-20 sm:mt-0 mr-[-0px] lg:mr-[-80px] sm:w-full sm:h-[70%] lg:w-[80%] lg:h-[80%] xl:w-[80%]  xl:h-[80%] object-contain lg:object-contain"
             />
           </div>
         ))}
       </div>
 
       {/* Arrows */}
-      <div className="absolute top-5/12 sm:top-9/12 left-4   gap-5 flex justify-between z-10">
+      <div className="absolute top-5/12  sm:top-9/12  left-5  gap-5 flex justify-between z-10">
         <button
           className="bg-r-background p-3 rounded-full text-r-primary hover:shadow-r-primary shadow transition"
           onClick={() =>
@@ -120,6 +129,7 @@ const Banner = () => {
           />
         ))}
       </div> */}
+    </div>
     </div>
   );
 };

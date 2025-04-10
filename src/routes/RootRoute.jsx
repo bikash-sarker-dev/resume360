@@ -13,7 +13,6 @@ import DashboardLayouts from "../layouts/DashboardLayouts";
 import MainLayout from "../layouts/MainLayout";
 import AddInformation from "../pages/AddInformation";
 import BlogPage from "../pages/BlogPage";
-import ContactPage from "../pages/ContactPage";
 import ChatPage from "../pages/DashboardPage/ChatPage";
 import DashboardHomePage from "../pages/DashboardPage/DashboardHomePage";
 import DashboardUserPage from "../pages/DashboardPage/DashboardUserPage";
@@ -29,11 +28,13 @@ import PersonalInfoPage from "../pages/PersonalInfoPage";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import RegisterPage from "../pages/RegisterPage";
 import TemplatesPage from "../pages/TemplatesPage";
-import TermsAndConditionsPage from "../pages/TermsAndConditionsPage";
 import User from "../pages/User";
 import AboutPage from "./../pages/AboutPage";
 import FaqPage from "./../pages/FaqPage";
 import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
+
+import { Pricing } from "../pages/Pricing";
+import { SubscriptionDetail } from "../pages/SubscriptionDetail";
 
 const RootRoute = () => {
   return (
@@ -45,8 +46,9 @@ const RootRoute = () => {
         <Route path="/forgetPassword" element={<ForgetPasswordPage />} />
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/terms" element={<TermsAndConditionsPage />} />
+        <Route path="subscribe/:id" element={<SubscriptionDetail />} />
+        <Route path="/pricing" element={<Pricing></Pricing>} />
+
 
         {/* user page routes  */}
         <Route path="/user" element={<User />}>
