@@ -31,7 +31,7 @@ const renderStepContent = (step) => {
   }
 };
 
-const steps = ['Profile', 'Education', 'Experience', 'Project', 'Additional'];
+const steps = ['My Info', 'H Manage', 'Greeting', 'Body', 'Signature'];
 
 const StepperComponents = () => {
   const [activeStep, setActiveStep] = React.useState(0);
