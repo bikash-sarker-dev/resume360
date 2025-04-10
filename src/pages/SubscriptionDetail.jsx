@@ -54,7 +54,7 @@ export const SubscriptionDetail = () => {
       <div className="w-1/2">
         <label className="block text-sm font-medium text-gray-700 mb-1">Expiry Date</label>
         <input
-          type="text"
+          type="date"
           placeholder="MM/YY"
           className="input w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#0E7A81]"
         />
