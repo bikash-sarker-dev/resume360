@@ -1,6 +1,6 @@
 const TemplateFour = () => {
   return (
-    <div className="my-16  container mx-auto bg-white">
+    <div className="my-16 pt-20 container mx-auto bg-white">
       <div className="p-16">
         <h1 className="text-center text-4xl font-bold my-2">Emma Achern 4</h1>
         <h4 className="text-center text-2xl font-semibold">Chemist</h4>
