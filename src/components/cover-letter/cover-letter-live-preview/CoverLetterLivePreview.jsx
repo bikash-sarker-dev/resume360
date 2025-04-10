@@ -28,7 +28,10 @@ const CoverLetterLivePreview = () => {
         skillsAndQualifications: "I am also highly skilled in HTML, CSS, JavaScript, React, Node.js, Express, MongoDB, PHP, and Python. Additionally, I have experience in Photoshop, Figma, and other open-source design platforms, which allows me to bring a well-rounded perspective to both the front-end and design aspects of web development.",
         goodFit: "I would be thrilled to bring my expertise in web development, design, and problem-solving to TDCL. I am confident that my technical skills, coupled with my passion for creating impactful, user-centric web applications, would be a valuable asset to your team.",
         closing: "Thank you for considering my application. I look forward to the opportunity to discuss how my skills and experience align with the needs of your team. Please feel free to contact me at 01641378317 or via email at adnan.mahmud.pc@gmail.com.",
-        signature: "Sincerely, MD ADNAN MAHMUD"
+        ending: {
+            formalClosing: "Sincerely",
+            signature: "MD ADNAN MAHMUD"
+        }
     };
 
     const {
@@ -40,13 +43,12 @@ const CoverLetterLivePreview = () => {
         skillsAndQualifications,
         goodFit,
         closing,
-        signature
+        ending
     } = showDemo ? demoData : CoverLetterData;
 
-    const headerClass = "font-semibold mb-4";
     const textClass = "text-xs leading-relaxed";
 
-    const isEmpty = !personalInfo?.fullName && !hiringManager?.company && !greeting && !introduction && !professionalExperience && !skillsAndQualifications && !goodFit && !closing && !signature;
+    const isEmpty = !personalInfo?.fullName && !hiringManager?.company && !greeting && !introduction && !professionalExperience && !skillsAndQualifications && !goodFit && !closing && !ending;
 
     return (
         <div className="container pb-8 lg:pb-12">
@@ -65,77 +67,76 @@ const CoverLetterLivePreview = () => {
             ) : (
                 <div className="max-w-4xl mx-auto p-8 bg-white text-black shadow-lg rounded-lg mt-4">
                     {/* Personal Information */}
-                    <div className="text-center">
-                        <p className="text-lg font-bold text-gray-800">{personalInfo.fullName}</p>
-                        <p className="text-sm text-gray-600">{personalInfo.address}</p>
-                        <p className="text-sm text-gray-600">{personalInfo.cityZip}</p>
-                        <p className="text-sm text-gray-600">{personalInfo.email}</p>
-                        <p className="text-sm text-gray-600">{personalInfo.phone}</p>
-                        <p className="text-sm text-gray-600">
+                    <div className={`${textClass}`}>
+                        <p className="font-bold">{personalInfo.fullName}</p>
+                        <p className="">{personalInfo.address}</p>
+                        <p className="">{personalInfo.cityZip}</p>
+                        <p className="">{personalInfo.email}</p>
+                        <p className="">{personalInfo.phone}</p>
+                        <p className="">
                             <a href={`https://${personalInfo.linkedIn}`} className="text-blue-600">{personalInfo.linkedIn}</a>
                         </p>
-                        <p className="text-sm text-gray-600">
+                        <p className="">
                             <a href={personalInfo.portfolio} className="text-blue-600">{personalInfo.portfolio}</a>
                         </p>
                     </div>
 
-                    <div className="mt-6">
-                        <p className="text-sm text-gray-600 text-right">{personalInfo.date}</p>
+                    <div className={`${textClass}`}>
+                        <p className="">{personalInfo.date}</p>
                     </div>
 
                     {/* Hiring Manager Information */}
-                    <div className="mt-6">
-                        <p className="text-lg font-semibold text-gray-800">{hiringManager.name}</p>
-                        <p className="text-sm text-gray-600">{hiringManager.company}</p>
-                        <p className="text-sm text-gray-600">{hiringManager.address}</p>
-                        <p className="text-sm text-gray-600">{hiringManager.cityZip}</p>
+                    <div className={`${textClass} mt-6`}>
+                        <p className="font-semibold">{hiringManager.name}</p>
+                        <p className="">{hiringManager.company}</p>
+                        <p className="">{hiringManager.address}</p>
+                        <p className="">{hiringManager.cityZip}</p>
                     </div>
 
                     {/* Greeting */}
                     {greeting && (
-                        <p className={`${textClass} text-center mt-6 text-gray-800`}>{greeting}</p>
+                        <p className={`${textClass} mt-6`}>{greeting}</p>
                     )}
 
                     {/* Introduction */}
                     {introduction && (
-                        <p className={`${textClass} mt-4 text-gray-700`}>{introduction}</p>
+                        <p className={`${textClass} mt-4`}>{introduction}</p>
                     )}
 
                     {/* Professional Experience */}
                     {professionalExperience && (
                         <>
-                            <h2 className={headerClass}>Professional Experience</h2>
-                            <p className={`${textClass} text-gray-700`}>{professionalExperience}</p>
+                            <p className={`${textClass}`}>{professionalExperience}</p>
                         </>
                     )}
 
                     {/* Skills and Qualifications */}
                     {skillsAndQualifications && (
                         <>
-                            <h2 className={headerClass}>Skills and Qualifications</h2>
-                            <p className={`${textClass} text-gray-700`}>{skillsAndQualifications}</p>
+                            <p className={`${textClass}`}>{skillsAndQualifications}</p>
                         </>
                     )}
 
                     {/* Why You’re a Good Fit */}
                     {goodFit && (
                         <>
-                            <h2 className={headerClass}>Why I am a Good Fit</h2>
-                            <p className={`${textClass} text-gray-700`}>{goodFit}</p>
+                            <p className={`${textClass}`}>{goodFit}</p>
                         </>
                     )}
 
                     {/* Closing */}
                     {closing && (
                         <>
-                            <h2 className={headerClass}>Closing</h2>
-                            <p className={`${textClass} text-gray-700`}>{closing}</p>
+                            <p className={`${textClass}`}>{closing}</p>
                         </>
                     )}
 
                     {/* Signature */}
-                    {signature && (
-                        <p className={`${textClass} mt-4 text-right text-gray-700`}>{signature}</p>
+                    {ending && (
+                        <>
+                            <p className={`${textClass} mt-4`}>{ending.formalClosing},</p>
+                            <p className={`${textClass} `}>{ending.signature}</p>
+                        </>
                     )}
                 </div>
             )}
