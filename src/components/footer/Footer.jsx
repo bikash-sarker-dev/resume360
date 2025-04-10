@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-4 gap-16 text-center md:text-left">
         {/* Brand Section */}
 
-        <div className="text-3xl font-serif  flex flex-col  justify-center  ">
+        <div className="text-3xl font-serif  flex flex-col    ">
           <h1>
             Resumes<span className="font-bold text-r-primary">360</span>
           </h1>
@@ -49,7 +49,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className=" flex flex-col items-center justify-center">
+        <div className=" flex flex-col items-center ">
           <h3 className="text-xl mt-5 md:mt-0 font-semibold">Stay Connected</h3>
 
           <div className="mt-3 flex justify-center md:justify-start space-x-4">
