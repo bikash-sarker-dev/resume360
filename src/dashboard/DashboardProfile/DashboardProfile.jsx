@@ -5,101 +5,114 @@ import useAuth from "../../hooks/useAuth";
 
 import axios from "axios";
 import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const DashboardProfile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const auth = getAuth();
   const { user } = useAuth();
-  const [users, setUser] = useState({
-    photoURL:
-      user?.photoURL ||
-      "https://www.shutterstock.com/image-vector/male-default-avatar-profile-icon-600nw-1725062341.jpg",
-  });
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        setUser({ photoURL: currentUser.photoURL });
-        fetchUserProfile(currentUser.uid);
-      }
-    });
-  }, [auth]);
-
-  const handleImageUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const formData = new FormData();
-    formData.append("image", file);
-
-    try {
-      const response = await fetch(
-        `https://api.imgbb.com/1/upload?key=4aa34a6921e0ffee4d933681c503ef39`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
-      const data = await response.json();
-      if (data.success) {
-        const imageUrl = data.data.display_url;
-        console.log("Uploaded Image URL:", imageUrl);
-
-        // ✅ Update Local State
-        setUser({ ...users, photoURL: imageUrl });
-
-        // ✅ Update Firebase Authentication User
-        await updateProfile(user, {
-          photoURL: imageUrl,
-        });
-
-        alert("Image uploaded and profile updated successfully!");
-      } else {
-        alert("Image upload failed!");
-      }
-    } catch (error) {
-      console.error("Error uploading image:", error);
-    }
-  };
+  const [loading, setLoading] = useState(false);
 
   const [profile, setProfile] = useState({
     name: "",
-    email: "",
-    role: "",
     location: "",
+    role: "",
+    birthday: "",
+    gender: "",
+    phone: "",
+    email: "",
+    website: "",
     work: "",
     address: "",
     skills: [],
-    phone: "",
-    website: "",
-    birthday: "",
-    gender: "",
     progress: [{ description: "", year: "" }],
   });
 
-  const fetchUserProfile = async (userId) => {
+  const axiosPublic = useAxiosPublic();
+
+  useEffect(() => {
+    if (user?.uid) {
+      fetchUserProfile(user.uid);
+    }
+  }, [user]);
+
+  const createProfile = async () => {
+    console.log("Sending profile to backend:", profile);
+
     try {
-      const response = await axios.get(
-        `https://resume360-server.vercel.app/profile/${userId}`
-      );
-      const userData = response.data;
-      setProfile({
-        name: userData.name,
-        email: userData.email,
-        role: userData.role,
-        location: userData.location,
-        work: userData.work,
-        address: userData.address,
-        skills: userData.skills,
-        phone: userData.phone,
-        website: userData.website,
-        birthday: userData.birthday,
-        gender: userData.gender,
-        progress: userData.progress || [{ description: "", year: "" }],
+      const res = await axiosPublic.post("/profile", {
+        ...profile,
+        userId: user?.uid,
       });
+
+      setProfile(res.data.profile);
+    } catch (err) {
+      console.error("Error creating profile:", err);
+    }
+  };
+
+  const updateProfile = async () => {
+    try {
+      const res = await axiosPublic.put(`/profile/${profile._id}`, profile);
+      setProfile(res.data.profile);
+    } catch (err) {
+      console.error("Error updating profile:", err);
+    }
+  };
+
+  console.log(user?.email);
+  const fetchUserProfile = async (uid) => {
+    try {
+      setLoading(true);
+      const email = user.email;
+      const res = await axiosPublic.get(`/profile/${email}`);
+
+      if (res.data && res.data.result) {
+        setProfile(res.data.result);
+      }
+    } catch (err) {
+      console.error("Error fetching profile:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      if (profile?._id) {
+        await updateProfile();
+        Swal.fire({
+          icon: "success",
+          title: "Updated!",
+          text: "Your profile was successfully updated.",
+          timer: 2000,
+          showConfirmButton: false,
+        });
+      } else {
+        await createProfile();
+        Swal.fire({
+          icon: "success",
+          title: "Created!",
+          text: "Your profile was successfully created.",
+          timer: 2000,
+          showConfirmButton: false,
+        });
+      }
+
+      await fetchUserProfile(user.uid);
+      setIsModalOpen(false);
     } catch (error) {
-      console.error("Error fetching user profile:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -128,46 +141,34 @@ const DashboardProfile = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      // If profile exists, update, else create a new profile
-      if (profile.id) {
-        await axios.put(
-          `https://resume360-server.vercel.app/profile/${profile.id}`,
-          profile
-        );
-        alert("Profile updated successfully!");
-      } else {
-        await axios.post(
-          "https://resume360-server.vercel.app/profile",
-          profile
-        );
-        alert("Profile created successfully!");
-      }
-      setIsModalOpen(false); // Close the modal
-    } catch (error) {
-      console.error("Error saving profile:", error);
-      alert("Error saving profile. Please try again.");
-    }
-  };
-
   const addProgressEntry = () => {
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      progress: [...prevProfile.progress, { description: "", year: "" }],
-    }));
+    setProfile((prevProfile) => {
+      if (!prevProfile) return prevProfile;
+
+      return {
+        ...prevProfile,
+        progress: Array.isArray(prevProfile.progress)
+          ? [...prevProfile.progress, { description: "", year: "" }]
+          : [{ description: "", year: "" }],
+      };
+    });
   };
 
   return (
     <div className="bg-r-primary/20 pt-0 sm:pt-5 min-h-screen backdrop-blur-lg">
-      <div className="w-11/12 mx-auto p-6 shadow-xl rounded-xl grid md:grid-cols-3 gap-6 bg-gradient-to-br from-r-info via-r-card to-r-info text-r-text">
+      {loading && (
+        <div className="text-center py-4">
+          <span className="loading loading-spinner loading-md text-blue-600"></span>
+          <p>Loading...</p>
+        </div>
+      )}
+
+      <div className="w-11/12 container mx-auto p-6 shadow-xl rounded-xl grid md:grid-cols-3 gap-6 bg-gradient-to-br from-r-info via-r-card to-r-info text-r-text">
         <div className="pt-4 rounded-xl bg-opacity-30 sm:min-w-50 backdrop-blur-xl shadow-lg border border-primary/50 relative overflow-hidden">
           <div className="flex items-center justify-center">
             <div className="relative">
               <img
-                src={users.photoURL}
+                src={user?.photoURL}
                 className="rounded-full xl:h-60 xl:w-60 md:h-40 md:w-40 h-80 w-80 object-cover border border-primary/50 hover:scale-105 transition-transform duration-300"
                 alt="Profile photo"
               />
@@ -181,39 +182,42 @@ const DashboardProfile = () => {
                 id="upload-image"
                 accept="image/*"
                 style={{ display: "none" }}
-                onChange={handleImageUpload}
+                // onChange={handleImageUpload}
               />
             </div>
           </div>
           <div className="mt-6 p-5 space-y-2">
             <h3 className="text-lg font-bold text-purple-400">Work</h3>
-            <p className="text-r-text">{profile.work}</p>
-            <p className="text-r-text">{profile.address}</p>
+            <p className="text-r-text">{profile?.work}</p>
+            <p className="text-r-text">{profile?.address}</p>
           </div>
           <div className=" p-5">
             <h3 className="text-lg font-bold text-purple-400">Skills</h3>
             <p className="text-r-text flex flex-wrap  gap-3">
-              {profile.skills.map((skill) => (
-                <h1 className="shadow-md  w-max py-1 px-3 rounded-2xl bg-r-info ">
+              {(profile?.skills || []).map((skill, index) => (
+                <span
+                  key={index}
+                  className="shadow-md  w-max py-1 px-3 rounded-2xl bg-r-info "
+                >
                   {skill}
-                </h1>
+                </span>
               ))}
             </p>
           </div>
         </div>
 
         <div className="md:col-span-2">
-          <div className="flex items-center justify-between border-b border-primary/50 pb-4">
+          <div className="flex items-center  justify-between border-b border-primary/50 pb-4">
             <div>
               <h2 className="text-3xl font-extrabold text-r-text">
-                {profile.name}
+                {profile?.name}
               </h2>
               <p className="text-r-text flex items-center mt-1">
                 <FaMapMarkerAlt className="mr-2 text-purple-400" />{" "}
-                {profile.location}
+                {profile?.location}
               </p>
               <p className="text-blue-400 text-lg font-semibold">
-                {profile.role}
+                {profile?.role}
               </p>
             </div>
             <button
@@ -229,13 +233,13 @@ const DashboardProfile = () => {
               Contact Information
             </h3>
             <p className="flex items-center text-r-text mt-2">
-              <FiPhone className="mr-2 text-blue-400" /> {profile.phone}
+              <FiPhone className="mr-2 text-blue-400" /> {profile?.phone}
             </p>
             <p className="flex items-center text-r-text mt-2">
-              <FiMail className="mr-2 text-blue-400" /> {profile.email}
+              <FiMail className="mr-2 text-blue-400" /> {profile?.email}
             </p>
             <a
-              href={profile.website}
+              href={profile?.website}
               className="border-b border-blue-500 text-blue-600"
             >
               my protfolio
@@ -246,8 +250,8 @@ const DashboardProfile = () => {
             <h3 className="text-lg font-bold text-purple-400">
               Basic Information
             </h3>
-            <p className="text-r-text">Birthday: {profile.birthday}</p>
-            <p className="text-r-text">Gender: {profile.gender}</p>
+            <p className="text-r-text">Birthday: {profile?.birthday}</p>
+            <p className="text-r-text">Gender: {profile?.gender}</p>
           </div>
 
           <div className="mt-6 p-6 rounded-xl bg-opacity-30 backdrop-blur-xl border border-primary/50 shadow-lg">
@@ -255,7 +259,7 @@ const DashboardProfile = () => {
               Career Progress
             </h3>
             <ul className="mt-3 space-y-3">
-              {profile.progress.map((item, index) => (
+              {(profile?.progress || []).map((item, index) => (
                 <li
                   key={index}
                   className={`border-l-4 border-${item.color} pl-4 text-r-text`}
@@ -269,8 +273,8 @@ const DashboardProfile = () => {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 flex mt-[-500px] md:mt-0 pt-0 md:pt-40 items-center justify-center bg-r-background bg-opacity-50 z-50">
-          <div className="bg-gradient-to-br from-r-info via-r-card to-r-info p-6 rounded-lg shadow-lg w-10/12 relative">
+        <div className="fixed inset-0  flex mt-[-400px] md:mt-0 pt-0   items-center justify-center bg-r-background bg-opacity-50 z-50">
+          <div className="bg-gradient-to-br container from-r-info  via-r-card to-r-info p-6 rounded-lg shadow-lg w-10/12 relative">
             <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-2 right-2 text-r-text text-xl"
@@ -278,142 +282,154 @@ const DashboardProfile = () => {
               <FaTimes className="h-10 w-10" />
             </button>
             <h2 className="text-xl font-bold mb-4">Edit Profile</h2>
-            <form onSubmit={handleSubmit} className="space-y-3">
+            <form
+              onSubmit={handleSubmit}
+              className="grid grid-cols-1 md:grid-cols-2 gap-4"
+            >
               <input
                 type="text"
                 name="name"
-                value={profile.name}
+                value={profile?.name}
                 onChange={handleChange}
                 placeholder="Name"
-                className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
+                className="bg-transparent p-2 focus:outline-none border-b border-r-primary"
               />
               <input
                 type="text"
                 name="location"
-                value={profile.location}
+                value={profile?.location}
                 onChange={handleChange}
                 placeholder="Location"
-                className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
+                className="bg-transparent p-2 focus:outline-none border-b border-r-primary"
               />
               <input
                 type="text"
                 name="role"
-                value={profile.role}
+                value={profile?.role}
                 onChange={handleChange}
                 placeholder="Role"
-                className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
+                className="bg-transparent p-2 focus:outline-none border-b border-r-primary"
               />
-
               <input
                 type="text"
                 name="birthday"
-                value={profile.birthday}
+                value={profile?.birthday}
                 onChange={handleChange}
                 placeholder="Birthday"
-                className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
+                className="bg-transparent p-2 focus:outline-none border-b border-r-primary"
               />
               <select
                 name="gender"
-                value={profile.gender}
+                value={profile?.gender}
                 onChange={handleChange}
-                className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
+                className="bg-transparent p-2 focus:outline-none border-b border-r-primary"
               >
                 <option value="">Select Gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Other">Other</option>
               </select>
-
               <input
                 type="text"
                 name="phone"
-                value={profile.phone}
+                value={profile?.phone}
                 onChange={handleChange}
                 placeholder="Phone"
-                className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
+                className="bg-transparent p-2 focus:outline-none border-b border-r-primary"
               />
               <input
                 type="text"
                 name="email"
-                value={profile.email}
+                value={profile?.email}
                 onChange={handleChange}
                 placeholder="Email"
-                className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
+                className="bg-transparent p-2 focus:outline-none border-b border-r-primary"
               />
               <input
                 type="text"
                 name="website"
-                value={profile.website}
+                value={profile?.website}
                 onChange={handleChange}
                 placeholder="Website"
-                className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
+                className="bg-transparent p-2 focus:outline-none border-b border-r-primary"
               />
-
               <input
                 type="text"
                 name="work"
-                value={profile.work}
+                value={profile?.work}
                 onChange={handleChange}
                 placeholder="Workplace"
-                className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
+                className="bg-transparent p-2 focus:outline-none border-b border-r-primary"
               />
               <input
                 type="text"
                 name="address"
-                value={profile.address}
+                value={profile?.address}
                 onChange={handleChange}
                 placeholder="Work Address"
-                className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
+                className="bg-transparent p-2 focus:outline-none border-b border-r-primary"
               />
-
               <input
                 type="text"
                 name="skills"
                 value={
-                  Array.isArray(profile.skills)
-                    ? profile.skills.join(", ")
-                    : profile.skills
+                  Array.isArray(profile?.skills)
+                    ? profile?.skills.join(", ")
+                    : profile?.skills
                 }
                 onChange={handleChange}
                 placeholder="Skills (comma-separated)"
-                className="w-full bg-transparent p-2 focus:outline-none border-b border-r-primary"
+                className="bg-transparent p-2 focus:outline-none border-b border-r-primary md:col-span-2"
               />
 
-              {profile.progress.map((item, index) => (
-                <div key={index} className="flex space-x-2">
-                  <input
-                    type="text"
-                    value={item.description}
-                    onChange={(e) =>
-                      handleProgressChange(index, "description", e.target.value)
-                    }
-                    className="w-3/4 bg-transparent p-2 focus:outline-none border-b border-r-primary"
-                  />
-                  <input
-                    type="text"
-                    value={item.year}
-                    onChange={(e) =>
-                      handleProgressChange(index, "year", e.target.value)
-                    }
-                    className="w-1/4 bg-transparent p-2 focus:outline-none border-b border-r-primary"
-                  />
-                </div>
-              ))}
+              <div className="md:col-span-2 space-y-2">
+                {(profile?.progress || []).map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2"
+                  >
+                    <input
+                      type="text"
+                      value={item.description}
+                      placeholder="progress description"
+                      onChange={(e) =>
+                        handleProgressChange(
+                          index,
+                          "description",
+                          e.target.value
+                        )
+                      }
+                      className="flex-1 bg-transparent p-2 focus:outline-none border-b border-r-primary"
+                    />
+                    <input
+                      type="text"
+                      value={item.year}
+                      placeholder="year / duration"
+                      onChange={(e) =>
+                        handleProgressChange(index, "year", e.target.value)
+                      }
+                      className="w-1/3 md:w-1/4 bg-transparent p-2 focus:outline-none border-b border-r-primary"
+                    />
+                  </div>
+                ))}
+              </div>
 
-              <button
-                type="button"
-                onClick={addProgressEntry}
-                className="px-4 py-1 bg-white text-teal-600 font-medium rounded-md hover:bg-gray-100"
-              >
-                + Add Progress
-              </button>
+              <div className="md:col-span-2 flex justify-start space-x-3">
+                <button
+                  type="button"
+                  onClick={addProgressEntry}
+                  className="px-4 py-2 bg-white duration-500 hover:shadow-lg hover:text-r-text text-r-primary font-medium rounded-md hover:bg-r-background"
+                >
+                  + Add Progress
+                </button>
 
-              <button
-                type="submit"
-                className="px-4 py-2 bg-white text-teal-600 font-bold rounded-md hover:bg-gray-100"
-              >
-                Save
-              </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-white duration-500 hover:shadow-lg hover:text-r-text text-r-primary font-bold rounded-md hover:bg-r-background"
+                >
+                  Save
+                </button>
+              </div>
             </form>
           </div>
         </div>
