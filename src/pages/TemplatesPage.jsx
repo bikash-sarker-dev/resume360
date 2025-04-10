@@ -3,9 +3,31 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import SectionHead from "../components/header/section-head/SectionHead";
 import { TemplateTab } from "../components/TemplatePage/TemplateTab";
+import ButtonTemplate from "../components/home/pro-Templates/ButtonTemplate";
 
 const TemplatesPage = () => {
   const [templetes, setTemplates] = useState([]);
+   let [resumebtn, setResume] = useState(true);
+    let [cvbtn, setCv] = useState(false);
+    let [coverLetterbtn, setCoverLetter] = useState(false);
+  
+    const handleResume = () => {
+      setResume(true);
+      setCv(false);
+      setCoverLetter(false);
+    };
+    const handleCv = () => {
+      setResume(false);
+      setCoverLetter(false);
+      setCv(true);
+    };
+  
+    const handleCoverLetter = () => {
+      setResume(false);
+      setCv(false);
+      setCoverLetter(true);
+    };
+  
   useEffect(() => {
     fetch("/templetes.json")
       .then((res) => res.json())
@@ -25,32 +47,34 @@ const TemplatesPage = () => {
         title="All Templates"
       ></SectionHead>
 
-      <div>
-        <Tabs>
-          <div>
-            <TabList>
-              <Tab>Resume</Tab>
-              <Tab>Cover Letter</Tab>
-              <Tab>CV</Tab>
-            </TabList>
-          </div>
+     
 
-          {/* Resume Tab */}
-          <TabPanel>
-            <TemplateTab title="Resume" templates={resume} />
-          </TabPanel>
 
-          {/* Cover Letter Tab */}
-          <TabPanel>
-            <TemplateTab title="Cover Letter" templates={coverLetter} />
-          </TabPanel>
+<div>
+  <div className="flex gap-4 justify-center my-8">
+    <button onClick={handleResume} className="py-7 w-40 btn bg-r-primary rounded-full  ">Resume</button>
+    <button  onClick={handleCv}
+    className="btn py-7  w-40 bg-r-primary rounded-full 
+   ">CV</button>
+    <button onClick={handleCoverLetter} className="btn w-40 py-7 bg-r-primary rounded-full 
+   ">Cover Letter</button>
+  </div>
+</div>
+<div>
 
-          {/* CV Tab */}
-          <TabPanel>
-            <TemplateTab title="CV" templates={cv} />
-          </TabPanel>
-        </Tabs>
-      </div>
+    {
+      resumebtn &&  <TemplateTab title="Resume" templates={resume} />
+    }
+    {
+      cvbtn &&     <TemplateTab title="CV" templates={cv} />
+    }
+    {
+     coverLetterbtn &&    <TemplateTab title="Cover Letter" templates={coverLetter} />
+    }
+
+</div>
+
+     
     </div>
   );
 };

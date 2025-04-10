@@ -33,6 +33,7 @@ import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
 import DashboardProfile from "../dashboard/DashboardProfile/DashboardProfile";
 
 import { SubscriptionDetail } from "../pages/SubscriptionDetail";
+import { Pricing } from "../pages/Pricing";
 
 const RootRoute = () => {
   return (
@@ -45,6 +46,7 @@ const RootRoute = () => {
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="subscribe/:id" element={<SubscriptionDetail/>}/>
+        <Route path="/pricing" element={<Pricing></Pricing>} />
 
 
 
