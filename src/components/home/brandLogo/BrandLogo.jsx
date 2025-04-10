@@ -9,7 +9,7 @@ import logo6 from "../../../assets/images/brandlogo/skill-logo.png";
 
 const BrandLogo = () => {
   return (
-    <div className="bg-r-info-card py-28">
+    <div className="bg-r-info-card py-16">
       <Marquee>
         <div className=" flex space-x-5 ">
           <div className="max-w-64 border rounded-md p-1  bg-r-background">

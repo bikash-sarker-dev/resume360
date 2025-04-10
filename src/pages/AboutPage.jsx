@@ -5,8 +5,11 @@ import OurMission from "../components/about/ourMission/OurMission";
 import OurTeam from "../components/about/ourTeam/OurTeam";
 import OurValues from "../components/about/ourValues/OurValues";
 import Trusted from "../components/about/trusted/Trusted";
+import useAuth from "./../hooks/useAuth";
 
 const AboutPage = () => {
+  const { user } = useAuth();
+  console.log(user.uid);
   return (
     <div>
       <ConnectingPeople></ConnectingPeople>
