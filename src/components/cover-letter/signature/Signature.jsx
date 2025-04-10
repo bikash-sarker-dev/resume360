@@ -23,7 +23,6 @@ const Signature = () => {
         value={signature}
         onChange={(e) => handleChange(e)}
         helperText="Add your signature."
-        multiline
         rows={4}
       />
     </div>
