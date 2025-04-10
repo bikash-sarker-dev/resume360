@@ -3,10 +3,9 @@ import { FaCamera, FaEdit, FaMapMarkerAlt, FaTimes } from "react-icons/fa";
 import { FiMail, FiPhone } from "react-icons/fi";
 import useAuth from "../../hooks/useAuth";
 
-import axios from "axios";
-import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { getAuth } from "firebase/auth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const DashboardProfile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
