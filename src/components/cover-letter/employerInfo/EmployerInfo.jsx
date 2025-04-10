@@ -9,6 +9,7 @@ const EmployerInfo = () => {
   const [employerName] = useState(CoverLetterData.employer.name || '');
   const [company] = useState(CoverLetterData.employer.company || '');
   const [address] = useState(CoverLetterData.employer.address || '');
+  const [cityZip] = useState(CoverLetterData.employer.cityZip || '');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,29 +17,37 @@ const EmployerInfo = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 px-4 space-y-5 mt-5">
+    <div className="grid grid-cols-2 px-4 gap-4 mt-5">
       <TextField
-        className="w-full"
+        className="col-span-2"
         required
         name="name"
-        label="Employer Name"
+        label="Hiring Manager's Name"
         value={employerName}
         onChange={(e) => handleChange(e)}
       />
       <TextField
-        className="w-full"
+        className="col-span-2"
         required
         name="company"
-        label="Company"
+        label="Company Name"
         value={company}
         onChange={(e) => handleChange(e)}
       />
       <TextField
-        className="w-full"
+        className=""
         required
         name="address"
         label="Company Address"
         value={address}
+        onChange={(e) => handleChange(e)}
+      />
+      <TextField
+        className=""
+        required
+        name="cityZip"
+        label="City, Zip Code"
+        value={cityZip}
         onChange={(e) => handleChange(e)}
       />
     </div>
