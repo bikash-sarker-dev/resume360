@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router";
 
 import React from "react";
+import CoverOne from "../components/DefaultCoverLetterTemplates/CoverOne";
 import TemplateOne from "../components/DefaultTemplates/TemplateOne";
 import Userabout from "../components/user/Userabout";
 import UserEducation from "../components/user/UserEducation";
@@ -23,20 +24,19 @@ import OrderListPage from "../pages/DashboardPage/OrderListPage";
 import ReviewsPage from "../pages/DashboardPage/ReviewsPage";
 import SecurityPage from "../pages/DashboardPage/SecurityPage";
 import ErrorPage from "../pages/ErrorPage";
+import FeaturesPage from "../pages/FeaturesPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import PersonalInfoPage from "../pages/PersonalInfoPage";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import RegisterPage from "../pages/RegisterPage";
+import SocialMiddlewarePage from "../pages/SocialMiddlewarePage";
 import TemplatesPage from "../pages/TemplatesPage";
 import TermsAndConditionsPage from "../pages/TermsAndConditionsPage";
 import User from "../pages/User";
 import AboutPage from "./../pages/AboutPage";
 import FaqPage from "./../pages/FaqPage";
 import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
-import FeaturesPage from "../pages/FeaturesPage";
-import SocialMiddlewarePage from "../pages/SocialMiddlewarePage";
-import CoverOne from "../components/DefaultCoverLetterTemplates/CoverOne";
 
 const RootRoute = () => {
   return (
@@ -52,7 +52,7 @@ const RootRoute = () => {
         <Route path="/terms" element={<TermsAndConditionsPage />} />
         <Route path="/features" element={<FeaturesPage />} />
         <Route path="/socialMiddleware" element={<SocialMiddlewarePage />} />
-        <Route path="/coverOne" element={<CoverOne/>} />
+        <Route path="/coverOne" element={<CoverOne />} />
 
         {/* user page routes  */}
         <Route path="/user" element={<User />}>

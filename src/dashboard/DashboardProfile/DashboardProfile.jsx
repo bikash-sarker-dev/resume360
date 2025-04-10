@@ -4,7 +4,7 @@ import { FiMail, FiPhone } from "react-icons/fi";
 import useAuth from "../../hooks/useAuth";
 
 import axios from "axios";
-import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const DashboardProfile = () => {
@@ -17,16 +17,13 @@ const DashboardProfile = () => {
       "https://www.shutterstock.com/image-vector/male-default-avatar-profile-icon-600nw-1725062341.jpg",
   });
 
-  const axiosPublic = useAxiosPublic()
-
-
+  const axiosPublic = useAxiosPublic();
 
   useEffect(() => {
     if (user && user.uid) {
       fetchUserProfile(user.uid);
     }
   }, [user]);
-  
 
   // useEffect(() => {
   //   onAuthStateChanged(auth, (currentUser) => {
@@ -76,13 +73,13 @@ const DashboardProfile = () => {
 
   const [profile, setProfile] = useState(null);
 
-  const fetchUserProfile = async (userId ) => {
+  const fetchUserProfile = async (userId) => {
     try {
       const response = await axios.get(
-        `https://resume360-server.vercel.app/profile/${userId }`
+        `https://resume360-server.vercel.app/profile/${userId}`
       );
       const userData = response.data;
-  
+
       if (userData) {
         setProfile({
           name: userData.name || "",
@@ -97,7 +94,7 @@ const DashboardProfile = () => {
           birthday: userData.birthday || "",
           gender: userData.gender || "",
           progress: userData.progress || [{ description: "", year: "" }],
-          id: userData._id, 
+          id: userData._id,
         });
       }
     } catch (error) {
@@ -134,19 +131,14 @@ const DashboardProfile = () => {
     e.preventDefault();
     console.log(" Profile before submit:", profile);
 
-    
     try {
       if (profile?.id) {
-        await axiosPublic.put(
-          `/profile/${profile.id}`,
-          profile
-        );
+        let res = await axiosPublic.put(`/profile/${profile.id}`, profile);
+        console.log(res);
         alert("Profile updated successfully!");
       } else {
-        await axiosPublic.post(
-          "/profile",
-          profile
-        );
+        let res = await axiosPublic.post("/profile", profile);
+        console.log(res);
         alert("Profile created successfully!");
       }
       setIsModalOpen(false);
@@ -156,13 +148,10 @@ const DashboardProfile = () => {
     }
   };
 
-
-  
-
   const addProgressEntry = () => {
     setProfile((prevProfile) => {
       if (!prevProfile) return prevProfile;
-  
+
       return {
         ...prevProfile,
         progress: Array.isArray(prevProfile.progress)
@@ -206,7 +195,10 @@ const DashboardProfile = () => {
             <h3 className="text-lg font-bold text-purple-400">Skills</h3>
             <p className="text-r-text flex flex-wrap  gap-3">
               {(profile?.skills || []).map((skill, index) => (
-                <h1 key={index} className="shadow-md  w-max py-1 px-3 rounded-2xl bg-r-info ">
+                <h1
+                  key={index}
+                  className="shadow-md  w-max py-1 px-3 rounded-2xl bg-r-info "
+                >
                   {skill}
                 </h1>
               ))}
