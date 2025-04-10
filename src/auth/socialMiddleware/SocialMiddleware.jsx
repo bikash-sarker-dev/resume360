@@ -2,11 +2,22 @@ import React, { useState } from 'react'
 import SectionHead from '../../components/header/section-head/SectionHead'
 import { useNavigate } from 'react-router';
 import useAuth from '../../hooks/useAuth';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 export default function SocialMiddleware() {
     const {setUser, user} = useAuth();
     const navigate = useNavigate();
     const [conditions, setConditions] = useState(false);
+    const [profession, setProfession] = useState("");
+    const [showInput, setShowInput] = useState(false);
+    const axiosPublic = useAxiosPublic();
+
+    const handleSelectChange =(event) => {
+        const selectedValue = event.target.value;
+        setProfession(selectedValue);
+        setShowInput(selectedValue === "others");
+      };
 
     const handleSave = (event) => {
         event.preventDefault();
@@ -14,12 +25,25 @@ export default function SocialMiddleware() {
         const form = event.target;
         const name = form.name.value;
         const profession = form.profession.value;
+        const image = form.image.value;
         const email = form.email.value;
         const terms = true;
 
-        const data = { name, profession, email, terms };
+        const data = { name, profession, image, email, terms };
         // console.log(data);
-        navigate('/')
+
+        axiosPublic.post("/users", data).then((res) => {
+            if (res.data.message) {
+            form.reset();
+            Swal.fire({
+            title: "Success",
+            text: "successfully Updated Data",
+            icon: "success",
+            confirmButtonText: "Done",
+             });
+            navigate("/");
+            }
+        });
     }
   return (
     <div className="card w-11/12 md:w-7/12 mx-auto">
@@ -44,21 +68,47 @@ export default function SocialMiddleware() {
                 <i className="fa-solid fa-user"></i>
                 </span>
                 </div>
-    
-                <label className="fieldset-label">Profession</label>  
-                <div className="relative">
+
+                <label className="fieldset-label">Profession</label>
+                  <select
+                    defaultValue="default"
+                    className="select select-bordered w-full"
+                    name="profession"
+                    required
+                    onChange={handleSelectChange}
+                  >
+                    <option disabled value="default">
+                      select profession
+                    </option>
+                    <option value="web developer">Web Developer</option>
+                    <option value="teacher">Teacher</option>
+                    <option value="ui/ux designer">UI/UX Designer</option>
+                    <option value="mechanical engineer">Mechanical Engineer</option>
+                    <option value="chemist">Chemist</option>
+                    <option value="others">Others</option>
+                  </select>
+                  
+                  {showInput && (
+                  <input
+                  type="text"
+                  className="input input-bordered w-full mt-2"
+                  placeholder="Enter your profession"
+                  value={profession}
+                  onChange={(e) => setProfession(e.target.value)}
+                  />
+                  )}
+                
+                <label className="fieldset-label">Image</label>
                 <input
                 type="text"
-                name="profession"
+                name="image"
                 className="input w-full pr-10"
-                placeholder="Enter Your Profession"
+                placeholder="Enter Your Image"
+                defaultValue={user.photoURL}
                 required
+                readOnly
                 />
-                <span className="absolute inset-y-0 right-3 flex items-center text-gray-500">
-                <i className="fa-solid fa-user-tie"></i>
-                </span>
-                </div>
-    
+
                 <label className="fieldset-label">Email</label>
                 <div className="relative">
                 <input
@@ -96,7 +146,7 @@ export default function SocialMiddleware() {
                 </>
                 ) : (
                 <>
-                <button disabled className="btn bg-r-accent mt-4 text-white">Save</button>
+                <button disabled className="btn bg-r-accent mt-4 text-black">Save</button>
                 </>
                 )}
             </fieldset>
