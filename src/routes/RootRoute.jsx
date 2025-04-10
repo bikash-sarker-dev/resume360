@@ -34,7 +34,12 @@ import FaqPage from "./../pages/FaqPage";
 import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
 
 import { Pricing } from "../pages/Pricing";
+import SocialMiddlewarePage from "../pages/SocialMiddlewarePage";
 import { SubscriptionDetail } from "../pages/SubscriptionDetail";
+import CoverOne from "./../components/DefaultCoverLetterTemplates/CoverOne";
+import ContactPage from "./../pages/ContactPage";
+import FeaturesPage from "./../pages/FeaturesPage";
+import TermsAndConditionsPage from "./../pages/TermsAndConditionsPage";
 
 const RootRoute = () => {
   return (
@@ -48,7 +53,11 @@ const RootRoute = () => {
         <Route path="/about" element={<AboutPage />} />
         <Route path="subscribe/:id" element={<SubscriptionDetail />} />
         <Route path="/pricing" element={<Pricing></Pricing>} />
-
+        <Route path="/terms" element={<TermsAndConditionsPage />} />
+        <Route path="/features" element={<FeaturesPage />} />
+        <Route path="/socialMiddleware" element={<SocialMiddlewarePage />} />
+        <Route path="/coverOne" element={<CoverOne />} />
+        <Route path="/contact" element={<ContactPage />} />
 
         {/* user page routes  */}
         <Route path="/user" element={<User />}>
