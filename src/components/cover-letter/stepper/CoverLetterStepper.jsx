@@ -12,6 +12,7 @@ import ErrorPage from '../../../pages/ErrorPage';
 import CoverLetterLivePreview from '../cover-letter-live-preview/CoverLetterLivePreview';
 import CoverLetterBody from '../cover-letter-body/CoverLetterBody';
 import Signature from '../signature/Signature'
+import CoverLetterDownload from '../cover-letter-download/CoverLetterDownload';
 
 const renderStepContent = (step) => {
   switch (step) {
@@ -30,7 +31,7 @@ const renderStepContent = (step) => {
   }
 };
 
-const steps = ['My Info', 'H Manage', 'Greeting', 'Body', 'Signature'];
+const steps = ['My Info', 'HR', 'Greeting', 'Body', 'Signature'];
 
 const StepperComponents = () => {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -89,7 +90,7 @@ const StepperComponents = () => {
           <React.Fragment>
             <Typography sx={{ mt: 2, mb: 1 }}>
               <Box>
-                {/* <ResumeDownload></ResumeDownload> */}
+                <CoverLetterDownload/>
               </Box>
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
