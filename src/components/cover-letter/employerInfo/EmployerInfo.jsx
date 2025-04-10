@@ -3,7 +3,6 @@ import { TextField } from '@mui/material';
 import { useState, useContext } from 'react';
 import { CoverLetterContext } from '../../../contextApi/coverletter-context/CoverLetterContext';
 
-
 const EmployerInfo = () => {
   const { CoverLetterData, updateSection } = useContext(CoverLetterContext);
   const [employerName] = useState(CoverLetterData.employer.name || '');
@@ -24,7 +23,8 @@ const EmployerInfo = () => {
         name="name"
         label="Hiring Manager's Name"
         value={employerName}
-        onChange={(e) => handleChange(e)}
+        onChange={handleChange}
+        helperText="Enter the full name of the person you’re addressing."
       />
       <TextField
         className="col-span-2"
@@ -32,23 +32,24 @@ const EmployerInfo = () => {
         name="company"
         label="Company Name"
         value={company}
-        onChange={(e) => handleChange(e)}
+        onChange={handleChange}
+        helperText="Enter the official name of the organization."
       />
       <TextField
-        className=""
         required
         name="address"
         label="Company Address"
         value={address}
-        onChange={(e) => handleChange(e)}
+        onChange={handleChange}
+        helperText="Enter the street address or office location."
       />
       <TextField
-        className=""
         required
         name="cityZip"
         label="City, Zip Code"
         value={cityZip}
-        onChange={(e) => handleChange(e)}
+        onChange={handleChange}
+        helperText="Enter the city and postal code (e.g., New York, NY 10001)."
       />
     </div>
   );
