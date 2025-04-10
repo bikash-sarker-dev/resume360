@@ -49,6 +49,7 @@ const RootRoute = () => {
         <Route path="subscribe/:id" element={<SubscriptionDetail />} />
         <Route path="/pricing" element={<Pricing></Pricing>} />
 
+
         {/* user page routes  */}
         <Route path="/user" element={<User />}>
           <Route index element={<Userabout />} />
