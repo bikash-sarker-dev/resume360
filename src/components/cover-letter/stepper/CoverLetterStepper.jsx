@@ -64,7 +64,7 @@ const StepperComponents = () => {
   };
 
   return (
-    <div className="grid grid-cols-2">
+    <div className="grid grid-cols-1 md:grid-cols-2">
       <Box className="mb-10 bg-white py-10 px-6 shadow-xl" sx={{ width: '100%' }}>
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map((label, index) => {
@@ -124,7 +124,7 @@ const StepperComponents = () => {
           </React.Fragment>
         )}
       </Box>
-      <div>
+      <div className='hidden md:block'>
         <CoverLetterLivePreview />
       </div>
     </div>

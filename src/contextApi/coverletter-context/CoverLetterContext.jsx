@@ -1,19 +1,55 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
+import useAuth from '../../hooks/useAuth';
 
 export const CoverLetterContext = createContext();
 
 const CoverLetterProvider = ({ children }) => {
-  const [CoverLetterData, setCoverLetterData] = useState({
-    personalInfo: [],
-    hiringManager: [],
+  const { user } = useAuth();
+
+  const initialData = {
+    personalInfo: {
+      userId: '', // default empty, set later
+      fullName: '',
+      address: '',
+      cityZip: '',
+      email: '',
+      phone: '',
+      linkedIn: '',
+      portfolio: '',
+      date: '',
+    },
+    hiringManager: {
+      name: '',
+      company: '',
+      address: '',
+      cityZip: '',
+    },
     greeting: '',
     introduction: '',
     professionalExperience: '',
     skillsAndQualifications: '',
     goodFit: '',
     closing: '',
-    ending: [],
-  });
+    ending: {
+      formalClosing: '',
+      signature: '',
+    },
+  };
+
+  const [CoverLetterData, setCoverLetterData] = useState(initialData);
+
+  // Update userId when user becomes available
+  useEffect(() => {
+    if (user?.uid) {
+      setCoverLetterData((prev) => ({
+        ...prev,
+        personalInfo: {
+          ...prev.personalInfo,
+          userId: user.uid,
+        },
+      }));
+    }
+  }, [user]);
 
   const updateSection = (section, data) => {
     setCoverLetterData((prev) => ({
@@ -24,15 +60,11 @@ const CoverLetterProvider = ({ children }) => {
 
   const resetCoverLetterData = () => {
     setCoverLetterData({
-      personalInfo: [],
-      hiringManager: [],
-      greeting: '',
-      introduction: '',
-      professionalExperience: '',
-      skillsAndQualifications: '',
-      goodFit: '',
-      closing: '',
-      ending: [],
+      ...initialData,
+      personalInfo: {
+        ...initialData.personalInfo,
+        userId: user?.uid || '', // safe fallback
+      },
     });
   };
 
