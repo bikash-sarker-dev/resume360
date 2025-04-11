@@ -1,14 +1,15 @@
 import React from "react";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { Link } from "react-router";
 
 const Footer = () => {
   return (
     <footer className="relative   bg-r-info  text-r-text pt-16 pb-8 px-8 md:px-16">
       <div className="container">
-        <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16 text-center md:text-left">
+        <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4  text-center md:text-left">
           {/* Brand Section */}
 
-          <div className="text-3xl font-serif  flex flex-col    ">
+          <div className="text-3xl font-serif  flex flex-col   min-w-full sm:min-w-[200px] lg:min-w-[280px] xl:min-w-[350px]">
             <h1>
               Resumes<span className="font-bold text-r-primary">360</span>
             </h1>
@@ -19,42 +20,46 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="flex flex-col  text-left items-center">
-            <h3 className="text-xl ml-[-20px] font-semibold">Menu</h3>
-            <ul className="mt-3 space-y-2">
-              <li>
+          <div className="flex flex-col   text-left items-center">
+            <h3 className="text-xl ml-[-20px] sm:mt-0 mt-8 font-semibold">
+              Menu
+            </h3>
+            <ul className="mt-3 grid grid-cols-1 space-y-2">
+              <Link to="/">
                 <a className="hover:text-r-accent cursor-pointer">Home</a>
-              </li>
-              <li>
+              </Link>
+              <Link to="">
                 <a className="hover:text-r-accent cursor-pointer">Features</a>
-              </li>
-              <li>
+              </Link>
+              <Link to="">
                 <a className="hover:text-r-accent cursor-pointer">Pricing</a>
-              </li>
-              <li>
+              </Link>
+              <Link to="/contact">
                 <a className="hover:text-r-accent cursor-pointer">Contact</a>
-              </li>
+              </Link>
             </ul>
           </div>
-          <div className="flex flex-col items-center text-left">
-            <h3 className="text-xl  ml-[-50px] font-semibold">Information</h3>
-            <ul className="mt-3 space-y-2">
-              <li>
+          <div className="flex flex-col  items-center text-left">
+            <h3 className="text-xl  ml-[-50px] mt-9 sm:mt-0 font-semibold">
+              Information
+            </h3>
+            <ul className="mt-3 grid grid-cols-1 space-y-2">
+              <Link to="/about">
                 <a className="hover:text-r-accent cursor-pointer ">About Us</a>
-              </li>
-              <li>
+              </Link>
+              <Link to="/terms">
                 <a className="hover:text-r-accent cursor-pointer">
                   Terms & Conditions
                 </a>
-              </li>
-              <li>
+              </Link>
+              <Link to="/privacy-policy">
                 <a className="hover:text-r-accent cursor-pointer">
                   Privacy Policy
                 </a>
-              </li>
-              <li>
+              </Link>
+              <Link to="/faq">
                 <a className="hover:text-r-accent cursor-pointer">FAQ</a>
-              </li>
+              </Link>
             </ul>
           </div>
           <div className=" flex flex-col items-center ">
