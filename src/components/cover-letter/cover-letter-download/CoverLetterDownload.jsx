@@ -2,12 +2,13 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import CoverLetterPDF from './CoverLetterPDF';  // Import your CoverLetterPDF component
 import { generateDocx } from './generateDocx';
 import { useContext, useState } from 'react';
-import { CoverLetterContext } from '../../../contextApi/coverletter-context/CoverLetterContext';
+
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
+import { CoverLetterContext } from '../../../contextApi/coverletter-context/CoverLetterContext';
 
 const CoverLetterDownload = () => {
-    const { coverLetterData } = useContext(CoverLetterContext); // Access cover letter data
+    const { CoverLetterData } = useContext(CoverLetterContext);
     const axiosPublic = useAxiosPublic();
     const [isSaving, setIsSaving] = useState(false);
     const [isSaved, setIsSaved] = useState(false);
@@ -16,15 +17,15 @@ const CoverLetterDownload = () => {
     const getThemeColor = (variableName) => {
         return getComputedStyle(document.documentElement).getPropertyValue(variableName)?.trim();
     };
-
+    console.log(CoverLetterData);
     // Save Handler for Cover Letter
     const handleSave = async () => {
         setIsSaving(true);
         const primaryColor = getThemeColor('--color-r-primary');
         
         try {
-            const dataToSave = coverLetterData;  // Use only cover letter data
-            const endpoint = '/coverLetter';  // Use endpoint for cover letter
+            const dataToSave = CoverLetterData;  // Use only cover letter data
+            const endpoint = '/cover-letter';  // Use endpoint for cover letter
 
             const response = await axiosPublic.post(endpoint, dataToSave);
 
@@ -75,15 +76,15 @@ const CoverLetterDownload = () => {
                 {isSaved && (
                     <>
                         <PDFDownloadLink
-                            document={<CoverLetterPDF coverLetterData={coverLetterData} />}
-                            fileName={`${coverLetterData?.greeting || 'coverLetter'}.pdf`}
+                            document={<CoverLetterPDF CoverLetterData={CoverLetterData} />}
+                            fileName={`${CoverLetterData?.greeting || 'coverLetter'}.pdf`}
                             className="rounded-full bg-r-primary text-white py-2 px-6 transition duration-200"
                         >
                             {({ loading }) => (loading ? 'Preparing PDF...' : 'Download Cover Letter PDF')}
                         </PDFDownloadLink>
 
                         <button
-                            onClick={() => generateDocx(coverLetterData)}
+                            onClick={() => generateDocx(CoverLetterData)}
                             disabled={!isSaved}
                             className="rounded-full bg-r-primary text-white py-2 px-6 transition duration-200 disabled:opacity-50"
                         >
