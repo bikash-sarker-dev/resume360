@@ -8,7 +8,8 @@ const ExperienceForm = ({ addExperience }) => {
   const [endMonth, setEndMonth] = useState("");
   const [description, setDescription] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (company && position && startMonth && endMonth) {
       addExperience({ company, position, startMonth, endMonth, description });
       setCompany("");
@@ -20,61 +21,63 @@ const ExperienceForm = ({ addExperience }) => {
   };
 
   return (
-    <form className="grid grid-cols-1 gap-4">
+    <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 py-6">
       <TextField
-        label="Company Name"
         fullWidth
+        label="Company Name"
         value={company}
         onChange={(e) => setCompany(e.target.value)}
         required
         helperText="Enter company name"
+        className="col-span-1 md:col-span-2"
       />
       <TextField
-        label="Position"
         fullWidth
+        label="Position"
         value={position}
         onChange={(e) => setPosition(e.target.value)}
         required
         helperText="Enter position"
+        className="col-span-1 md:col-span-2"
       />
-      <div className="grid grid-cols-2 gap-4">
-        <TextField
-          label="Start Month"
-          fullWidth
-          type="month"
-          InputLabelProps={{ shrink: true }}
-          value={startMonth}
-          onChange={(e) => setStartMonth(e.target.value)}
-          required
-          helperText="Start date"
-        />
-        <TextField
-          label="End Month"
-          fullWidth
-          type="month"
-          InputLabelProps={{ shrink: true }}
-          value={endMonth}
-          onChange={(e) => setEndMonth(e.target.value)}
-          required
-          helperText="End date"
-        />
-      </div>
       <TextField
-        label="Description"
+        fullWidth
+        label="Start Month"
+        type="month"
+        InputLabelProps={{ shrink: true }}
+        value={startMonth}
+        onChange={(e) => setStartMonth(e.target.value)}
+        required
+        helperText="Start date"
+      />
+      <TextField
+        fullWidth
+        label="End Month"
+        type="month"
+        InputLabelProps={{ shrink: true }}
+        value={endMonth}
+        onChange={(e) => setEndMonth(e.target.value)}
+        required
+        helperText="End date"
+      />
+      <TextField
         fullWidth
         multiline
         rows={3}
+        label="Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        helperText="Enter description"
+        helperText="Enter job description"
+        className="md:col-span-2"
       />
-      <button
-        type="button"
-        className="cursor-pointer rounded-full text-white bg-r-primary py-2 px-5"
-        onClick={handleSubmit}
-      >
-        Add
-      </button>
+      <div className="md:col-span-2 flex justify-end">
+        <button
+          type="submit"
+          className="rounded-full text-white bg-r-primary hover:bg-r-primary/90 transition duration-300 py-2 px-6"
+        >
+          Add
+        </button>
+      </div>
     </form>
   );
 };
