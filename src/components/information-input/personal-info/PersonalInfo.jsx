@@ -49,10 +49,10 @@ const PersonalInfo = () => {
     };
 
     return (
-        <div className='grid grid-cols-1'>
-            <div className='md:grid grid-cols-2 gap-4 px-4 space-y-5 mt-5'>
+        <div className='px-4 mt-5'>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                 <TextField
-                    className='w-full'
+                    fullWidth
                     required
                     name="fullName"
                     label="Full Name"
@@ -60,14 +60,88 @@ const PersonalInfo = () => {
                     helperText="Please enter your full name"
                 />
                 <TextField
-                    className='w-full'
+                    fullWidth
                     required
                     name="jobTitle"
                     label="Job Title"
                     onChange={handleChange}
                     helperText="Please enter your job title"
                 />
-                <div className="md:flex flex-col row-span-3 justify-center items-center border-2 border-dashed border-r-accent rounded-lg text-center">
+                <TextField
+                    fullWidth
+                    required
+                    name="phone"
+                    label="Phone Number"
+                    type='number'
+                    onChange={handleChange}
+                    helperText="Please enter your phone number"
+                />
+                <TextField
+                    fullWidth
+                    required
+                    name="email"
+                    label="Email"
+                    type='email'
+                    error={emailError}
+                    onChange={handleChange}
+                    helperText={emailError ? "Please enter a valid email address" : "Please enter your email"}
+                />
+                <TextField
+                    className='md:col-span-2'
+                    fullWidth
+                    required
+                    name="address"
+                    label="Address"
+                    onChange={handleChange}
+                    helperText="Please enter your short address"
+                />
+                <TextField
+                    className='md:col-span-2'
+                    fullWidth
+                    required
+                    name="about"
+                    label="About Me"
+                    multiline
+                    rows={4}
+                    onChange={handleChange}
+                    helperText="Please enter your about"
+                />
+                <div className='grid grid-cols-1 md:grid-cols-3 gap-4 md:col-span-2'>
+                    <TextField
+                        fullWidth
+                        required
+                        type='date'
+                        name="dob"
+                        label="Date of Birth"
+                        onChange={handleChange}
+                        InputLabelProps={{ shrink: true }}
+                        helperText="Please enter your Date of Birth"
+                    />
+                    <TextField
+                        fullWidth
+                        required
+                        name="gender"
+                        select
+                        label="Gender"
+                        value={resumeData.personalInfo.gender || ''}
+                        onChange={handleChange}
+                        helperText="Please select your gender"
+                    >
+                        <MenuItem value="Male">Male</MenuItem>
+                        <MenuItem value="Female">Female</MenuItem>
+                        <MenuItem value="Other">Other</MenuItem>
+                    </TextField>
+                    <TextField
+                        fullWidth
+                        required
+                        name="nationality"
+                        label="Nationality"
+                        onChange={handleChange}
+                        helperText="Please enter your nationality"
+                    />
+                </div>
+
+                <div className="w-full flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg py-6 text-center md:col-span-2">
                     {!image ? (
                         <>
                             <label htmlFor="image-upload" className="cursor-pointer flex flex-col items-center">
@@ -92,78 +166,6 @@ const PersonalInfo = () => {
                             </Button>
                         </div>
                     )}
-                </div>
-
-                <TextField
-                    className='w-full'
-                    required
-                    name="phone"
-                    label="Phone Number"
-                    type='number'
-                    onChange={handleChange}
-                    helperText="Please enter your phone number"
-                />
-                <TextField
-                    className='w-full'
-                    required
-                    name="email"
-                    label="Email"
-                    type='email'
-                    error={emailError}
-                    onChange={handleChange}
-                    helperText={emailError ? "Please enter a valid email address" : "Please enter your email"}
-                />
-                <TextField
-                    className='col-span-2 w-full'
-                    required
-                    name="address"
-                    label="Address"
-                    onChange={handleChange}
-                    helperText="Please enter your short address"
-                />
-                <TextField
-                    className='col-span-2 w-full'
-                    required
-                    name="about"
-                    label="About Me"
-                    multiline
-                    rows={4}
-                    onChange={handleChange}
-                    helperText="Please enter your about"
-                />
-                <div className='md:grid grid-cols-3 gap-4 col-span-2'>
-                    <TextField
-                        className='w-full'
-                        required
-                        type='date'
-                        name="dob"
-                        label="Date of Birth"
-                        onChange={handleChange}
-                        InputLabelProps={{ shrink: true }}
-                        helperText="Please enter your Date of Birth"
-                    />
-                    <TextField
-                        className="w-full"
-                        required
-                        name="gender"
-                        select
-                        label="Gender"
-                        value={resumeData.personalInfo.gender || ''}
-                        onChange={handleChange}
-                        helperText="Please select your gender"
-                    >
-                        <MenuItem value="Male">Male</MenuItem>
-                        <MenuItem value="Female">Female</MenuItem>
-                        <MenuItem value="Other">Other</MenuItem>
-                    </TextField>
-                    <TextField
-                        className='w-full'
-                        required
-                        name="nationality"
-                        label="Nationality"
-                        onChange={handleChange}
-                        helperText="Please enter your nationality"
-                    />
                 </div>
             </div>
         </div>

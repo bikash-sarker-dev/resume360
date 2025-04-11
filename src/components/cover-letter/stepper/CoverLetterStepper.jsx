@@ -11,23 +11,24 @@ import Greeting from '../greeting/Greeting';
 import ErrorPage from '../../../pages/ErrorPage';
 import CoverLetterLivePreview from '../cover-letter-live-preview/CoverLetterLivePreview';
 import CoverLetterBody from '../cover-letter-body/CoverLetterBody';
-import Signature from '../signature/Signature'
+import Signature from '../signature/Signature';
 import CoverLetterDownload from '../cover-letter-download/CoverLetterDownload';
+import { CoverLetterContext } from '../../../contextApi/coverletter-context/CoverLetterContext'; // Import context
 
 const renderStepContent = (step) => {
   switch (step) {
     case 0:
-      return <PersonalInfo/>;
+      return <PersonalInfo />;
     case 1:
-      return <EmployerInfo/>;
+      return <EmployerInfo />;
     case 2:
-      return <Greeting/>;
+      return <Greeting />;
     case 3:
-      return <CoverLetterBody/>;
+      return <CoverLetterBody />;
     case 4:
-      return <Signature/>;
+      return <Signature />;
     default:
-      return <ErrorPage/>;
+      return <ErrorPage />;
   }
 };
 
@@ -36,6 +37,7 @@ const steps = ['My Info', 'HR', 'Greeting', 'Body', 'Signature'];
 const StepperComponents = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
+  const { resetCoverLetterData } = React.useContext(CoverLetterContext); // Access reset function from context
 
   const isStepSkipped = (step) => {
     return skipped.has(step);
@@ -57,11 +59,12 @@ const StepperComponents = () => {
   };
 
   const handleReset = () => {
-    setActiveStep(0);
+    setActiveStep(0);  // Reset the stepper to the first step
+    resetCoverLetterData();  // Reset the cover letter data using context
   };
 
   return (
-    <div className='grid grid-cols-2'>
+    <div className="grid grid-cols-1 md:grid-cols-2">
       <Box className="mb-10 bg-white py-10 px-6 shadow-xl" sx={{ width: '100%' }}>
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map((label, index) => {
@@ -90,7 +93,7 @@ const StepperComponents = () => {
           <React.Fragment>
             <Typography sx={{ mt: 2, mb: 1 }}>
               <Box>
-                <CoverLetterDownload/>
+                <CoverLetterDownload />
               </Box>
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
@@ -103,7 +106,7 @@ const StepperComponents = () => {
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
               {activeStep !== 0 && (
                 <button
-                  className='rounded-full text-white bg-r-primary py-2 px-5'
+                  className="rounded-full text-white bg-r-primary py-2 px-5"
                   onClick={handleBack}
                   sx={{ mr: 1 }}
                 >
@@ -111,7 +114,7 @@ const StepperComponents = () => {
                 </button>
               )}
               <Box sx={{ flex: '1 1 auto' }} />
-              <button className='rounded-full text-white bg-r-primary py-2 px-5' onClick={handleNext}>
+              <button className="rounded-full text-white bg-r-primary py-2 px-5" onClick={handleNext}>
                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
               </button>
             </Box>
@@ -121,8 +124,8 @@ const StepperComponents = () => {
           </React.Fragment>
         )}
       </Box>
-      <div>
-        <CoverLetterLivePreview></CoverLetterLivePreview>
+      <div className='hidden md:block'>
+        <CoverLetterLivePreview />
       </div>
     </div>
   );

@@ -52,11 +52,11 @@ const CoverLetterLivePreview = () => {
 
     return (
         <div className="container pb-8 lg:pb-12">
-            <div id="cover-letter-content" className="max-w-4xl mx-auto p-4 bg-gray-100 text-center flex items-center justify-center gap-3 rounded-md">
-                <span className="text-sm font-medium">Show Demo</span>
+            <div id="cover-letter-content" className="max-w-4xl mx-auto p-4 bg-r-accent text-center flex items-center justify-center gap-3 rounded-md">
+                <span className="text-sm font-medium text-white">Show Demo</span>
                 <input
                     type="checkbox"
-                    className="toggle"
+                    className="toggle text-r-primary"
                     checked={showDemo}
                     onChange={(e) => setShowDemo(e.target.checked)}
                 />
@@ -134,7 +134,7 @@ const CoverLetterLivePreview = () => {
                     {/* Signature */}
                     {ending && (
                         <>
-                            <p className={`${textClass} mt-4`}>{ending.formalClosing},</p>
+                            <p className={`${textClass} mt-4`}>{ending.formalClosing}</p>
                             <p className={`${textClass} `}>{ending.signature}</p>
                         </>
                     )}
