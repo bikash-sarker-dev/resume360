@@ -48,20 +48,21 @@ export const Testimonials = () => {
         testimonials.map(testimonial => <SwiperSlide
         key={testimonial._id}
         >
-        <div className='mx-20 my-10'>
-      <div className='grid grid-cols-2 justify-between items-center text-center'>
+        <div className='mx-20 my-10 '>
+      <div className='grid grid-cols-1 md:grid-cols-2 justify-between items-center text-center'>
       <div>
-      <div className='flex justify-center items-center'>
+      <div className='flex justify-center items-center gap-x-1'>
        <div className="w-16 h-16 rounded-full">
           <img className="h-full w-full object-cover rounded-full" src={testimonial.authorImage}/>
         </div>
-        <div class="divider divider-horizontal"></div>
-        <div>
+        <div class="hidden md:flex  divider divider-horizontal"></div>
+        <div className=''>
         <h3 className='text-3xl text-r-accent font-bold'>{testimonial.name}</h3>
-        <h3 className='text-sm font-bold text-gray-600 text-left'>{testimonial.profession}</h3>
+        <h3 className='text-sm font-bold text-gray-600  sm:text-left'>{testimonial.profession}</h3>
         </div>
        </div>
       </div>
+      {/* Rating */}
         <div>
         <Rating
         className='text-yellow-300 text-2xl'
@@ -70,7 +71,7 @@ export const Testimonials = () => {
         fullSymbol="fas fa-star"/>
        </div>
       </div>
-        <p className='text-center  sm:w-11/12 md:w-10/12 lg:w-9/12 mx-auto mt-6'>{testimonial.review}</p>
+        <p className='text-center   sm:w-11/12 md:w-10/12 lg:w-9/12 mx-auto mt-6'>{testimonial.review}</p>
         </div>
         </SwiperSlide>)
         }

@@ -47,7 +47,8 @@ const Banner = () => {
   }}
 ><div className="absolute inset-0 bg-black opacity-60 z-0"></div>
 
-    <div className="relative container  h-[900px] md:h-[650px]  bg-[url('')] bg-cover bg-center  text-r-text flex flex-col md:flex-row items-center pt-[70px] pb-[80px] ">
+    <div className="relative container 
+      h-[900px] md:h-[650px]  bg-[url('')] bg-cover bg-center  text-r-text flex flex-col md:flex-row items-center pt-[70px] pb-[80px] ">
       {/* Left Content (Changes Dynamically) */}
       <div
         key={activeIndex} // Forces re-render to trigger animation
@@ -98,7 +99,7 @@ const Banner = () => {
       </div>
 
       {/* Arrows */}
-      <div className="absolute top-5/12  sm:top-9/12  left-5  gap-5 flex justify-between z-10">
+      <div className="absolute top-6/12  sm:top-9/12  left-5  gap-5 flex justify-between z-10">
         <button
           className="bg-r-background p-3 rounded-full text-r-primary hover:shadow-r-primary shadow transition"
           onClick={() =>
