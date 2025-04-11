@@ -74,9 +74,6 @@ const Navbar = () => {
       <NavLink to="/templates" className="cursor-pointer w-8/12 transition-all">
         Templates
       </NavLink>
-      <NavLink to="/faq" className="cursor-pointer w-8/12 transition-all">
-        FAQ
-      </NavLink>
     </>,
   ];
 
