@@ -28,10 +28,10 @@ const Footer = () => {
               <Link to="/">
                 <a className="hover:text-r-accent cursor-pointer">Home</a>
               </Link>
-              <Link to="">
+              <Link to="/features">
                 <a className="hover:text-r-accent cursor-pointer">Features</a>
               </Link>
-              <Link to="">
+              <Link to="/pricing">
                 <a className="hover:text-r-accent cursor-pointer">Pricing</a>
               </Link>
               <Link to="/contact">
