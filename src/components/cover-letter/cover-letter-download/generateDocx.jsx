@@ -1,67 +1,88 @@
-// generateDocx.js
-import { Document, Packer, Paragraph, TextRun, HeadingLevel } from "docx";
+import {
+  Document,
+  Packer,
+  Paragraph,
+  TextRun,
+  HeadingLevel,
+  AlignmentType
+} from "docx";
 import { saveAs } from "file-saver";
 
 export const generateDocx = (coverLetterData) => {
-  // Create a new document
+  const {
+    personalInfo,
+    hiringManager,
+    greeting,
+    introduction,
+    goodFit,
+    skillsAndQualifications,
+    professionalExperience,
+    closing,
+    ending,
+  } = coverLetterData;
+
+  const makeParagraph = (text, options = {}) =>
+    new Paragraph({
+      spacing: { after: 200 },
+      alignment: AlignmentType.JUSTIFIED,
+      ...options,
+      children: [new TextRun(text)],
+    });
+
   const doc = new Document({
     sections: [
       {
         properties: {},
         children: [
-          // Greeting
+          // Sender Info
           new Paragraph({
+            spacing: { after: 100 },
             children: [
-              new TextRun(coverLetterData.greeting),
+              new TextRun({ text: personalInfo.fullName, bold: true }),
+              new TextRun(`\n${personalInfo.address}`),
+              new TextRun(`\n${personalInfo.cityZip}`),
+              new TextRun(`\n${personalInfo.email}`),
+              new TextRun(`\n${personalInfo.phone}`),
+              new TextRun(`\n${personalInfo.linkedIn}`),
+              new TextRun(`\n${personalInfo.portfolio}`),
             ],
           }),
 
-          // Introduction
+          // Date
           new Paragraph({
+            spacing: { after: 200 },
+            children: [new TextRun(personalInfo.date)],
+          }),
+
+          // Hiring Manager Info
+          new Paragraph({
+            spacing: { after: 200 },
             children: [
-              new TextRun(coverLetterData.introduction),
+              new TextRun({ text: hiringManager.name, bold: true }),
+              new TextRun(`\n${hiringManager.company}`),
+              new TextRun(`\n${hiringManager.address}`),
+              new TextRun(`\n${hiringManager.cityZip}`),
             ],
           }),
 
-          // Why you're a good fit
-          new Paragraph({
-            children: [
-              new TextRun(coverLetterData.goodFit),
-            ],
-          }),
-
-          // Skills and Qualifications
-          new Paragraph({
-            children: [
-              new TextRun(coverLetterData.skillsAndQualifications),
-            ],
-          }),
-
-          // Professional Experience
-          new Paragraph({
-            children: [
-              new TextRun(coverLetterData.professionalExperience),
-            ],
-          }),
+          // Cover Letter Body
+          makeParagraph(greeting, { spacing: { after: 100 } }),
+          makeParagraph(introduction),
+          makeParagraph(goodFit),
+          makeParagraph(skillsAndQualifications),
+          makeParagraph(professionalExperience),
+          makeParagraph(closing),
 
           // Closing
           new Paragraph({
-            children: [
-              new TextRun(coverLetterData.closing),
-            ],
+            spacing: { before: 300 },
+            children: [new TextRun(ending?.formalClosing)],
           }),
 
-          // Formal Closing
           new Paragraph({
+            spacing: { after: 0 },
             children: [
-              new TextRun(coverLetterData.ending?.formalClosing),
-            ],
-          }),
-
-          // Signature
-          new Paragraph({
-            children: [
-              new TextRun(coverLetterData.ending?.signature),
+              new TextRun({ text: ending?.signature, bold: true }),
             ],
           }),
         ],
@@ -69,7 +90,7 @@ export const generateDocx = (coverLetterData) => {
     ],
   });
 
-  // Generate the DOCX file
+  // Save as .docx
   Packer.toBlob(doc).then((blob) => {
     saveAs(blob, "coverLetter.docx");
   });

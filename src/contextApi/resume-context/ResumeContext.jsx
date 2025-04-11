@@ -4,7 +4,7 @@ import useAuth from '../../hooks/useAuth';
 export const ResumeContext = createContext();
 
 const ResumeProvider = ({ children }) => {
-  const {user} = useAuth();
+  const { user } = useAuth();
   const [resumeData, setResumeData] = useState({
     user: [user],
     personalInfo: [],
@@ -13,9 +13,8 @@ const ResumeProvider = ({ children }) => {
     socialLinks: [],
     projects: [],
     experience: [],
-    languages: [], 
+    languages: [],
   });
-
 
   const updateSection = (section, data) => {
     setResumeData((prev) => ({
@@ -24,11 +23,26 @@ const ResumeProvider = ({ children }) => {
     }));
   };
 
+  // New resetResumeData function
+  const resetResumeData = () => {
+    setResumeData({
+      user: [user],
+      personalInfo: [],
+      education: [],
+      skills: [],
+      socialLinks: [],
+      projects: [],
+      experience: [],
+      languages: [],
+    });
+  };
+
   return (
-    <ResumeContext.Provider value={{ resumeData, updateSection }}>
+    <ResumeContext.Provider value={{ resumeData, updateSection, resetResumeData }}>
       {children}
     </ResumeContext.Provider>
   );
 };
+
 
 export default ResumeProvider;
