@@ -8,9 +8,10 @@ const EmployerInfo = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    updateSection('employer', {
-      ...CoverLetterData.hiringManager,
-      [name]: value,
+    // Update only the 'hiringManager' section without affecting the rest of the data
+    updateSection('hiringManager', {
+      ...CoverLetterData.hiringManager,  // Preserve previous data in 'hiringManager'
+      [name]: value,                    // Update the specific field
     });
   };
 
@@ -21,7 +22,7 @@ const EmployerInfo = () => {
         required
         name="name"
         label="Hiring Manager's Name"
-        value={CoverLetterData.hiringManager.name || ''}
+        value={CoverLetterData.hiringManager?.name || ''}
         onChange={handleChange}
         helperText="Enter the full name of the person you’re addressing."
       />
@@ -30,7 +31,7 @@ const EmployerInfo = () => {
         required
         name="company"
         label="Company Name"
-        value={CoverLetterData.hiringManager.company || ''}
+        value={CoverLetterData.hiringManager?.company || ''}
         onChange={handleChange}
         helperText="Enter the official name of the organization."
       />
@@ -38,7 +39,7 @@ const EmployerInfo = () => {
         required
         name="address"
         label="Company Address"
-        value={CoverLetterData.hiringManager.address || ''}
+        value={CoverLetterData.hiringManager?.address || ''}
         onChange={handleChange}
         helperText="Enter the street address or office location."
       />
@@ -46,7 +47,7 @@ const EmployerInfo = () => {
         required
         name="cityZip"
         label="City, Zip Code"
-        value={CoverLetterData.hiringManager.cityZip || ''}
+        value={CoverLetterData.hiringManager?.cityZip || ''}
         onChange={handleChange}
         helperText="Enter the city and postal code (e.g., New York, NY 10001)."
       />
