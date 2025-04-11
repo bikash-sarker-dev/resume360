@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router";
 
 import React from "react";
+import CoverLetter from "../components/cover-letter/CoverLetter";
 import TemplateOne from "../components/DefaultTemplates/TemplateOne";
 import Userabout from "../components/user/Userabout";
 import UserEducation from "../components/user/UserEducation";
@@ -32,7 +33,6 @@ import User from "../pages/User";
 import AboutPage from "./../pages/AboutPage";
 import FaqPage from "./../pages/FaqPage";
 import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
-import CoverLetter from "../components/cover-letter/CoverLetter";
 
 import { Pricing } from "../pages/Pricing";
 import SocialMiddlewarePage from "../pages/SocialMiddlewarePage";
@@ -75,7 +75,7 @@ const RootRoute = () => {
         <Route path="/add-information" element={<AddInformation />} />
         <Route path="/templateOne" element={<TemplateOne />} />
         <Route path="/blog" element={<BlogPage />} />
-        <Route path="/cover-letter" element={<CoverLetter/>} />
+        <Route path="/cover-letter" element={<CoverLetter />} />
       </Route>
       {/* dashboard route working start  */}
       <Route path="/dashboard" element={<DashboardLayouts />}>
