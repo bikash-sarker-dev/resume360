@@ -134,7 +134,7 @@ const CoverLetterLivePreview = () => {
                     {/* Signature */}
                     {ending && (
                         <>
-                            <p className={`${textClass} mt-4`}>{ending.formalClosing},</p>
+                            <p className={`${textClass} mt-4`}>{ending.formalClosing}</p>
                             <p className={`${textClass} `}>{ending.signature}</p>
                         </>
                     )}
