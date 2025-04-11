@@ -46,23 +46,23 @@ const TemplatesPage = () => {
       ></SectionHead>
 
       <div>
-        <div className="flex gap-4 justify-center my-8">
+        <div className="flex gap-4 justify-center my-8  ">
           <button
             onClick={handleResume}
-            className="py-7 w-40 btn bg-r-primary rounded-full  "
+            className={`py-7 w-20 md:w-40 btn bg-r-primary rounded-full`}
           >
             Resume
           </button>
           <button
             onClick={handleCv}
-            className="btn py-7  w-40 bg-r-primary rounded-full 
+            className="btn py-7  w-20 md:w-40 bg-r-primary rounded-full 
    "
           >
             CV
           </button>
           <button
             onClick={handleCoverLetter}
-            className="btn w-40 py-7 bg-r-primary rounded-full 
+            className="btn w-20 md:w-40 py-7 bg-r-primary rounded-full 
    "
           >
             Cover Letter
