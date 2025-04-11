@@ -8,17 +8,16 @@ const EmployerInfo = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // Update only the 'hiringManager' section without affecting the rest of the data
     updateSection('hiringManager', {
-      ...CoverLetterData.hiringManager,  // Preserve previous data in 'hiringManager'
-      [name]: value,                    // Update the specific field
+      ...CoverLetterData.hiringManager,
+      [name]: value,
     });
   };
 
   return (
-    <div className="grid grid-cols-2 px-4 gap-4 mt-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 px-4 gap-4 mt-5">
       <TextField
-        className="col-span-2"
+        className="md:col-span-2"
         required
         name="name"
         label="Hiring Manager's Name"
@@ -27,7 +26,7 @@ const EmployerInfo = () => {
         helperText="Enter the full name of the person you’re addressing."
       />
       <TextField
-        className="col-span-2"
+        className="md:col-span-2"
         required
         name="company"
         label="Company Name"
