@@ -1,54 +1,97 @@
 // CoverLetterPDF.js
 import React from 'react';
-import { Document, Page, Text, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, Text, StyleSheet, View } from '@react-pdf/renderer';
 
 const styles = StyleSheet.create({
   page: {
-    padding: 30,
-    fontSize: 12,
+    padding: 40,
+    fontSize: 11,
     fontFamily: 'Helvetica',
+    lineHeight: 1.6,
   },
-  section: {
-    marginBottom: 15,
+  senderInfo: {
+    marginBottom: 10,
   },
-  heading: {
-    fontSize: 16,
+  receiverInfo: {
+    marginBottom: 20,
+  },
+  text: {
+    marginBottom: 10,
+  },
+  bold: {
     fontWeight: 'bold',
+  },
+  date: {
     marginBottom: 10,
   },
-  body: {
-    fontSize: 12,
+  greeting: {
     marginBottom: 10,
+    fontWeight: 'bold',
+  },
+  paragraph: {
+    marginBottom: 12,
+    textAlign: 'justify',
+  },
+  closing: {
+    marginTop: 20,
+  },
+  signature: {
+    marginTop: 4,
+    fontWeight: 'bold',
   },
 });
 
 const CoverLetterPDF = ({ coverLetterData }) => {
+  const {
+    personalInfo,
+    hiringManager,
+    greeting,
+    introduction,
+    goodFit,
+    skillsAndQualifications,
+    professionalExperience,
+    closing,
+    ending,
+  } = coverLetterData;
+
   return (
     <Document>
       <Page style={styles.page}>
-        <Text style={styles.heading}>Cover Letter</Text>
+        {/* Sender Info */}
+        <View style={styles.senderInfo}>
+          <Text style={styles.bold}>{personalInfo.fullName}</Text>
+          <Text>{personalInfo.address}</Text>
+          <Text>{personalInfo.cityZip}</Text>
+          <Text>{personalInfo.email}</Text>
+          <Text>{personalInfo.phone}</Text>
+          <Text>{personalInfo.linkedIn}</Text>
+          <Text>{personalInfo.portfolio}</Text>
+        </View>
 
-        {/* Greeting */}
-        <Text style={styles.body}>{coverLetterData.greeting}</Text>
+        {/* Date */}
+        <Text style={styles.date}>{personalInfo.date}</Text>
 
-        {/* Introduction */}
-        <Text style={styles.body}>{coverLetterData.introduction}</Text>
+        {/* Hiring Manager Info */}
+        <View style={styles.receiverInfo}>
+          <Text style={styles.bold}>{hiringManager.name}</Text>
+          <Text>{hiringManager.company}</Text>
+          <Text>{hiringManager.address}</Text>
+          <Text>{hiringManager.cityZip}</Text>
+        </View>
 
-        {/* Why you're a good fit */}
-        <Text style={styles.body}>{coverLetterData.goodFit}</Text>
+        {/* Body */}
+        <Text style={styles.paragraph}>{greeting}</Text>
+        <Text style={styles.paragraph}>{introduction}</Text>
+        <Text style={styles.paragraph}>{goodFit}</Text>
+        <Text style={styles.paragraph}>{skillsAndQualifications}</Text>
+        <Text style={styles.paragraph}>{professionalExperience}</Text>
+        <Text style={styles.paragraph}>{closing}</Text>
 
-        {/* Skills and Qualifications */}
-        <Text style={styles.body}>{coverLetterData.skillsAndQualifications}</Text>
-
-        {/* Professional Experience */}
-        <Text style={styles.body}>{coverLetterData.professionalExperience}</Text>
-
-        {/* Closing */}
-        <Text style={styles.body}>{coverLetterData.closing}</Text>
-
-        {/* Signature */}
-        <Text style={styles.body}>{coverLetterData.ending?.formalClosing}</Text>
-        <Text style={styles.body}>{coverLetterData.ending?.signature}</Text>
+        {/* Ending */}
+        <View style={styles.closing}>
+          <Text>{ending?.formalClosing}</Text>
+          <Text style={styles.signature}>{ending?.signature}</Text>
+        </View>
       </Page>
     </Document>
   );

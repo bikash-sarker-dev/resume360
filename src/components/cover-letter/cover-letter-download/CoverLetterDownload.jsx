@@ -22,7 +22,7 @@ const CoverLetterDownload = () => {
     const handleSave = async () => {
         setIsSaving(true);
         const primaryColor = getThemeColor('--color-r-primary');
-        
+
         try {
             const dataToSave = CoverLetterData;  // Use only cover letter data
             const endpoint = '/cover-letter';  // Use endpoint for cover letter
@@ -76,12 +76,15 @@ const CoverLetterDownload = () => {
                 {isSaved && (
                     <>
                         <PDFDownloadLink
-                            document={<CoverLetterPDF CoverLetterData={CoverLetterData} />}
+                            document={<CoverLetterPDF coverLetterData={CoverLetterData} />}
                             fileName={`${CoverLetterData?.greeting || 'coverLetter'}.pdf`}
                             className="rounded-full bg-r-primary text-white py-2 px-6 transition duration-200"
                         >
-                            {({ loading }) => (loading ? 'Preparing PDF...' : 'Download Cover Letter PDF')}
+                            {({ loading, error }) =>
+                                loading ? 'Preparing PDF...' : error ? 'Error Generating PDF' : 'Download Cover Letter PDF'
+                            }
                         </PDFDownloadLink>
+
 
                         <button
                             onClick={() => generateDocx(CoverLetterData)}
