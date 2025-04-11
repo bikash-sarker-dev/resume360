@@ -47,7 +47,8 @@ const Banner = () => {
   }}
 ><div className="absolute inset-0 bg-black opacity-60 z-0"></div>
 
-    <div className="relative container  h-[900px] md:h-[650px]  bg-[url('')] bg-cover bg-center  text-r-text flex flex-col md:flex-row items-center pt-[70px] pb-[80px] ">
+    <div className="relative container 
+      h-[900px] md:h-[650px]  bg-[url('')] bg-cover bg-center  text-r-text flex flex-col md:flex-row items-center pt-[70px] pb-[80px] ">
       {/* Left Content (Changes Dynamically) */}
       <div
         key={activeIndex} // Forces re-render to trigger animation
@@ -80,7 +81,7 @@ const Banner = () => {
       </div>
 
       {/* Slider img Section */}
-      <div className="relative w-full mt-8  lg:w-2/3 h-full flex justify-center  items-center">
+      <div className="hidden sm:flex relative w-full mt-8  lg:w-2/3 h-full flex justify-center  items-center">
         {slides.map((slide, index) => (
           <div
             key={index}
@@ -98,7 +99,7 @@ const Banner = () => {
       </div>
 
       {/* Arrows */}
-      <div className="absolute top-5/12  sm:top-9/12  left-5  gap-5 flex justify-between z-10">
+      <div className="absolute top-6/12  sm:top-9/12  left-5  gap-5 flex justify-between z-10">
         <button
           className="bg-r-background p-3 rounded-full text-r-primary hover:shadow-r-primary shadow transition"
           onClick={() =>
@@ -115,20 +116,7 @@ const Banner = () => {
         </button>
       </div>
 
-      {/* Thumbnails */}
-      {/* <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
-        {slides.map((slide, index) => (
-          <img
-            key={index}
-            src={slide.image}
-            className={`w-16 h-16 object-cover cursor-pointer rounded-lg border-2 ${
-              index === activeIndex ? "border-white" : "border-gray-600"
-            }`}
-            onClick={() => setActiveIndex(index)}
-            alt={`Thumbnail ${index}`}
-          />
-        ))}
-      </div> */}
+      
     </div>
     </div>
   );
