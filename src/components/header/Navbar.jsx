@@ -25,7 +25,7 @@ const Navbar = () => {
         });
         setUser(null);
       })
-      .catch((error) => {});
+      .catch((error) => { });
   };
 
   // Handle scroll behavior (hide on scroll down, show on scroll up)
@@ -51,11 +51,22 @@ const Navbar = () => {
       >
         Dashboard
       </NavLink>
-      <NavLink
-        to="/add-information"
-        className="cursor-pointer w-8/12 transition-all"
-      >
-        AddInfo
+      <NavLink to="/add-information" className="cursor-pointer w-8/12 relative group transition-all">
+        Generate
+        <div className="absolute left-0 hidden group-hover:block bg-white text-black shadow-md mt-2 rounded-md w-48">
+          <NavLink
+            to="/add-information"
+            className="block px-4 py-2 text-sm transition-all hover:bg-gray-100"
+          >
+            Resume Builder
+          </NavLink>
+          <NavLink
+            to="/cover-letter"
+            className="block px-4 py-2 text-sm transition-all hover:bg-gray-100"
+          >
+            Cover Letter Builder
+          </NavLink>
+        </div>
       </NavLink>
       <NavLink to="/about" className="cursor-pointer w-8/12 transition-all">
         About
@@ -73,9 +84,8 @@ const Navbar = () => {
     <>
       <div className=" ">
         <header
-          className={`fixed   top-0 left-0  w-full bg-r-primary  text-r-text  z-50  py-3 sm:py-2  shadow-md transition-transform duration-500 ${
-            hidden ? "-translate-y-full" : "translate-y-0"
-          }`}
+          className={`fixed   top-0 left-0  w-full bg-r-primary  text-r-text  z-50  py-3 sm:py-2  shadow-md transition-transform duration-500 ${hidden ? "-translate-y-full" : "translate-y-0"
+            }`}
         >
           <div className="flex container items-center justify-between w-10/12 mx-auto">
             <div className="text-2xl font-serif ">
@@ -135,11 +145,10 @@ const Navbar = () => {
 
         {/* Mobile Dropdown Menu */}
         <div
-          className={`lg:hidden z-30 fixed top-0 rounded-3xl backdrop-blur-3xl opacity-30  bg-r-primary right-10 w-[300px]  text-r-text transition-all duration-500 ease-in-out ${
-            menuOpen
+          className={`lg:hidden z-30 fixed top-0 rounded-3xl backdrop-blur-3xl opacity-30  bg-r-primary right-10 w-[300px]  text-r-text transition-all duration-500 ease-in-out ${menuOpen
               ? "opacity-100 z-0 translate-y-0 top-16"
               : "opacity-0  -translate-y-full pointer-events-none"
-          }`}
+            }`}
         >
           <ul
             className="flex flex-col  items-center space-y-4 py-6 text-lg"
