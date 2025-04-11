@@ -80,7 +80,7 @@ const Banner = () => {
       </div>
 
       {/* Slider img Section */}
-      <div className="relative w-full mt-8  lg:w-2/3 h-full flex justify-center  items-center">
+      <div className="hidden sm:flex relative w-full mt-8  lg:w-2/3 h-full flex justify-center  items-center">
         {slides.map((slide, index) => (
           <div
             key={index}
@@ -115,20 +115,7 @@ const Banner = () => {
         </button>
       </div>
 
-      {/* Thumbnails */}
-      {/* <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
-        {slides.map((slide, index) => (
-          <img
-            key={index}
-            src={slide.image}
-            className={`w-16 h-16 object-cover cursor-pointer rounded-lg border-2 ${
-              index === activeIndex ? "border-white" : "border-gray-600"
-            }`}
-            onClick={() => setActiveIndex(index)}
-            alt={`Thumbnail ${index}`}
-          />
-        ))}
-      </div> */}
+      
     </div>
     </div>
   );
