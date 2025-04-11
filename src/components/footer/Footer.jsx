@@ -6,14 +6,13 @@ const Footer = () => {
   return (
     <footer className="relative   bg-r-info  text-r-text pt-16 pb-8 px-8 md:px-16">
       <div className="container">
-        <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4  text-center md:text-left">
+        <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
-
-          <div className="text-3xl font-serif  flex flex-col   min-w-full sm:min-w-[200px] lg:min-w-[280px] xl:min-w-[350px]">
+          <div className="text-3xl font-serif flex flex-col min-w-full sm:min-w-[200px] lg:min-w-[280px] xl:min-w-[350px] text-left items-start">
             <h1>
               Resumes<span className="font-bold text-r-primary">360</span>
             </h1>
-            <p className="text-base mt-3">
+            <p className="text-base mt-3 sm:w-2/3">
               Create, design, and manage your professional resume with ease. Our
               virtual resume builder helps you showcase your skills, experience,
               and education in a sleek and user-friendly format.
