@@ -12,6 +12,70 @@ const DashboardProfile = () => {
   const auth = getAuth();
   const { user } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [photoURL, setPhotoURL] = useState("");
+const [profileId, setProfileId] = useState(); // Store ID for update
+
+
+
+const handleImageUpload = async (e) => {
+  const image = e.target.files[0];
+  if (!image) return;
+
+  const formData = new FormData();
+  formData.append("image", image);
+
+  try {
+    const imgbbRes = await axios.post(
+      `https://api.imgbb.com/1/upload?key=4aa34a6921e0ffee4d933681c503ef39`,
+      formData
+    );
+
+    const newPhotoURL = imgbbRes.data.data.url;
+    setPhotoURL(newPhotoURL);
+
+    const updatedUser = {
+      email: user.email,
+      photoURL: newPhotoURL,
+      userId: user.uid,
+      name: user.displayName,
+    }; 
+
+
+    console.log(updatedUser)
+
+    if (profileId) {
+      await axios.put(`https://resume360-server.vercel.app/profile-image/${profileId}`, updatedUser);
+    } else {
+     
+      const postRes = await axios.post(`https://resume360-server.vercel.app/profile-image`, updatedUser);
+      console.log(postRes.data)
+      setProfileId(postRes.data.userId); 
+    }
+  } catch (error) {
+    console.error("Image upload or save failed:", error);
+  }
+};
+useEffect(() => {
+  const fetchUserPhoto = async () => {
+    try {
+      const res = await axios.get(`https://resume360-server.vercel.app/profile-image/${profileId}`);
+      if (res.data && res.data.photoURL) {
+        setPhotoURL(res.data.photoURL);
+      } else {
+        setPhotoURL(user.photoURL);
+      }
+    } catch (error) {
+      console.error("Error fetching profile image by ID:", error);
+      setPhotoURL(user.photoURL);
+    }
+  };
+  
+
+  if (user?.email) {
+    fetchUserPhoto();
+  }
+}, [user]);
+
 
   const [profile, setProfile] = useState({
     name: "",
@@ -167,9 +231,9 @@ const DashboardProfile = () => {
           <div className="flex items-center justify-center">
             <div className="relative">
               <img
-                src={user?.photoURL}
+                src={photoURL}
                 className="rounded-full xl:h-60 xl:w-60 md:h-40 md:w-40 h-80 w-80 object-cover border border-primary/50 hover:scale-105 transition-transform duration-300"
-                alt="Profile photo"
+                alt="Profile"
               />
               <label htmlFor="upload-image">
                 <div className="absolute bottom-8 sm:bottom-6 sm:right-6 md:bottom-2 md:right-2 xl:bottom-6 xl:right-6 right-8 bg-blue-600 text-white p-3 rounded-full cursor-pointer hover:scale-110 transition-transform">
@@ -181,7 +245,7 @@ const DashboardProfile = () => {
                 id="upload-image"
                 accept="image/*"
                 style={{ display: "none" }}
-                // onChange={handleImageUpload}
+                onChange={handleImageUpload}
               />
             </div>
           </div>
