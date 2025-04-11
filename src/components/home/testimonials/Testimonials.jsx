@@ -70,7 +70,7 @@ export const Testimonials = () => {
         fullSymbol="fas fa-star"/>
        </div>
       </div>
-        <p className='text-center w-11/12 md:w-10/12 lg:w-9/12 mx-auto mt-6'>{testimonial.review}</p>
+        <p className='text-center  sm:w-11/12 md:w-10/12 lg:w-9/12 mx-auto mt-6'>{testimonial.review}</p>
         </div>
         </SwiperSlide>)
         }
