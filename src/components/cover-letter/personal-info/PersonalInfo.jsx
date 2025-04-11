@@ -12,9 +12,9 @@ const PersonalInfo = () => {
   };
 
   return (
-    <div className="grid grid-cols-2 px-4 gap-4 mt-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 px-4 gap-4 mt-5">
       <TextField
-        className="col-span-2"
+        className="md:col-span-2"
         required
         name="fullName"
         label="Your Name"
@@ -23,7 +23,6 @@ const PersonalInfo = () => {
         helperText="Please enter your full name"
       />
       <TextField
-        className=""
         required
         name="address"
         label="Address"
@@ -32,7 +31,6 @@ const PersonalInfo = () => {
         helperText="Please enter your address"
       />
       <TextField
-        className=""
         required
         name="cityZip"
         label="City, Zip Code"
@@ -41,7 +39,6 @@ const PersonalInfo = () => {
         helperText="Please enter your city and zip code"
       />
       <TextField
-        className=""
         required
         name="email"
         label="Email"
@@ -51,7 +48,6 @@ const PersonalInfo = () => {
         helperText="Please enter your email address"
       />
       <TextField
-        className=""
         required
         name="phone"
         label="Phone Number"
@@ -60,7 +56,6 @@ const PersonalInfo = () => {
         helperText="Please enter your phone number"
       />
       <TextField
-        className=""
         name="linkedIn"
         label="LinkedIn Profile URL"
         value={CoverLetterData.personalInfo.linkedIn || ''}
@@ -68,7 +63,6 @@ const PersonalInfo = () => {
         helperText="Please enter your LinkedIn profile URL"
       />
       <TextField
-        className=""
         name="portfolio"
         label="Portfolio URL"
         value={CoverLetterData.personalInfo.portfolio || ''}
@@ -76,7 +70,7 @@ const PersonalInfo = () => {
         helperText="Please enter your portfolio URL"
       />
       <TextField
-        className="col-span-2"
+        className="md:col-span-2"
         required
         name="date"
         label="Date"
@@ -87,6 +81,7 @@ const PersonalInfo = () => {
         helperText="Please select the date"
       />
     </div>
+
   );
 };
 
