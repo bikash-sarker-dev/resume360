@@ -34,7 +34,7 @@ const Sidebar = () => {
       .catch(() => {});
   };
 
-  const navItems = [
+  const navItemAdmin = [
     { to: "/dashboard/home", icon: <GoHome />, label: "Dashboard" },
     { to: "/dashboard/users", icon: <FiUserCheck />, label: "Users" },
     {
@@ -64,6 +64,25 @@ const Sidebar = () => {
       label: "Notification Setting",
     },
   ];
+  const navItemsUser = [
+    { to: "/dashboard/home", icon: <GoHome />, label: "Dashboard" },
+    {
+      to: "/dashboard/profile",
+      icon: <RiUserSettingsLine />,
+      label: "Profile",
+    },
+    {
+      to: "/dashboard/chat",
+      icon: <IoChatboxEllipsesOutline />,
+      label: "Chat",
+    },
+
+    {
+      to: "/dashboard/notification",
+      icon: <MdOutlineEditNotifications />,
+      label: "Notification Setting",
+    },
+  ];
 
   return (
     <div className="drawer z-50 lg:drawer-open">
@@ -76,23 +95,41 @@ const Sidebar = () => {
             <h2 className="text-3xl font-bold text-r-text">Resume360</h2>
           </div>
           <ul className="space-y-2">
-            {navItems.map((item, idx) => (
-              <li key={idx}>
-                <NavLink
-                  to={item.to}
-                  className={({ isActive }) =>
-                    `flex items-center gap-3 px-4 py-2 rounded-lg transition-all ${
-                      isActive
-                        ? "bg-r-secondary text-white font-semibold"
-                        : "hover:bg-r-secondary hover:text-white text-r-background"
-                    }`
-                  }
-                >
-                  <span className="text-2xl">{item.icon}</span>
-                  <span className="text-base">{item.label}</span>
-                </NavLink>
-              </li>
-            ))}
+            {admin
+              ? navItemAdmin.map((item, idx) => (
+                  <li key={idx}>
+                    <NavLink
+                      to={item.to}
+                      className={({ isActive }) =>
+                        `flex items-center gap-3 px-4 py-2 rounded-lg transition-all ${
+                          isActive
+                            ? "bg-r-secondary text-white font-semibold"
+                            : "hover:bg-r-secondary hover:text-white text-r-background"
+                        }`
+                      }
+                    >
+                      <span className="text-2xl">{item.icon}</span>
+                      <span className="text-base">{item.label}</span>
+                    </NavLink>
+                  </li>
+                ))
+              : navItemsUser.map((item, idx) => (
+                  <li key={idx}>
+                    <NavLink
+                      to={item.to}
+                      className={({ isActive }) =>
+                        `flex items-center gap-3 px-4 py-2 rounded-lg transition-all ${
+                          isActive
+                            ? "bg-r-secondary text-white font-semibold"
+                            : "hover:bg-r-secondary hover:text-white text-r-background"
+                        }`
+                      }
+                    >
+                      <span className="text-2xl">{item.icon}</span>
+                      <span className="text-base">{item.label}</span>
+                    </NavLink>
+                  </li>
+                ))}
 
             <li>
               <button
