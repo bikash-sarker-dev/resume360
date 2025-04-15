@@ -2,45 +2,76 @@
   "teams": [
     {
       "id": 1,
-      "image": "../src/assets/images/about/team/pic 1.png",
+      "image": "assets/pic 1.png",
       "name": "Bikash Sarker",
       "title": "Backend Developer",
-      "description": "Bikash specializes in building scalable and efficient backend systems, ensuring robust server-side logic and database management."
+      "description": "Bikash specializes in building scalable and efficient backend systems, ensuring robust server-side logic and database management.",
+      "socialLinks": {
+    "facebook": "https://www.facebook.com/shrabontop",
+    "linkedin": "https://www.linkedin.com/in/bikash-sarker-dev/",
+    "github": "https://github.com/bikash-sarker-dev"
+  }
     },
     {
       "id": 2,
-      "image": "../src/assets/images/about/team/pic 2.png",
+      "image": "assets/pic 2.png",
       "name": "Sadia Afrin",
       "title": "Front-End Developer",
-      "description": "Sadia is an expert in crafting responsive and dynamic web interfaces, ensuring a seamless user experience with clean and maintainable code."
+      "description": "Sadia is an expert in crafting responsive and dynamic web interfaces, ensuring a seamless user experience with clean and maintainable code.",
+      "socialLinks": {
+        "facebook": "https://www.facebook.com/sadia.afrin.khan.52",
+        "linkedin": "https://www.linkedin.com/in/sadia-afrin-597515301",
+        "github": "https://github.com/Sadia0920"
+      }
+      
     },
     {
       "id": 3,
-      "image": "../src/assets/images/about/team/pic 3.png",
+      "image": "assets/pic 3.png",
       "name": "Joynal Abedin",
       "title": "UI/UX Designer",
-      "description": "Joynal focuses on designing intuitive and visually appealing user interfaces, enhancing user experience through thoughtful design principles."
+      "description": "Joynal focuses on designing intuitive and visually appealing user interfaces, enhancing user experience through thoughtful design principles.",
+      "socialLinks": {
+        "facebook": "https://www.facebook.com/share/1BuZuKTd3v/",
+        "linkedin": "https://www.linkedin.com/in/joynal-abedin-web-dev/",
+        "github": "https://github.com/Joynal-Abedin85"
+      }
     },
     {
       "id": 4,
-      "image": "../src/assets/images/about/team/pic 4.png",
+      "image": "assets/pic 4.png",
       "name": "TAMJID AHMED",
       "title": "Front-End Developer",
-      "description": "Tamjid specializes in front-end development, ensuring smooth user interactions and seamless integration with cloud infrastructure."
+      "description": "Tamjid specializes in front-end development, ensuring smooth user interactions and seamless integration with cloud infrastructure.",
+      "socialLinks": {
+        "facebook": "https://www.facebook.com/tamjid.razin/",
+        "linkedin": "https://www.linkedin.com/in/tamjid-ahmed-profile59326b/",
+        "github": "https://github.com/Tamjid388"
+      }
     },
     {
       "id": 5,
-      "image": "../src/assets/images/about/team/pic 6.png",
+      "image": "assets/pic 6.png",
       "name": "Fatema Hanif",
       "title": "Front-End Developer",
-      "description": "Fatema creates responsive and high-performance web applications, ensuring user-friendly interfaces with optimized front-end code."
+      "description": "Fatema creates responsive and high-performance web applications, ensuring user-friendly interfaces with optimized front-end code.",
+      "socialLinks": {
+    "facebook": "https://www.facebook.com/fatema.hanif.31",
+    "linkedin": "https://www.linkedin.com/in/fatema-hanif/",
+    "github": "https://github.com/fhanif16"
+  }
     },
     {
       "id": 6,
-      "image": "../src/assets/images/about/team/pic 5.png",
+      "image": "assets/pic 5.png",
       "name": "MD ADNAN MAHMUD",
       "title": "Backend Developer",
-      "description": "Adnan designs and develops secure, scalable backend systems, focusing on API development, database management, and system optimization."
+      "description": "Adnan designs and develops secure, scalable backend systems, focusing on API development, database management, and system optimization.",
+      "socialLinks": {
+        "facebook": "https://www.facebook.com/adnanmahmud99/",
+        "linkedin": "https://www.linkedin.com/in/adnanmahmud99?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app ",
+        "github": "https://github.com/adnanmahmud0"
+      }
     }
   ]
 }

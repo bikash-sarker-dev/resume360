@@ -7,14 +7,15 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import EducationList from "../education/EducationList";
 import PersonalInfo from "../personal-info/PersonalInfo";
-import SocialLinksList from "../social-links/SocialLinksList";
 import LivePreview from '../live-preview/LivePreview';
-import SectionHead from '../../header/section-head/SectionHead';
 import ProjectList from '../project/ProjectList';
 import ExperienceList from '../expreance/ExperienceList';
 import ErrorPage from '../../../pages/ErrorPage';
 import Accordions from '../accordions/Accordions';
 import ResumeDownload from '../resume-download/ResumeDownload';
+import { useContext } from 'react';
+import { ResumeContext } from '../../../contextApi/resume-context/ResumeContext';
+
 
 const renderStepContent = (step) => {
   switch (step) {
@@ -29,15 +30,16 @@ const renderStepContent = (step) => {
     case 4:
       return <Accordions />;
     default:
-      return <ErrorPage></ErrorPage>;
+      return <ErrorPage />;
   }
 };
 
-const steps = ['Profile', 'Education', 'Experience', 'Project', 'Additional'];
+const steps = ['My Info', 'Edu', 'Exp', 'Project', 'Addition'];
 
 const StepperComponents = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
+  const { resetResumeData } = useContext(ResumeContext); // Access resetResumeData from context
 
   const isStepSkipped = (step) => {
     return skipped.has(step);
@@ -60,10 +62,11 @@ const StepperComponents = () => {
 
   const handleReset = () => {
     setActiveStep(0);
+    resetResumeData(); // Reset the resume data in context
   };
 
   return (
-    <div className='grid grid-cols-2'>
+    <div className='grid grid-cols-1 md:grid-cols-2'>
       <Box className="mb-10 bg-white py-10 px-6 shadow-xl" sx={{ width: '100%' }}>
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map((label, index) => {
@@ -92,7 +95,7 @@ const StepperComponents = () => {
           <React.Fragment>
             <Typography sx={{ mt: 2, mb: 1 }}>
               <Box>
-                <ResumeDownload></ResumeDownload>
+                <ResumeDownload />
               </Box>
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
@@ -113,7 +116,10 @@ const StepperComponents = () => {
                 </button>
               )}
               <Box sx={{ flex: '1 1 auto' }} />
-              <button className='rounded-full text-white bg-r-primary py-2 px-5' onClick={handleNext}>
+              <button
+                className='rounded-full text-white bg-r-primary py-2 px-5'
+                onClick={handleNext}
+              >
                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
               </button>
             </Box>
@@ -123,8 +129,8 @@ const StepperComponents = () => {
           </React.Fragment>
         )}
       </Box>
-      <div>
-        <LivePreview></LivePreview>
+      <div className='hidden md:block'>
+        <LivePreview />
       </div>
     </div>
   );

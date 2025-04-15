@@ -12,12 +12,14 @@ import {
 import { useEffect, useState } from "react";
 import { AuthContext } from "../contextApi/AuthenticationContext";
 import { auth } from "../firebase/firebase.config";
+import useAxiosPublic from "./../hooks/useAxiosPublic";
 
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
+  const axiosPublic = useAxiosPublic();
 
   // Create User
   const createUser = (email, password) => {
@@ -59,15 +61,25 @@ export default function AuthProvider({ children }) {
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      setUser(currentUser);
       if (currentUser) {
-        console.log(currentUser);
-        setUser(currentUser);
+        let userInfo = { email: currentUser.email };
+        const res = await axiosPublic.post("/secure-login", userInfo);
+
+        if (res.data.token) {
+          localStorage.setItem("access-token", res.data.token);
+          setLoading(false);
+          console.log("token login");
+        }
+      } else {
+        console.log("token logout");
+        localStorage.removeItem("access-token");
         setLoading(false);
       }
-      return () => {
-        unSubscribe();
-      };
     });
+    return () => {
+      unSubscribe();
+    };
   }, []);
 
   const userInfo = {

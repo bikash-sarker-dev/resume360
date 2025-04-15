@@ -31,48 +31,53 @@ const EducationForm = ({ addEducation }) => {
   };
 
   return (
-    <div>
-      <form className="grid grid-cols-2 gap-3" onSubmit={handleSubmit}>
+    <div className="w-full px-4 py-6">
+      <form
+        className="grid grid-cols-1 md:grid-cols-2 gap-4"
+        onSubmit={handleSubmit}
+      >
         <TextField
-          className="col-span-2"
-          label="School, College and University"
+          fullWidth
+          required
           name="school"
+          label="School, College and University"
           value={education.school}
           onChange={handleChange}
-          required
           helperText="Please enter your school, college and university full name"
         />
         <TextField
-          className="md:col-span-1 col-span-2"
-          label="Degree"
+          fullWidth
+          required
           name="degree"
+          label="Degree"
           value={education.degree}
           onChange={handleChange}
-          required
           helperText="Please enter your degree"
         />
         <TextField
-          className="md:col-span-1 col-span-2"
-          label="Field of Study"
+          fullWidth
+          required
           name="field"
+          label="Field of Study"
           value={education.field}
           onChange={handleChange}
-          required
           helperText="Please enter your field of study"
         />
         <TextField
-          label="Start Date"
+          fullWidth
+          required
           name="startDate"
+          label="Start Date"
           type="month"
           value={education.startDate}
           onChange={handleChange}
-          required
           InputLabelProps={{ shrink: true }}
           helperText="Please select start month and year"
         />
         <TextField
-          label="End Date"
+          fullWidth
           name="endDate"
+          label="End Date"
           type="month"
           value={education.endDate}
           onChange={handleChange}
@@ -80,29 +85,31 @@ const EducationForm = ({ addEducation }) => {
           helperText="Please select end month and year"
         />
         <TextField
-          className="col-span-2"
-          label="Grade"
+          fullWidth
           name="grade"
+          label="Grade"
           value={education.grade}
           onChange={handleChange}
           helperText="Please enter your grade"
         />
         <TextField
-          className="col-span-2"
-          label="Description"
+          fullWidth
           name="description"
+          label="Description"
           value={education.description}
           onChange={handleChange}
           multiline
           rows={3}
           helperText="Please enter description"
         />
-        <button
-          type="submit"
-          className="col-span-2 cursor-pointer rounded-full text-white bg-r-primary py-2 px-5"
-        >
-          Add
-        </button>
+        <div className="md:col-span-2 flex justify-end">
+          <button
+            type="submit"
+            className="mt-2 cursor-pointer rounded-full text-white bg-r-primary hover:bg-r-primary/90 transition duration-300 py-2 px-6"
+          >
+            Add
+          </button>
+        </div>
       </form>
     </div>
   );
