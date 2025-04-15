@@ -10,11 +10,14 @@ import { MdOutlineEditNotifications } from "react-icons/md";
 import { RiUserSettingsLine } from "react-icons/ri";
 import { NavLink, useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import useOrganizer from "../../hooks/useAdminManage";
 import useAuth from "../../hooks/useAuth";
 
 const Sidebar = () => {
   const { signOutUser, user, setUser } = useAuth();
   const navigate = useNavigate();
+  const { admin } = useOrganizer();
+  console.log(admin);
 
   const handleSignOut = () => {
     signOutUser()
@@ -34,12 +37,32 @@ const Sidebar = () => {
   const navItems = [
     { to: "/dashboard/home", icon: <GoHome />, label: "Dashboard" },
     { to: "/dashboard/users", icon: <FiUserCheck />, label: "Users" },
-    { to: "/dashboard/profile", icon: <RiUserSettingsLine />, label: "Profile" },
-    { to: "/dashboard/order-details", icon: <AiOutlineRead />, label: "Order Details" },
+    {
+      to: "/dashboard/profile",
+      icon: <RiUserSettingsLine />,
+      label: "Profile",
+    },
+    {
+      to: "/dashboard/order-details",
+      icon: <AiOutlineRead />,
+      label: "Order Details",
+    },
     { to: "/dashboard/reviews", icon: <IoReaderOutline />, label: "Reviews" },
-    { to: "/dashboard/chat", icon: <IoChatboxEllipsesOutline />, label: "Chat" },
-    { to: "/dashboard/security", icon: <GrShieldSecurity />, label: "Security" },
-    { to: "/dashboard/notification", icon: <MdOutlineEditNotifications />, label: "Notification Setting" },
+    {
+      to: "/dashboard/chat",
+      icon: <IoChatboxEllipsesOutline />,
+      label: "Chat",
+    },
+    {
+      to: "/dashboard/security",
+      icon: <GrShieldSecurity />,
+      label: "Security",
+    },
+    {
+      to: "/dashboard/notification",
+      icon: <MdOutlineEditNotifications />,
+      label: "Notification Setting",
+    },
   ];
 
   return (
