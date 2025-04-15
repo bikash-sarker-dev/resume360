@@ -25,7 +25,7 @@ const Navbar = () => {
         });
         setUser(null);
       })
-      .catch((error) => {});
+      .catch((error) => { });
   };
 
   // Handle scroll behavior (hide on scroll down, show on scroll up)
@@ -51,20 +51,28 @@ const Navbar = () => {
       >
         Dashboard
       </NavLink>
-      <NavLink
-        to="/add-information"
-        className="cursor-pointer w-8/12 transition-all"
-      >
-        AddInfo
+      <NavLink to="/add-information" className="cursor-pointer w-8/12 relative group transition-all">
+        Generate
+        <div className="absolute left-0 hidden group-hover:block bg-white text-black shadow-md mt-2 rounded-md w-48">
+          <NavLink
+            to="/add-information"
+            className="block px-4 py-2 text-sm transition-all hover:bg-gray-100"
+          >
+            Resume Builder
+          </NavLink>
+          <NavLink
+            to="/cover-letter"
+            className="block px-4 py-2 text-sm transition-all hover:bg-gray-100"
+          >
+            Cover Letter Builder
+          </NavLink>
+        </div>
       </NavLink>
       <NavLink to="/about" className="cursor-pointer w-8/12 transition-all">
         About
       </NavLink>
       <NavLink to="/templates" className="cursor-pointer w-8/12 transition-all">
         Templates
-      </NavLink>
-      <NavLink to="/faq" className="cursor-pointer w-8/12 transition-all">
-        FAQ
       </NavLink>
     </>,
   ];
@@ -73,9 +81,8 @@ const Navbar = () => {
     <>
       <div className=" ">
         <header
-          className={`fixed   top-0 left-0  w-full bg-r-primary  text-r-text  z-50  py-3 sm:py-2  shadow-md transition-transform duration-500 ${
-            hidden ? "-translate-y-full" : "translate-y-0"
-          }`}
+          className={`fixed   top-0 left-0  w-full bg-r-primary  text-r-text  z-50  py-3 sm:py-2  shadow-md transition-transform duration-500 ${hidden ? "-translate-y-full" : "translate-y-0"
+            }`}
         >
           <div className="flex container items-center justify-between w-10/12 mx-auto">
             <div className="text-2xl font-serif ">
@@ -93,8 +100,8 @@ const Navbar = () => {
                     onClick={handleSignOut}
                     className="relative hidden lg:block  items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group"
                   >
-                    <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                    <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
+                    <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary/50 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                    <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-black">
                       Logout
                     </span>
                   </button>
@@ -106,16 +113,16 @@ const Navbar = () => {
                 <div className="flex gap-5">
                   <Link to="/login">
                     <button className="relative hidden lg:block  items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group">
-                      <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                      <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
+                      <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary/50 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                      <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-black">
                         Login
                       </span>
                     </button>
                   </Link>
                   <Link to="/register">
                     <button className="relative hidden lg:block   items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group">
-                      <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                      <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
+                      <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary/50 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                      <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-black">
                         Register
                       </span>
                     </button>
@@ -135,11 +142,10 @@ const Navbar = () => {
 
         {/* Mobile Dropdown Menu */}
         <div
-          className={`lg:hidden z-30 fixed top-0 rounded-3xl backdrop-blur-3xl opacity-30  bg-r-primary right-10 w-[300px]  text-r-text transition-all duration-500 ease-in-out ${
-            menuOpen
+          className={`lg:hidden z-30 fixed top-0 rounded-3xl backdrop-blur-3xl opacity-30  bg-r-primary right-10 w-[300px]  text-r-text transition-all duration-500 ease-in-out ${menuOpen
               ? "opacity-100 z-0 translate-y-0 top-16"
               : "opacity-0  -translate-y-full pointer-events-none"
-          }`}
+            }`}
         >
           <ul
             className="flex flex-col  items-center space-y-4 py-6 text-lg"
