@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { act, useEffect, useState } from "react";
 import "react-tabs/style/react-tabs.css";
 import SectionHead from "../components/header/section-head/SectionHead";
 import { TemplateTab } from "../components/TemplatePage/TemplateTab";
@@ -9,22 +9,38 @@ const TemplatesPage = () => {
   let [cvbtn, setCv] = useState(false);
   let [coverLetterbtn, setCoverLetter] = useState(false);
 
+
+  const [active,setActive]=useState("resume")
   const handleResume = () => {
     setResume(true);
     setCv(false);
     setCoverLetter(false);
+
+    setActive("resume");
+    console.log(active);
   };
   const handleCv = () => {
     setResume(false);
     setCoverLetter(false);
     setCv(true);
+
+    setActive("cv");
+    console.log(active);
   };
 
   const handleCoverLetter = () => {
     setResume(false);
     setCv(false);
     setCoverLetter(true);
+
+     setActive("cover");
+    console.log(active);
   };
+
+useEffect(()=>{
+  console.log("Now active:", active);
+},[active])
+
 
   useEffect(() => {
     fetch("/templetes.json")
@@ -49,21 +65,25 @@ const TemplatesPage = () => {
         <div className="flex gap-4 justify-center my-8  ">
           <button
             onClick={handleResume}
-            className={`py-7 w-20 md:w-40 btn bg-r-primary rounded-full`}
+            className={`py-7 w-20 md:w-40 btn  rounded-full
+              ${active==="resume" ?"bg-r-primary shadow-2xl":"bg-r-secondary "}
+              `}
           >
             Resume
           </button>
           <button
             onClick={handleCv}
-            className="btn py-7  w-20 md:w-40 bg-r-primary rounded-full 
-   "
+            className={`btn py-7  w-20 md:w-40 bg-r-primary rounded-full
+                 ${active==="cv" ?"bg-r-primary shadow-2xl":"bg-r-secondary "}
+              `}
           >
             CV
           </button>
           <button
             onClick={handleCoverLetter}
-            className="btn w-20 md:w-40 py-7 bg-r-primary rounded-full 
-   "
+            className={`btn w-20 md:w-40 py-7 bg-r-primary rounded-full
+                 ${active==="cover" ?"bg-r-primary shadow-2xl":"bg-r-secondary "}
+              `}
           >
             Cover Letter
           </button>
