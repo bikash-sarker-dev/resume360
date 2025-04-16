@@ -67,7 +67,7 @@ const DextopNavbar = () => {
 
           {/* User */}
           <div className="flex items-center gap-4 pr-4">
-            <h4 className="font-semibold opacity-80 hidden xl:block">
+            <h4 className="font-semibold opacity-80 text-r-background hidden xl:block">
               Bikash Sarker
             </h4>
             <div className="avatar">
