@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="relative   bg-r-info  text-r-text pt-16 pb-8 px-8 md:px-16">
+    <footer className="relative   bg-r-secondary  text-r-text pt-16 pb-8 px-8 md:px-16">
       <div className="container">
         <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4  text-center md:text-left">
           {/* Brand Section */}
@@ -26,16 +26,16 @@ const Footer = () => {
             </h3>
             <ul className="mt-3 grid grid-cols-1 space-y-2">
               <Link to="/">
-                <a className="hover:text-r-accent cursor-pointer">Home</a>
+                <a className="hover:text-r-info-card cursor-pointer">Home</a>
               </Link>
               <Link to="/features">
-                <a className="hover:text-r-accent cursor-pointer">Features</a>
+                <a className="hover:text-r-info-card cursor-pointer">Features</a>
               </Link>
               <Link to="/pricing">
-                <a className="hover:text-r-accent cursor-pointer">Pricing</a>
+                <a className="hover:text-r-info-card cursor-pointer">Pricing</a>
               </Link>
               <Link to="/contact">
-                <a className="hover:text-r-accent cursor-pointer">Contact</a>
+                <a className="hover:text-r-info-card cursor-pointer">Contact</a>
               </Link>
             </ul>
           </div>
@@ -45,20 +45,20 @@ const Footer = () => {
             </h3>
             <ul className="mt-3 grid grid-cols-1 space-y-2">
               <Link to="/about">
-                <a className="hover:text-r-accent cursor-pointer ">About Us</a>
+                <a className="hover:text-r-info-card cursor-pointer ">About Us</a>
               </Link>
               <Link to="/terms">
-                <a className="hover:text-r-accent cursor-pointer">
+                <a className="hover:text-r-info-card cursor-pointer">
                   Terms & Conditions
                 </a>
               </Link>
               <Link to="/privacy-policy">
-                <a className="hover:text-r-accent cursor-pointer">
+                <a className="hover:text-r-info-card cursor-pointer">
                   Privacy Policy
                 </a>
               </Link>
               <Link to="/faq">
-                <a className="hover:text-r-accent cursor-pointer">FAQ</a>
+                <a className="hover:text-r-info-card cursor-pointer">FAQ</a>
               </Link>
             </ul>
           </div>
