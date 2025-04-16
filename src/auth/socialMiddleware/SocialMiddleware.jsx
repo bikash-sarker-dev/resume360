@@ -29,8 +29,8 @@ export default function SocialMiddleware() {
     const email = form.email.value;
     const terms = true;
 
-    const data = { name, profession, image, email, terms };
-    // console.log(data);
+    const data = { name, profession, email, image, terms };
+    console.log(data);
 
     axiosPublic.post("/users", data).then((res) => {
       if (res.data.message) {
@@ -141,13 +141,13 @@ export default function SocialMiddleware() {
             </div>
             {conditions ? (
               <>
-                <button className="btn bg-r-accent mt-4 text-white">
+                <button className="btn bg-r-accent mt-4 text-r-text hover:bg-r-primary hover:text-white">
                   Save
                 </button>
               </>
             ) : (
               <>
-                <button disabled className="btn bg-r-accent mt-4 text-black">
+                <button disabled className="btn bg-r-accent mt-4 text-r-text">
                   Save
                 </button>
               </>
