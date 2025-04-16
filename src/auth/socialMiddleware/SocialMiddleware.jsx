@@ -29,8 +29,8 @@ export default function SocialMiddleware() {
     const email = form.email.value;
     const terms = true;
 
-    const data = { name, profession, image, email, terms };
-    // console.log(data);
+    const data = { name, profession, email, image, terms };
+    console.log(data);
 
     axiosPublic.post("/users", data).then((res) => {
       if (res.data.message) {
