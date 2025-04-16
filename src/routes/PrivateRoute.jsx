@@ -6,7 +6,7 @@ export default function PrivateRoute({children}) {
   const {user,loading} = useAuth()
   
 if(loading){
-  return <span className='block mx-auto loading loading-infinity loading-lg'></span>
+  return <span className='block mx-auto loading loading-spinner loading-xl'></span>
 
 }
 if(user){
