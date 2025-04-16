@@ -6,7 +6,7 @@ const StatusCard = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-5 p-10">
       {/* card 1  */}
-      <div className="bg-r-info shadow-md rounded-lg p-6 ">
+      <div className="bg-r-hover hover:bg-r-secondary transition-all duration-300 shadow-md rounded-lg p-6 ">
         <div className="flex items-center justify-between gap-3">
           <div className="bg-indigo-700 p-2 rounded-md">
             <CiDollar className="text-4xl text-r-background" />
@@ -30,7 +30,7 @@ const StatusCard = () => {
         </div>
       </div>
       {/* card 2  */}
-      <div className="bg-r-info shadow-md rounded-lg p-6 ">
+      <div className="bg-r-hover hover:bg-r-secondary transition-all duration-300 shadow-md rounded-lg p-6 ">
         <div className="flex items-center justify-between gap-3">
           <div className="bg-green-400 p-2 rounded-md">
             <FaUsers className="text-4xl text-r-background" />
@@ -54,7 +54,7 @@ const StatusCard = () => {
         </div>
       </div>
       {/* card 3  */}
-      <div className="bg-r-info shadow-md rounded-lg p-6 ">
+      <div className="bg-r-hover hover:bg-r-secondary transition-all duration-300 shadow-md rounded-lg p-6 ">
         <div className="flex items-center justify-between gap-3">
           <div className="bg-sky-500 p-2 rounded-md">
             <FaUsers className="text-4xl text-r-background" />
@@ -78,7 +78,7 @@ const StatusCard = () => {
         </div>
       </div>
       {/* card 4  */}
-      <div className="bg-r-info shadow-md rounded-lg p-6 ">
+      <div className="bg-r-hover hover:bg-r-secondary transition-all duration-300 shadow-md rounded-lg p-6 ">
         <div className="flex items-center justify-between gap-3">
           <div className="bg-r-primary p-2 rounded-md">
             <FaCloudDownloadAlt className="text-4xl text-r-background" />
