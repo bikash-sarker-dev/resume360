@@ -18,7 +18,7 @@ const DashboardLayouts = () => {
         </div>
         {/* dashboard body part  */}
         <div
-          className="lg:w-[85%] w-[100%]
+          className=" w-[100%]
         "
         >
           <NavbarDashboard />
