@@ -4,6 +4,7 @@ import { Link, NavLink, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import "./navbar.css";
+import { FaUser, FaUserLock } from "react-icons/fa";
 
 const Navbar = () => {
   const { signOutUser, user, setUser } = useAuth();
@@ -11,6 +12,8 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [lastScroll, setLastScroll] = useState(0);
   const [hidden, setHidden] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
 
   // Signout
   const handleSignOut = () => {
@@ -25,7 +28,20 @@ const Navbar = () => {
         });
         setUser(null);
       })
-      .catch((error) => { });
+      .catch((error) => {});
+  };
+
+  const getBgColor = (email) => {
+    const colors = [
+      "bg-red-500",
+      "bg-green-500",
+      "bg-blue-500",
+      "bg-yellow-500",
+      "bg-purple-500",
+      "bg-pink-500",
+    ];
+    const index = email?.charCodeAt(0) % colors.length;
+    return colors[index];
   };
 
   // Handle scroll behavior (hide on scroll down, show on scroll up)
@@ -51,7 +67,10 @@ const Navbar = () => {
       >
         Dashboard
       </NavLink>
-      <NavLink to="/add-information" className="cursor-pointer w-8/12 relative group transition-all">
+      <NavLink
+        to="/add-information"
+        className="cursor-pointer w-8/12 relative group transition-all"
+      >
         Generate
         <div className="absolute left-0 hidden group-hover:block bg-white text-black shadow-md mt-2 rounded-md w-48">
           <NavLink
@@ -81,8 +100,9 @@ const Navbar = () => {
     <>
       <div className=" ">
         <header
-          className={`fixed   top-0 left-0  w-full bg-r-primary  text-r-text  z-50  py-3 sm:py-2  shadow-md transition-transform duration-500 ${hidden ? "-translate-y-full" : "translate-y-0"
-            }`}
+          className={`fixed   top-0 left-0  w-full bg-r-info  text-r-card  z-50  py-3 sm:py-2  shadow-md transition-transform duration-500 ${
+            hidden ? "-translate-y-full" : "translate-y-0"
+          }`}
         >
           <div className="flex container items-center justify-between w-10/12 mx-auto">
             <div className="text-2xl font-serif ">
@@ -94,37 +114,77 @@ const Navbar = () => {
               {menu}
             </ul>
             {user ? (
-              <>
-                <Link>
-                  <button
-                    onClick={handleSignOut}
-                    className="relative hidden lg:block  items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group"
-                  >
-                    <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary/50 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                    <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-black">
-                      Logout
-                    </span>
-                  </button>
-                </Link>
-              </>
+             <>
+             <div className="relative hidden  sm:flex items-center">
+               <div
+                 onClick={() => setIsModalOpen(true)}
+                 className="cursor-pointer flex justify-center items-center w-10 h-10 rounded-full text-white text-lg font-bold overflow-hidden bg-gray-400"
+               >
+                 {user?.photoURL ? (
+                   <img
+                     className="w-full h-full object-cover"
+                     src={user.photoURL}
+                     alt="User"
+                   />
+                 ) : (
+                   <span>{user?.email?.charAt(0)?.toUpperCase()}</span>
+                 )}
+               </div>
+           
+               {/* Modal */}
+               {isModalOpen && (
+                 <div className="absolute w-[200px] top-12 right-0 z-50  max-w-sm bg-r-card  rounded-xl p-6 shadow-xl">
+                   <button
+                     onClick={() => setIsModalOpen(false)}
+                     className="absolute top-2 right-3 text-gray-600 hover:text-red-500 text-2xl font-bold"
+                   >
+                     &times;
+                   </button>
+           
+                   <p className="text-xl font-semibold mb-4 text-r-info">Account</p>
+           
+                   <button
+                     onClick={() => {
+                       handleSignOut();
+                       setIsModalOpen(false);
+                     }}className="relative  hidden lg:flex   px-4 py-2 text-[17px] font-semibold text-r-text border  border-r-primary rounded-full overflow-hidden transition-colors duration-300 ease-out group hover:text-r-text hover:border-transparent">
+                     <div className="flex items-center">
+                       <span className="absolute top-1/2 left-1/2 w-[20em] h-[20em] -translate-x-1/2 -translate-y-1/2 rounded-full z-[-1] transition-[box-shadow] duration-500 ease-out group-hover:shadow-[inset_0_0_0_10em_var(--color-r-accent)]" />
+
+                       <FaUserLock className="mr-3"></FaUserLock>
+
+                       <span>logout</span>
+                     </div>
+                   </button>
+                 </div>
+               )}
+             </div>
+           </>
+           
             ) : (
               <>
                 {/* Login Button (Desktop) */}
                 <div className="flex gap-5">
                   <Link to="/login">
-                    <button className="relative hidden lg:block  items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group">
-                      <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary/50 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                      <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-black">
-                        Login
-                      </span>
+                    <button className="relative  hidden lg:flex   px-4 py-2 text-[17px] font-semibold text-text border border-r-card rounded-full overflow-hidden transition-colors duration-300 ease-out group hover:text-r-text hover:border-transparent">
+                      <div className="flex items-center">
+                        <span className="absolute top-1/2 left-1/2 w-[20em] h-[20em] -translate-x-1/2 -translate-y-1/2 rounded-full z-[-1] transition-[box-shadow] duration-500 ease-out group-hover:shadow-[inset_0_0_0_10em_var(--color-r-accent)]" />
+
+                        <FaUserLock className="mr-3"></FaUserLock>
+
+                        <span>login</span>
+                      </div>
                     </button>
                   </Link>
                   <Link to="/register">
-                    <button className="relative hidden lg:block   items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group">
-                      <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary/50 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                      <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-black">
-                        Register
-                      </span>
+                    <button className="relative  hidden lg:flex   px-4 py-2 text-[17px] font-semibold text-text border border-r-card rounded-full overflow-hidden transition-colors duration-300 ease-out group hover:text-r-text hover:border-transparent">
+                      <div className="flex items-center">
+                        <span className="absolute top-1/2 left-1/2 w-[20em] h-[20em] -translate-x-1/2 -translate-y-1/2 rounded-full z-[-1] transition-[box-shadow] duration-500 ease-out group-hover:shadow-[inset_0_0_0_10em_var(--color-r-accent)]" />
+
+                        <FaUserLock className="mr-3"></FaUserLock>
+
+                        <span>register</span>
+                      </div>
                     </button>
                   </Link>
                 </div>
@@ -142,10 +202,11 @@ const Navbar = () => {
 
         {/* Mobile Dropdown Menu */}
         <div
-          className={`lg:hidden z-30 fixed top-0 rounded-3xl backdrop-blur-3xl opacity-30  bg-r-primary right-10 w-[300px]  text-r-text transition-all duration-500 ease-in-out ${menuOpen
+          className={`lg:hidden z-30 fixed top-0 rounded-3xl backdrop-blur-3xl opacity-30  bg-r-primary right-10 w-[300px]  text-r-text transition-all duration-500 ease-in-out ${
+            menuOpen
               ? "opacity-100 z-0 translate-y-0 top-16"
               : "opacity-0  -translate-y-full pointer-events-none"
-            }`}
+          }`}
         >
           <ul
             className="flex flex-col  items-center space-y-4 py-6 text-lg"
@@ -158,19 +219,25 @@ const Navbar = () => {
             className="flex gap-5 justify-center mb-5"
           >
             <Link to="/login">
-              <button className="relative   items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group">
-                <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
-                  Login
-                </span>
+              <button className="relative  flex md:hidden   px-4 py-2 text-[17px] font-semibold text-r-hover border border-r-card rounded-full overflow-hidden transition-colors duration-300 ease-out group hover:text-r-text hover:border-transparent">
+                <div className="flex items-center">
+                  <span className="absolute top-1/2 left-1/2 w-[20em] h-[20em] -translate-x-1/2 -translate-y-1/2 rounded-full z-[-1] transition-[box-shadow] duration-500 ease-out group-hover:shadow-[inset_0_0_0_10em_var(--color-r-accent)]" />
+
+                  <FaUserLock className="mr-3"></FaUserLock>
+
+                  <span>login</span>
+                </div>
               </button>
             </Link>
             <Link to="/register">
-              <button className="relative    items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow-xl hover:bg-white group">
-                <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
-                  Register
-                </span>
+              <button className="relative  flex md:hidden  px-4 py-2 text-[17px] font-semibold text-r-hover border border-r-card rounded-full overflow-hidden transition-colors duration-300 ease-out group hover:text-r-text hover:border-transparent">
+                <div className="flex items-center">
+                  <span className="absolute top-1/2 left-1/2 w-[20em] h-[20em] -translate-x-1/2 -translate-y-1/2 rounded-full z-[-1] transition-[box-shadow] duration-500 ease-out group-hover:shadow-[inset_0_0_0_10em_var(--color-r-accent)]" />
+
+                  <FaUserLock className="mr-3"></FaUserLock>
+
+                  <span>register</span>
+                </div>
               </button>
             </Link>
           </div>
