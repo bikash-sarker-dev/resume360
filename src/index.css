@@ -8,7 +8,7 @@
 @plugin "daisyui";
 
 /* theme custom color  */
-@theme {
+/* @theme {
   --color-r-primary: #40cdc3;
   --color-r-secondary: #86abdf;
   --color-r-accent: #6d81d9;
@@ -17,7 +17,25 @@
   --color-r-info: #ccf2ef;
   --color-r-info-card: #daebf5;
   --color-r-card: #e6f8f7;
+} */
+
+
+
+
+@theme {
+  --color-r-primary: #588568;
+  --color-r-secondary: #a1cdb0;
+  --color-r-accent: #7dc696;
+  --color-r-text: #080a09;
+  --color-r-background: #f4f6f5;
+  --color-r-info: #344e41;
+  --color-r-info-card: #3e563f;
+  --color-r-card: #ECF0EE;
+  --color-r-hover: #D5DFD9;
 }
+
+
+
 
 /* @theme {
   --color-r-primary: #6C63FF;
@@ -46,7 +64,9 @@
 body {
   font-family: "Inter", sans-serif;
   font-style: normal;
-  background-color: #effbfa;
+  background-color: #F4F6F5
+ 
+  ;
 }
 
 .container {
