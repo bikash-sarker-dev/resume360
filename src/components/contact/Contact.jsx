@@ -42,13 +42,14 @@ const Contact = () => {
 
 
 
-<section id="contact" className="text-black  grid grid-cols-1 md:grid-cols-2 gap-10 rounded-lg shadow-lg">
+<section id="contact" className="text-green-900  grid grid-cols-1 md:grid-cols-2 gap-10 rounded-lg shadow-lg">
        
        <div className="flex justify-center items-center h-full">
     
 
 
-         <Lottie animationData={helpDesk} className="">
+         <Lottie animationData={helpDesk} className=""  
+        >
 
          </Lottie>
 
@@ -108,7 +109,7 @@ const Contact = () => {
            <motion.textarea
              name="message"
              placeholder="Your Message"
-             className="textarea textarea-bordered w-full p-3 rounded-md shadow-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+             className="textarea textarea-bordered w-full p-3 rounded-md shadow-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-r-accent text-black"
              rows="4"
              required
              initial={{ opacity: 0, x: 50 }}
@@ -117,7 +118,7 @@ const Contact = () => {
            ></motion.textarea>
            <motion.button
              type="submit"
-             className="btn btn-primary w-full p-3 rounded-md bg-blue-600 text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-500"
+             className="btn btn-primary w-full p-3 rounded-md bg-r-primary text-white hover:bg-r-info focus:ring-2 focus:ring-r-info"
              initial={{ opacity: 0, x: 50 }}
              animate={{ opacity: 1, x: 0 }}
              transition={{ duration: 1.2 }}
