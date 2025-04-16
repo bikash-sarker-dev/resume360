@@ -42,9 +42,9 @@ export default function ForgetPassword() {
       <fieldset className="fieldset">
         <label className="fieldset-label">Email</label>
         <input type="email" name="email" className="input w-full" placeholder="Enter Your Email" />
-        <button className="btn bg-r-accent mt-4 text-white">Send Reset Email</button>
+        <button className="btn bg-r-accent mt-4 text-r-text hover:bg-r-primary hover:text-white">Send Reset Email</button>
       </fieldset>
-        <p className="text-center mt-4">Remember Your Password? <span className="underline"><Link to='/login' className="text-r-accent">Login</Link></span></p>
+        <p className="text-center mt-4">Remember Your Password? <span className="underline"><Link to='/login' className="text-r-primary">Login</Link></span></p>
     </form>
     </div>
   )
