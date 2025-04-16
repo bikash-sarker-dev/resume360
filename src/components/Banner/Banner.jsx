@@ -47,19 +47,19 @@ const Banner = () => {
   }}
 ><div className="absolute inset-0 bg-black opacity-60 z-0"></div>
 
-    <div className="relative container  h-[900px] md:h-[650px]  bg-[url('')] bg-cover bg-center  text-r-text flex flex-col md:flex-row items-center pt-[70px] pb-[80px] ">
+    <div className="relative container  h-[900px] md:h-[700px] xl:h-[800px]  bg-[url('')] bg-cover bg-center  text-r-text flex flex-col md:flex-row items-center pt-[70px] pb-[80px] ">
       {/* Left Content (Changes Dynamically) */}
       <div
         key={activeIndex} // Forces re-render to trigger animation
         className=" text-left   max-w-lg  py-4   pl-5 lg:py-0 lg:w-1/2"
       >
         {/* Title */}
-        <h1 className="text-4xl text-r-primary lg:text-5xl font-bold mb-4 slide-up slide-up-h1">
+        <h1 className="text-4xl text-r-card lg:text-6xl font-bold mb-4 slide-up slide-up-h1">
           {slides[activeIndex].title}
         </h1>
 
         {/* Description */}
-        <p className="text-lg text-r-background mb-6 slide-up slide-up-p">
+        <p className="text-lg text-r-hover mb-6 slide-up slide-up-p">
           {slides[activeIndex].description}
         </p>
 
@@ -80,7 +80,7 @@ const Banner = () => {
       </div>
 
       {/* Slider img Section */}
-      <div className="relative w-full mt-8  lg:w-2/3 h-full flex justify-center  items-center">
+      <div className="relative w-full mt-8 xl:pt-16  lg:w-2/3 h-full flex justify-center  items-center">
         {slides.map((slide, index) => (
           <div
             key={index}
@@ -115,20 +115,7 @@ const Banner = () => {
         </button>
       </div>
 
-      {/* Thumbnails */}
-      {/* <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
-        {slides.map((slide, index) => (
-          <img
-            key={index}
-            src={slide.image}
-            className={`w-16 h-16 object-cover cursor-pointer rounded-lg border-2 ${
-              index === activeIndex ? "border-white" : "border-gray-600"
-            }`}
-            onClick={() => setActiveIndex(index)}
-            alt={`Thumbnail ${index}`}
-          />
-        ))}
-      </div> */}
+      
     </div>
     </div>
   );
