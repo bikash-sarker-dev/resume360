@@ -250,7 +250,6 @@ export default function Register() {
                       name="image"
                       className="file-input file-input-bordered w-full"
                       placeholder="Upload Your Image"
-                      required
                     />
 
                   <label className="fieldset-label">Email</label>
@@ -324,7 +323,7 @@ export default function Register() {
                   </div>
                   {conditions ? (
                     <>
-                      <button className="btn bg-r-accent mt-4 text-white">
+                      <button className="btn bg-r-accent mt-4 text-r-text hover:bg-r-primary hover:text-white">
                         Create Account
                       </button>
                     </>
@@ -332,7 +331,7 @@ export default function Register() {
                     <>
                       <button
                         disabled
-                        className="btn bg-r-accent mt-4 text-black"
+                        className="btn bg-r-accent mt-4 text-r-text"
                       >
                         Create Account
                       </button>
@@ -343,7 +342,7 @@ export default function Register() {
               <div className="divider">OR</div>
               <div className="text-center text-3xl">
               {/* Google Button */}
-              <button  onClick={handleGoogleLogin} className="btn w-full border-[1px] border-gray-400 text-r-accent bg-white shadow-2xl">
+              <button  onClick={handleGoogleLogin} className="btn w-full border-[1px] border-[#588568] text-r-primary bg-white shadow-2xl">
               <img className="w-9 bg-transparent" src={google} alt="" />
               Sign in with Google
               </button>
@@ -357,7 +356,7 @@ export default function Register() {
               <p className="mt-2">
               Already have an account?{" "}
               <span className="underline">
-              <Link to="/login" className="text-r-accent">Login here</Link></span>
+              <Link to="/login" className="text-r-primary">Login here</Link></span>
               </p>
               </div>
             </div>

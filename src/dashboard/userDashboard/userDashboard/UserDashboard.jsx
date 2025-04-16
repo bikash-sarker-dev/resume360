@@ -50,7 +50,7 @@ const UserDashboard = () => {
             <div className="overflow-x-auto">
                 <table className="table w-full border border-gray-300">
                     <thead>
-                        <tr className="bg-gray-200">
+                        <tr className="bg-gray-300 text-gray-700">
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
@@ -62,7 +62,7 @@ const UserDashboard = () => {
                     </thead>
                     <tbody>
                         {users.map((user, index) => (
-                            <tr key={user._id || index} className="hover:bg-gray-100">
+                            <tr key={user._id || index} className="hover:bg-gray-200">
                                 <td className="font-semibold text-center">{index + 1}</td>
                                 <td>{user.name || 'N/A'}</td>
                                 <td>{user.email}</td>

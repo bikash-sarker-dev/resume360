@@ -1,5 +1,4 @@
 import React from "react";
-import { AiOutlineRead } from "react-icons/ai";
 
 import { FiUserCheck } from "react-icons/fi";
 import { GoHome } from "react-icons/go";
@@ -42,11 +41,7 @@ const Sidebar = () => {
       icon: <RiUserSettingsLine />,
       label: "Profile",
     },
-    {
-      to: "/dashboard/order-details",
-      icon: <AiOutlineRead />,
-      label: "Order Details",
-    },
+    // { to: "/dashboard/order-details", icon: <AiOutlineRead />, label: "Order Details" },
     { to: "/dashboard/reviews", icon: <IoReaderOutline />, label: "Reviews" },
     {
       to: "/dashboard/chat",
