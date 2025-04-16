@@ -13,11 +13,11 @@ const StatusCard = () => {
           </div>
           <div>
             <h2 className="text-3xl font-semibold">$10,120</h2>
-            <p className="text-gray-500 text-sm mt-1">Total Amount</p>
+            <p className="text-gray-700 text-sm mt-1">Total Amount</p>
           </div>
         </div>
         <div className="mt-8">
-          <div className="flex justify-between text-sm text-gray-500">
+          <div className="flex justify-between text-sm text-gray-700">
             <span>TARGET</span>
             <span>60%</span>
           </div>
@@ -37,11 +37,11 @@ const StatusCard = () => {
           </div>
           <div>
             <h2 className="text-3xl font-semibold">+235</h2>
-            <p className="text-gray-500 text-sm mt-1">All Users</p>
+            <p className="text-gray-700 text-sm mt-1">All Users</p>
           </div>
         </div>
         <div className="mt-8">
-          <div className="flex justify-between text-sm text-gray-500">
+          <div className="flex justify-between text-sm text-gray-700">
             <span>TARGET</span>
             <span>40%</span>
           </div>
@@ -61,11 +61,11 @@ const StatusCard = () => {
           </div>
           <div>
             <h2 className="text-3xl font-semibold">+114</h2>
-            <p className="text-gray-500 text-sm mt-1">Premium Users</p>
+            <p className="text-gray-700 text-sm mt-1">Premium Users</p>
           </div>
         </div>
         <div className="mt-8">
-          <div className="flex justify-between text-sm text-gray-500">
+          <div className="flex justify-between text-sm text-gray-700">
             <span>TARGET</span>
             <span>90%</span>
           </div>
@@ -85,11 +85,11 @@ const StatusCard = () => {
           </div>
           <div>
             <h2 className="text-3xl font-semibold">+2107</h2>
-            <p className="text-gray-500 text-sm mt-1">Download Status</p>
+            <p className="text-gray-700 text-sm mt-1">Download Status</p>
           </div>
         </div>
         <div className="mt-8">
-          <div className="flex justify-between text-sm text-gray-500">
+          <div className="flex justify-between text-sm text-gray-700">
             <span>TARGET</span>
             <span>70%</span>
           </div>
