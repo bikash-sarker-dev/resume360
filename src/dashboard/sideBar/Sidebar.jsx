@@ -26,13 +26,13 @@ const Sidebar = () => {
           text: "Logout successfully",
           icon: "success",
           confirmButtonText: "Done",
+          confirmButtonColor: "#3e563f",
         });
         navigate("/");
         setUser(null);
       })
       .catch(() => {});
   };
-
   const navItemAdmin = [
     { to: "/dashboard/home", icon: <GoHome />, label: "Dashboard" },
     { to: "/dashboard/users", icon: <FiUserCheck />, label: "Users" },

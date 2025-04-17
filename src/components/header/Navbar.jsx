@@ -14,7 +14,6 @@ const Navbar = () => {
   const [hidden, setHidden] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-
   // Signout
   const handleSignOut = () => {
     // console.log('logOut')
@@ -25,6 +24,7 @@ const Navbar = () => {
           text: "Logout successfully",
           icon: "success",
           confirmButtonText: "Done",
+          confirmButtonColor: '#3e563f',
         });
         setUser(null);
       })
