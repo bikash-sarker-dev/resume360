@@ -13,7 +13,7 @@ const Trusted = () => {
   }, []);
 
   return (
-    <div className="bg-r-info-card">
+    <div className="bg-r-card">
       <div className="container">
         <BrandLogo />
       </div>

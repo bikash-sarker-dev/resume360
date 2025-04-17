@@ -8,7 +8,7 @@ const TemplateOne = () => {
         <h2 className="text-2xl font-bold mb-2">UX DESIGNER</h2>
         <p className="mb-2">
           <i className="fa-solid fa-location-dot mr-2"></i>Dhaka, Bangladesh |{" "}
-          <i class="fa-solid fa-envelope mr-2"></i>denial123@gmail.com |{" "}
+          <i className="fa-solid fa-envelope mr-2"></i>denial123@gmail.com |{" "}
           <i className="fa-solid fa-phone mr-2"></i>+8801523892111
         </p>
         <div className="text-2xl">

@@ -35,7 +35,7 @@ const ColumnCharts = () => {
       fill: {
         opacity: 1,
       },
-      colors: ["#40cdc3"],
+      colors: ["#7dc696"],
     },
   });
   return (

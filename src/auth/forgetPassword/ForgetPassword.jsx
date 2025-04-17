@@ -20,7 +20,8 @@ export default function ForgetPassword() {
             title: 'Success',
             text: 'Passward Reset Email Sent! Please Check Your Mail',
             icon: 'success',
-            confirmButtonText: 'Ok'
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#3e563f',
           })
           navigate('/login')
           form.reset()
@@ -31,7 +32,8 @@ export default function ForgetPassword() {
             title: 'Error',
             text: "Email is Wrong! Please Check",
             icon: 'error',
-            confirmButtonText: 'Ok'
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#3e563f',
           })
         })
   }
@@ -42,9 +44,9 @@ export default function ForgetPassword() {
       <fieldset className="fieldset">
         <label className="fieldset-label">Email</label>
         <input type="email" name="email" className="input w-full" placeholder="Enter Your Email" />
-        <button className="btn bg-r-accent mt-4 text-white">Send Reset Email</button>
+        <button className="btn bg-r-accent mt-4 text-r-text hover:bg-r-primary hover:text-white">Send Reset Email</button>
       </fieldset>
-        <p className="text-center mt-4">Remember Your Password? <span className="underline"><Link to='/login' className="text-r-accent">Login</Link></span></p>
+        <p className="text-center mt-4">Remember Your Password? <span className="underline"><Link to='/login' className="text-r-primary">Login</Link></span></p>
     </form>
     </div>
   )

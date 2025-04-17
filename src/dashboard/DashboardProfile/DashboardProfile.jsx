@@ -6,93 +6,109 @@ import useAuth from "../../hooks/useAuth";
 import { getAuth } from "firebase/auth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import axios from "axios";
 
 const DashboardProfile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const auth = getAuth();
   const { user } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const [loading, setLoading] = useState(false);
-  const [photoURL, setPhotoURL] = useState("");
-const [profileId, setProfileId] = useState(); // Store ID for update
+  const [photoURL, setPhotoURL] = useState(null);
+  const [imageId, setImageId] = useState("");
 
+  const imgbbApiKey = "4aa34a6921e0ffee4d933681c503ef39";
 
+const handleFileChange = (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
 
-const handleImageUpload = async (e) => {
-  const image = e.target.files[0];
-  if (!image) return;
+  uploadNewProfileImage(file);
+};
+
+const uploadNewProfileImage = async (file) => {
+  setLoading(true);
 
   const formData = new FormData();
-  formData.append("image", image);
+  formData.append("image", file);
 
-  try {
-    const imgbbRes = await axios.post(
-      `https://api.imgbb.com/1/upload?key=4aa34a6921e0ffee4d933681c503ef39`,
-      formData
-    );
+  const imgbbRes = await axios.post(
+    `https://api.imgbb.com/1/upload?key=${imgbbApiKey}`,
+    formData
+  );
 
-    const newPhotoURL = imgbbRes.data.data.url;
-    setPhotoURL(newPhotoURL);
-
-    const updatedUser = {
-      email: user.email,
-      photoURL: newPhotoURL,
-      userId: user.uid,
-      name: user.displayName,
-    }; 
-
-
-    console.log(updatedUser)
-
-    if (profileId) {
-      await axios.put(`https://resume360-server.vercel.app/profile-image/${profileId}`, updatedUser);
-    } else {
-     
-      const postRes = await axios.post(`https://resume360-server.vercel.app/profile-image`, updatedUser);
-      console.log(postRes.data)
-      setProfileId(postRes.data.userId); 
-    }
-  } catch (error) {
-    console.error("Image upload or save failed:", error);
+  const imageUrl = imgbbRes.data?.data?.url;
+  if (!imageUrl) {
+    console.error("Image upload failed");
+    setLoading(false);
+    return;
   }
+
+  const res = await axiosPublic.post("/profile-image", {
+    email: user.email,
+    name: user.displayName,
+    photoURL: imageUrl,
+    userId: user.uid,
+  });
+
+  const result = res.data?.result;
+  console.log(res)
+
+  if (result?._id) {
+    setImageId(result._id); 
+    fetchProfileImageById(result._id); 
+  }
+
+  setLoading(false);
 };
-useEffect(() => {
-  const fetchUserPhoto = async () => {
+
+  
+
+  const fetchProfileImageById = async (id) => {
+    setLoading(true);
+  
     try {
-      const res = await axios.get(`https://resume360-server.vercel.app/profile-image/${profileId}`);
-      if (res.data && res.data.photoURL) {
-        setPhotoURL(res.data.photoURL);
-      } else {
-        setPhotoURL(user.photoURL);
+      const res = await axiosPublic.get(
+        `/profile-image/${id}`
+      );
+  
+      const data = res.data?.result;
+      if (data?.photoURL) {
+        setPhotoURL(data.photoURL);
+        setImageId(data._id); 
       }
-    } catch (error) {
-      console.error("Error fetching profile image by ID:", error);
-      setPhotoURL(user.photoURL);
+    } catch (err) {
+      console.error(" Failed to fetch profile image by ID:", err.message);
+    } finally {
+      setLoading(false);
     }
   };
   
 
-  if (user?.email) {
-    fetchUserPhoto();
-  }
-}, [user]);
 
 
+
+
+  
+  
+  
+console.log(user)
   const [profile, setProfile] = useState({
     name: "",
-    location: "",
-    role: "",
-    birthday: "",
-    gender: "",
-    phone: "",
+    location: "your location",
+    role: "profession role",
+    birthday: "your birth year",
+    gender: "your gender",
+    phone: "phone number",
     email: "",
-    website: "",
-    work: "",
-    address: "",
-    skills: [],
-    progress: [{ description: "", year: "" }],
+    website: "enter your protfolio link",
+    work: "your profession ",
+    address: "your full address",
+    skills: ["add-your-skill"],
+    progress: [{ description: "progress details ", year: "enter progress duration" }],
   });
 
-  const axiosPublic = useAxiosPublic();
+  
 
   useEffect(() => {
     if (user?.uid) {
@@ -218,7 +234,7 @@ useEffect(() => {
   };
 
   return (
-    <div className="bg-r-primary/20 pt-0 sm:pt-5 min-h-screen backdrop-blur-lg">
+    <div className="bg-r-background pt-0 sm:pt-5 min-h-screen backdrop-blur-lg">
       {loading && (
         <div className="text-center py-4">
           <span className="loading loading-spinner loading-md text-blue-600"></span>
@@ -226,41 +242,52 @@ useEffect(() => {
         </div>
       )}
 
-      <div className="w-11/12 container mx-auto p-6 shadow-xl rounded-xl grid md:grid-cols-3 gap-6 bg-gradient-to-br from-r-info via-r-card to-r-info text-r-text">
+      <div className="w-11/12 container mx-auto p-6 shadow-xl rounded-xl grid md:grid-cols-3 gap-6 bg-gradient-to-br from-r-hover via-r-card to-r-hover text-r-text">
         <div className="pt-4 rounded-xl bg-opacity-30 sm:min-w-50 backdrop-blur-xl shadow-lg border border-primary/50 relative overflow-hidden">
-          <div className="flex items-center justify-center">
-            <div className="relative">
-              <img
-                src={photoURL}
-                className="rounded-full xl:h-60 xl:w-60 md:h-40 md:w-40 h-80 w-80 object-cover border border-primary/50 hover:scale-105 transition-transform duration-300"
-                alt="Profile"
-              />
-              <label htmlFor="upload-image">
-                <div className="absolute bottom-8 sm:bottom-6 sm:right-6 md:bottom-2 md:right-2 xl:bottom-6 xl:right-6 right-8 bg-blue-600 text-white p-3 rounded-full cursor-pointer hover:scale-110 transition-transform">
-                  <FaCamera className="h-5 w-5"></FaCamera>
-                </div>
-              </label>
-              <input
-                type="file"
-                id="upload-image"
-                accept="image/*"
-                style={{ display: "none" }}
-                onChange={handleImageUpload}
-              />
-            </div>
-          </div>
+        <div className="flex items-center justify-center">
+  {loading ? (
+    <p>Loading...</p>
+  ) : (
+    <div className="relative">
+      <img
+        src={photoURL || user?.photoURL} 
+        alt="Profile"
+        loading="lazy" // ✅ improve image load performance
+        className="rounded-full xl:h-60 xl:w-60 md:h-40 md:w-40 h-80 w-80 object-cover border border-primary/50 hover:scale-105 transition-transform duration-300"
+      />
+      <label htmlFor="upload-image">
+        <div
+          className={`absolute bottom-8 sm:bottom-6 sm:right-6 md:bottom-2 md:right-2 xl:bottom-6 xl:right-6 right-8 bg-blue-600 text-white p-3 rounded-full cursor-pointer transition-transform ${
+            loading ? "opacity-50 cursor-not-allowed" : "hover:scale-110"
+          }`}
+        >
+          <FaCamera className="h-5 w-5" />
+        </div>
+      </label>
+      <input
+        type="file"
+        id="upload-image"
+        accept="image/*"
+        style={{ display: "none" }}
+        onChange={handleFileChange}
+        disabled={loading} // 
+      />
+    </div>
+  )}
+</div>
+
           <div className="mt-6 p-5 space-y-2">
-            <h3 className="text-lg font-bold text-purple-400">Work</h3>
+            <h3 className="text-lg font-bold text-r-primary">Work</h3>
             <p className="text-r-text">{profile?.work}</p>
             <p className="text-r-text">{profile?.address}</p>
           </div>
           <div className=" p-5">
-            <h3 className="text-lg font-bold text-purple-400">Skills</h3>
+            <h3 className="text-lg font-bold text-r-primary">Skills</h3>
             <p className="text-r-text flex flex-wrap  gap-3">
               {(profile?.skills || []).map((skill, index) => (
                 <span
                   key={index}
-                  className="shadow-md  w-max py-1 px-3 rounded-2xl bg-r-info "
+                  className="shadow-md  w-max py-1 px-3 rounded-2xl bg-r-secondary "
                 >
                   {skill}
                 </span>
@@ -273,33 +300,33 @@ useEffect(() => {
           <div className="flex items-center  justify-between border-b border-primary/50 pb-4">
             <div>
               <h2 className="text-3xl font-extrabold text-r-text">
-                {profile?.name}
+                {profile?.name || user?.displayName}
               </h2>
               <p className="text-r-text flex items-center mt-1">
-                <FaMapMarkerAlt className="mr-2 text-purple-400" />{" "}
+                <FaMapMarkerAlt className="mr-2 text-r-primary" />{" "}
                 {profile?.location}
               </p>
-              <p className="text-blue-400 text-lg font-semibold">
+              <p className="text-r-info/90 text-lg font-semibold">
                 {profile?.role}
               </p>
             </div>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="p-2 bg-r-info rounded-full hover:scale-110 transition-transform"
+              className="p-2 bg-r-secondary/70 rounded-full hover:scale-110 transition-transform"
             >
-              <FaEdit className="h-8 w-8 text-blue-400" />
+              <FaEdit className="h-8 w-8 text-r-info" />
             </button>
           </div>
 
           <div className="mt-6 p-6 rounded-xl bg-opacity-30 backdrop-blur-xl border border-primary/50 shadow-lg">
-            <h3 className="text-lg font-bold text-purple-400">
+            <h3 className="text-lg font-bold text-r-primary">
               Contact Information
             </h3>
             <p className="flex items-center text-r-text mt-2">
               <FiPhone className="mr-2 text-blue-400" /> {profile?.phone}
             </p>
             <p className="flex items-center text-r-text mt-2">
-              <FiMail className="mr-2 text-blue-400" /> {profile?.email}
+              <FiMail className="mr-2 text-blue-400" /> {profile?.email || user?.email}
             </p>
             <a
               href={profile?.website}
@@ -310,7 +337,7 @@ useEffect(() => {
           </div>
 
           <div className="mt-6 p-6 rounded-xl bg-opacity-30 backdrop-blur-xl border border-primary/50 shadow-lg">
-            <h3 className="text-lg font-bold text-purple-400">
+            <h3 className="text-lg font-bold text-r-primary">
               Basic Information
             </h3>
             <p className="text-r-text">Birthday: {profile?.birthday}</p>
@@ -318,7 +345,7 @@ useEffect(() => {
           </div>
 
           <div className="mt-6 p-6 rounded-xl bg-opacity-30 backdrop-blur-xl border border-primary/50 shadow-lg">
-            <h3 className="text-lg font-bold text-purple-400">
+            <h3 className="text-lg font-bold text-r-primary">
               Career Progress
             </h3>
             <ul className="mt-3 space-y-3">
@@ -336,8 +363,9 @@ useEffect(() => {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0  flex mt-[-400px] md:mt-0 pt-0   items-center justify-center bg-r-background bg-opacity-50 z-50">
-          <div className="bg-gradient-to-br container from-r-info  via-r-card to-r-info p-6 rounded-lg shadow-lg w-10/12 relative">
+        <div className="fixed inset-0  flex mt-[-300px] md:mt-0 pt-80  md:pt-10    justify-center min-h-screen bg-white  z-50">
+          
+          <div className="bg-gradient-to-br container from-r-hover h-max  via-r-card to-r-hover p-6 rounded-lg shadow-lg w-10/12 relative">
             <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-2 right-2 text-r-text text-xl"
@@ -354,8 +382,8 @@ useEffect(() => {
                 name="name"
                 value={profile?.name}
                 onChange={handleChange}
-                placeholder="Name"
-                className="bg-transparent p-2 focus:outline-none border-b border-r-primary"
+                placeholder={user?.displayName}
+                className="bg-transparent placeholder-r-text p-2 focus:outline-none border-b border-r-primary"
               />
               <input
                 type="text"
@@ -405,8 +433,8 @@ useEffect(() => {
                 name="email"
                 value={profile?.email}
                 onChange={handleChange}
-                placeholder="Email"
-                className="bg-transparent p-2 focus:outline-none border-b border-r-primary"
+                placeholder={user?.email}
+                className="bg-transparent p-2 placeholder-r-text focus:outline-none border-b border-r-primary"
               />
               <input
                 type="text"
@@ -477,18 +505,18 @@ useEffect(() => {
                 ))}
               </div>
 
-              <div className="md:col-span-2 flex justify-start space-x-3">
+              <div className="md:col-span-2 flex mt-5 justify-start space-x-3">
                 <button
                   type="button"
                   onClick={addProgressEntry}
-                  className="px-4 py-2 bg-white duration-500 hover:shadow-lg hover:text-r-text text-r-primary font-medium rounded-md hover:bg-r-background"
+                  className="px-4 py-2 bg-r-accent/60 duration-500 hover:shadow-lg text-r-text border border-green-700 hover:border-transparent hover:bg-r-secondary/50  font-medium rounded-full "
                 >
                   + Add Progress
                 </button>
 
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-white duration-500 hover:shadow-lg hover:text-r-text text-r-primary font-bold rounded-md hover:bg-r-background"
+                  className="px-4 py-2 bg-r-accent/60 duration-500 hover:shadow-lg text-r-text border border-green-700 hover:border-transparent  font-bold rounded-full hover:bg-r-secondary/50"
                 >
                   Save
                 </button>

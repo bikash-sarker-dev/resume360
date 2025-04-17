@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import SectionHead from '../../components/header/section-head/SectionHead';
 
 export default function DashboardReviews() {
     const[testimonials,setTestimonials]=useState([]);
@@ -12,14 +11,11 @@ export default function DashboardReviews() {
   return (
     <div className="mx-auto w-11/12 p-4">
     <div className="mb-4">
-    <SectionHead
-      title={"Reviews"}
-    />
     </div>
     <div className="overflow-x-auto">
         <table className="table w-full border border-gray-300">
             <thead>
-                <tr className="bg-gray-200">
+                <tr className="bg-gray-300 text-gray-700">
                     <th>#</th>
                     <th>Name</th>
                     <th>Email</th>
@@ -28,7 +24,7 @@ export default function DashboardReviews() {
             </thead>
             <tbody>
                 {testimonials.map((testimonial, index) => (
-                    <tr key={testimonial._id || index} className="hover:bg-gray-100">
+                    <tr key={testimonial._id || index} className="hover:bg-gray-200">
                         <td className="font-semibold text-center">{index + 1}</td>
                         <td>{testimonial.name || 'N/A'}</td>
                         <td>{testimonial.email}</td>
