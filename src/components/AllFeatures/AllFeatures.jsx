@@ -39,13 +39,13 @@ export default function AllFeatures() {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={isInView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 0.5, ease: "linear" }} 
-            className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all p-8"
+            className="bg-r-card rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all p-8"
           >
             <div className="mb-5 flex justify-center">
               <feature.icon className="size-10 text-r-accent" />
             </div>
             <h3 className="text-r-text text-lg font-semibold mb-3">{feature.title}</h3>
-            <p className="text-slate-500 text-sm font-medium leading-relaxed">{feature.desc}</p>
+            <p className="text-r-info text-sm font-medium leading-relaxed">{feature.desc}</p>
           </motion.div>
         );
       })}

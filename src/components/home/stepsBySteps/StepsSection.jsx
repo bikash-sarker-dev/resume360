@@ -55,7 +55,7 @@ const StepsSection = () => {
               className="md:flex items-center gap-4 p-4"
             >
               <div className="flex justify-center md:justify-normal">
-                <FiArrowRightCircle className="w-5 h-5 text-r-secondary rotate-90 md:rotate-0" />
+                <FiArrowRightCircle className="w-5 h-5 text-r-primary rotate-90 md:rotate-0" />
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-r-text">
