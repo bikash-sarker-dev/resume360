@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { FaUserLock } from "react-icons/fa";
 import { FiMenu, FiX } from "react-icons/fi";
-import { Link, NavLink, useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import "./navbar.css";
-import { FaUser, FaUserLock } from "react-icons/fa";
 
 const Navbar = () => {
   const { signOutUser, user, setUser } = useAuth();
@@ -24,7 +24,7 @@ const Navbar = () => {
           text: "Logout successfully",
           icon: "success",
           confirmButtonText: "Done",
-          confirmButtonColor: '#3e563f',
+          confirmButtonColor: "#3e563f",
         });
         setUser(null);
       })
@@ -88,6 +88,9 @@ const Navbar = () => {
       <NavLink to="/templates" className="cursor-pointer w-8/12 transition-all">
         Templates
       </NavLink>
+      <NavLink to="/contact" className="cursor-pointer w-8/12 transition-all">
+        Contact
+      </NavLink>
     </>,
   ];
 
@@ -95,7 +98,7 @@ const Navbar = () => {
     <>
       <div className=" ">
         <header
-          className={`fixed   top-0 left-0  w-full bg-r-info  text-r-card  z-50  py-3  shadow-md transition-transform duration-500 ${
+          className={`fixed   top-0 left-0  w-full bg-r-info  text-r-card  z-50  py-4  shadow-md transition-transform duration-500 ${
             hidden ? "-translate-y-full" : "translate-y-0"
           }`}
         >
