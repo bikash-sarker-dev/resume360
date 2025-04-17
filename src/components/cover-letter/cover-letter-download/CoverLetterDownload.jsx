@@ -17,7 +17,6 @@ const CoverLetterDownload = () => {
     const getThemeColor = (variableName) => {
         return getComputedStyle(document.documentElement).getPropertyValue(variableName)?.trim();
     };
-    console.log(CoverLetterData);
     // Save Handler for Cover Letter
     const handleSave = async () => {
         setIsSaving(true);

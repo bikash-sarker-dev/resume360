@@ -4,7 +4,6 @@ import { ResumeContext } from "../../../contextApi/resume-context/ResumeContext"
 const LivePreview = () => {
     const { resumeData } = useContext(ResumeContext);
     const [showDemo, setShowDemo] = useState(false);
-    console.log(resumeData);
 
     const demoData = {
         personalInfo: {
