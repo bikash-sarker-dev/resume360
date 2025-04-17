@@ -26,6 +26,102 @@ const notificationsData = [
       actionText: "View Ticket",
       unread: true,
     },
+    {
+      id: 4,
+      type: "user",
+      message: "New user registered: alice@example.com",
+      timestamp: "2025-04-08 7:45 AM",
+      actionText: "View User Profile",
+      unread: false,
+    },
+    {
+      id: 5,
+      type: "subscription",
+      message: "User mark@example.com subscribed to Basic Plan.",
+      timestamp: "2025-04-07 4:10 PM",
+      actionText: "View Subscription Details",
+      unread: true,
+    },
+    {
+      id: 6,
+      type: "ticket",
+      message: "New support ticket from lily@example.com: Payment not going through.",
+      timestamp: "2025-04-07 3:35 PM",
+      actionText: "View Ticket",
+      unread: false,
+    },
+    {
+      id: 7,
+      type: "user",
+      message: "New user registered: bruce@example.com",
+      timestamp: "2025-04-07 2:25 PM",
+      actionText: "View User Profile",
+      unread: true,
+    },
+    {
+      id: 8,
+      type: "subscription",
+      message: "User emma@example.com upgraded to Premium Plan.",
+      timestamp: "2025-04-07 11:50 AM",
+      actionText: "View Subscription Details",
+      unread: false,
+    },
+    {
+      id: 9,
+      type: "ticket",
+      message: "New support ticket from leo@example.com: Unable to reset password.",
+      timestamp: "2025-04-07 10:05 AM",
+      actionText: "View Ticket",
+      unread: true,
+    },
+    {
+      id: 10,
+      type: "user",
+      message: "New user registered: olivia@example.com",
+      timestamp: "2025-04-06 5:30 PM",
+      actionText: "View User Profile",
+      unread: true,
+    },
+    {
+      id: 11,
+      type: "user",
+      message: "New user registered: ethan@example.com",
+      timestamp: "2025-04-06 3:20 PM",
+      actionText: "View User Profile",
+      unread: true,
+    },
+    {
+      id: 12,
+      type: "user",
+      message: "New user registered: mia@example.com",
+      timestamp: "2025-04-06 1:45 PM",
+      actionText: "View User Profile",
+      unread: true,
+    },
+    {
+      id: 13,
+      type: "user",
+      message: "New user registered: noah@example.com",
+      timestamp: "2025-04-06 11:10 AM",
+      actionText: "View User Profile",
+      unread: true,
+    },
+    {
+      id: 14,
+      type: "user",
+      message: "New user registered: ava@example.com",
+      timestamp: "2025-04-06 9:55 AM",
+      actionText: "View User Profile",
+      unread: true,
+    },
+    {
+      id: 15,
+      type: "user",
+      message: "New user registered: liam@example.com",
+      timestamp: "2025-04-06 8:05 AM",
+      actionText: "View User Profile",
+      unread: true,
+    }
   ];
   
 
@@ -72,14 +168,13 @@ const NotificationDashboard = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 relative">
-      <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">
-        Notifications
-      </h1>
+    <div className="">
+      <div className="w-11/12 mx-auto p-6 relative">
+      
 
       <div className="flex justify-between items-center mb-6">
         <select
-          className="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring focus:border-blue-400"
+          className="border border-green-950 rounded px-3 py-2 text-sm focus:outline-none focus:ring focus:border-green-950"
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
         >
@@ -90,7 +185,7 @@ const NotificationDashboard = () => {
         </select>
         <button
           onClick={markAllAsRead}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-sm font-medium"
+          className="bg-green-900 text-white px-4 py-2 rounded hover:bg-green-900 text-sm font-medium"
         >
           Mark All as Read
         </button>
@@ -105,7 +200,7 @@ const NotificationDashboard = () => {
           {filtered.map((n) => (
             <li
               key={n.id}
-              className={`p-4 border rounded-md flex items-start justify-between gap-4 shadow-sm ${
+              className={`p-4 border border-green-900 rounded-md flex items-start justify-between gap-4 shadow-sm ${
                 n.unread ? 'bg-gray-100' : 'bg-white'
               }`}
             >
@@ -115,13 +210,13 @@ const NotificationDashboard = () => {
                   <p
                     className={`text-sm ${
                       n.unread
-                        ? 'font-semibold text-gray-900'
+                        ? 'font-semibold text-green-900'
                         : 'text-gray-700'
                     }`}
                   >
                     {n.message}
                   </p>
-                  <p className="text-xs text-gray-500">{n.timestamp}</p>
+                  <p className="text-xs text-green-900">{n.timestamp}</p>
                 </div>
               </div>
               <div className="text-sm">
@@ -130,7 +225,7 @@ const NotificationDashboard = () => {
                   onClick={() => handleView(n)}
                   className={`${
                     n.unread
-                      ? 'text-blue-600 hover:underline'
+                      ? 'text-green-700 hover:underline'
                       : 'text-gray-400 cursor-not-allowed'
                   } font-medium`}
                 >
@@ -144,11 +239,11 @@ const NotificationDashboard = () => {
 
       
       {selectedNotification && (
-        <div className="fixed inset-0 bg-gray-50 bg-opacity-30 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-r-primary bg-opacity-30 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative">
             <button
               onClick={() => setSelectedNotification(null)}
-              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+              className="absolute top-2 right-2 text-green-900 hover:text-gray-700"
             >
               <X />
             </button>
@@ -174,7 +269,7 @@ const NotificationDashboard = () => {
             <div className="mt-4 flex justify-end">
               <button
                 onClick={() => setSelectedNotification(null)}
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                className="px-4 py-2 bg-green-900 text-white rounded hover:bg-green-600"
               >
                 Close
               </button>
@@ -183,6 +278,8 @@ const NotificationDashboard = () => {
         </div>
       )}
     </div>
+    </div>
+    
   );
 };
 
