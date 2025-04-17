@@ -4,37 +4,37 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="relative   bg-r-info  text-r-text pt-16 pb-8 px-8 md:px-16">
+    <footer className="relative   bg-r-secondary  text-r-text pt-16 pb-8 px-8 md:px-16">
       <div className="container">
         <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
-          <div className="text-3xl font-serif flex flex-col min-w-full sm:min-w-[200px] lg:min-w-[280px] xl:min-w-[350px] text-left items-start">
+          <div className="text-4xl font-serif flex  flex-col min-w-full sm:min-w-[200px] md:min-w-[240px] lg:min-w-[290px] xl:min-w-[350px] text-left items-start">
             <h1>
-              Resumes<span className="font-bold text-r-primary">360</span>
+              Resumes<span className="font-bold text-5xl text-r-info-card">360</span>
             </h1>
-            <p className="text-base mt-3 sm:w-2/3">
+            <p className="text-base mt-3 ">
               Create, design, and manage your professional resume with ease. Our
               virtual resume builder helps you showcase your skills, experience,
               and education in a sleek and user-friendly format.
             </p>
           </div>
 
-          <div className="flex flex-col   text-left items-center">
+          <div className="flex flex-col   text-left items-center ">
             <h3 className="text-xl ml-[-20px] sm:mt-0 mt-8 font-semibold">
               Menu
             </h3>
             <ul className="mt-3 grid grid-cols-1 space-y-2">
               <Link to="/">
-                <a className="hover:text-r-accent cursor-pointer">Home</a>
+                <a className="hover:text-r-info-card cursor-pointer">Home</a>
               </Link>
               <Link to="/features">
-                <a className="hover:text-r-accent cursor-pointer">Features</a>
+                <a className="hover:text-r-info-card cursor-pointer">Features</a>
               </Link>
               <Link to="/pricing">
-                <a className="hover:text-r-accent cursor-pointer">Pricing</a>
+                <a className="hover:text-r-info-card cursor-pointer">Pricing</a>
               </Link>
               <Link to="/contact">
-                <a className="hover:text-r-accent cursor-pointer">Contact</a>
+                <a className="hover:text-r-info-card cursor-pointer">Contact</a>
               </Link>
             </ul>
           </div>
@@ -44,20 +44,20 @@ const Footer = () => {
             </h3>
             <ul className="mt-3 grid grid-cols-1 space-y-2">
               <Link to="/about">
-                <a className="hover:text-r-accent cursor-pointer ">About Us</a>
+                <a className="hover:text-r-info-card cursor-pointer ">About Us</a>
               </Link>
               <Link to="/terms">
-                <a className="hover:text-r-accent cursor-pointer">
+                <a className="hover:text-r-info-card cursor-pointer">
                   Terms & Conditions
                 </a>
               </Link>
               <Link to="/privacy-policy">
-                <a className="hover:text-r-accent cursor-pointer">
+                <a className="hover:text-r-info-card cursor-pointer">
                   Privacy Policy
                 </a>
               </Link>
               <Link to="/faq">
-                <a className="hover:text-r-accent cursor-pointer">FAQ</a>
+                <a className="hover:text-r-info-card cursor-pointer">FAQ</a>
               </Link>
             </ul>
           </div>

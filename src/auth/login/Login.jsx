@@ -6,7 +6,7 @@ import SectionHead from "../../components/header/section-head/SectionHead";
 import useAuth from "../../hooks/useAuth";
 
 export default function Login() {
-  const { signInUser, setUser, signInWithGoogle, signInWithGithub } = useAuth();
+  const { signInUser, setUser, signInWithGoogle, signInWithGithub, loading } = useAuth();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -22,16 +22,21 @@ export default function Login() {
     signInUser(email, password)
       .then((result) => {
         // console.log(result.user)
+        if(loading){
+          return <span className='block mx-auto loading loading-spinner loading-xl'></span>
+        }
         setUser(result.user);
         Swal.fire({
           title: "Success",
           text: "Login successfully",
           icon: "success",
           confirmButtonText: "Done",
+          confirmButtonColor: '#3e563f',
         });
         navigate("/");
         form.reset();
       })
+
       .catch((error) => {
         // console.log(error.message)
         setUser(null);
@@ -40,6 +45,7 @@ export default function Login() {
           text: "Email or Password is wrong please check",
           icon: "error",
           confirmButtonText: "Ok",
+          confirmButtonColor: '#3e563f',
         });
       });
   };
@@ -49,12 +55,16 @@ export default function Login() {
     signInWithGoogle()
       .then((result) => {
         // console.log(result.user)
+        if(loading){
+          return <span className='block mx-auto loading loading-spinner loading-xl'></span>
+        }
         setUser(result.user);
         Swal.fire({
           title: "Success",
           text: "Login with Google successfully",
           icon: "success",
           confirmButtonText: "Done",
+          confirmButtonColor: '#3e563f',
         });
         navigate("/socialMiddleware");
       })
@@ -75,6 +85,7 @@ export default function Login() {
   //         text: "Login With Github Successfully",
   //         icon: "success",
   //         confirmButtonText: "Done",
+              // confirmButtonColor: '#3e563f',
   //       });
   //       navigate("/");
   //     })
@@ -125,7 +136,7 @@ export default function Login() {
             <div>
               <Link to="/forgetPassword">Forgot your password?</Link>
             </div>
-            <button className="btn bg-r-accent mt-4 text-white">Login</button>
+            <button className="btn bg-r-accent mt-4 text-r-text hover:bg-r-primary hover:text-white">Login</button>
           </fieldset>
         </form>
         <div className="divider">OR</div>
@@ -133,7 +144,7 @@ export default function Login() {
           {/* Google Button */}
           <button
             onClick={handleGoogleLogin}
-            className="btn w-full border-[1px] border-gray-400 text-r-accent bg-white shadow-2xl"
+            className="btn w-full border-[1px] border-[#588568] text-r-primary bg-white shadow-2xl"
           >
             <img className="w-9 bg-transparent" src={google} alt="" />
             Sign in with Google
@@ -148,7 +159,7 @@ export default function Login() {
           <p className="mt-2">
             Already have an account?{" "}
             <span className="underline">
-              <Link to="/register" className="text-r-accent">
+              <Link to="/register" className="text-r-primary">
                 Register here
               </Link>
             </span>

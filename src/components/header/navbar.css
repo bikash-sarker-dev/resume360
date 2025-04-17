@@ -6,7 +6,7 @@ header > div > header > div > ul > a {
   position: relative;
   display: inline-block;
   padding: 10px 15px;
-  color: #030b0b;
+  color: #ECF0EE;
   font-size: 16px;
   font-weight: 600;
   text-decoration: none;
@@ -15,7 +15,7 @@ header > div > header > div > ul > a {
 
 header > div > div > ul > a.active,
 header > div > header > div > ul > a.active {
-  color: #effbfa;
+  color: #ECF0EE;
 }
 
 
@@ -38,3 +38,4 @@ header > div > header > div > ul > a:hover::after,
 a.active::after {
   width: 100%;
 }
+
