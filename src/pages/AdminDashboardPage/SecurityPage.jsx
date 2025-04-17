@@ -11,8 +11,6 @@ const SecurityPage = () => {
   return (
     <div>
       <div className="p-6 space-y-6">
-       
-
         {/* User Roles & Permissions */}
         <div className="bg-white p-4 rounded-xl shadow flex items-center space-x-4">
           <div
