@@ -8,11 +8,11 @@ const Footer = () => {
       <div className="container">
         <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
-          <div className="text-3xl font-serif flex flex-col min-w-full sm:min-w-[200px] lg:min-w-[280px] xl:min-w-[350px] text-left items-start">
+          <div className="text-4xl font-serif flex  flex-col min-w-full sm:min-w-[200px] md:min-w-[240px] lg:min-w-[290px] xl:min-w-[350px] text-left items-start">
             <h1>
-              Resumes<span className="font-bold text-r-primary">360</span>
+              Resumes<span className="font-bold text-5xl text-r-info-card">360</span>
             </h1>
-            <p className="text-base mt-3 sm:w-2/3">
+            <p className="text-base mt-3 ">
               Create, design, and manage your professional resume with ease. Our
               virtual resume builder helps you showcase your skills, experience,
               and education in a sleek and user-friendly format.

@@ -81,7 +81,7 @@ const ChatPage = () => {
               isSidebarOpen ? "block" : "hidden"
             } w-1/3 bg-gray-50  sm:block lg:block`}
           >
-            <h2 className="text-lg font-bold p-[18px] bg-r-info text-r-text">
+            <h2 className="text-lg font-bold p-[18px] bg-r-secondary text-r-text">
               Users
             </h2>
             {users.map((user) => (
@@ -111,7 +111,7 @@ const ChatPage = () => {
         {/* Chat Section */}
         <div className="flex-1 flex flex-col">
           {/* Header */}
-          <div className="flex items-center justify-between p-3 bg-gradient-to-r from-r-info via-r-card to-r-info text-r-text">
+          <div className="flex items-center justify-between p-3 bg-gradient-to-r from-r-secondary via-r-secondary/60 to-r-secondary text-r-text">
             <div className="flex items-center space-x-3">
               {isAdmin && (
                 <img
