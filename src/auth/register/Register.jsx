@@ -46,6 +46,7 @@ export default function Register() {
         text: "Passwords do not match!",
         icon: "error",
         confirmButtonText: "Ok",
+        confirmButtonColor: '#3e563f',
       });
       return;
     }
@@ -58,6 +59,7 @@ export default function Register() {
         text: "Password must contain at least one uppercase, one lowercase letter, and be at least 6 characters long.",
         icon: "error",
         confirmButtonText: "Ok",
+        confirmButtonColor: '#3e563f',
       });
       return;
     }
@@ -68,6 +70,7 @@ export default function Register() {
         text: "Please upload an image.",
         icon: "error",
         confirmButtonText: "Ok",
+        confirmButtonColor: '#3e563f',
       });
       return;
     }
@@ -109,6 +112,7 @@ export default function Register() {
                       text: "Registration is successfully completed",
                       icon: "success",
                       confirmButtonText: "Done",
+                      confirmButtonColor: '#3e563f',
                     });
                     navigate("/");
                   }
@@ -120,6 +124,7 @@ export default function Register() {
                   text: "Profile update failed.",
                   icon: "error",
                   confirmButtonText: "Ok",
+                  confirmButtonColor: '#3e563f',
                 });
               });
           })
@@ -130,6 +135,7 @@ export default function Register() {
               text: "Registration failed.",
               icon: "error",
               confirmButtonText: "Ok",
+              confirmButtonColor: '#3e563f',
             });
           });
       } else {
@@ -138,6 +144,7 @@ export default function Register() {
           text: "Image upload failed. Please try again.",
           icon: "error",
           confirmButtonText: "Ok",
+          confirmButtonColor: '#3e563f',
         });
       }
     } catch (error) {
@@ -146,6 +153,7 @@ export default function Register() {
         text: "An error occurred while uploading the image.",
         icon: "error",
         confirmButtonText: "Ok",
+        confirmButtonColor: '#3e563f',
       });
     }
   };
@@ -161,6 +169,7 @@ export default function Register() {
           text: "Login With Google Successfully",
           icon: "success",
           confirmButtonText: "Done",
+          confirmButtonColor: '#3e563f',
         });
         navigate("/socialMiddleware");
       })
@@ -181,6 +190,7 @@ export default function Register() {
   //         text: "Login With Github Successfully",
   //         icon: "success",
   //         confirmButtonText: "Done",
+  //         confirmButtonColor: '#3e563f',
   //       });
   //       navigate("/");
   //     })

@@ -32,7 +32,8 @@ export default function SocialMiddleware() {
     const data = { name, profession, email, image, terms };
     console.log(data);
 
-    axiosPublic.post("/users", data).then((res) => {
+    axiosPublic.post("/users", data)
+    .then((res) => {
       if (res.data.message) {
         form.reset();
         Swal.fire({
@@ -40,10 +41,21 @@ export default function SocialMiddleware() {
           text: "successfully Updated Data",
           icon: "success",
           confirmButtonText: "Done",
+          confirmButtonColor: '#3e563f',
         });
         navigate("/");
       }
+      else {
+        Swal.fire({
+          title: "Error",
+          text: "Data Update Unsuccessful",
+          icon: "error",
+          confirmButtonText: "Ok",
+          confirmButtonColor: '#3e563f',
+        });
+      }
     });
+   
   };
   return (
     <div className="card w-11/12 md:w-7/12 mx-auto">
