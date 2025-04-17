@@ -31,7 +31,7 @@ const Sidebar = () => {
       })
       .catch(() => {});
   };
-  const navItems = [
+  const navItemAdmin = [
     { to: "/dashboard/home", icon: <GoHome />, label: "Dashboard" },
     { to: "/dashboard/users", icon: <FiUserCheck />, label: "Users" },
     { to: "/dashboard/profile", icon: <RiUserSettingsLine />, label: "Profile" },
