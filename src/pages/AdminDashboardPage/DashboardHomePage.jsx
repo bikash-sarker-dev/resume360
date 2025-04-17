@@ -7,7 +7,7 @@ const DashboardHomePage = () => {
   return (
     <div className="py-10 pl-8 pr-10">
       <StatusCard />
-      <div className="lg:flex  mt-16 ">
+      <div className="lg:flex  mt-15 ">
         <div className="lg:w-2/3">
           <ColumnCharts />
         </div>
