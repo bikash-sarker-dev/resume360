@@ -44,14 +44,14 @@ const Banner = () => {
 
   return (
     <div
-      className="relative w-full h-[900px] md:h-[650px] bg-cover bg-center text-r-text flex flex-col md:flex-row items-center pt-[70px] pb-[80px]"
+      className="relative w-full h-[900px] md:h-[650px] xl:h-[700px] bg-cover bg-center text-r-text flex flex-col md:flex-row items-center pt-[70px] pb-[80px]"
       style={{
         backgroundImage: `url(${slides[activeIndex].background})`,
       }}
     >
       <div className="absolute inset-0 bg-black opacity-60 z-0"></div>
 
-      <div className="relative container  h-[900px] md:h-[700px] xl:h-[800px]  bg-[url('')] bg-cover bg-center  text-r-text flex flex-col md:flex-row items-center pt-[70px] pb-[80px] ">
+      <div className="relative container  h-[900px] md:h-[650px]  xl:h-[700px]  bg-[url('')] bg-cover bg-center  text-r-text flex flex-col md:flex-row items-center pt-[70px] pb-[80px] ">
         {/* Left Content (Changes Dynamically) */}
         <div
           key={activeIndex} // Forces re-render to trigger animation
