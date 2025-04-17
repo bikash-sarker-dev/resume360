@@ -45,7 +45,7 @@ export default function AuthProvider({ children }) {
 
   // SignOut User
   const signOutUser = () => {
-    setLoading(false);
+    setLoading(true);
     return signOut(auth);
   };
 
@@ -69,10 +69,8 @@ export default function AuthProvider({ children }) {
         if (res.data.token) {
           localStorage.setItem("access-token", res.data.token);
           setLoading(false);
-          console.log("token login");
         }
       } else {
-        console.log("token logout");
         localStorage.removeItem("access-token");
         setLoading(false);
       }
