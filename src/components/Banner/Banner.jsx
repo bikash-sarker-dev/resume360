@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router";
 
 const Banner = () => {
   const slides = [
@@ -68,17 +69,20 @@ const Banner = () => {
 
           {/* Button */}
           <div className="space-x-5">
-            <button className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-mono font-bold  text-r-text bg-r-background rounded-lg group slide-up slide-up-btn">
+            <NavLink to="/add-information">
+            <button className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-mono font-bold hover:text-black  text-r-background   bg-r-primary rounded-full group slide-up slide-up-btn">
+              <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-r-background  rounded-full group-hover:w-56 group-hover:h-56"></span>
+              <span className="absolute inset-0 w-full h-full  rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-r-accent "></span>
+              <span className="relative">Generate</span>
+            </button>
+            </NavLink>
+            <NavLink to="/templates">
+            <button className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-mono font-bold  border border-r-card hover:border-transparent text-r-card  rounded-full group slide-up slide-up-btn">
               <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-r-primary rounded-full group-hover:w-56 group-hover:h-56"></span>
               <span className="absolute inset-0 w-full h-full  rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-r-primary "></span>
-              <span className="relative">{slides[activeIndex].buttonText}</span>
+              <span className="relative">Templates</span>
             </button>
-            <button className="relative    items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow hover:bg-white group slide-up slide-up-btn">
-              <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-              <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
-                More
-              </span>
-            </button>
+            </NavLink>
           </div>
         </div>
 
