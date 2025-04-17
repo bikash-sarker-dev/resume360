@@ -6,7 +6,7 @@ import SectionHead from "../../components/header/section-head/SectionHead";
 import useAuth from "../../hooks/useAuth";
 
 export default function Login() {
-  const { signInUser, setUser, signInWithGoogle, signInWithGithub } = useAuth();
+  const { signInUser, setUser, signInWithGoogle, signInWithGithub, loading } = useAuth();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -22,16 +22,21 @@ export default function Login() {
     signInUser(email, password)
       .then((result) => {
         // console.log(result.user)
+        if(loading){
+          return <span className='block mx-auto loading loading-spinner loading-xl'></span>
+        }
         setUser(result.user);
         Swal.fire({
           title: "Success",
           text: "Login successfully",
           icon: "success",
           confirmButtonText: "Done",
+          confirmButtonColor: '#3e563f',
         });
         navigate("/");
         form.reset();
       })
+
       .catch((error) => {
         // console.log(error.message)
         setUser(null);
@@ -40,6 +45,7 @@ export default function Login() {
           text: "Email or Password is wrong please check",
           icon: "error",
           confirmButtonText: "Ok",
+          confirmButtonColor: '#3e563f',
         });
       });
   };
@@ -49,12 +55,16 @@ export default function Login() {
     signInWithGoogle()
       .then((result) => {
         // console.log(result.user)
+        if(loading){
+          return <span className='block mx-auto loading loading-spinner loading-xl'></span>
+        }
         setUser(result.user);
         Swal.fire({
           title: "Success",
           text: "Login with Google successfully",
           icon: "success",
           confirmButtonText: "Done",
+          confirmButtonColor: '#3e563f',
         });
         navigate("/socialMiddleware");
       })
@@ -75,6 +85,7 @@ export default function Login() {
   //         text: "Login With Github Successfully",
   //         icon: "success",
   //         confirmButtonText: "Done",
+              // confirmButtonColor: '#3e563f',
   //       });
   //       navigate("/");
   //     })

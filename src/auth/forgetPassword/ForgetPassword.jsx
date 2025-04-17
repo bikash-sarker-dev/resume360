@@ -20,7 +20,8 @@ export default function ForgetPassword() {
             title: 'Success',
             text: 'Passward Reset Email Sent! Please Check Your Mail',
             icon: 'success',
-            confirmButtonText: 'Ok'
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#3e563f',
           })
           navigate('/login')
           form.reset()
@@ -31,7 +32,8 @@ export default function ForgetPassword() {
             title: 'Error',
             text: "Email is Wrong! Please Check",
             icon: 'error',
-            confirmButtonText: 'Ok'
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#3e563f',
           })
         })
   }
