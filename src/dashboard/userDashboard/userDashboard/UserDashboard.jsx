@@ -46,11 +46,11 @@ const UserDashboard = () => {
     };
     return (
         <div className="mx-auto w-11/12 p-4">
-            <h1 className="text-2xl font-bold mb-4 text-center">Manage Users</h1>
+            
             <div className="overflow-x-auto">
                 <table className="table w-full border border-gray-300">
                     <thead>
-                        <tr className="bg-gray-200">
+                        <tr className="bg-gray-300 text-gray-700">
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
@@ -62,7 +62,7 @@ const UserDashboard = () => {
                     </thead>
                     <tbody>
                         {users.map((user, index) => (
-                            <tr key={user._id || index} className="hover:bg-gray-100">
+                            <tr key={user._id || index} className="hover:bg-gray-200">
                                 <td className="font-semibold text-center">{index + 1}</td>
                                 <td>{user.name || 'N/A'}</td>
                                 <td>{user.email}</td>
@@ -95,9 +95,18 @@ const UserDashboard = () => {
                                     {/* <button className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
                                     <FaEdit />
                                     </button> */}
-                                    <button onClick={() => handleDelete(user._id)} className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
+                                    {/* <button onClick={() => handleDelete(user._id)} className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
                                     <FaTrashAlt /> 
-                                    </button>
+                                    </button> */}
+
+<button 
+  onClick={() => handleDelete(user._id)} 
+  className="px-3 py-1 bg-white text-red-500 border border-white rounded hover:bg-red-100"
+>
+  <FaTrashAlt /> 
+</button>
+
+                                    
                                 </td>
                             </tr>
                         ))}

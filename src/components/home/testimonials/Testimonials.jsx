@@ -55,9 +55,9 @@ export const Testimonials = () => {
        <div className="w-16 h-16 rounded-full">
           <img className="h-full w-full object-cover rounded-full" src={testimonial.authorImage}/>
         </div>
-        <div class="hidden md:flex  divider divider-horizontal"></div>
+        <div className="hidden md:flex  divider divider-horizontal"></div>
         <div className=''>
-        <h3 className='text-3xl text-r-accent font-bold'>{testimonial.name}</h3>
+        <h3 className='text-3xl text-r-primary font-bold'>{testimonial.name}</h3>
         <h3 className='text-sm font-bold text-gray-600  sm:text-left'>{testimonial.profession}</h3>
         </div>
        </div>
@@ -65,7 +65,7 @@ export const Testimonials = () => {
       {/* Rating */}
         <div>
         <Rating
-        className='text-yellow-300 text-2xl'
+        className='text-yellow-500 text-2xl'
         initialRating={testimonial.rating}
         emptySymbol="far fa-star"       
         fullSymbol="fas fa-star"/>

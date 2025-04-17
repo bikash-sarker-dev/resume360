@@ -46,6 +46,7 @@ export default function Register() {
         text: "Passwords do not match!",
         icon: "error",
         confirmButtonText: "Ok",
+        confirmButtonColor: '#3e563f',
       });
       return;
     }
@@ -58,6 +59,7 @@ export default function Register() {
         text: "Password must contain at least one uppercase, one lowercase letter, and be at least 6 characters long.",
         icon: "error",
         confirmButtonText: "Ok",
+        confirmButtonColor: '#3e563f',
       });
       return;
     }
@@ -68,6 +70,7 @@ export default function Register() {
         text: "Please upload an image.",
         icon: "error",
         confirmButtonText: "Ok",
+        confirmButtonColor: '#3e563f',
       });
       return;
     }
@@ -109,6 +112,7 @@ export default function Register() {
                       text: "Registration is successfully completed",
                       icon: "success",
                       confirmButtonText: "Done",
+                      confirmButtonColor: '#3e563f',
                     });
                     navigate("/");
                   }
@@ -120,6 +124,7 @@ export default function Register() {
                   text: "Profile update failed.",
                   icon: "error",
                   confirmButtonText: "Ok",
+                  confirmButtonColor: '#3e563f',
                 });
               });
           })
@@ -130,6 +135,7 @@ export default function Register() {
               text: "Registration failed.",
               icon: "error",
               confirmButtonText: "Ok",
+              confirmButtonColor: '#3e563f',
             });
           });
       } else {
@@ -138,6 +144,7 @@ export default function Register() {
           text: "Image upload failed. Please try again.",
           icon: "error",
           confirmButtonText: "Ok",
+          confirmButtonColor: '#3e563f',
         });
       }
     } catch (error) {
@@ -146,6 +153,7 @@ export default function Register() {
         text: "An error occurred while uploading the image.",
         icon: "error",
         confirmButtonText: "Ok",
+        confirmButtonColor: '#3e563f',
       });
     }
   };
@@ -161,6 +169,7 @@ export default function Register() {
           text: "Login With Google Successfully",
           icon: "success",
           confirmButtonText: "Done",
+          confirmButtonColor: '#3e563f',
         });
         navigate("/socialMiddleware");
       })
@@ -181,6 +190,7 @@ export default function Register() {
   //         text: "Login With Github Successfully",
   //         icon: "success",
   //         confirmButtonText: "Done",
+  //         confirmButtonColor: '#3e563f',
   //       });
   //       navigate("/");
   //     })
@@ -250,7 +260,6 @@ export default function Register() {
                       name="image"
                       className="file-input file-input-bordered w-full"
                       placeholder="Upload Your Image"
-                      required
                     />
 
                   <label className="fieldset-label">Email</label>
@@ -324,7 +333,7 @@ export default function Register() {
                   </div>
                   {conditions ? (
                     <>
-                      <button className="btn bg-r-accent mt-4 text-white">
+                      <button className="btn bg-r-accent mt-4 text-r-text hover:bg-r-primary hover:text-white">
                         Create Account
                       </button>
                     </>
@@ -332,7 +341,7 @@ export default function Register() {
                     <>
                       <button
                         disabled
-                        className="btn bg-r-accent mt-4 text-black"
+                        className="btn bg-r-accent mt-4 text-r-text"
                       >
                         Create Account
                       </button>
@@ -343,7 +352,7 @@ export default function Register() {
               <div className="divider">OR</div>
               <div className="text-center text-3xl">
               {/* Google Button */}
-              <button  onClick={handleGoogleLogin} className="btn w-full border-[1px] border-gray-400 text-r-accent bg-white shadow-2xl">
+              <button  onClick={handleGoogleLogin} className="btn w-full border-[1px] border-[#588568] text-r-primary bg-white shadow-2xl">
               <img className="w-9 bg-transparent" src={google} alt="" />
               Sign in with Google
               </button>
@@ -357,7 +366,7 @@ export default function Register() {
               <p className="mt-2">
               Already have an account?{" "}
               <span className="underline">
-              <Link to="/login" className="text-r-accent">Login here</Link></span>
+              <Link to="/login" className="text-r-primary">Login here</Link></span>
               </p>
               </div>
             </div>

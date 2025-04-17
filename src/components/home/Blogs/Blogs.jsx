@@ -24,7 +24,7 @@ export const Blogs = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 mt-8">
         {Blogs.map((blog) => (
-          <div key={blog.id} className="card bg-base-100 shadow-sm">
+          <div key={blog.id} className="card bg-r-card  shadow-sm">
             <figure className="hover:scale-102 transition-transform duration-300 ease-in-out">
               <img
                 className="h-[250px] object-cover w-full"
