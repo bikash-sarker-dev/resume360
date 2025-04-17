@@ -68,7 +68,8 @@ export const SubscriptionDetail = () => {
 
     <button
     
-      className="w-full bg-[#0E7A81] text-white py-2 rounded-md font-semibold hover:bg-[#0a5c5f] transition"
+      className="w-full bg-r-primary
+       text-white py-2 rounded-md font-semibold  transition"
     >
       Submit Payment
     </button>
