@@ -19,7 +19,7 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="flex flex-col   text-left items-center">
+          <div className="flex flex-col   text-left items-center ">
             <h3 className="text-xl ml-[-20px] sm:mt-0 mt-8 font-semibold">
               Menu
             </h3>

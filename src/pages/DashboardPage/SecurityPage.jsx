@@ -11,14 +11,12 @@ const SecurityPage = () => {
   return (
     <div>
       <div className="p-6 space-y-6">
-        <h2 className="text-2xl font-semibold text-gray-800">
-          Security Overview
-        </h2>
+       
 
         {/* User Roles & Permissions */}
         <div className="bg-white p-4 rounded-xl shadow flex items-center space-x-4">
           <div
-            className="w-8 h-8 bg-blue-100 text-blue-600 
+            className="w-8 h-8  text-r-primary bg-r-secondary
         flex items-center justify-center rounded-full font-bold"
           >
             <FaUser />
@@ -35,7 +33,7 @@ const SecurityPage = () => {
         <div className="bg-white p-4 rounded-xl shadow flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <div
-              className="w-8 h-8 bg-blue-100 text-blue-600 
+              className="w-8 h-8 text-r-primary bg-r-secondary
           flex items-center justify-center rounded-full font-bold"
             >
               <BiSolidLogInCircle />
@@ -51,7 +49,7 @@ const SecurityPage = () => {
 
         {/* API & Session Security */}
         <div className="bg-white p-4 rounded-xl shadow flex items-center space-x-4">
-          <div className="w-8 h-8 bg-blue-100 text-blue-600 flex items-center justify-center rounded-full font-bold">
+          <div className="w-8 h-8 text-r-primary bg-r-secondary flex items-center justify-center rounded-full font-bold">
             <MdOutlineSecurityUpdate />
           </div>
           <div>
@@ -65,8 +63,7 @@ const SecurityPage = () => {
         {/* Data Privacy */}
         <div className="bg-white p-4 rounded-xl shadow flex items-center space-x-4">
           <div
-            className="w-8 h-8 bg-blue-100
-         text-blue-600 flex items-center justify-center rounded-full 
+            className="w-8 h-8 text-r-primary bg-r-secondary flex items-center justify-center rounded-full 
          font-bold"
           >
             <MdPrivacyTip />
@@ -82,7 +79,7 @@ const SecurityPage = () => {
         {/* Security Logs */}
         <div className="bg-white p-4 rounded-xl shadow flex items-center space-x-4">
           <div
-            className="w-8 h-8 bg-blue-100 text-blue-600 flex
+            className="w-8 h-8 text-r-primary bg-r-secondary flex
          items-center justify-center rounded-full font-bold"
           >
             <MdOutlineSecurity />{" "}
@@ -98,7 +95,7 @@ const SecurityPage = () => {
         {/* Admin Controls */}
         <div className="bg-white p-4 rounded-xl shadow flex items-center space-x-4">
           <div
-            className="w-8 h-8 bg-blue-100 text-blue-600 flex items-center
+            className="w-8 h-8 text-r-primary bg-r-secondary flex items-center
          justify-center rounded-full font-bold"
           >
             <MdAdminPanelSettings />
