@@ -17,7 +17,6 @@ const CoverLetterDownload = () => {
     const getThemeColor = (variableName) => {
         return getComputedStyle(document.documentElement).getPropertyValue(variableName)?.trim();
     };
-    console.log(CoverLetterData);
     // Save Handler for Cover Letter
     const handleSave = async () => {
         setIsSaving(true);
@@ -81,7 +80,7 @@ const CoverLetterDownload = () => {
                             className="rounded-full bg-r-primary text-white py-2 px-6 transition duration-200"
                         >
                             {({ loading, error }) =>
-                                loading ? 'Preparing PDF...' : error ? 'Error Generating PDF' : 'Download Cover Letter PDF'
+                                loading ? 'Preparing PDF...' : error ? 'Error Generating PDF' : 'Download PDF'
                             }
                         </PDFDownloadLink>
 
