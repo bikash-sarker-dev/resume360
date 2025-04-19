@@ -42,6 +42,7 @@ import ContactPage from "./../pages/ContactPage";
 import FeaturesPage from "./../pages/FeaturesPage";
 import TermsAndConditionsPage from "./../pages/TermsAndConditionsPage";
 import ResumeManager from "../pages/ResumeManager";
+import Resume from "../components/resume/Resume";
 
 const RootRoute = () => {
   return (
@@ -74,6 +75,7 @@ const RootRoute = () => {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/personal-info" element={<PersonalInfoPage />} />
         <Route path="/resume" element={<ResumeGenerate />} />
+        <Route path="/create-resume" element={<Resume/>} />
         <Route path="/resume-manager" element={<ResumeManager />} />
         <Route path="/templateOne" element={<TemplateOne />} />
         <Route path="/blog" element={<BlogPage />} />

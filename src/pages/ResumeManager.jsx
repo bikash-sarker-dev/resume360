@@ -5,7 +5,7 @@ import SectionHead2 from '../components/header/section-head/SectionHead2';
 
 const ResumeManager = () => {
     return (
-        <div className='max-w-7xl mx-auto pt-30'>
+        <div className='max-w-7xl mx-auto py-30'>
             <div className='flex justify-between mb-5'>
                 <div className=''>
                     <SectionHead2
