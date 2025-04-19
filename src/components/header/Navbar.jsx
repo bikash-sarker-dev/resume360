@@ -63,13 +63,13 @@ const Navbar = () => {
       </NavLink>
 
       <NavLink
-        to="/add-information"
+        to="/resume"
         className="cursor-pointer w-8/12 relative group transition-all"
       >
         Generate
         <div className="absolute left-0 hidden group-hover:block bg-white text-black shadow-md mt-2 rounded-md w-48">
           <NavLink
-            to="/add-information"
+            to="/resume"
             className="block px-4 py-2 text-sm transition-all hover:bg-gray-100"
           >
             Resume Builder
