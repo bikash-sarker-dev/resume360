@@ -1,4 +1,4 @@
-import CoverLetterStepper from "./stepper/CoverLetterStepper"
+import CoverLetterStepper from "../components/cover-letter/stepper/CoverLetterStepper"
 
 const CoverLetter = () => {
     return (
