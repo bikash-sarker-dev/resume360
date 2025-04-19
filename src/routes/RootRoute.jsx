@@ -11,7 +11,7 @@ import UserSkill from "../components/user/UserSkill";
 import DashboardProfile from "../dashboard/DashboardProfile/DashboardProfile";
 import DashboardLayouts from "../layouts/DashboardLayouts";
 import MainLayout from "../layouts/MainLayout";
-import AddInformation from "../pages/AddInformation";
+import Resume from "../components/resume/Resume";
 import BlogPage from "../pages/BlogPage";
 import ChatPage from "../pages/AdminDashboardPage/ChatPage";
 import DashboardHomePage from "../pages/AdminDashboardPage/DashboardHomePage";
@@ -72,7 +72,7 @@ const RootRoute = () => {
         <Route path="/templates" element={<TemplatesPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/personal-info" element={<PersonalInfoPage />} />
-        <Route path="/add-information" element={<AddInformation />} />
+        <Route path="/resume" element={<Resume />} />
         <Route path="/templateOne" element={<TemplateOne />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/cover-letter" element={<CoverLetter/>} />
