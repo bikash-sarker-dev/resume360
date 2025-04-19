@@ -41,6 +41,7 @@ import CoverOne from "./../components/DefaultCoverLetterTemplates/CoverOne";
 import ContactPage from "./../pages/ContactPage";
 import FeaturesPage from "./../pages/FeaturesPage";
 import TermsAndConditionsPage from "./../pages/TermsAndConditionsPage";
+import ResumeManager from "../pages/ResumeManager";
 
 const RootRoute = () => {
   return (
@@ -73,6 +74,7 @@ const RootRoute = () => {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/personal-info" element={<PersonalInfoPage />} />
         <Route path="/resume" element={<ResumeGenerate />} />
+        <Route path="/resume-manager" element={<ResumeManager />} />
         <Route path="/templateOne" element={<TemplateOne />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/cover-letter" element={<CoverLetter/>} />
