@@ -11,7 +11,7 @@ import UserSkill from "../components/user/UserSkill";
 import DashboardProfile from "../dashboard/DashboardProfile/DashboardProfile";
 import DashboardLayouts from "../layouts/DashboardLayouts";
 import MainLayout from "../layouts/MainLayout";
-import Resume from "../components/resume/Resume";
+import ResumeGenerate from "../pages/ResumeGenerate";
 import BlogPage from "../pages/BlogPage";
 import ChatPage from "../pages/AdminDashboardPage/ChatPage";
 import DashboardHomePage from "../pages/AdminDashboardPage/DashboardHomePage";
@@ -32,7 +32,7 @@ import User from "../pages/User";
 import AboutPage from "./../pages/AboutPage";
 import FaqPage from "./../pages/FaqPage";
 import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
-import CoverLetter from "../components/cover-letter/CoverLetter";
+import CoverLetter from "../pages/CoverLetter";
 
 import { Pricing } from "../pages/Pricing";
 import SocialMiddlewarePage from "../pages/SocialMiddlewarePage";
@@ -72,7 +72,7 @@ const RootRoute = () => {
         <Route path="/templates" element={<TemplatesPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/personal-info" element={<PersonalInfoPage />} />
-        <Route path="/resume" element={<Resume />} />
+        <Route path="/resume" element={<ResumeGenerate />} />
         <Route path="/templateOne" element={<TemplateOne />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/cover-letter" element={<CoverLetter/>} />
