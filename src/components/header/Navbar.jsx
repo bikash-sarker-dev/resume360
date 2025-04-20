@@ -63,7 +63,7 @@ const Navbar = () => {
       </NavLink>
 
       <NavLink
-        to="/resume"
+        to="/generate"
         className="cursor-pointer w-8/12 relative group transition-all"
       >
         Generate

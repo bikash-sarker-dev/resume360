@@ -24,7 +24,6 @@ import SecurityPage from "../pages/AdminDashboardPage/SecurityPage";
 import ErrorPage from "../pages/ErrorPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
-import PersonalInfoPage from "../pages/PersonalInfoPage";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import RegisterPage from "../pages/RegisterPage";
 import TemplatesPage from "../pages/TemplatesPage";
@@ -41,8 +40,9 @@ import CoverOne from "./../components/DefaultCoverLetterTemplates/CoverOne";
 import ContactPage from "./../pages/ContactPage";
 import FeaturesPage from "./../pages/FeaturesPage";
 import TermsAndConditionsPage from "./../pages/TermsAndConditionsPage";
-import ResumeManager from "../pages/ResumeManager";
+import ResumeManager from "../components/resume/resume-manager/ResumeManager";
 import Resume from "../components/resume/Resume";
+import Generate from "../pages/Generate";
 
 const RootRoute = () => {
   return (
@@ -73,7 +73,7 @@ const RootRoute = () => {
         </Route>
         <Route path="/templates" element={<TemplatesPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/personal-info" element={<PersonalInfoPage />} />
+        <Route path="/generate" element={<Generate />} />
         <Route path="/resume" element={<ResumeGenerate />} />
         <Route path="/create-resume" element={<Resume/>} />
         <Route path="/resume-manager" element={<ResumeManager />} />
