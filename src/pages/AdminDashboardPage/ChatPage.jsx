@@ -72,7 +72,7 @@ const ChatPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 mx-6 flex items-center justify-center">
+    <div className="min-h-screen mb-24 bg-gray-100 mx-6 flex items-center justify-center">
       <div className="max-w-6xl w-full h-[90vh] flex bg-white shadow-lg rounded-lg overflow-hidden">
         {/* Sidebar for Admin */}
         {isAdmin && (
@@ -81,15 +81,15 @@ const ChatPage = () => {
               isSidebarOpen ? "block" : "hidden"
             } w-1/3 bg-gray-50  sm:block lg:block`}
           >
-            <h2 className="text-lg font-bold p-[18px] bg-r-secondary text-r-text">
+            <h2 className="text-lg font-bold p-[18px] bg-r-secondary/20 text-r-text">
               Users
             </h2>
             {users.map((user) => (
               <div
                 key={user._id}
                 onClick={() => setSelectedUserId(user._id)}
-                className={`cursor-pointer px-4 py-3 hover:bg-r-primary/10 ${
-                  selectedUserId === user._id ? "bg-r-primary/20" : ""
+                className={`cursor-pointer px-4 py-3 hover:bg-r-accent/20 ${
+                  selectedUserId === user._id ? "bg-r-accent/50" : ""
                 }`}
               >
                 <div className="flex items-center space-x-3">
@@ -111,7 +111,7 @@ const ChatPage = () => {
         {/* Chat Section */}
         <div className="flex-1 flex flex-col">
           {/* Header */}
-          <div className="flex items-center justify-between p-3 bg-gradient-to-r from-r-secondary via-r-secondary/60 to-r-secondary text-r-text">
+          <div className="flex items-center justify-between p-3 bg-gradient-to-r from-r-secondary/20 via-r-secondary/30 to-r-secondary/20 text-r-text">
             <div className="flex items-center space-x-3">
               {isAdmin && (
                 <img
