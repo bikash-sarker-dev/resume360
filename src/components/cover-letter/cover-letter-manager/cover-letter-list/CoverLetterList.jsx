@@ -19,13 +19,16 @@ const CoverLetterList = ({ searchTerm }) => {
     const axiosPublic = useAxiosPublic();
     const [coverLetters, setCoverLetters] = useState([]);
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [rowsPerPage, setRowsPerPage] = useState(5);
     const [anchorEls, setAnchorEls] = useState({});
 
     useEffect(() => {
         axiosPublic.get('/cover-letter')
             .then(res => {
-                setCoverLetters(res.data.result);
+                setCoverLetters(res.data.result || []);
+            })
+            .catch(err => {
+                console.error("Error fetching cover letters:", err);
             });
     }, [axiosPublic]);
 
@@ -105,54 +108,56 @@ const CoverLetterList = ({ searchTerm }) => {
     };
 
     return (
-        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-            <TableContainer sx={{ maxHeight: 440 }}>
-                <Table stickyHeader>
-                    <TableHead>
-                        <TableRow>
-                            {columns.map((col) => (
-                                <TableCell key={col.id} align={col.align || 'left'} style={{ minWidth: col.minWidth }}>
-                                    {col.label}
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {filtered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => (
-                            <TableRow hover key={row._id}>
-                                <TableCell>{row.personalInfo.fullName}</TableCell>
-                                <TableCell>{row.personalInfo.email}</TableCell>
-                                <TableCell>{row.hiringManager.company}</TableCell>
-                                <TableCell>{row.personalInfo.date}</TableCell>
-                                <TableCell align="right">
-                                    <IconButton onClick={(e) => handleClick(e, index)}>
-                                        <MoreVertIcon />
-                                    </IconButton>
-                                    <Menu
-                                        anchorEl={anchorEls[index]}
-                                        open={Boolean(anchorEls[index])}
-                                        onClose={() => handleClose(index)}
-                                    >
-                                        <MenuItem onClick={() => handleClose(index)}>View</MenuItem>
-                                        <MenuItem onClick={() => handleClose(index)}>Edit</MenuItem>
-                                        <MenuItem onClick={() => handleDelete(row, index)}>Delete</MenuItem>
-                                    </Menu>
-                                </TableCell>
+        <>
+            <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+                <TableContainer sx={{ maxHeight: 440 }}>
+                    <Table stickyHeader>
+                        <TableHead>
+                            <TableRow>
+                                {columns.map((col) => (
+                                    <TableCell key={col.id} align={col.align || 'left'} style={{ minWidth: col.minWidth }}>
+                                        {col.label}
+                                    </TableCell>
+                                ))}
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            <TablePagination
-                component="div"
-                count={filtered.length}
-                page={page}
-                rowsPerPage={rowsPerPage}
-                rowsPerPageOptions={[10, 25, 50]}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-        </Paper>
+                        </TableHead>
+                        <TableBody>
+                            {filtered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => (
+                                <TableRow hover key={row._id}>
+                                    <TableCell>{row.personalInfo.fullName}</TableCell>
+                                    <TableCell>{row.personalInfo.email}</TableCell>
+                                    <TableCell>{row.hiringManager.company}</TableCell>
+                                    <TableCell>{row.personalInfo.date}</TableCell>
+                                    <TableCell align="right">
+                                        <IconButton onClick={(e) => handleClick(e, index)}>
+                                            <MoreVertIcon />
+                                        </IconButton>
+                                        <Menu
+                                            anchorEl={anchorEls[index]}
+                                            open={Boolean(anchorEls[index])}
+                                            onClose={() => handleClose(index)}
+                                        >
+                                            <MenuItem onClick={() => handleClose(index)}>View</MenuItem>
+                                            <MenuItem onClick={() => handleClose(index)}>Edit</MenuItem>
+                                            <MenuItem onClick={() => handleDelete(row, index)}>Delete</MenuItem>
+                                        </Menu>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+                <TablePagination
+                    component="div"
+                    count={filtered.length}
+                    page={page}
+                    rowsPerPage={rowsPerPage}
+                    rowsPerPageOptions={[5, 10, 25, 50]}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                />
+            </Paper>
+        </>
     );
 };
 
