@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import ResumeList from './resume-list/ResumeList';
+import CoverLetterList from './cover-letter-list/CoverLetterList';
 import { TextField } from '@mui/material';
 import SectionHead2 from '../../header/section-head/SectionHead2';
-import { Link } from 'react-router';
 
-const ResumeManager = () => {
+const CoverLetterManager = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   return (
@@ -12,8 +11,8 @@ const ResumeManager = () => {
       <div className='flex justify-between mb-5'>
         <div>
           <SectionHead2
-            title={"Resume Manager"}
-            subTitle={"Organize your uploaded resumes and save time with new job applications"}
+            title={"Cover Letter Manager"}
+            subTitle={"Manage and organize your saved cover letters effortlessly"}
           />
         </div>
         <div>
@@ -23,12 +22,11 @@ const ResumeManager = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <Link to="/create-resume" className='btn bg-r-accent text-r-text hover:bg-r-primary hover:text-white h-14 ml-4'>Generate Resume</Link>
         </div>
       </div>
-      <ResumeList searchTerm={searchTerm} />
+      <CoverLetterList searchTerm={searchTerm} />
     </div>
   );
 };
 
-export default ResumeManager;
+export default CoverLetterManager;

@@ -24,7 +24,7 @@ const Generate = () => {
                     </Link>
 
                     {/* Resume List */}
-                    <Link to="#" className="bg-white shadow-md hover:shadow-xl text-r-info-card cursor-pointer rounded-xl p-8 w-72">
+                    <Link to="/cover-letter" className="bg-white shadow-md hover:shadow-xl text-r-info-card cursor-pointer rounded-xl p-8 w-72">
                         <div className="flex justify-center mb-4 text-r-primary">
                             <SlEnvolopeLetter size="50px" />
                         </div>
