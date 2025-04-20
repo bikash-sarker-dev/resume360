@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,59 +8,140 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import IconButton from '@mui/material/IconButton';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import useAxiosPublic from '../../../../hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
+import { useState } from 'react';
 
 const columns = [
     { id: 'name', label: 'Name', minWidth: 170 },
-    { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
+    { id: 'jobTitle', label: 'Job Title', minWidth: 100 },
     {
-        id: 'population',
-        label: 'Population',
+        id: 'created',
+        label: 'Created',
         minWidth: 170,
         align: 'right',
-        format: (value) => value.toLocaleString('en-US'),
+        format: (value) => new Date(value).toLocaleDateString('en-US'),
     },
     {
-        id: 'size',
-        label: 'Size\u00a0(km\u00b2)',
+        id: 'modified',
+        label: 'Modified At',
         minWidth: 170,
         align: 'right',
-        format: (value) => value.toLocaleString('en-US'),
+        format: (value) => new Date(value).toLocaleDateString('en-US'),
     },
     {
-        id: 'density',
-        label: 'Density',
-        minWidth: 170,
+        id: 'action',
+        label: 'Action',
+        minWidth: 100,
         align: 'right',
-        format: (value) => value.toFixed(2),
     },
 ];
 
-function createData(name, code, population, size) {
-    const density = population / size;
-    return { name, code, population, size, density };
-}
+const ResumeList = ({ searchTerm }) => {
+    const axiosPublic = useAxiosPublic();
+    const [rows, setRows] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [anchorEls, setAnchorEls] = useState({});
+    const [deletingId] = useState(null);
 
-const rows = [
-    createData('India', 'IN', 1324171354, 3287263),
-    createData('China', 'CN', 1403500365, 9596961),
-    createData('Italy', 'IT', 60483973, 301340),
-    createData('United States', 'US', 327167434, 9833520),
-    createData('Canada', 'CA', 37602103, 9984670),
-    createData('Australia', 'AU', 25475400, 7692024),
-    createData('Germany', 'DE', 83019200, 357578),
-    createData('Ireland', 'IE', 4857000, 70273),
-    createData('Mexico', 'MX', 126577691, 1972550),
-    createData('Japan', 'JP', 126317000, 377973),
-    createData('France', 'FR', 67022000, 640679),
-    createData('United Kingdom', 'GB', 67545757, 242495),
-    createData('Russia', 'RU', 146793744, 17098246),
-    createData('Nigeria', 'NG', 200962417, 923768),
-    createData('Brazil', 'BR', 210147125, 8515767),
-];
 
-const ResumeList = () => {
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+    React.useEffect(() => {
+        const fetchResumes = async () => {
+            try {
+                const res = await axiosPublic.get('/resume');
+                if (res.data.status === 200) {
+                    const fetchedRows = res.data.result.map((resume) => ({
+                        id: resume._id,
+                        name: resume.personalInfo?.fullName || 'N/A',
+                        jobTitle: resume.personalInfo?.jobTitle || 'N/A',
+                        created: resume.personalInfo?.date || 'N/A',
+                        modified: resume.personalInfo?.date || 'N/A',
+                    }));
+                    setRows(fetchedRows);
+                }
+            } catch (error) {
+                console.error('Error fetching resumes:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchResumes();
+    }, [axiosPublic]);
+
+    const handleClick = (event, index) => {
+        setAnchorEls({ ...anchorEls, [index]: event.currentTarget });
+    };
+
+    const handleClose = (index) => {
+        setAnchorEls({ ...anchorEls, [index]: null });
+    };
+
+    const handleAction = async (type, row) => {
+        if (type === 'Delete') {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: `You are about to delete "${row.name}" resume.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: 'var(--color-r-primary)',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Deleting...',
+                        text: 'Please wait while the resume is being deleted.',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        },
+                    });
+
+                    try {
+                        const res = await axiosPublic.delete(`/resume/${row.id}`);
+                        Swal.close(); // Close loading modal
+
+                        if (res.status === 200 || res.data.deletedCount > 0) {
+                            setRows((prev) => prev.filter((r) => r.id !== row.id));
+                            Swal.fire({
+                                title: 'Deleted!',
+                                text: `"${row.name}" has been deleted.`,
+                                icon: 'success',
+                                confirmButtonColor: 'var(--color-r-primary)',
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Failed!',
+                                text: 'Could not delete the resume.',
+                                icon: 'error',
+                                confirmButtonColor: 'var(--color-r-primary)',
+                            });
+                        }
+                    } catch (err) {
+                        console.error(err);
+                        Swal.close();
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Something went wrong while deleting.',
+                            icon: 'error',
+                            confirmButtonColor: 'var(--color-r-primary)',
+                        });
+                    }
+                }
+            });
+        }
+
+    };
+
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -69,6 +151,20 @@ const ResumeList = () => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+
+    if (loading) return (
+        <>
+            <div className="h-screen flex justify-center items-center">
+                <span className="loading loading-ring loading-xl"></span>
+            </div>
+        </>
+    );
+
+    // ✅ Filter logic
+    const filteredRows = rows.filter((row) =>
+        row.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        row.jobTitle.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
@@ -88,31 +184,70 @@ const ResumeList = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows
+                        {filteredRows
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                            .map((row) => {
-                                return (
-                                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                                        {columns.map((column) => {
-                                            const value = row[column.id];
+                            .map((row, index) => (
+                                <TableRow hover role="checkbox" tabIndex={-1} key={row.id || index}>
+                                    {columns.map((column) => {
+                                        const value = row[column.id];
+                                        if (column.id === 'action') {
                                             return (
                                                 <TableCell key={column.id} align={column.align}>
-                                                    {column.format && typeof value === 'number'
-                                                        ? column.format(value)
-                                                        : value}
+                                                    <IconButton onClick={(event) => handleClick(event, index)}>
+                                                        <MoreVertIcon />
+                                                    </IconButton>
+                                                    <Menu
+                                                        anchorEl={anchorEls[index]}
+                                                        open={Boolean(anchorEls[index])}
+                                                        onClose={() => handleClose(index)}
+                                                    >
+                                                        <MenuItem
+                                                            onClick={() => {
+                                                                handleClose(index);
+                                                                handleAction('View', row);
+                                                            }}
+                                                        >
+                                                            View
+                                                        </MenuItem>
+                                                        <MenuItem
+                                                            onClick={() => {
+                                                                handleClose(index);
+                                                                handleAction('Edit', row);
+                                                            }}
+                                                        >
+                                                            Edit
+                                                        </MenuItem>
+                                                        <MenuItem
+                                                            onClick={() => {
+                                                                handleClose(index);
+                                                                handleAction('Delete', row);
+                                                            }}
+                                                        >
+                                                            {deletingId === row.id ? (
+                                                                <CircularProgress size={20} color="error" />
+                                                            ) : (
+                                                                'Delete'
+                                                            )}
+                                                        </MenuItem>
+                                                    </Menu>
                                                 </TableCell>
                                             );
-                                        })}
-                                    </TableRow>
-                                );
-                            })}
+                                        }
+                                        return (
+                                            <TableCell key={column.id} align={column.align}>
+                                                {column.format && value !== 'N/A' ? column.format(value) : value}
+                                            </TableCell>
+                                        );
+                                    })}
+                                </TableRow>
+                            ))}
                     </TableBody>
                 </Table>
             </TableContainer>
             <TablePagination
                 rowsPerPageOptions={[10, 25, 100]}
                 component="div"
-                count={rows.length}
+                count={filteredRows.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}

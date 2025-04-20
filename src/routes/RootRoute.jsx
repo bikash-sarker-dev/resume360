@@ -43,6 +43,8 @@ import TermsAndConditionsPage from "./../pages/TermsAndConditionsPage";
 import ResumeManager from "../components/resume/resume-manager/ResumeManager";
 import Resume from "../components/resume/Resume";
 import Generate from "../pages/Generate";
+import CoverLetterGenerate from "../pages/CoverLetterGenerate";
+import CoverLetterManager from "../components/cover-letter/cover-letter-manager/CoverLetterManager";
 
 const RootRoute = () => {
   return (
@@ -80,6 +82,8 @@ const RootRoute = () => {
         <Route path="/templateOne" element={<TemplateOne />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/cover-letter" element={<CoverLetter/>} />
+        <Route path="/generate-cover-letter" element={<CoverLetterGenerate/>} />
+        <Route path="/cover-letter-manager" element={<CoverLetterManager/>} />
       </Route>
       {/* dashboard route working start  */}
       <Route path="/dashboard" element={<DashboardLayouts />}>
