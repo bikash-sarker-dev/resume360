@@ -1,7 +1,7 @@
 import React from 'react';
-import ResumeList from '../components/resume/resume-list/ResumeList';
+import ResumeList from './resume-list/ResumeList';
 import { TextField } from '@mui/material';
-import SectionHead2 from '../components/header/section-head/SectionHead2';
+import SectionHead2 from '../../header/section-head/SectionHead2';
 
 const ResumeManager = () => {
     return (
