@@ -4,13 +4,38 @@ import Swal from "sweetalert2";
 import google from "../../assets/icons/google.png";
 import SectionHead from "../../components/header/section-head/SectionHead";
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "./../../hooks/useAxiosPublic";
 
 export default function Login() {
-  const { signInUser, setUser, signInWithGoogle, signInWithGithub, loading } = useAuth();
+  const {
+    signInUser,
+    setLoading,
+    setUser,
+    signInWithGoogle,
+    signInWithGithub,
+    loading,
+  } = useAuth();
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const [showPassword, setShowPassword] = useState(false);
+  const [blocks, setBlocks] = useState(false);
 
-  const handleLogin = (event) => {
+  const blockFun = (num) => {
+    let getValue = localStorage.getItem("block");
+    let count = num + parseInt(getValue);
+    console.log(count);
+    setBlocks(count);
+    localStorage.setItem("block", count);
+  };
+
+  // useEffect(()=>{
+  //   async function getBlockFun() {
+  //     let res = await axiosPublic.get(`/users/${}`)
+  //   }
+  //   getBlockFun()
+  // },[])
+
+  const handleLogin = async (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
@@ -18,36 +43,56 @@ export default function Login() {
     const user = { email, password };
     // console.log(user);
 
-    // SignInUser
-    signInUser(email, password)
-      .then((result) => {
-        // console.log(result.user)
-        if(loading){
-          return <span className='block mx-auto loading loading-spinner loading-xl'></span>
-        }
-        setUser(result.user);
-        Swal.fire({
-          title: "Success",
-          text: "Login successfully",
-          icon: "success",
-          confirmButtonText: "Done",
-          confirmButtonColor: '#3e563f',
-        });
-        navigate("/");
-        form.reset();
-      })
+    let res = await axiosPublic.get(`/users/${email}`);
+    console.log(res.data.result?.block);
 
-      .catch((error) => {
-        // console.log(error.message)
-        setUser(null);
-        Swal.fire({
-          title: "Error",
-          text: "Email or Password is wrong please check",
-          icon: "error",
-          confirmButtonText: "Ok",
-          confirmButtonColor: '#3e563f',
+    if (res.data.result?.block) {
+      console.log("user block");
+    } else {
+      if (parseInt(localStorage.getItem("block")) > 2) {
+        console.log("right");
+        localStorage.setItem("block", "0");
+        return;
+      }
+      // SignInUser
+      signInUser(email, password)
+        .then((result) => {
+          // console.log(result.user)
+          if (loading) {
+            return (
+              <span className="block mx-auto loading loading-spinner loading-xl"></span>
+            );
+          }
+          setUser(result.user);
+          Swal.fire({
+            title: "Success",
+            text: "Login successfully",
+            icon: "success",
+            confirmButtonText: "Done",
+            confirmButtonColor: "#3e563f",
+          });
+          navigate("/");
+          form.reset();
+        })
+
+        .catch((error) => {
+          // console.log(error.message)
+          if (localStorage.getItem("block") == null) {
+            localStorage.setItem("block", "0");
+          }
+          blockFun(1);
+          console.log("error login");
+          setLoading(false);
+          setUser(null);
+          Swal.fire({
+            title: "Error",
+            text: "Email or Password is wrong please check",
+            icon: "error",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#3e563f",
+          });
         });
-      });
+    }
   };
 
   // google signin
@@ -55,8 +100,10 @@ export default function Login() {
     signInWithGoogle()
       .then((result) => {
         // console.log(result.user)
-        if(loading){
-          return <span className='block mx-auto loading loading-spinner loading-xl'></span>
+        if (loading) {
+          return (
+            <span className="block mx-auto loading loading-spinner loading-xl"></span>
+          );
         }
         setUser(result.user);
         Swal.fire({
@@ -64,7 +111,7 @@ export default function Login() {
           text: "Login with Google successfully",
           icon: "success",
           confirmButtonText: "Done",
-          confirmButtonColor: '#3e563f',
+          confirmButtonColor: "#3e563f",
         });
         navigate("/socialMiddleware");
       })
@@ -85,7 +132,7 @@ export default function Login() {
   //         text: "Login With Github Successfully",
   //         icon: "success",
   //         confirmButtonText: "Done",
-              // confirmButtonColor: '#3e563f',
+  // confirmButtonColor: '#3e563f',
   //       });
   //       navigate("/");
   //     })
@@ -136,7 +183,9 @@ export default function Login() {
             <div>
               <Link to="/forgetPassword">Forgot your password?</Link>
             </div>
-            <button className="btn bg-r-accent mt-4 text-r-text hover:bg-r-primary hover:text-white">Login</button>
+            <button className="btn bg-r-accent mt-4 text-r-text hover:bg-r-primary hover:text-white">
+              Login
+            </button>
           </fieldset>
         </form>
         <div className="divider">OR</div>
