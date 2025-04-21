@@ -5,6 +5,7 @@ import { GrShieldSecurity } from "react-icons/gr";
 import { IoIosLogOut } from "react-icons/io";
 import { IoChatboxEllipsesOutline, IoReaderOutline } from "react-icons/io5";
 import { MdOutlineEditNotifications, MdOutlineRateReview } from "react-icons/md";
+import { GiArtificialIntelligence } from "react-icons/gi";
 import { RiUserSettingsLine } from "react-icons/ri";
 import { NavLink, useNavigate } from "react-router";
 import Swal from "sweetalert2";
@@ -129,7 +130,14 @@ const Sidebar = () => {
                     </NavLink>
                   </li>
                 ))}
-
+             <li>
+              <button
+                className="flex items-center gap-3 px-4 py-2 rounded-lg text-r-background bg-gradient-to-r from-r-accent to-r-info-card hover:text-black transition-all w-full"
+              >
+                <GiArtificialIntelligence className="text-2xl" />
+                <span className="text-base">AI Assistant</span>
+              </button>
+            </li>
             <li>
               <button
                 onClick={handleSignOut}
