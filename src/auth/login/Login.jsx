@@ -50,7 +50,8 @@ export default function Login() {
       console.log("user block");
     } else {
       if (parseInt(localStorage.getItem("block")) > 2) {
-        console.log("right");
+        let res = await axiosPublic.patch(`/users/${email}`);
+        console.log(res.data);
         localStorage.setItem("block", "0");
         return;
       }
