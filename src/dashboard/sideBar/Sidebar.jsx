@@ -1,5 +1,4 @@
 import React from "react";
-
 import { FiUserCheck } from "react-icons/fi";
 import { GoHome } from "react-icons/go";
 import { GrShieldSecurity } from "react-icons/gr";
@@ -103,7 +102,7 @@ const Sidebar = () => {
                       className={({ isActive }) =>
                         `flex items-center gap-3 px-4 py-2 rounded-lg transition-all ${
                           isActive
-                            ? "bg-r-secondary text-white font-semibold"
+                            ? "bg-r-secondary text-white underline"
                             : "hover:bg-r-secondary hover:text-white text-r-background"
                         }`
                       }
@@ -120,7 +119,7 @@ const Sidebar = () => {
                       className={({ isActive }) =>
                         `flex items-center gap-3 px-4 py-2 rounded-lg transition-all ${
                           isActive
-                            ? "bg-r-secondary text-white font-semibold"
+                            ? "bg-r-secondary text-white underline"
                             : "hover:bg-r-secondary hover:text-white text-r-background"
                         }`
                       }
@@ -134,7 +133,7 @@ const Sidebar = () => {
             <li>
               <button
                 onClick={handleSignOut}
-                className="flex items-center gap-3 px-4 py-2 rounded-lg text-r-background hover:bg-red-600 hover:text-white transition-all"
+                className="flex items-center gap-3 px-4 py-2 rounded-lg text-r-background hover:bg-r-accent hover:text-black transition-all w-full"
               >
                 <IoIosLogOut className="text-2xl" />
                 <span className="text-base">Log Out</span>
