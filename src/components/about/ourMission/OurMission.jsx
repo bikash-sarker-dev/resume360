@@ -4,7 +4,7 @@ import React from 'react';
 
 const OurMission = () => {
     return (
-       <div className="container mx-auto py-4 px-4">
+       <div className="container mx-auto py-8 px-4">
          <div className='grid grid-cols-1 md:grid-cols-12 gap-4 mx-auto'>
 
             <div className='md:col-span-9 space-y-6'>

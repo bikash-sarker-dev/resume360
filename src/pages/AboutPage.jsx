@@ -11,7 +11,6 @@ const AboutPage = () => {
     <div>
       <ConnectingPeople></ConnectingPeople>
       <OurMission></OurMission>
-
       <OurValues></OurValues>
       <Trusted></Trusted>
       <OurTeam></OurTeam>
