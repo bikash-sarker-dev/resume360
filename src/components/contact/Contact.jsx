@@ -37,32 +37,14 @@ const Contact = () => {
     };
   
     return (
-
-        <div>
-
-
-
-<section id="contact" className="text-green-900  grid grid-cols-1 md:grid-cols-2 gap-10 rounded-lg shadow-lg">
-       
+  <div>
+<section id="contact" className="text-r-info grid grid-cols-1 md:grid-cols-2 gap-10 rounded-lg shadow-lg pb-5"> 
        <div className="flex justify-center items-center h-full">
-    
-
-
-         <Lottie animationData={helpDesk} className=""  
-        >
-
-         </Lottie>
-
-
-
-
+         <Lottie animationData={helpDesk}></Lottie>
        </div>
- 
-   
        <div className="flex flex-col justify-center items-center w-full">
-        
          <form
-           className="mt-6 grid grid-cols-1 gap-6 max-w-md w-full mx-auto bg-white rounded-xl shadow-lg p-8 h-full w-full"
+           className="mt-6 grid grid-cols-1 gap-6 max-w-md mx-auto bg-white rounded-xl shadow-lg p-8 h-full w-full"
            onSubmit={onSubmit}
          >
              <motion.h3
@@ -74,13 +56,11 @@ const Contact = () => {
            Contact Us
          </motion.h3>
 
-
-
            <motion.input
              type="text"
              name="name"
              placeholder="Your Name"
-             className="input input-bordered w-full p-3 rounded-md shadow-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+             className="input input-bordered w-full p-3 rounded-md shadow-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 text-black"
              required
              initial={{ opacity: 0, x: 50 }}
              animate={{ opacity: 1, x: 0 }}
@@ -90,7 +70,7 @@ const Contact = () => {
              type="email"
              name="email"
              placeholder="Your Email"
-             className="input input-bordered w-full p-3 rounded-md shadow-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+             className="input input-bordered w-full p-3 rounded-md shadow-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 text-black"
              required
              initial={{ opacity: 0, x: 50 }}
              animate={{ opacity: 1, x: 0 }}
@@ -100,7 +80,7 @@ const Contact = () => {
              type="text"
              name="Location"
              placeholder="Your Location"
-             className="input input-bordered w-full p-3 rounded-md shadow-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+             className="input input-bordered w-full p-3 rounded-md shadow-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 text-black"
              required
              initial={{ opacity: 0, x: 50 }}
              animate={{ opacity: 1, x: 0 }}
@@ -109,7 +89,7 @@ const Contact = () => {
            <motion.textarea
              name="message"
              placeholder="Your Message"
-             className="textarea textarea-bordered w-full p-3 rounded-md shadow-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-r-accent text-black"
+             className="textarea textarea-bordered w-full p-3 rounded-md shadow-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 text-black"
              rows="4"
              required
              initial={{ opacity: 0, x: 50 }}
@@ -118,7 +98,7 @@ const Contact = () => {
            ></motion.textarea>
            <motion.button
              type="submit"
-             className="btn btn-primary w-full p-3 rounded-md bg-r-primary text-white hover:bg-r-info focus:ring-2 focus:ring-r-info"
+             className="btn w-full p-3 rounded-md bg-r-accent mt-4 text-r-text hover:bg-r-primary hover:text-white focus:ring-2 focus:ring-r-info"
              initial={{ opacity: 0, x: 50 }}
              animate={{ opacity: 1, x: 0 }}
              transition={{ duration: 1.2 }}
