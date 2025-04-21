@@ -41,6 +41,7 @@ import CoverOne from "./../components/DefaultCoverLetterTemplates/CoverOne";
 import ContactPage from "./../pages/ContactPage";
 import FeaturesPage from "./../pages/FeaturesPage";
 import TermsAndConditionsPage from "./../pages/TermsAndConditionsPage";
+import GiveReview from "../pages/UserDashboardPage/GiveReview";
 
 const RootRoute = () => {
   return (
@@ -59,7 +60,7 @@ const RootRoute = () => {
         <Route path="/socialMiddleware" element={<SocialMiddlewarePage />} />
         <Route path="/coverOne" element={<CoverOne />} />
         <Route path="/contact" element={<ContactPage />} />
-
+        
         {/* user page routes  */}
         <Route path="/user" element={<User />}>
           <Route index element={<Userabout />} />
@@ -88,6 +89,7 @@ const RootRoute = () => {
         <Route path="/dashboard/notification" element={<NotificationPage />} />
         <Route path="/dashboard/chat" element={<ChatPage />} />
         <Route path="/dashboard/profile" element={<DashboardProfile />} />
+        <Route path="/dashboard/giveReview" element={<GiveReview />} />
       </Route>
       {/* dashboard route working end  */}
       <Route path="*" element={<ErrorPage />} />

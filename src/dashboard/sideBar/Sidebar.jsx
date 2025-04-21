@@ -5,7 +5,7 @@ import { GoHome } from "react-icons/go";
 import { GrShieldSecurity } from "react-icons/gr";
 import { IoIosLogOut } from "react-icons/io";
 import { IoChatboxEllipsesOutline, IoReaderOutline } from "react-icons/io5";
-import { MdOutlineEditNotifications } from "react-icons/md";
+import { MdOutlineEditNotifications, MdOutlineRateReview } from "react-icons/md";
 import { RiUserSettingsLine } from "react-icons/ri";
 import { NavLink, useNavigate } from "react-router";
 import Swal from "sweetalert2";
@@ -65,6 +65,11 @@ const Sidebar = () => {
       to: "/dashboard/profile",
       icon: <RiUserSettingsLine />,
       label: "Profile",
+    },
+    {
+      to: "/dashboard/giveReview",
+      icon: <MdOutlineRateReview />,
+      label: "Give Review",
     },
     {
       to: "/dashboard/chat",
