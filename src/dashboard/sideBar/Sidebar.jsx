@@ -133,10 +133,22 @@ const Sidebar = () => {
              <li>
               <button
                 className="flex items-center gap-3 px-4 py-2 rounded-lg text-r-background bg-gradient-to-r from-r-accent to-r-info-card hover:text-black transition-all w-full"
+                onClick={()=>document.getElementById('my_modal_3').showModal()}
               >
                 <GiArtificialIntelligence className="text-2xl" />
                 <span className="text-base">AI Assistant</span>
               </button>
+              <dialog id="my_modal_3" className="modal">
+              <div className="modal-box">
+              <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+              </form>
+              <h3 className="font-bold text-lg">Ai Assistant is here!!!</h3>
+              <p className="py-4">Please tell me how can i help you</p>
+              </div>
+              </dialog>
+
             </li>
             <li>
               <button
