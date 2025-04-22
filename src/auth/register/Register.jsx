@@ -3,17 +3,24 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import resumeLottieData from "../../assets/animation/resume2.json";
+import google from "../../assets/icons/google.png";
 import SectionHead from "../../components/header/section-head/SectionHead";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import google from "../../assets/icons/google.png"
 // import github from "../../assets/icons/github.png"
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-const image_hosting_api =`https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 export default function Register() {
-  const {createUser, setUser, signInWithGithub, updateUserInfo, signInWithGoogle} = useAuth();
+  const {
+    createUser,
+    setLoading,
+    setUser,
+    signInWithGithub,
+    updateUserInfo,
+    signInWithGoogle,
+  } = useAuth();
   const navigate = useNavigate();
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
@@ -22,7 +29,7 @@ export default function Register() {
   const [showInput, setShowInput] = useState(false);
   const axiosPublic = useAxiosPublic();
 
-  const handleSelectChange =(event) => {
+  const handleSelectChange = (event) => {
     const selectedValue = event.target.value;
     setProfession(selectedValue);
     setShowInput(selectedValue === "others");
@@ -30,26 +37,27 @@ export default function Register() {
 
   const handleRegister = async (event) => {
     event.preventDefault();
-  
+
     const form = event.target;
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
     const profession = form.profession.value;
-    const imageFile = form.image.files[0]; 
+    const imageFile = form.image.files[0];
     const terms = true;
-  
+
     if (password !== confirmPassword) {
       Swal.fire({
         title: "Error",
         text: "Passwords do not match!",
         icon: "error",
         confirmButtonText: "Ok",
+        confirmButtonColor: "#3e563f",
       });
       return;
     }
-  
+
     // Password validation
     const regex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
     if (!regex.test(password)) {
@@ -58,44 +66,53 @@ export default function Register() {
         text: "Password must contain at least one uppercase, one lowercase letter, and be at least 6 characters long.",
         icon: "error",
         confirmButtonText: "Ok",
+        confirmButtonColor: "#3e563f",
       });
       return;
     }
-  
+
     if (!imageFile) {
       Swal.fire({
         title: "Error",
         text: "Please upload an image.",
         icon: "error",
         confirmButtonText: "Ok",
+        confirmButtonColor: "#3e563f",
       });
       return;
     }
-  
+
     // Upload image to ImgBB
     const formData = new FormData();
     formData.append("image", imageFile);
-  
+
     try {
       const imgRes = await fetch(image_hosting_api, {
         method: "POST",
         body: formData,
       });
-  
+
       const imgData = await imgRes.json();
-  
+
       if (imgData.success) {
         const imageUrl = imgData.data.display_url;
-  
+
         // Create new user object
-        const newUser = { name, profession, email, image: imageUrl, password, terms };
-        console.log(newUser)
-  
+        const newUser = {
+          name,
+          profession,
+          email,
+          image: imageUrl,
+          password,
+          terms,
+        };
+        console.log(newUser);
+
         // Create user in Firebase
         createUser(email, password)
           .then((result) => {
             setUser(result.user);
-  
+
             // Update Firebase user profile
             const profile = { displayName: name, photoURL: imageUrl };
             updateUserInfo(profile)
@@ -109,6 +126,7 @@ export default function Register() {
                       text: "Registration is successfully completed",
                       icon: "success",
                       confirmButtonText: "Done",
+                      confirmButtonColor: "#3e563f",
                     });
                     navigate("/");
                   }
@@ -120,6 +138,7 @@ export default function Register() {
                   text: "Profile update failed.",
                   icon: "error",
                   confirmButtonText: "Ok",
+                  confirmButtonColor: "#3e563f",
                 });
               });
           })
@@ -130,7 +149,9 @@ export default function Register() {
               text: "Registration failed.",
               icon: "error",
               confirmButtonText: "Ok",
+              confirmButtonColor: "#3e563f",
             });
+            setLoading(false);
           });
       } else {
         Swal.fire({
@@ -138,6 +159,7 @@ export default function Register() {
           text: "Image upload failed. Please try again.",
           icon: "error",
           confirmButtonText: "Ok",
+          confirmButtonColor: "#3e563f",
         });
       }
     } catch (error) {
@@ -146,6 +168,7 @@ export default function Register() {
         text: "An error occurred while uploading the image.",
         icon: "error",
         confirmButtonText: "Ok",
+        confirmButtonColor: "#3e563f",
       });
     }
   };
@@ -161,6 +184,7 @@ export default function Register() {
           text: "Login With Google Successfully",
           icon: "success",
           confirmButtonText: "Done",
+          confirmButtonColor: "#3e563f",
         });
         navigate("/socialMiddleware");
       })
@@ -181,6 +205,7 @@ export default function Register() {
   //         text: "Login With Github Successfully",
   //         icon: "success",
   //         confirmButtonText: "Done",
+  //         confirmButtonColor: '#3e563f',
   //       });
   //       navigate("/");
   //     })
@@ -229,29 +254,30 @@ export default function Register() {
                     <option value="web developer">Web Developer</option>
                     <option value="teacher">Teacher</option>
                     <option value="ui/ux designer">UI/UX Designer</option>
-                    <option value="mechanical engineer">Mechanical Engineer</option>
+                    <option value="mechanical engineer">
+                      Mechanical Engineer
+                    </option>
                     <option value="chemist">Chemist</option>
                     <option value="others">Others</option>
                   </select>
-                  
+
                   {showInput && (
-                  <input
-                  type="text"
-                  className="input input-bordered w-full mt-2"
-                  placeholder="Enter your profession"
-                  value={profession}
-                  onChange={(e) => setProfession(e.target.value)}
-                  />
+                    <input
+                      type="text"
+                      className="input input-bordered w-full mt-2"
+                      placeholder="Enter your profession"
+                      value={profession}
+                      onChange={(e) => setProfession(e.target.value)}
+                    />
                   )}
 
                   <label className="fieldset-label">Image</label>
-                    <input
-                      type="file"
-                      name="image"
-                      className="file-input file-input-bordered w-full"
-                      placeholder="Upload Your Image"
-                      required
-                    />
+                  <input
+                    type="file"
+                    name="image"
+                    className="file-input file-input-bordered w-full"
+                    placeholder="Upload Your Image"
+                  />
 
                   <label className="fieldset-label">Email</label>
                   <div className="relative">
@@ -324,7 +350,7 @@ export default function Register() {
                   </div>
                   {conditions ? (
                     <>
-                      <button className="btn bg-r-accent mt-4 text-white">
+                      <button className="btn bg-r-accent mt-4 text-r-text hover:bg-r-primary hover:text-white">
                         Create Account
                       </button>
                     </>
@@ -332,7 +358,7 @@ export default function Register() {
                     <>
                       <button
                         disabled
-                        className="btn bg-r-accent mt-4 text-black"
+                        className="btn bg-r-accent mt-4 text-r-text"
                       >
                         Create Account
                       </button>
@@ -342,23 +368,29 @@ export default function Register() {
               </form>
               <div className="divider">OR</div>
               <div className="text-center text-3xl">
-              {/* Google Button */}
-              <button  onClick={handleGoogleLogin} className="btn w-full border-[1px] border-gray-400 text-r-accent bg-white shadow-2xl">
-              <img className="w-9 bg-transparent" src={google} alt="" />
-              Sign in with Google
-              </button>
-              {/* Github Button */}
-              {/* <button  onClick={handleGithubLogin} className="btn w-full border-[1px] border-gray-400 text-r-accent bg-white shadow-2xl mt-4">
+                {/* Google Button */}
+                <button
+                  onClick={handleGoogleLogin}
+                  className="btn w-full border-[1px] border-[#588568] text-r-primary bg-white shadow-2xl"
+                >
+                  <img className="w-9 bg-transparent" src={google} alt="" />
+                  Sign in with Google
+                </button>
+                {/* Github Button */}
+                {/* <button  onClick={handleGithubLogin} className="btn w-full border-[1px] border-gray-400 text-r-accent bg-white shadow-2xl mt-4">
               <img className="w-7 bg-transparent" src={github} alt="" />
               Sign in with GitHub
               </button> */}
               </div>
               <div className="text-center">
-              <p className="mt-2">
-              Already have an account?{" "}
-              <span className="underline">
-              <Link to="/login" className="text-r-accent">Login here</Link></span>
-              </p>
+                <p className="mt-2">
+                  Already have an account?{" "}
+                  <span className="underline">
+                    <Link to="/login" className="text-r-primary">
+                      Login here
+                    </Link>
+                  </span>
+                </p>
               </div>
             </div>
           </div>

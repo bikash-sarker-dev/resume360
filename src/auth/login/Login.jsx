@@ -4,13 +4,38 @@ import Swal from "sweetalert2";
 import google from "../../assets/icons/google.png";
 import SectionHead from "../../components/header/section-head/SectionHead";
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "./../../hooks/useAxiosPublic";
 
 export default function Login() {
-  const { signInUser, setUser, signInWithGoogle, signInWithGithub } = useAuth();
+  const {
+    signInUser,
+    setLoading,
+    setUser,
+    signInWithGoogle,
+    signInWithGithub,
+    loading,
+  } = useAuth();
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const [showPassword, setShowPassword] = useState(false);
+  const [blocks, setBlocks] = useState(false);
 
-  const handleLogin = (event) => {
+  const blockFun = (num) => {
+    let getValue = localStorage.getItem("block");
+    let count = num + parseInt(getValue);
+    console.log(count);
+    setBlocks(count);
+    localStorage.setItem("block", count);
+  };
+
+  // useEffect(()=>{
+  //   async function getBlockFun() {
+  //     let res = await axiosPublic.get(`/users/${}`)
+  //   }
+  //   getBlockFun()
+  // },[])
+
+  const handleLogin = async (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
@@ -18,30 +43,70 @@ export default function Login() {
     const user = { email, password };
     // console.log(user);
 
-    // SignInUser
-    signInUser(email, password)
-      .then((result) => {
-        // console.log(result.user)
-        setUser(result.user);
-        Swal.fire({
-          title: "Success",
-          text: "Login successfully",
-          icon: "success",
-          confirmButtonText: "Done",
-        });
-        navigate("/");
-        form.reset();
-      })
-      .catch((error) => {
-        // console.log(error.message)
-        setUser(null);
-        Swal.fire({
-          title: "Error",
-          text: "Email or Password is wrong please check",
-          icon: "error",
-          confirmButtonText: "Ok",
-        });
+    let res = await axiosPublic.get(`/users/${email}`);
+    console.log(res.data.result?.block);
+
+    if (res.data.result?.block) {
+      console.log("user block");
+      Swal.fire({
+        title: "Warning",
+        text: "Your account has been blocked, please contact the admin.",
+        icon: "warning",
+        confirmButtonColor: "#3e563f",
+
+        showCancelButton: true,
+        confirmButtonText: "contact",
+      }).then((result) => {
+        if (result.value) {
+          window.location.href = `https://resume360.netlify.app/contact`;
+        }
       });
+    } else {
+      if (parseInt(localStorage.getItem("block")) === 3) {
+        let res = await axiosPublic.patch(`/users/block/${email}`);
+        console.log(res.data);
+        localStorage.setItem("block", "0");
+        return;
+      }
+      // SignInUser
+      signInUser(email, password)
+        .then((result) => {
+          // console.log(result.user)
+          if (loading) {
+            return (
+              <span className="block mx-auto loading loading-spinner loading-xl"></span>
+            );
+          }
+          setUser(result.user);
+          Swal.fire({
+            title: "Success",
+            text: "Login successfully",
+            icon: "success",
+            confirmButtonText: "Done",
+            confirmButtonColor: "#3e563f",
+          });
+          navigate("/");
+          form.reset();
+        })
+
+        .catch((error) => {
+          // console.log(error.message)
+          if (localStorage.getItem("block") == null) {
+            localStorage.setItem("block", "0");
+          }
+          blockFun(1);
+          console.log("error login");
+          setLoading(false);
+          setUser(null);
+          Swal.fire({
+            title: "Error",
+            text: "Email or Password is wrong please check",
+            icon: "error",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#3e563f",
+          });
+        });
+    }
   };
 
   // google signin
@@ -49,12 +114,18 @@ export default function Login() {
     signInWithGoogle()
       .then((result) => {
         // console.log(result.user)
+        if (loading) {
+          return (
+            <span className="block mx-auto loading loading-spinner loading-xl"></span>
+          );
+        }
         setUser(result.user);
         Swal.fire({
           title: "Success",
           text: "Login with Google successfully",
           icon: "success",
           confirmButtonText: "Done",
+          confirmButtonColor: "#3e563f",
         });
         navigate("/socialMiddleware");
       })
@@ -75,6 +146,7 @@ export default function Login() {
   //         text: "Login With Github Successfully",
   //         icon: "success",
   //         confirmButtonText: "Done",
+  // confirmButtonColor: '#3e563f',
   //       });
   //       navigate("/");
   //     })
@@ -125,7 +197,9 @@ export default function Login() {
             <div>
               <Link to="/forgetPassword">Forgot your password?</Link>
             </div>
-            <button className="btn bg-r-accent mt-4 text-white">Login</button>
+            <button className="btn bg-r-accent mt-4 text-r-text hover:bg-r-primary hover:text-white">
+              Login
+            </button>
           </fieldset>
         </form>
         <div className="divider">OR</div>
@@ -133,7 +207,7 @@ export default function Login() {
           {/* Google Button */}
           <button
             onClick={handleGoogleLogin}
-            className="btn w-full border-[1px] border-gray-400 text-r-accent bg-white shadow-2xl"
+            className="btn w-full border-[1px] border-[#588568] text-r-primary bg-white shadow-2xl"
           >
             <img className="w-9 bg-transparent" src={google} alt="" />
             Sign in with Google
@@ -148,7 +222,7 @@ export default function Login() {
           <p className="mt-2">
             Already have an account?{" "}
             <span className="underline">
-              <Link to="/register" className="text-r-accent">
+              <Link to="/register" className="text-r-primary">
                 Register here
               </Link>
             </span>

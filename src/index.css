@@ -19,23 +19,17 @@
   --color-r-card: #e6f8f7;
 } */
 
-
-
-
 @theme {
   --color-r-primary: #588568;
-  --color-r-secondary: #a1cdb0;
+  --color-r-secondary: #588568;
   --color-r-accent: #7dc696;
   --color-r-text: #080a09;
   --color-r-background: #f4f6f5;
   --color-r-info: #344e41;
   --color-r-info-card: #3e563f;
-  --color-r-card: #ECF0EE;
-  --color-r-hover: #D5DFD9;
+  --color-r-card: #ecf0ee;
+  --color-r-hover: #d5dfd9;
 }
-
-
-
 
 /* @theme {
   --color-r-primary: #6C63FF;
@@ -64,9 +58,7 @@
 body {
   font-family: "Inter", sans-serif;
   font-style: normal;
-  background-color: #F4F6F5
- 
-  ;
+  background-color: #f4f6f5;
 }
 
 .container {

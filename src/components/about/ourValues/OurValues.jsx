@@ -13,7 +13,7 @@ const OurValues = () => {
     }, []);
 
     return (
-        <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+        <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
             
             <div className='w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden'>
                 <img 

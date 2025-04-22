@@ -15,7 +15,7 @@ const FromBlog = () => {
   }, []);
 
   return (
-    <div className='container mx-auto py-16 px-4'>
+    <div className='container mx-auto py-10 px-4'>
       <h1 className='text-3xl font-bold mb-4'>From the Blog</h1>
       <p className='text-gray-600 mb-10 text-lg'>Learn how to grow your business with our expert advice.</p>
 
@@ -35,7 +35,7 @@ const FromBlog = () => {
                 whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-4 h-40">
+              <div className="absolute bottom-0 left-0 right-0 bg-r-card bg-opacity-60 text-r-text p-4 h-40">
                 <p className="text-sm">{blog.date} - {blog.name}</p>
                 <h2 className="text-lg font-semibold">{blog.title}</h2>
                 <p className="text-sm">{blog.description}</p>

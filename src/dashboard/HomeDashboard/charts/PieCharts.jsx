@@ -9,7 +9,7 @@ const PieCharts = () => {
         type: "pie",
       },
       labels: ["Apple", "Mango", "Orange", "Banana", "Grapes"],
-      colors: ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0"],
+      colors: ["#588568", "#7dc696", "#344e41", "#FF4560", "#775DD0"],
       legend: {
         position: "bottom",
       },
