@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-
-
-
-
+import SectionHead from '../header/section-head/SectionHead';
 
 const TermsAndConditions = () => {
   const [isAccepted, setIsAccepted] = useState(false);
@@ -18,20 +15,15 @@ const TermsAndConditions = () => {
       navigate('/register'); 
     }
   };
-
-
-
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <h2 className="text-3xl font-bold mb-4 text-center">Terms and Conditions</h2>
-      <p className="text-sm text-gray-500 mb-4 text-center">Effective Date:3/27/2025</p>
-
+      <SectionHead title={"Terms and Conditions"}></SectionHead>
+      <p className="text-lg text-r-text opacity-50 mb-4 text-center">Effective Date:3/27/2025</p>
       <div className="marquee-container">
-  <marquee behavior="scroll" direction="left" className="text-red-500 font-bold">
+  <marquee behavior="scroll" direction="left" className="text-red-600 font-bold">
     <strong>Important:</strong> Please read the Terms and Conditions carefully before using our service. Failure to comply with these terms may result in penalties, suspension, or termination of your access. Ensure that you fully understand and agree to all the terms to avoid any unpleasant situations or violations.
   </marquee>
 </div>
-
       <div className="space-y-4">
         <div>
           <h3 className="text-xl font-semibold">1. Acceptance of Terms</h3>
@@ -99,7 +91,7 @@ const TermsAndConditions = () => {
 
         <div>
           <h3 className="text-xl font-semibold">9. Disclaimers and Limitation of Liability</h3>
-          <p className='text-red-500'>
+          <p className='text-red-600'>
             The Service is provided "as is," and we make no warranties or representations regarding the accuracy, reliability, or completeness of the Service. To the fullest extent permitted by law, we disclaim all liability for any damages arising out of or in connection with your use of the Service.
           </p>
         </div>
@@ -136,24 +128,17 @@ const TermsAndConditions = () => {
 
         <input
             type="checkbox"
-            className="checkbox checkbox-primary"
+            className="checkbox"
             checked={isAccepted}
             onChange={handleCheckboxChange}
           />
           <span className="label-text">I agree to the Terms and Conditions</span>
-         
         </label>
-
-       
       </div>
-
       <button
         disabled={!isAccepted}
-        className={`btn mt-4 ${isAccepted ? 'btn-primary' : 'btn-disabled'}`}
-        onClick={handleAccept}
-        
-      >
-        Accept
+        className={`btn mt-4 ${isAccepted ? 'bg-r-accent mt-4 text-r-text hover:bg-r-primary hover:text-white' : 'btn-disabled'}`}
+        onClick={handleAccept}>Accept
       </button>
     </div>
   );
