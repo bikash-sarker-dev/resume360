@@ -15,10 +15,12 @@ export const Pricing = () => {
           });
       }, []);
   return (
-    <div className='py-16 mx-auto container'>
-     <div className='my-8'>
+    <div className='py-24 mx-auto container'>
+     <div className='pt-5'>
      <SectionHead 
-        title={"  Choose a plan that gives your resume the edge. Professionally designed, ATS-friendly, and built to impress hiring managers."}></SectionHead>
+        title={"Pricing"}>
+</SectionHead>
+        <h4 className="text-xl text-r-text mx-auto text-center md:10/12 lg:w-9/12 opacity-50">Choose a plan that gives your resume the edge. Professionally designed, ATS-friendly, and built to impress hiring managers</h4>
      </div>
      <div>
      <div
