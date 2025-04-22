@@ -48,9 +48,22 @@ export default function Login() {
 
     if (res.data.result?.block) {
       console.log("user block");
+      Swal.fire({
+        title: "Warning",
+        text: "Your account has been blocked, please contact the admin.",
+        icon: "warning",
+        confirmButtonColor: "#3e563f",
+
+        showCancelButton: true,
+        confirmButtonText: "contact",
+      }).then((result) => {
+        if (result.value) {
+          window.location.href = `https://resume360.netlify.app/contact`;
+        }
+      });
     } else {
-      if (parseInt(localStorage.getItem("block")) > 2) {
-        let res = await axiosPublic.patch(`/users/${email}`);
+      if (parseInt(localStorage.getItem("block")) === 3) {
+        let res = await axiosPublic.patch(`/users/block/${email}`);
         console.log(res.data);
         localStorage.setItem("block", "0");
         return;
