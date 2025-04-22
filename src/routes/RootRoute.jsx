@@ -45,6 +45,7 @@ import CoverOne from "./../components/DefaultCoverLetterTemplates/CoverOne";
 import ContactPage from "./../pages/ContactPage";
 import FeaturesPage from "./../pages/FeaturesPage";
 import TermsAndConditionsPage from "./../pages/TermsAndConditionsPage";
+import GiveReview from "./../pages/UserDashboardPage/GiveReview";
 
 const RootRoute = () => {
   return (
