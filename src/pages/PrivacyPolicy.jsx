@@ -38,14 +38,13 @@ const privacyData = [
 const PrivacyPolicy = () => {
     return (
         <div className="min-h-screen p-6 md:p-12">
-            <div className="max-w-7xl mx-auto pt-10">
+            <div className="max-w-7xl mx-auto pt-16">
                 <SectionHead
                     subTitle={"Home / Privacy Policy"}
                     title={"Privacy Policy"}
                 />
-
                 {/* Data Collection Sections */}
-                <div className="space-y-6">
+                <div className="space-y-6 mt-8">
                     {privacyData.map((section, index) => (
                         <div key={index} className="bg-gray-50 p-4 rounded-lg border border-gray-300">
                             <h3 className="text-xl font-semibold">{index + 1}. {section.title}</h3>

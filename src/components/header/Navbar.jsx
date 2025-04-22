@@ -63,13 +63,13 @@ const Navbar = () => {
       </NavLink>
 
       <NavLink
-        to="/add-information"
+        to="/generate"
         className="cursor-pointer w-8/12 relative group transition-all"
       >
         Generate
         <div className="absolute left-0 hidden group-hover:block bg-white text-black shadow-md mt-2 rounded-md w-48">
           <NavLink
-            to="/add-information"
+            to="/resume"
             className="block px-4 py-2 text-sm transition-all hover:bg-gray-100"
           >
             Resume Builder
@@ -133,19 +133,16 @@ const Navbar = () => {
 
                   {/* Modal */}
                   {isModalOpen && (
+                    
                     <div
                       onMouseEnter={() => setIsModalOpen(true)}
                       onMouseLeave={() => setIsModalOpen(false)}
-                      className="absolute w-[200px] top-12 right-0 z-50  max-w-sm bg-r-primary  rounded-xl p-6 shadow-xl"
+                      className="absolute w-[200px] top-4 right-0 z-50  max-w-sm  bg-none  p-10 "
                     >
-                      <button
-                        onClick={() => setIsModalOpen(false)}
-                        className="absolute top-2 right-3 text-gray-600 hover:text-red-500 text-2xl font-bold"
-                      >
-                        &times;
-                      </button>
+                      <div className="bg-r-secondary/80 backdrop-blur-2xl  p-5 rounded-xl w-max">
+                     
 
-                      <h2 className="text-r-secondary mb-4 ">
+                      <h2 className="text-r-text mb-4 ">
                         {user?.displayName}
                       </h2>
 
@@ -181,16 +178,18 @@ const Navbar = () => {
                           handleSignOut();
                           setIsModalOpen(false);
                         }}
-                        className="relative  hidden lg:flex   px-4 py-2 text-[17px] font-semibold text-r-card border  border-r-card rounded-full overflow-hidden transition-colors duration-300 ease-out group hover:text-r-text hover:border-transparent"
-                      >
-                        <div className="flex items-center">
-                          <span className="absolute top-1/2 left-1/2 w-[20em] h-[20em] -translate-x-1/2 -translate-y-1/2 rounded-full z-[-1] transition-[box-shadow] duration-500 ease-out group-hover:shadow-[inset_0_0_0_10em_var(--color-r-accent)]" />
-
-                          <FaUserLock className="mr-3"></FaUserLock>
-
-                          <span>logout</span>
-                        </div>
-                      </button>
+                        
+                        className="relative  hidden lg:flex  z-10  px-4 py-2 text-[17px] font-semibold text-r-card border  border-r-card rounded-full overflow-hidden transition-colors duration-300 ease-out group hover:text-r-text hover:border-transparent"
+                        >
+                          <div className="flex items-center">
+                            <span className="absolute top-1/2 left-1/2 w-[20em] h-[20em] -translate-x-1/2 -translate-y-1/2 rounded-full z-[-1] transition-[box-shadow] duration-500 ease-out group-hover:shadow-[inset_0_0_0_10em_var(--color-r-accent)]" />
+        
+                            <FaUserLock className="mr-3"></FaUserLock>
+        
+                            <span>logout</span>
+                          </div>
+                        </button>
+                      </div>
                     </div>
                   )}
                 </div>
