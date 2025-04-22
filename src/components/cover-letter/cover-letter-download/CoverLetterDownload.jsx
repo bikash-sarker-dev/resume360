@@ -1,8 +1,7 @@
 import { PDFDownloadLink } from '@react-pdf/renderer';
-import CoverLetterPDF from './CoverLetterPDF';  // Import your CoverLetterPDF component
+import CoverLetterPDF from './CoverLetterPDF';
 import { generateDocx } from './generateDocx';
 import { useContext, useState } from 'react';
-
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import { CoverLetterContext } from '../../../contextApi/coverletter-context/CoverLetterContext';
