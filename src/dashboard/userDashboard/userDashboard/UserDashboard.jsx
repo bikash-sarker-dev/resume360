@@ -56,9 +56,31 @@ const UserDashboard = () => {
 
   const blockAccount = async (user) => {
     console.log(user);
-    const res = await axiosPublic.patch(`/users/block/${user.email}`);
-    console.log(res.data);
-    setBlockTrue(!blockTrue);
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You won't be able to ${user?.block ? "Unblock !" : "Block !"}`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#588568",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosPublic.patch(`/users/block/${user.email}`);
+        console.log(res.data);
+        setBlockTrue(!blockTrue);
+        if (res.data.result.modifiedCount > 0) {
+          Swal.fire({
+            title: user?.block ? "Unblock!" : "Block!",
+            text: `Your account has been ${
+              user?.block ? "Unblock!" : "Block!"
+            }`,
+            icon: "success",
+            confirmButtonColor: "#588568",
+          });
+        }
+      }
+    });
   };
   return (
     <div className="mx-auto w-11/12 p-4">
