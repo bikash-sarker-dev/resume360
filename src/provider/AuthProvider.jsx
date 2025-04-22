@@ -20,6 +20,7 @@ export default function AuthProvider({ children }) {
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
   const axiosPublic = useAxiosPublic();
+  const [block, setBlock] = useState(1);
 
   // Create User
   const createUser = (email, password) => {
@@ -84,6 +85,7 @@ export default function AuthProvider({ children }) {
     user,
     setUser,
     loading,
+    setLoading,
     createUser,
     signInUser,
     signOutUser,
@@ -91,6 +93,8 @@ export default function AuthProvider({ children }) {
     updateUserInfo,
     signInWithGithub,
     forgetPassword,
+    block,
+    setBlock,
   };
   return (
     <AuthContext.Provider value={userInfo}>{children}</AuthContext.Provider>
