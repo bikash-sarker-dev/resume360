@@ -1,11 +1,11 @@
 import React from "react";
-
 import { FiUserCheck } from "react-icons/fi";
 import { GoHome } from "react-icons/go";
 import { GrShieldSecurity } from "react-icons/gr";
 import { IoIosLogOut } from "react-icons/io";
 import { IoChatboxEllipsesOutline, IoReaderOutline } from "react-icons/io5";
-import { MdOutlineEditNotifications } from "react-icons/md";
+import { MdOutlineEditNotifications, MdOutlineRateReview } from "react-icons/md";
+import { GiArtificialIntelligence } from "react-icons/gi";
 import { RiUserSettingsLine } from "react-icons/ri";
 import { NavLink, useNavigate } from "react-router";
 import Swal from "sweetalert2";
@@ -67,6 +67,11 @@ const Sidebar = () => {
       label: "Profile",
     },
     {
+      to: "/dashboard/giveReview",
+      icon: <MdOutlineRateReview />,
+      label: "Give Review",
+    },
+    {
       to: "/dashboard/chat",
       icon: <IoChatboxEllipsesOutline />,
       label: "Chat",
@@ -98,7 +103,7 @@ const Sidebar = () => {
                       className={({ isActive }) =>
                         `flex items-center gap-3 px-4 py-2 rounded-lg transition-all ${
                           isActive
-                            ? "bg-r-secondary text-white font-semibold"
+                            ? "bg-r-secondary text-white underline"
                             : "hover:bg-r-secondary hover:text-white text-r-background"
                         }`
                       }
@@ -115,7 +120,7 @@ const Sidebar = () => {
                       className={({ isActive }) =>
                         `flex items-center gap-3 px-4 py-2 rounded-lg transition-all ${
                           isActive
-                            ? "bg-r-secondary text-white font-semibold"
+                            ? "bg-r-secondary text-white underline"
                             : "hover:bg-r-secondary hover:text-white text-r-background"
                         }`
                       }
@@ -125,11 +130,30 @@ const Sidebar = () => {
                     </NavLink>
                   </li>
                 ))}
+             <li>
+              <button
+                className="flex items-center gap-3 px-4 py-2 rounded-lg text-r-background bg-gradient-to-r from-r-accent to-r-info-card hover:text-black transition-all w-full"
+                onClick={()=>document.getElementById('my_modal_3').showModal()}
+              >
+                <GiArtificialIntelligence className="text-2xl" />
+                <span className="text-base">AI Assistant</span>
+              </button>
+              <dialog id="my_modal_3" className="modal">
+              <div className="modal-box">
+              <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+              </form>
+              <h3 className="font-bold text-lg">Ai Assistant is here!!!</h3>
+              <p className="py-4">Please tell me how can i help you</p>
+              </div>
+              </dialog>
 
+            </li>
             <li>
               <button
                 onClick={handleSignOut}
-                className="flex items-center gap-3 px-4 py-2 rounded-lg text-r-background hover:bg-red-600 hover:text-white transition-all"
+                className="flex items-center gap-3 px-4 py-2 rounded-lg text-r-background hover:bg-r-accent hover:text-black transition-all w-full"
               >
                 <IoIosLogOut className="text-2xl" />
                 <span className="text-base">Log Out</span>
