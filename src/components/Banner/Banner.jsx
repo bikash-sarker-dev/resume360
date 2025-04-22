@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router";
 
 const Banner = () => {
   const slides = [
@@ -43,14 +44,14 @@ const Banner = () => {
 
   return (
     <div
-      className="relative w-full h-[900px] md:h-[650px] bg-cover bg-center text-r-text flex flex-col md:flex-row items-center pt-[70px] pb-[80px]"
+      className="relative w-full h-[900px] md:h-[650px] xl:h-[700px] bg-cover bg-center text-r-text flex flex-col md:flex-row items-center pt-[70px] pb-[80px]"
       style={{
         backgroundImage: `url(${slides[activeIndex].background})`,
       }}
     >
       <div className="absolute inset-0 bg-black opacity-60 z-0"></div>
 
-      <div className="relative container  h-[900px] md:h-[700px] xl:h-[800px]  bg-[url('')] bg-cover bg-center  text-r-text flex flex-col md:flex-row items-center pt-[70px] pb-[80px] ">
+      <div className="relative container  h-[900px] md:h-[650px]  xl:h-[700px]  bg-[url('')] bg-cover bg-center  text-r-text flex flex-col md:flex-row items-center pt-[70px] pb-[80px] ">
         {/* Left Content (Changes Dynamically) */}
         <div
           key={activeIndex} // Forces re-render to trigger animation
@@ -68,17 +69,20 @@ const Banner = () => {
 
           {/* Button */}
           <div className="space-x-5">
-            <button className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-mono font-bold  text-r-text bg-r-background rounded-lg group slide-up slide-up-btn">
+            <NavLink to="/add-information">
+            <button className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-mono font-bold hover:text-black  text-r-background   bg-r-primary rounded-full group slide-up slide-up-btn">
+              <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-r-background  rounded-full group-hover:w-56 group-hover:h-56"></span>
+              <span className="absolute inset-0 w-full h-full  rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-r-accent "></span>
+              <span className="relative">Generate</span>
+            </button>
+            </NavLink>
+            <NavLink to="/templates">
+            <button className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-mono font-bold  border border-r-card hover:border-transparent text-r-card  rounded-full group slide-up slide-up-btn">
               <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-r-primary rounded-full group-hover:w-56 group-hover:h-56"></span>
               <span className="absolute inset-0 w-full h-full  rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-r-primary "></span>
-              <span className="relative">{slides[activeIndex].buttonText}</span>
+              <span className="relative">Templates</span>
             </button>
-            <button className="relative    items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded shadow hover:bg-white group slide-up slide-up-btn">
-              <span className="w-72 h-48 rounded rotate-[-40deg] bg-r-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-              <span className="relative w-full text-left text-r-text transition-colors duration-300 ease-in-out group-hover:text-white">
-                More
-              </span>
-            </button>
+            </NavLink>
           </div>
         </div>
 
@@ -94,7 +98,7 @@ const Banner = () => {
               <img
                 src={slide.image}
                 alt={`Slide ${index}`}
-                className="w-[80%] h-[90%] mt-20 sm:mt-0 mr-[-0px] lg:mr-[-80px] sm:w-full sm:h-[70%] lg:w-[80%] lg:h-[80%] xl:w-[80%]  xl:h-[80%] object-contain lg:object-contain"
+                className="w-[80%] h-[90%] mt-70 sm:mt-0 mr-[-0px] lg:mr-[-80px] sm:w-full sm:h-[90%] lg:w-[80%] lg:h-[80%] xl:w-[80%]  xl:h-[80%] object-contain lg:object-contain"
               />
             </div>
           ))}

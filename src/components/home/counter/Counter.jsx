@@ -30,7 +30,7 @@ const CounterItem = ({ value, label }) => {
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="bg-r-info shadow rounded-md text-center py-14 px-8"
+      className="bg-r-card hover:bg-r-hover duration-300 shadow rounded-lg text-center py-14 px-8"
     >
       <h1 className="text-4xl text-r-primary font-extrabold">{count} +</h1>
       <h3 className="text-xl font-semibold mt-2">{label}</h3>
@@ -40,7 +40,7 @@ const CounterItem = ({ value, label }) => {
 
 const Counter = () => {
   return (
-    <div className="bg-r-info-card py-24">
+    <div className="bg-r-secondary py-24">
       <div className="container">
         <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-5">
           <CounterItem value="252" label="Clients" />

@@ -63,10 +63,10 @@ const FeaturesSection = () => {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={isInView ? { scale: 1, opacity: 1 } : {}}
               transition={{ duration: 0.5, ease: "linear" }}
-              className="bg-r-card rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all p-8"
+              className="bg-r-card hover:bg-r-hover duration-300 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all p-8"
             >
               <div className="mb-5 flex justify-center">
-                <feature.icon className="size-10 text-r-accent" />
+                <feature.icon className="size-10 text-r-primary" />
               </div>
               <h3 className="text-r-text text-lg font-semibold mb-3">
                 {feature.title}
@@ -78,7 +78,7 @@ const FeaturesSection = () => {
           );
         })}
       </div>
-      <div className="text-center mt-10 text-2xl font-medium text-r-accent">
+      <div className="text-center mt-10 text-2xl font-medium text-r-primary">
         <Link to="/features" className="underline">
           Read More
         </Link>

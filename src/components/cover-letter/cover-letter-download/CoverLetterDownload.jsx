@@ -1,8 +1,7 @@
 import { PDFDownloadLink } from '@react-pdf/renderer';
-import CoverLetterPDF from './CoverLetterPDF';  // Import your CoverLetterPDF component
+import CoverLetterPDF from './CoverLetterPDF';
 import { generateDocx } from './generateDocx';
 import { useContext, useState } from 'react';
-
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import { CoverLetterContext } from '../../../contextApi/coverletter-context/CoverLetterContext';
@@ -17,7 +16,6 @@ const CoverLetterDownload = () => {
     const getThemeColor = (variableName) => {
         return getComputedStyle(document.documentElement).getPropertyValue(variableName)?.trim();
     };
-    console.log(CoverLetterData);
     // Save Handler for Cover Letter
     const handleSave = async () => {
         setIsSaving(true);
@@ -81,7 +79,7 @@ const CoverLetterDownload = () => {
                             className="rounded-full bg-r-primary text-white py-2 px-6 transition duration-200"
                         >
                             {({ loading, error }) =>
-                                loading ? 'Preparing PDF...' : error ? 'Error Generating PDF' : 'Download Cover Letter PDF'
+                                loading ? 'Preparing PDF...' : error ? 'Error Generating PDF' : 'Download PDF'
                             }
                         </PDFDownloadLink>
 

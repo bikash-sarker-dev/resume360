@@ -11,29 +11,33 @@ import UserSkill from "../components/user/UserSkill";
 import DashboardProfile from "../dashboard/DashboardProfile/DashboardProfile";
 import DashboardLayouts from "../layouts/DashboardLayouts";
 import MainLayout from "../layouts/MainLayout";
-import AddInformation from "../pages/AddInformation";
+import ChatPage from "../pages/AdminDashboardPage/ChatPage";
+import DashboardHomePage from "../pages/AdminDashboardPage/DashboardHomePage";
+import DashboardUserPage from "../pages/AdminDashboardPage/DashboardUserPage";
+import NotificationPage from "../pages/AdminDashboardPage/NotificationPage";
+import OrderDetails from "../pages/AdminDashboardPage/OrderDetails";
+import OrderListPage from "../pages/AdminDashboardPage/OrderListPage";
+import ReviewsPage from "../pages/AdminDashboardPage/ReviewsPage";
+import SecurityPage from "../pages/AdminDashboardPage/SecurityPage";
 import BlogPage from "../pages/BlogPage";
-import ChatPage from "../pages/DashboardPage/ChatPage";
-import DashboardHomePage from "../pages/DashboardPage/DashboardHomePage";
-import DashboardUserPage from "../pages/DashboardPage/DashboardUserPage";
-import NotificationPage from "../pages/DashboardPage/NotificationPage";
-import OrderDetails from "../pages/DashboardPage/OrderDetails";
-import OrderListPage from "../pages/DashboardPage/OrderListPage";
-import ReviewsPage from "../pages/DashboardPage/ReviewsPage";
-import SecurityPage from "../pages/DashboardPage/SecurityPage";
+import CoverLetter from "../pages/CoverLetter";
 import ErrorPage from "../pages/ErrorPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
-import PersonalInfoPage from "../pages/PersonalInfoPage";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import RegisterPage from "../pages/RegisterPage";
+import ResumeGenerate from "../pages/ResumeGenerate";
 import TemplatesPage from "../pages/TemplatesPage";
 import User from "../pages/User";
 import AboutPage from "./../pages/AboutPage";
 import FaqPage from "./../pages/FaqPage";
 import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
-import CoverLetter from "../components/cover-letter/CoverLetter";
 
+import CoverLetterManager from "../components/cover-letter/cover-letter-manager/CoverLetterManager";
+import Resume from "../components/resume/Resume";
+import ResumeManager from "../components/resume/resume-manager/ResumeManager";
+import CoverLetterGenerate from "../pages/CoverLetterGenerate";
+import Generate from "../pages/Generate";
 import { Pricing } from "../pages/Pricing";
 import SocialMiddlewarePage from "../pages/SocialMiddlewarePage";
 import { SubscriptionDetail } from "../pages/SubscriptionDetail";
@@ -41,6 +45,7 @@ import CoverOne from "./../components/DefaultCoverLetterTemplates/CoverOne";
 import ContactPage from "./../pages/ContactPage";
 import FeaturesPage from "./../pages/FeaturesPage";
 import TermsAndConditionsPage from "./../pages/TermsAndConditionsPage";
+import GiveReview from "./../pages/UserDashboardPage/GiveReview";
 
 const RootRoute = () => {
   return (
@@ -71,11 +76,18 @@ const RootRoute = () => {
         </Route>
         <Route path="/templates" element={<TemplatesPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/personal-info" element={<PersonalInfoPage />} />
-        <Route path="/add-information" element={<AddInformation />} />
+        <Route path="/generate" element={<Generate />} />
+        <Route path="/resume" element={<ResumeGenerate />} />
+        <Route path="/create-resume" element={<Resume />} />
+        <Route path="/resume-manager" element={<ResumeManager />} />
         <Route path="/templateOne" element={<TemplateOne />} />
         <Route path="/blog" element={<BlogPage />} />
-        <Route path="/cover-letter" element={<CoverLetter/>} />
+        <Route path="/cover-letter" element={<CoverLetter />} />
+        <Route
+          path="/generate-cover-letter"
+          element={<CoverLetterGenerate />}
+        />
+        <Route path="/cover-letter-manager" element={<CoverLetterManager />} />
       </Route>
       {/* dashboard route working start  */}
       <Route path="/dashboard" element={<DashboardLayouts />}>
@@ -88,6 +100,7 @@ const RootRoute = () => {
         <Route path="/dashboard/notification" element={<NotificationPage />} />
         <Route path="/dashboard/chat" element={<ChatPage />} />
         <Route path="/dashboard/profile" element={<DashboardProfile />} />
+        <Route path="/dashboard/giveReview" element={<GiveReview />} />
       </Route>
       {/* dashboard route working end  */}
       <Route path="*" element={<ErrorPage />} />

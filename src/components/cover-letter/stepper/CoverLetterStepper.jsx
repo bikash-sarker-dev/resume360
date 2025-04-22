@@ -13,7 +13,7 @@ import CoverLetterLivePreview from '../cover-letter-live-preview/CoverLetterLive
 import CoverLetterBody from '../cover-letter-body/CoverLetterBody';
 import Signature from '../signature/Signature';
 import CoverLetterDownload from '../cover-letter-download/CoverLetterDownload';
-import { CoverLetterContext } from '../../../contextApi/coverletter-context/CoverLetterContext'; // Import context
+import { CoverLetterContext } from '../../../contextApi/coverletter-context/CoverLetterContext'; 
 
 const renderStepContent = (step) => {
   switch (step) {
@@ -37,7 +37,7 @@ const steps = ['My Info', 'HR', 'Greeting', 'Body', 'Signature'];
 const StepperComponents = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
-  const { resetCoverLetterData } = React.useContext(CoverLetterContext); // Access reset function from context
+  const { resetCoverLetterData } = React.useContext(CoverLetterContext);
 
   const isStepSkipped = (step) => {
     return skipped.has(step);
@@ -59,8 +59,8 @@ const StepperComponents = () => {
   };
 
   const handleReset = () => {
-    setActiveStep(0);  // Reset the stepper to the first step
-    resetCoverLetterData();  // Reset the cover letter data using context
+    setActiveStep(0);
+    resetCoverLetterData();
   };
 
   return (
