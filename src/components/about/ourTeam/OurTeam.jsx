@@ -13,7 +13,7 @@ const OurTeam = () => {
   }, []);
 
   return (
-    <div className="container mx-auto py-16">
+    <div className="container mx-auto py-16 ">
       <div className="mb-6">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
           Our Team
@@ -30,7 +30,7 @@ const OurTeam = () => {
             key={team.id}
             className="card bg-base-100 shadow-sm overflow-hidden"
           >
-            <figure className="overflow-hidden h-[300px] w-full bg-gray-200">
+            <figure className="overflow-hidden h-[300px] w-full bg-r-card">
               <motion.img
                 className="h-full w-full object-cover"
                 src={team.image}

@@ -127,7 +127,7 @@ const TermsAndConditions = () => {
 
         <div>
           <h3 className="text-xl font-semibold">13. Contact Information</h3>
-          <p>If you have any questions about these Terms and Conditions, please contact us at <span className='text-blue-500'> Resume360@org.com</span>.</p>
+          <p>If you have any questions about these Terms and Conditions, please contact us at <span className='text-r-accent font-bold 3xl'> Resume360@org.com</span>.</p>
         </div>
       </div>
 
@@ -136,7 +136,7 @@ const TermsAndConditions = () => {
 
         <input
             type="checkbox"
-            className="checkbox checkbox-primary"
+            className="checkbox "
             checked={isAccepted}
             onChange={handleCheckboxChange}
           />
@@ -149,7 +149,7 @@ const TermsAndConditions = () => {
 
       <button
         disabled={!isAccepted}
-        className={`btn mt-4 ${isAccepted ? 'btn-primary' : 'btn-disabled'}`}
+        className={`btn mt-4 ${isAccepted ? 'bg-r-accent' : 'btn-disabled'}`}
         onClick={handleAccept}
         
       >
