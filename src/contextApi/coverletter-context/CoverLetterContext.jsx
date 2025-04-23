@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import { createContext, useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 
@@ -8,7 +9,7 @@ const CoverLetterProvider = ({ children }) => {
 
   const initialData = {
     personalInfo: {
-      userId: '', // default empty, set later
+      userId: '',
       fullName: '',
       address: '',
       cityZip: '',
@@ -36,7 +37,12 @@ const CoverLetterProvider = ({ children }) => {
     },
   };
 
-  const [CoverLetterData, setCoverLetterData] = useState(initialData);
+  const getInitialData = () => {
+    const cookieData = Cookies.get('coverLetterData');
+    return cookieData ? JSON.parse(cookieData) : initialData;
+  };
+
+  const [CoverLetterData, setCoverLetterData] = useState(getInitialData);
 
   // Update userId when user becomes available
   useEffect(() => {
@@ -51,6 +57,11 @@ const CoverLetterProvider = ({ children }) => {
     }
   }, [user]);
 
+  // Save to cookies on change
+  useEffect(() => {
+    Cookies.set('coverLetterData', JSON.stringify(CoverLetterData), { expires: 7 });
+  }, [CoverLetterData]);
+
   const updateSection = (section, data) => {
     setCoverLetterData((prev) => ({
       ...prev,
@@ -63,7 +74,7 @@ const CoverLetterProvider = ({ children }) => {
       ...initialData,
       personalInfo: {
         ...initialData.personalInfo,
-        userId: user?.uid || '', // safe fallback
+        userId: user?.uid || '',
       },
     });
   };
