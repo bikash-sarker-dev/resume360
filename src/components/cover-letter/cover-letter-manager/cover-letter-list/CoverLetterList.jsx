@@ -6,6 +6,7 @@ import {
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
+import CoverLetterViewer from '../../cover-letter-viewer/CoverLetterViewer';
 
 const columns = [
     { id: 'fullName', label: 'Name', minWidth: 150 },
@@ -18,17 +19,22 @@ const columns = [
 const CoverLetterList = ({ searchTerm }) => {
     const axiosPublic = useAxiosPublic();
     const [coverLetters, setCoverLetters] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [anchorEls, setAnchorEls] = useState({});
+    const [selectedCoverLetter, setSelectedCoverLetter] = useState(null);
+    const [viewerOpen, setViewerOpen] = useState(false);
 
     useEffect(() => {
         axiosPublic.get('/cover-letter')
             .then(res => {
                 setCoverLetters(res.data.result || []);
+                setLoading(false);
             })
             .catch(err => {
                 console.error("Error fetching cover letters:", err);
+                setLoading(false);
             });
     }, [axiosPublic]);
 
@@ -38,6 +44,12 @@ const CoverLetterList = ({ searchTerm }) => {
 
     const handleClose = (index) => {
         setAnchorEls({ ...anchorEls, [index]: null });
+    };
+
+    const handleView = (data, index) => {
+        setSelectedCoverLetter(data);
+        setViewerOpen(true);
+        handleClose(index);
     };
 
     const handleDelete = async (row, index) => {
@@ -107,6 +119,14 @@ const CoverLetterList = ({ searchTerm }) => {
         setPage(0);
     };
 
+    if (loading) return (
+        <>
+            <div className="h-screen flex justify-center items-center">
+                <span className="loading loading-ring loading-xl"></span>
+            </div>
+        </>
+    );
+
     return (
         <>
             <Paper sx={{ width: '100%', overflow: 'hidden' }}>
@@ -137,7 +157,7 @@ const CoverLetterList = ({ searchTerm }) => {
                                             open={Boolean(anchorEls[index])}
                                             onClose={() => handleClose(index)}
                                         >
-                                            <MenuItem onClick={() => handleClose(index)}>View</MenuItem>
+                                            <MenuItem onClick={() => handleView(row, index)}>View</MenuItem>
                                             <MenuItem onClick={() => handleClose(index)}>Edit</MenuItem>
                                             <MenuItem onClick={() => handleDelete(row, index)}>Delete</MenuItem>
                                         </Menu>
@@ -157,6 +177,11 @@ const CoverLetterList = ({ searchTerm }) => {
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </Paper>
+            <CoverLetterViewer
+                open={viewerOpen}
+                onClose={() => setViewerOpen(false)}
+                data={selectedCoverLetter}
+            />
         </>
     );
 };
