@@ -41,11 +41,8 @@ export default function Login() {
     const email = form.email.value;
     const password = form.password.value;
     const user = { email, password };
-    // console.log(user);
 
     let res = await axiosPublic.get(`/users/${email}`);
-    console.log(res.data.result?.block);
-
     if (res.data.result?.block) {
       console.log("user block");
       Swal.fire({
@@ -53,20 +50,19 @@ export default function Login() {
         text: "Your account has been blocked, please contact the admin.",
         icon: "warning",
         confirmButtonColor: "#3e563f",
-
         showCancelButton: true,
-        confirmButtonText: "contact",
+        confirmButtonText: "Contact",
+        background: "#7dc696",
+        color: "#fff",
       }).then((result) => {
         if (result.value) {
           window.location.href = `https://resume360.netlify.app/contact`;
         }
       });
     } else {
-      if (parseInt(localStorage.getItem("block")) === 3) {
+      if (parseInt(localStorage.getItem("block")) === 2) {
         let res = await axiosPublic.patch(`/users/block/${email}`);
-        console.log(res.data);
         localStorage.setItem("block", "0");
-        return;
       }
       // SignInUser
       signInUser(email, password)
