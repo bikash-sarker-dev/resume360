@@ -118,7 +118,7 @@ const Contact = () => {
            ></motion.textarea>
            <motion.button
              type="submit"
-             className="btn btn-primary w-full p-3 rounded-md bg-r-primary text-white hover:bg-r-info focus:ring-2 focus:ring-r-info"
+             className="btn  w-full p-3 rounded-md bg-r-accent text-r-infohover:text-white focus:ring-white focus:ring-r-hover"
              initial={{ opacity: 0, x: 50 }}
              animate={{ opacity: 1, x: 0 }}
              transition={{ duration: 1.2 }}

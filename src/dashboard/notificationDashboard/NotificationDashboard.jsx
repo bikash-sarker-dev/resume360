@@ -185,7 +185,7 @@ const NotificationDashboard = () => {
         </select>
         <button
           onClick={markAllAsRead}
-          className="bg-green-900 text-white px-4 py-2 rounded hover:bg-green-900 text-sm font-medium"
+          className="bg-r-accent text-r-info px-4 py-2 rounded hover:bg-green-900 text-sm font-medium hover:text-white "
         >
           Mark All as Read
         </button>
@@ -269,7 +269,7 @@ const NotificationDashboard = () => {
             <div className="mt-4 flex justify-end">
               <button
                 onClick={() => setSelectedNotification(null)}
-                className="px-4 py-2 bg-green-900 text-white rounded hover:bg-green-600"
+                className="px-4 py-2 bg-r-accent text-white rounded hover:bg-green-600"
               >
                 Close
               </button>
