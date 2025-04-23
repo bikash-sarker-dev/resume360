@@ -35,7 +35,7 @@ const FromBlog = () => {
                 whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-r-card bg-opacity-60 text-r-text p-4 h-40">
+              <div className="absolute bottom-0 left-0 right-0  bg-r-card bg-opacity-60 text-r-info p-4 h-40">
                 <p className="text-sm">{blog.date} - {blog.name}</p>
                 <h2 className="text-lg font-semibold">{blog.title}</h2>
                 <p className="text-sm">{blog.description}</p>

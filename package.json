@@ -27,6 +27,7 @@
     "framer-motion": "^12.5.0",
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.10.3",
+    "js-cookie": "^3.0.5",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.483.0",
     "react": "^19.0.0",

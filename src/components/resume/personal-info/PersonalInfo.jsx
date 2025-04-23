@@ -58,6 +58,7 @@ const PersonalInfo = () => {
                     label="Full Name"
                     onChange={handleChange}
                     helperText="Please enter your full name"
+                    value={resumeData.personalInfo.fullName}
                 />
                 <TextField
                     fullWidth
@@ -66,6 +67,7 @@ const PersonalInfo = () => {
                     label="Job Title"
                     onChange={handleChange}
                     helperText="Please enter your job title"
+                    value={resumeData.personalInfo.jobTitle}
                 />
                 <TextField
                     fullWidth
@@ -75,6 +77,7 @@ const PersonalInfo = () => {
                     type='number'
                     onChange={handleChange}
                     helperText="Please enter your phone number"
+                    value={resumeData.personalInfo.phone}
                 />
                 <TextField
                     fullWidth
@@ -85,6 +88,7 @@ const PersonalInfo = () => {
                     error={emailError}
                     onChange={handleChange}
                     helperText={emailError ? "Please enter a valid email address" : "Please enter your email"}
+                    value={resumeData.personalInfo.email}
                 />
                 <TextField
                     className='md:col-span-2'
@@ -94,6 +98,7 @@ const PersonalInfo = () => {
                     label="Address"
                     onChange={handleChange}
                     helperText="Please enter your short address"
+                    value={resumeData.personalInfo.address}
                 />
                 <TextField
                     className='md:col-span-2'
@@ -105,6 +110,7 @@ const PersonalInfo = () => {
                     rows={4}
                     onChange={handleChange}
                     helperText="Please enter your about"
+                    value={resumeData.personalInfo.about}
                 />
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-4 md:col-span-2'>
                     <TextField
@@ -116,6 +122,7 @@ const PersonalInfo = () => {
                         onChange={handleChange}
                         InputLabelProps={{ shrink: true }}
                         helperText="Please enter your Date of Birth"
+                        value={resumeData.personalInfo.date}
                     />
                     <TextField
                         fullWidth
@@ -138,6 +145,7 @@ const PersonalInfo = () => {
                         label="Nationality"
                         onChange={handleChange}
                         helperText="Please enter your nationality"
+                        value={resumeData?.personalInfo?.nationality}
                     />
                 </div>
 
