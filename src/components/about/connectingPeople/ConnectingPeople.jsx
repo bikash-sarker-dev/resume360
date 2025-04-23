@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 const ConnectingPeople = () => {
   return (
-    <div className="max-w-7xl mx-auto py-16">
+    <div className="max-w-7xl mx-auto pt-14">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4  md:p-12 lg:p-16">
     
     <div className="md:col-span-6 lg:col-span-8 text-center md:text-left ">

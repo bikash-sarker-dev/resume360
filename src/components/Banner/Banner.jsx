@@ -98,7 +98,7 @@ const Banner = () => {
               <img
                 src={slide.image}
                 alt={`Slide ${index}`}
-                className="w-[80%] h-[90%] mt-20 sm:mt-0 mr-[-0px] lg:mr-[-80px] sm:w-full sm:h-[70%] lg:w-[80%] lg:h-[80%] xl:w-[80%]  xl:h-[80%] object-contain lg:object-contain"
+                className="w-[80%] h-[90%] mt-70 sm:mt-0 mr-[-0px] lg:mr-[-80px] sm:w-full sm:h-[90%] lg:w-[80%] lg:h-[80%] xl:w-[80%]  xl:h-[80%] object-contain lg:object-contain"
               />
             </div>
           ))}
