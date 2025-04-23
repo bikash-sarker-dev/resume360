@@ -18,6 +18,7 @@ const columns = [
 const CoverLetterList = ({ searchTerm }) => {
     const axiosPublic = useAxiosPublic();
     const [coverLetters, setCoverLetters] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [anchorEls, setAnchorEls] = useState({});
@@ -26,9 +27,11 @@ const CoverLetterList = ({ searchTerm }) => {
         axiosPublic.get('/cover-letter')
             .then(res => {
                 setCoverLetters(res.data.result || []);
+                setLoading(false);
             })
             .catch(err => {
                 console.error("Error fetching cover letters:", err);
+                setLoading(false); 
             });
     }, [axiosPublic]);
 
@@ -106,6 +109,14 @@ const CoverLetterList = ({ searchTerm }) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+
+    if (loading) return (
+        <>
+            <div className="h-screen flex justify-center items-center">
+                <span className="loading loading-ring loading-xl"></span>
+            </div>
+        </>
+    );
 
     return (
         <>
