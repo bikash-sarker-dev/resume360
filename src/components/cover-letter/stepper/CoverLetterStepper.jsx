@@ -14,6 +14,7 @@ import CoverLetterBody from '../cover-letter-body/CoverLetterBody';
 import Signature from '../signature/Signature';
 import CoverLetterDownload from '../cover-letter-download/CoverLetterDownload';
 import { CoverLetterContext } from '../../../contextApi/coverletter-context/CoverLetterContext'; 
+import Cookies from 'js-cookie';
 
 const renderStepContent = (step) => {
   switch (step) {
@@ -59,6 +60,7 @@ const StepperComponents = () => {
   };
 
   const handleReset = () => {
+    Cookies.remove('coverLetterData');
     setActiveStep(0);
     resetCoverLetterData();
   };

@@ -5,6 +5,7 @@ import { useContext, useState } from 'react';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import { CoverLetterContext } from '../../../contextApi/coverletter-context/CoverLetterContext';
+import Cookies from 'js-cookie';
 
 const CoverLetterDownload = () => {
     const { CoverLetterData } = useContext(CoverLetterContext);
@@ -29,6 +30,9 @@ const CoverLetterDownload = () => {
 
             if (response.status === 200 || response.status === 201) {
                 setIsSaved(true);
+
+                // Clear the cookies after successful save
+                Cookies.remove('coverLetterData');
                 Swal.fire({
                     icon: 'success',
                     title: 'Great job!',
