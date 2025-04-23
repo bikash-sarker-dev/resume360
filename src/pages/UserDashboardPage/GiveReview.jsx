@@ -13,7 +13,7 @@ export default function GiveReview() {
     const email = form.email.value;
     const profession = form.profession.value;
     const review = form.review.value;
-    const rate = form.rate.value;
+    const rate = form.rating.value;
     const rating = parseFloat(rate);
     const newReview = {
       name,
@@ -111,17 +111,18 @@ export default function GiveReview() {
                 <select
                   defaultValue="Select the Rating"
                   className="select w-full"
+                  name="rating"
                 >
                   <option disabled={true}>Select the Rating</option>
-                  <option>1</option>
-                  <option>1.5</option>
-                  <option>2</option>
-                  <option>2.5</option>
-                  <option>3</option>
-                  <option>3.5</option>
-                  <option>4</option>
-                  <option>4.5</option>
-                  <option>5</option>
+                  <option className="1">1</option>
+                  <option value="1.5">1.5</option>
+                  <option value="2">2</option>
+                  <option value="2.5">2.5</option>
+                  <option value="3">3</option>
+                  <option value="3.5">3.5</option>
+                  <option value="4">4</option>
+                  <option value="4.5">4.5</option>
+                  <option value="5">5</option>
                 </select>
               </label>
             </div>
