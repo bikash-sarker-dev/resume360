@@ -5,6 +5,7 @@ import { useContext, useState } from 'react';
 import { ResumeContext } from '../../../contextApi/resume-context/ResumeContext';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
+import Cookies from 'js-cookie';
 
 const ResumeDownload = () => {
     const { resumeData } = useContext(ResumeContext);
@@ -27,11 +28,13 @@ const ResumeDownload = () => {
 
             if (response.status === 200 || response.status === 201) {
                 setIsSaved(true);
+                Cookies.remove('resumeData');
+              
                 Swal.fire({
-                    icon: 'success',
-                    title: 'Great job!',
-                    text: 'All your resume information has been saved. You can now download it in PDF or DOCX format!',
-                    confirmButtonColor: primaryColor,
+                  icon: 'success',
+                  title: 'Great job!',
+                  text: 'All your resume information has been saved. You can now download it in PDF or DOCX format!',
+                  confirmButtonColor: primaryColor,
                 });
             } else {
                 Swal.fire({

@@ -15,6 +15,7 @@ import Accordions from '../accordions/Accordions';
 import ResumeDownload from '../resume-download/ResumeDownload';
 import { useContext } from 'react';
 import { ResumeContext } from '../../../contextApi/resume-context/ResumeContext';
+import Cookies from 'js-cookie';
 
 
 const renderStepContent = (step) => {
@@ -63,6 +64,7 @@ const StepperComponents = () => {
   const handleReset = () => {
     setActiveStep(0);
     resetResumeData(); // Reset the resume data in context
+    Cookies.remove('resumeData');
   };
 
   return (
