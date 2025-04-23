@@ -108,7 +108,10 @@ export default function GiveReview() {
                 <div className="label">
                   <span className="label-text font-bold">Rating</span>
                 </div>
-                <select defaultValue="Select the Rating" className="select">
+                <select
+                  defaultValue="Select the Rating"
+                  className="select w-full"
+                >
                   <option disabled={true}>Select the Rating</option>
                   <option>1</option>
                   <option>1.5</option>
