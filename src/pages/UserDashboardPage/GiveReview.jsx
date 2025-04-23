@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import SectionHead from "../../components/header/section-head/SectionHead";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
@@ -6,7 +7,7 @@ export default function GiveReview() {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
 
-  const handleCreateReview = (event) => {
+  const handleCreateReview = async (event) => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
@@ -23,6 +24,23 @@ export default function GiveReview() {
       rating,
     };
     console.log(newReview);
+    try {
+      const res = await axiosPublic.post(`/reviews`, newReview);
+      console.log(res.data);
+      if (res.data.status === 200) {
+        Swal.fire({
+          title: "Success",
+          text: res.data?.message,
+          icon: "success",
+          confirmButtonColor: "#3e563f",
+          confirmButtonText: "ok",
+          background: "#d5dfd9",
+          timer: 1500,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div>
