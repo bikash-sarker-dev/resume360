@@ -8,91 +8,79 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import axios from "axios";
 
+
 const DashboardProfile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const auth = getAuth();
-  const { user } = useAuth();
+  
   const axiosPublic = useAxiosPublic();
   const [loading, setLoading] = useState(false);
   const [photoURL, setPhotoURL] = useState(null);
   const [imageId, setImageId] = useState("");
 
+  const { user ,setUser,updateUserInfo } = useAuth();
+
+  
   const imgbbApiKey = "4aa34a6921e0ffee4d933681c503ef39";
 
-const handleFileChange = (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
 
-  uploadNewProfileImage(file);
-};
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    uploadNewProfileImage(file);
+  };
 
-const uploadNewProfileImage = async (file) => {
-  setLoading(true);
-
-  const formData = new FormData();
-  formData.append("image", file);
-
-  const imgbbRes = await axios.post(
-    `https://api.imgbb.com/1/upload?key=${imgbbApiKey}`,
-    formData
-  );
-
-  const imageUrl = imgbbRes.data?.data?.url;
-  if (!imageUrl) {
-    console.error("Image upload failed");
-    setLoading(false);
-    return;
-  }
-
-  const res = await axiosPublic.post("/profile-image", {
-    email: user.email,
-    name: user.displayName,
-    photoURL: imageUrl,
-    userId: user.uid,
-  });
-
-  const result = res.data?.result;
-  console.log(res)
-
-  if (result?._id) {
-    setImageId(result._id); 
-    fetchProfileImageById(result._id); 
-  }
-
-  setLoading(false);
-};
-
-  
-
-  const fetchProfileImageById = async (id) => {
+  const uploadNewProfileImage = async (file) => {
     setLoading(true);
-  
     try {
-      const res = await axiosPublic.get(
-        `/profile-image/${id}`
+      const formData = new FormData();
+      formData.append("image", file);
+
+      const imgbbRes = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${imgbbApiKey}`,
+        formData
       );
-  
-      const data = res.data?.result;
-      if (data?.photoURL) {
-        setPhotoURL(data.photoURL);
-        setImageId(data._id); 
+
+      const imageUrl = imgbbRes.data?.data?.url;
+      if (!imageUrl) {
+        console.error("Image upload failed");
+        return;
       }
+
+      const res = await axiosPublic.post("/profile-image", {
+        email: user.email,
+        name: user.displayName,
+        photoURL: imageUrl,
+        userId: user.uid,
+      });
+
+      const result = res.data?.result;
+      if (result?._id) {
+        setImageId(result._id);
+        setPhotoURL(imageUrl);
+      }
+
+      await updateUserInfo({ photoURL: imageUrl });
+
+      setUser({ ...user, photoURL: imageUrl });
+
+      console.log("✅ Firebase photoURL updated!");
     } catch (err) {
-      console.error(" Failed to fetch profile image by ID:", err.message);
+      console.error("❌ Upload failed:", err.message);
     } finally {
       setLoading(false);
     }
   };
+
+
+  console.log(user)
   
 
 
 
-
-
   
   
   
-console.log(user)
   const [profile, setProfile] = useState({
     name: "",
     location: "your location",
@@ -111,10 +99,29 @@ console.log(user)
   
 
   useEffect(() => {
-    if (user?.uid) {
-      fetchUserProfile(user.uid);
+    if (user?.email) {
+      fetchUserProfile(user.email);
     }
   }, [user]);
+
+  const fetchUserProfile = async (uid) => {
+    try {
+      setLoading(true);
+      const email = user.email;
+      const res = await axiosPublic.get(`/profile/${email}`);
+
+      if (res.data?.result) {
+        setProfile(res.data.result);
+      }   setProfile((prevProfile) => ({
+        ...prevProfile,
+        email: email,
+      }));
+    } catch (err) {
+      console.error("Error fetching profile:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const createProfile = async () => {
     console.log("Sending profile to backend:", profile);
@@ -140,22 +147,7 @@ console.log(user)
     }
   };
 
-  console.log(user?.email);
-  const fetchUserProfile = async (uid) => {
-    try {
-      setLoading(true);
-      const email = user.email;
-      const res = await axiosPublic.get(`/profile/${email}`);
 
-      if (res.data && res.data.result) {
-        setProfile(res.data.result);
-      }
-    } catch (err) {
-      console.error("Error fetching profile:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -182,7 +174,7 @@ console.log(user)
         });
       }
 
-      await fetchUserProfile(user.uid);
+      await fetchUserProfile(user.email);
       setIsModalOpen(false);
     } catch (error) {
       Swal.fire({
@@ -234,7 +226,7 @@ console.log(user)
   };
 
   return (
-    <div className="bg-r-background pt-0 sm:pt-5 min-h-screen backdrop-blur-lg">
+    <div className="bg-r-background mb-20 pt-0 sm:pt-5 min-h-screen backdrop-blur-lg">
       {loading && (
         <div className="text-center py-4">
           <span className="loading loading-spinner loading-md text-blue-600"></span>
@@ -252,7 +244,7 @@ console.log(user)
       <img
         src={photoURL || user?.photoURL} 
         alt="Profile"
-        loading="lazy" // ✅ improve image load performance
+        loading="lazy" 
         className="rounded-full xl:h-60 xl:w-60 md:h-40 md:w-40 h-80 w-80 object-cover border border-primary/50 hover:scale-105 transition-transform duration-300"
       />
       <label htmlFor="upload-image">
@@ -287,7 +279,7 @@ console.log(user)
               {(profile?.skills || []).map((skill, index) => (
                 <span
                   key={index}
-                  className="shadow-md  w-max py-1 px-3 rounded-2xl bg-r-secondary "
+                  className="shadow-md  w-max py-1 px-3 rounded-2xl bg-r-secondary/30 "
                 >
                   {skill}
                 </span>
@@ -379,16 +371,17 @@ console.log(user)
             >
               <input
                 type="text"
+                required
                 name="name"
                 value={profile?.name}
                 onChange={handleChange}
                 placeholder={user?.displayName}
-                className="bg-transparent placeholder-r-text p-2 focus:outline-none border-b border-r-primary"
+                className="bg-transparent  p-2 focus:outline-none border-b border-r-primary"
               />
               <input
                 type="text"
                 name="location"
-                value={profile?.location}
+                value={profile?.location === "your location" ? "" : profile?.location}
                 onChange={handleChange}
                 placeholder="Location"
                 className="bg-transparent p-2 focus:outline-none border-b border-r-primary"
@@ -396,7 +389,7 @@ console.log(user)
               <input
                 type="text"
                 name="role"
-                value={profile?.role}
+                value={profile?.role === "profession role" ? "" : profile?.role}
                 onChange={handleChange}
                 placeholder="Role"
                 className="bg-transparent p-2 focus:outline-none border-b border-r-primary"
@@ -404,14 +397,16 @@ console.log(user)
               <input
                 type="text"
                 name="birthday"
-                value={profile?.birthday}
+                required
+                value={profile?.birthday === "your birth year" ? "" : profile?.birthday}
                 onChange={handleChange}
                 placeholder="Birthday"
                 className="bg-transparent p-2 focus:outline-none border-b border-r-primary"
               />
               <select
                 name="gender"
-                value={profile?.gender}
+                required
+                value={profile?.gender === "your gender" ? "" : profile?.gender}
                 onChange={handleChange}
                 className="bg-transparent p-2 focus:outline-none border-b border-r-primary"
               >
@@ -423,7 +418,7 @@ console.log(user)
               <input
                 type="text"
                 name="phone"
-                value={profile?.phone}
+                value={profile?.phone === "phone number" ? "" : profile?.phone}
                 onChange={handleChange}
                 placeholder="Phone"
                 className="bg-transparent p-2 focus:outline-none border-b border-r-primary"
@@ -431,15 +426,16 @@ console.log(user)
               <input
                 type="text"
                 name="email"
+                required
                 value={profile?.email}
                 onChange={handleChange}
                 placeholder={user?.email}
-                className="bg-transparent p-2 placeholder-r-text focus:outline-none border-b border-r-primary"
+                className="bg-transparent p-2  focus:outline-none border-b border-r-primary"
               />
               <input
                 type="text"
                 name="website"
-                value={profile?.website}
+                value={profile?.website === "enter your protfolio link" ? "" : profile?.website}
                 onChange={handleChange}
                 placeholder="Website"
                 className="bg-transparent p-2 focus:outline-none border-b border-r-primary"
@@ -447,7 +443,7 @@ console.log(user)
               <input
                 type="text"
                 name="work"
-                value={profile?.work}
+                value={profile?.work === "your profession " ? "" : profile?.work}
                 onChange={handleChange}
                 placeholder="Workplace"
                 className="bg-transparent p-2 focus:outline-none border-b border-r-primary"
@@ -455,7 +451,7 @@ console.log(user)
               <input
                 type="text"
                 name="address"
-                value={profile?.address}
+                value={profile?.address === "your full address" ? "" : profile?.address}
                 onChange={handleChange}
                 placeholder="Work Address"
                 className="bg-transparent p-2 focus:outline-none border-b border-r-primary"
@@ -465,7 +461,9 @@ console.log(user)
                 name="skills"
                 value={
                   Array.isArray(profile?.skills)
-                    ? profile?.skills.join(", ")
+                    ? profile?.skills.join(", ").includes("add-your-skill")
+                      ? ""
+                      : profile?.skills.join(", ")
                     : profile?.skills
                 }
                 onChange={handleChange}
@@ -481,7 +479,8 @@ console.log(user)
                   >
                     <input
                       type="text"
-                      value={item.description}
+                      required
+                      value={item?.description === "progress details " ? "" : item?.description}
                       placeholder="progress description"
                       onChange={(e) =>
                         handleProgressChange(
@@ -494,7 +493,8 @@ console.log(user)
                     />
                     <input
                       type="text"
-                      value={item.year}
+                      required
+                      value={item?.year === "enter progress duration" ? "" : item?.year}
                       placeholder="year / duration"
                       onChange={(e) =>
                         handleProgressChange(index, "year", e.target.value)

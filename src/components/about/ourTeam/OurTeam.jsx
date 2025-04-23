@@ -41,7 +41,7 @@ const OurTeam = () => {
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               />
             </figure>
-            <div className="card-body flex flex-col justify-between space-y-2">
+            <div className="card-body bg-r-card flex flex-col justify-between space-y-2">
               <h2 className="card-title">{team.name}</h2>
               <span>{team.title}</span>
               <p>{team.description}</p>
