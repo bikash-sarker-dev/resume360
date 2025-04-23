@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import CoverLetterList from './cover-letter-list/CoverLetterList';
 import { TextField } from '@mui/material';
 import SectionHead2 from '../../header/section-head/SectionHead2';
+import { Link } from 'react-router';
 
 const CoverLetterManager = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -22,6 +23,7 @@ const CoverLetterManager = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
+          <Link to="/generate-cover-letter" className='btn bg-r-accent text-r-text hover:bg-r-primary hover:text-white h-14 ml-4'>Generate Cover Letter</Link>
         </div>
       </div>
       <CoverLetterList searchTerm={searchTerm} />
