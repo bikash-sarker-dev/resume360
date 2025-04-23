@@ -108,12 +108,18 @@ export default function GiveReview() {
                 <div className="label">
                   <span className="label-text font-bold">Rating</span>
                 </div>
-                <input
-                  type="number"
-                  placeholder="Enter Rating*"
-                  name="rate"
-                  className="input input-bordered w-full"
-                />
+                <select defaultValue="Select the Rating" className="select">
+                  <option disabled={true}>Select the Rating</option>
+                  <option>1</option>
+                  <option>1.5</option>
+                  <option>2</option>
+                  <option>2.5</option>
+                  <option>3</option>
+                  <option>3.5</option>
+                  <option>4</option>
+                  <option>4.5</option>
+                  <option>5</option>
+                </select>
               </label>
             </div>
           </div>
