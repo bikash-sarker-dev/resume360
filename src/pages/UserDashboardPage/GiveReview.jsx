@@ -37,8 +37,8 @@ export default function GiveReview() {
           confirmButtonColor: "#3e563f",
           confirmButtonText: "ok",
           background: "#d5dfd9",
-          timer: 1500,
         });
+        form.reset();
       }
     } catch (error) {
       console.log(error);
