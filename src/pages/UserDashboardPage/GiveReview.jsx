@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import SectionHead from "../../components/header/section-head/SectionHead";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
@@ -6,14 +7,14 @@ export default function GiveReview() {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
 
-  const handleCreateReview = (event) => {
+  const handleCreateReview = async (event) => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
     const email = form.email.value;
     const profession = form.profession.value;
     const review = form.review.value;
-    const rate = form.rate.value;
+    const rate = form.rating.value;
     const rating = parseFloat(rate);
     const newReview = {
       name,
@@ -23,6 +24,23 @@ export default function GiveReview() {
       rating,
     };
     console.log(newReview);
+    try {
+      const res = await axiosPublic.post(`/reviews`, newReview);
+      console.log(res.data);
+      if (res.data.status === 200) {
+        Swal.fire({
+          title: "Success",
+          text: res.data?.message,
+          icon: "success",
+          confirmButtonColor: "#3e563f",
+          confirmButtonText: "ok",
+          background: "#d5dfd9",
+          timer: 1500,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div>
@@ -108,12 +126,22 @@ export default function GiveReview() {
                 <div className="label">
                   <span className="label-text font-bold">Rating</span>
                 </div>
-                <input
-                  type="number"
-                  placeholder="Enter Rating*"
-                  name="rate"
-                  className="input input-bordered w-full"
-                />
+                <select
+                  defaultValue="Select the Rating"
+                  className="select w-full"
+                  name="rating"
+                >
+                  <option disabled={true}>Select the Rating</option>
+                  <option className="1">1</option>
+                  <option value="1.5">1.5</option>
+                  <option value="2">2</option>
+                  <option value="2.5">2.5</option>
+                  <option value="3">3</option>
+                  <option value="3.5">3.5</option>
+                  <option value="4">4</option>
+                  <option value="4.5">4.5</option>
+                  <option value="5">5</option>
+                </select>
               </label>
             </div>
           </div>
