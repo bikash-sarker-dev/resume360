@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import SectionHead from "../../components/header/section-head/SectionHead";
@@ -11,8 +11,22 @@ export default function SocialMiddleware() {
   const [conditions, setConditions] = useState(false);
   const [profession, setProfession] = useState("");
   const [showInput, setShowInput] = useState(false);
+  const [userCheck, setUserCheck] = useState(null);
   const axiosPublic = useAxiosPublic();
 
+  useEffect(() => {
+    userFind();
+  }, []);
+
+  async function userFind() {
+    let person = await axiosPublic.get(`/users/${user.email}`);
+    setUserCheck(person.data.result);
+  }
+  console.log(userCheck, user);
+  if (user?.email === userCheck?.email) {
+    navigate("/");
+    return;
+  }
   const handleSelectChange = (event) => {
     const selectedValue = event.target.value;
     setProfession(selectedValue);
@@ -32,8 +46,7 @@ export default function SocialMiddleware() {
     const data = { name, profession, email, image, terms };
     console.log(data);
 
-    axiosPublic.post("/users", data)
-    .then((res) => {
+    axiosPublic.post("/users", data).then((res) => {
       if (res.data.message) {
         form.reset();
         Swal.fire({
@@ -41,21 +54,19 @@ export default function SocialMiddleware() {
           text: "successfully Updated Data",
           icon: "success",
           confirmButtonText: "Done",
-          confirmButtonColor: '#3e563f',
+          confirmButtonColor: "#3e563f",
         });
         navigate("/");
-      }
-      else {
+      } else {
         Swal.fire({
           title: "Error",
           text: "Data Update Unsuccessful",
           icon: "error",
           confirmButtonText: "Ok",
-          confirmButtonColor: '#3e563f',
+          confirmButtonColor: "#3e563f",
         });
       }
     });
-   
   };
   return (
     <div className="card w-11/12 md:w-7/12 mx-auto">
