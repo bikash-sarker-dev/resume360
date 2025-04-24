@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router";
 
 import React from "react";
+
 import TemplateOne from "../components/DefaultTemplates/TemplateOne";
 import Userabout from "../components/user/Userabout";
 import UserEducation from "../components/user/UserEducation";
@@ -20,7 +21,6 @@ import OrderListPage from "../pages/AdminDashboardPage/OrderListPage";
 import ReviewsPage from "../pages/AdminDashboardPage/ReviewsPage";
 import SecurityPage from "../pages/AdminDashboardPage/SecurityPage";
 import BlogPage from "../pages/BlogPage";
-import CoverLetter from "../pages/CoverLetter";
 import ErrorPage from "../pages/ErrorPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
@@ -36,6 +36,7 @@ import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
 import CoverLetterManager from "../components/cover-letter/cover-letter-manager/CoverLetterManager";
 import Resume from "../components/resume/Resume";
 import ResumeManager from "../components/resume/resume-manager/ResumeManager";
+import CoverLetter from "../pages/CoverLetter";
 import CoverLetterGenerate from "../pages/CoverLetterGenerate";
 import Generate from "../pages/Generate";
 import { Pricing } from "../pages/Pricing";
@@ -88,6 +89,7 @@ const RootRoute = () => {
           element={<CoverLetterGenerate />}
         />
         <Route path="/cover-letter-manager" element={<CoverLetterManager />} />
+        <Route path="/cover-letter" element={<CoverLetter />} />
       </Route>
       {/* dashboard route working start  */}
       <Route path="/dashboard" element={<DashboardLayouts />}>

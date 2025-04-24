@@ -11,6 +11,7 @@ export default function Login() {
     signInUser,
     setLoading,
     setUser,
+    user,
     signInWithGoogle,
     signInWithGithub,
     loading,
@@ -28,24 +29,14 @@ export default function Login() {
     localStorage.setItem("block", count);
   };
 
-  // useEffect(()=>{
-  //   async function getBlockFun() {
-  //     let res = await axiosPublic.get(`/users/${}`)
-  //   }
-  //   getBlockFun()
-  // },[])
-
   const handleLogin = async (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
     const user = { email, password };
-    // console.log(user);
 
     let res = await axiosPublic.get(`/users/${email}`);
-    console.log(res.data.result?.block);
-
     if (res.data.result?.block) {
       console.log("user block");
       Swal.fire({
@@ -53,20 +44,19 @@ export default function Login() {
         text: "Your account has been blocked, please contact the admin.",
         icon: "warning",
         confirmButtonColor: "#3e563f",
-
         showCancelButton: true,
-        confirmButtonText: "contact",
+        confirmButtonText: "Contact",
+        background: "#7dc696",
+        color: "#fff",
       }).then((result) => {
         if (result.value) {
           window.location.href = `https://resume360.netlify.app/contact`;
         }
       });
     } else {
-      if (parseInt(localStorage.getItem("block")) === 3) {
+      if (parseInt(localStorage.getItem("block")) === 2) {
         let res = await axiosPublic.patch(`/users/block/${email}`);
-        console.log(res.data);
         localStorage.setItem("block", "0");
-        return;
       }
       // SignInUser
       signInUser(email, password)
@@ -112,14 +102,18 @@ export default function Login() {
   // google signin
   const handleGoogleLogin = () => {
     signInWithGoogle()
-      .then((result) => {
+      .then(async (result) => {
         // console.log(result.user)
         if (loading) {
           return (
             <span className="block mx-auto loading loading-spinner loading-xl"></span>
           );
         }
+
         setUser(result.user);
+        // userFind(result.user?.email);
+        let res = await axiosPublic.get(`/users/${result.user.email}`);
+        console.log(res.data.result);
         Swal.fire({
           title: "Success",
           text: "Login with Google successfully",
@@ -127,7 +121,7 @@ export default function Login() {
           confirmButtonText: "Done",
           confirmButtonColor: "#3e563f",
         });
-        navigate("/socialMiddleware");
+        navigate(!res.data.result ? "/socialMiddleware" : "/");
       })
       .catch((error) => {
         // console.log(error)
