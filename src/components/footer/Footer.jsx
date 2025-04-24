@@ -1,6 +1,7 @@
 import React from "react";
-import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn,  FaDiscord } from "react-icons/fa";
 import { Link } from "react-router";
+import { BsTwitterX } from "react-icons/bs";
 
 const Footer = () => {
   return (
@@ -67,14 +68,16 @@ const Footer = () => {
             </h3>
 
             <div className="mt-4 flex justify-center md:justify-start space-x-4">
-              <a className=" p-1 bg-blue-400 text-white rounded-md cursor-pointer text-2xl">
+              <a className=" p-1 bg-[#1877F2]
+ text-white rounded-md cursor-pointer text-2xl">
                 <FaFacebookF />
               </a>
-              <a className=" p-1 bg-blue-400 text-white rounded-md cursor-pointer text-2xl">
-                <FaTwitter />
-              </a>
-              <a className=" p-1 bg-blue-400 text-white rounded-md cursor-pointer text-2xl">
+              
+              <a className=" p-1 bg-[#0077B5] text-white rounded-md cursor-pointer text-2xl">
                 <FaLinkedinIn />
+              </a>
+              <a className=" p-1 bg-[#5865F2] text-white rounded-md cursor-pointer text-2xl">
+                < FaDiscord />
               </a>
             </div>
           </div>
