@@ -15,6 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
+import ResumeView from '../../resume-view/ResumeView';
 
 const columns = [
     { id: 'name', label: 'Name', minWidth: 170 },
@@ -49,6 +50,8 @@ const ResumeList = ({ searchTerm }) => {
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [anchorEls, setAnchorEls] = useState({});
     const [deletingId] = useState(null);
+    const [viewingResume, setViewingResume] = useState(null);
+    const [modalOpen, setModalOpen] = useState(false);
 
 
 
@@ -139,6 +142,18 @@ const ResumeList = ({ searchTerm }) => {
                 }
             });
         }
+        else if (type === 'View') {
+            try {
+                const res = await axiosPublic.get(`/resume/${row.id}`);
+                if (res.status === 200) {
+                    setViewingResume(res.data.result);
+                    setModalOpen(true);
+                }
+            } catch (error) {
+                console.error('Failed to fetch resume:', error);
+            }
+
+        }
 
     };
 
@@ -167,93 +182,100 @@ const ResumeList = ({ searchTerm }) => {
     );
 
     return (
-        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-            <TableContainer sx={{ maxHeight: 440 }}>
-                <Table stickyHeader aria-label="sticky table">
-                    <TableHead>
-                        <TableRow>
-                            {columns.map((column) => (
-                                <TableCell
-                                    key={column.id}
-                                    align={column.align}
-                                    style={{ minWidth: column.minWidth }}
-                                >
-                                    {column.label}
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {filteredRows
-                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                            .map((row, index) => (
-                                <TableRow hover role="checkbox" tabIndex={-1} key={row.id || index}>
-                                    {columns.map((column) => {
-                                        const value = row[column.id];
-                                        if (column.id === 'action') {
+        <>
+            <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+                <TableContainer sx={{ maxHeight: 440 }}>
+                    <Table stickyHeader aria-label="sticky table">
+                        <TableHead>
+                            <TableRow>
+                                {columns.map((column) => (
+                                    <TableCell
+                                        key={column.id}
+                                        align={column.align}
+                                        style={{ minWidth: column.minWidth }}
+                                    >
+                                        {column.label}
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {filteredRows
+                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                .map((row, index) => (
+                                    <TableRow hover role="checkbox" tabIndex={-1} key={row.id || index}>
+                                        {columns.map((column) => {
+                                            const value = row[column.id];
+                                            if (column.id === 'action') {
+                                                return (
+                                                    <TableCell key={column.id} align={column.align}>
+                                                        <IconButton onClick={(event) => handleClick(event, index)}>
+                                                            <MoreVertIcon />
+                                                        </IconButton>
+                                                        <Menu
+                                                            anchorEl={anchorEls[index]}
+                                                            open={Boolean(anchorEls[index])}
+                                                            onClose={() => handleClose(index)}
+                                                        >
+                                                            <MenuItem
+                                                                onClick={() => {
+                                                                    handleClose(index);
+                                                                    handleAction('View', row);
+                                                                }}
+                                                            >
+                                                                View
+                                                            </MenuItem>
+                                                            <MenuItem
+                                                                onClick={() => {
+                                                                    handleClose(index);
+                                                                    handleAction('Edit', row);
+                                                                }}
+                                                            >
+                                                                Edit
+                                                            </MenuItem>
+                                                            <MenuItem
+                                                                onClick={() => {
+                                                                    handleClose(index);
+                                                                    handleAction('Delete', row);
+                                                                }}
+                                                            >
+                                                                {deletingId === row.id ? (
+                                                                    <CircularProgress size={20} color="error" />
+                                                                ) : (
+                                                                    'Delete'
+                                                                )}
+                                                            </MenuItem>
+                                                        </Menu>
+                                                    </TableCell>
+                                                );
+                                            }
                                             return (
                                                 <TableCell key={column.id} align={column.align}>
-                                                    <IconButton onClick={(event) => handleClick(event, index)}>
-                                                        <MoreVertIcon />
-                                                    </IconButton>
-                                                    <Menu
-                                                        anchorEl={anchorEls[index]}
-                                                        open={Boolean(anchorEls[index])}
-                                                        onClose={() => handleClose(index)}
-                                                    >
-                                                        <MenuItem
-                                                            onClick={() => {
-                                                                handleClose(index);
-                                                                handleAction('View', row);
-                                                            }}
-                                                        >
-                                                            View
-                                                        </MenuItem>
-                                                        <MenuItem
-                                                            onClick={() => {
-                                                                handleClose(index);
-                                                                handleAction('Edit', row);
-                                                            }}
-                                                        >
-                                                            Edit
-                                                        </MenuItem>
-                                                        <MenuItem
-                                                            onClick={() => {
-                                                                handleClose(index);
-                                                                handleAction('Delete', row);
-                                                            }}
-                                                        >
-                                                            {deletingId === row.id ? (
-                                                                <CircularProgress size={20} color="error" />
-                                                            ) : (
-                                                                'Delete'
-                                                            )}
-                                                        </MenuItem>
-                                                    </Menu>
+                                                    {column.format && value !== 'N/A' ? column.format(value) : value}
                                                 </TableCell>
                                             );
-                                        }
-                                        return (
-                                            <TableCell key={column.id} align={column.align}>
-                                                {column.format && value !== 'N/A' ? column.format(value) : value}
-                                            </TableCell>
-                                        );
-                                    })}
-                                </TableRow>
-                            ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            <TablePagination
-                rowsPerPageOptions={[10, 25, 100]}
-                component="div"
-                count={filteredRows.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
+                                        })}
+                                    </TableRow>
+                                ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+                <TablePagination
+                    rowsPerPageOptions={[10, 25, 100]}
+                    component="div"
+                    count={filteredRows.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                />
+            </Paper>
+            <ResumeView
+                open={modalOpen}
+                handleClose={() => setModalOpen(false)}
+                resume={viewingResume}
             />
-        </Paper>
+        </>
     );
 };
 
