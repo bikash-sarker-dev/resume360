@@ -1,68 +1,163 @@
 import React from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import { generateDocx } from '../resume-download/generateDocx';
+import ResumePDF from '../resume-download/ResumePDF';
+
 
 const ResumeView = ({ open, handleClose, resume }) => {
     if (!resume) return null;
 
     const { personalInfo, education, skills, socialLinks, projects, experience, languages } = resume;
 
+    const titleClass = "text-3xl font-bold";
+    const subtitleClass = "text-xl font-medium text-gray-600";
+    const headerClass = "text-2xl font-semibold mt-6 pb-1";
+    const subheaderClass = "text-lg font-semibold";
+    const textClass = "text-base text-gray-800";
+
     return (
-        <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
-            <DialogTitle>{personalInfo?.fullName}'s Resume</DialogTitle>
+        <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth scroll="paper">
             <DialogContent dividers>
-                <section className="space-y-3">
-                    <h3 className="text-lg font-semibold">Personal Info</h3>
-                    <p><strong>Email:</strong> {personalInfo?.email}</p>
-                    <p><strong>Phone:</strong> {personalInfo?.phone}</p>
-                    <p><strong>Address:</strong> {personalInfo?.address}</p>
-                    <p><strong>Job Title:</strong> {personalInfo?.jobTitle}</p>
-                    <p><strong>About:</strong> {personalInfo?.about}</p>
+                <div className="max-w-4xl mx-auto p-4 text-black bg-white">
+                    {/* Title */}
+                    {(personalInfo?.fullName || personalInfo?.jobTitle) && (
+                        <>
+                            <h1 className={titleClass}><p>{personalInfo?.fullName}</p></h1>
+                            <h1 className={subtitleClass}>{personalInfo?.jobTitle}</h1>
+                        </>
+                    )}
 
-                    <h3 className="text-lg font-semibold mt-4">Education</h3>
-                    {education?.map((edu, i) => (
-                        <div key={i}>
-                            <p><strong>{edu.degree} in {edu.field}</strong> at {edu.school}</p>
-                            <p>{edu.startDate?.split('T')[0]} - {edu.endDate?.split('T')[0]}</p>
-                            <p>{edu.description}</p>
-                        </div>
-                    ))}
+                    {/* Contact Info */}
+                    {(personalInfo?.address || personalInfo?.phone || personalInfo?.email || socialLinks?.length) && (
+                        <p className={`${textClass} mb-6 italic`}>
+                            {personalInfo?.address} | {personalInfo?.phone} | {personalInfo?.email}
+                            <br />
+                            {socialLinks?.map((link, i) => (
+                                <span key={i}>
+                                    <a href={link.link} className="underline mx-1" target="_blank" rel="noreferrer">{link.platform}</a>
+                                </span>
+                            ))}
+                        </p>
+                    )}
 
-                    <h3 className="text-lg font-semibold mt-4">Skills</h3>
-                    <p>{skills?.join(', ')}</p>
+                    {/* About */}
+                    {personalInfo?.about && (
+                        <>
+                            <h2 className={headerClass}>About</h2>
+                            <p className={`${textClass} mb-6`}>{personalInfo.about}</p>
+                        </>
+                    )}
 
-                    <h3 className="text-lg font-semibold mt-4">Experience</h3>
-                    {experience?.map((exp, i) => (
-                        <div key={i}>
-                            <p><strong>{exp.position}</strong> at {exp.company}</p>
-                            <p>{exp.startMonth} - {exp.endMonth}</p>
-                            <p>{exp.description}</p>
-                        </div>
-                    ))}
+                    {/* Skills */}
+                    {skills?.length > 0 && (
+                        <>
+                            <h2 className={headerClass}>Skills</h2>
+                            <p className={`${textClass} mb-6`}>
+                                {skills.join(', ')}
+                            </p>
+                        </>
+                    )}
 
-                    <h3 className="text-lg font-semibold mt-4">Projects</h3>
-                    {projects?.map((proj, i) => (
-                        <div key={i}>
-                            <p><strong>{proj.projectName}</strong></p>
-                            <p>{proj.description}</p>
-                            <ul className="list-disc pl-4">
-                                {proj.features?.map((f, j) => <li key={j}>{f}</li>)}
+                    {/* Experience */}
+                    {experience?.length > 0 && (
+                        <>
+                            <h2 className={headerClass}>Professional Experience</h2>
+                            {experience.map((exp, i) => (
+                                <div className="mb-4" key={i}>
+                                    <div>
+                                        <h3 className={subheaderClass}>{exp.position} – {exp.company}</h3>
+                                        <p className={`${textClass} text-sm`}>{exp.startMonth} – {exp.endMonth}</p>
+                                    </div>
+                                    <p className={`${textClass}`}>{exp.description}</p>
+                                </div>
+                            ))}
+                        </>
+                    )}
+
+                    {/* Education */}
+                    {education?.length > 0 && (
+                        <>
+                            <h2 className={headerClass}>Education</h2>
+                            {education.map((edu, i) => (
+                                <div className="mb-4" key={i}>
+                                    <div>
+                                        <h3 className={subheaderClass}>{edu.degree} in {edu.field} – {edu.school}</h3>
+                                        <p className={`${textClass} text-sm`}>{edu.startDate} – {edu.endDate}</p>
+                                    </div>
+                                    <p className={`${textClass}`}>{edu.description}</p>
+                                </div>
+                            ))}
+                        </>
+                    )}
+
+                    {/* Projects */}
+                    {projects?.length > 0 && (
+                        <>
+                            <h2 className={headerClass}>Projects</h2>
+                            {projects.map((project, i) => (
+                                <div className="mb-6" key={i}>
+                                    <h3 className={subheaderClass}>{project.projectName}</h3>
+                                    <div className={`${textClass} mb-1`}>
+                                        <a href={project.live} className="underline mr-2" target="_blank" rel="noreferrer">Live</a>
+                                        <a href={project.client} className="underline mr-2" target="_blank" rel="noreferrer">Client</a>
+                                        {project.server && (
+                                            <a href={project.server} className="underline" target="_blank" rel="noreferrer">Server</a>
+                                        )}
+                                    </div>
+                                    <p className={textClass}>{project.description}</p>
+                                    <ul className={`${textClass} list-disc ml-6`}>
+                                        {project.features?.map((feature, index) => <li key={index}>{feature}</li>)}
+                                    </ul>
+                                </div>
+                            ))}
+                        </>
+                    )}
+
+                    {/* Languages */}
+                    {languages?.length > 0 && (
+                        <>
+                            <h2 className={headerClass}>Languages</h2>
+                            <ul className={`${textClass}`}>
+                                {languages.map((lang, i) => (
+                                    <li key={i}>{lang.language} – {lang.proficiency}</li>
+                                ))}
                             </ul>
-                        </div>
-                    ))}
-
-                    <h3 className="text-lg font-semibold mt-4">Languages</h3>
-                    {languages?.map((lang, i) => (
-                        <p key={i}>{lang.language} - {lang.proficiency}</p>
-                    ))}
-
-                    <h3 className="text-lg font-semibold mt-4">Social Links</h3>
-                    {socialLinks?.map((link, i) => (
-                        <p key={i}><strong>{link.platform}:</strong> <a href={link.link} target="_blank" rel="noreferrer">{link.link}</a></p>
-                    ))}
-                </section>
+                        </>
+                    )}
+                </div>
             </DialogContent>
-            <DialogActions>
-                <Button onClick={handleClose} color="primary" variant="contained">Close</Button>
+            <DialogActions className="flex flex-wrap justify-center md:justify-end gap-3 px-4 pb-4">
+                {/* PDF Download Button */}
+                <PDFDownloadLink
+                    document={<ResumePDF resumeData={resume} />}
+                    fileName={`${personalInfo?.fullName || 'resume'}.pdf`}
+                >
+                    {({ loading }) => (
+                        <button
+                            className='btn bg-r-accent text-r-text hover:bg-r-primary hover:text-white h-12 px-4 text-sm rounded'
+                            disabled={loading}
+                        >
+                            {loading ? 'Preparing PDF...' : 'Download PDF'}
+                        </button>
+                    )}
+                </PDFDownloadLink>
+
+                {/* DOCX Download Button */}
+                <button
+                    className='btn bg-r-accent text-r-text hover:bg-r-primary hover:text-white h-12 px-4 text-sm rounded'
+                    onClick={() => generateDocx(resume)}
+                >
+                    Download DOCX
+                </button>
+
+                {/* Close Button */}
+                <button
+                    className='btn bg-red-400 text-white hover:bg-red-600 h-12 px-4 text-sm rounded'
+                    onClick={handleClose}
+                >
+                    Close
+                </button>
             </DialogActions>
         </Dialog>
     );
