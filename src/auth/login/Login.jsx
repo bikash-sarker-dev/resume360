@@ -20,14 +20,7 @@ export default function Login() {
   const axiosPublic = useAxiosPublic();
   const [showPassword, setShowPassword] = useState(false);
   const [blocks, setBlocks] = useState(false);
-  const [userCheck, setUserCheck] = useState();
 
-  async function userFind(email) {
-    let person = await axiosPublic.get(`/users/${email}`);
-    console.log(person.data);
-    setUserCheck(person.data.result);
-  }
-  console.log(userCheck);
   const blockFun = (num) => {
     let getValue = localStorage.getItem("block");
     let count = num + parseInt(getValue);
@@ -109,7 +102,7 @@ export default function Login() {
   // google signin
   const handleGoogleLogin = () => {
     signInWithGoogle()
-      .then((result) => {
+      .then(async (result) => {
         // console.log(result.user)
         if (loading) {
           return (
@@ -117,9 +110,10 @@ export default function Login() {
           );
         }
 
-        console.log(result.user?.email);
         setUser(result.user);
-        userFind(result.user?.email);
+        // userFind(result.user?.email);
+        let res = await axiosPublic.get(`/users/${result.user.email}`);
+        console.log(res.data.result);
         Swal.fire({
           title: "Success",
           text: "Login with Google successfully",
@@ -127,7 +121,7 @@ export default function Login() {
           confirmButtonText: "Done",
           confirmButtonColor: "#3e563f",
         });
-        // navigate("/socialMiddleware");
+        navigate(!res.data.result ? "/socialMiddleware" : "/");
       })
       .catch((error) => {
         // console.log(error)
