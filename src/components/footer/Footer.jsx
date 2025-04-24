@@ -68,15 +68,18 @@ const Footer = () => {
             </h3>
 
             <div className="mt-4 flex justify-center md:justify-start space-x-4">
-              <a className=" p-1 bg-[#1877F2]
+              <a
+              href="https://www.facebook.com/tamjid.razin/"
+              target="_blank"
+              className=" p-1 bg-[#1877F2]
  text-white rounded-md cursor-pointer text-2xl">
                 <FaFacebookF />
               </a>
               
-              <a className=" p-1 bg-[#0077B5] text-white rounded-md cursor-pointer text-2xl">
+              <a href="https://www.linkedin.com/in/sadia-afrin-597515301/" target="_blank" className=" p-1 bg-[#0077B5] text-white rounded-md cursor-pointer text-2xl">
                 <FaLinkedinIn />
               </a>
-              <a className=" p-1 bg-[#5865F2] text-white rounded-md cursor-pointer text-2xl">
+              <a href="https://discord.gg/FNbcjMhZ" target="_blank" className=" p-1 bg-[#5865F2] text-white rounded-md cursor-pointer text-2xl">
                 < FaDiscord />
               </a>
             </div>
