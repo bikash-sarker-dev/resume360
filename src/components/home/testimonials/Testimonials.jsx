@@ -24,6 +24,12 @@ export const Testimonials = () => {
     />
      <div>
         <Swiper
+        style={
+          {
+            "--swiper-navigation-color": "var(--color-r-info)",
+            "--swiper-pagination-color": "var(--color-r-accent)",
+          }
+        }
               slidesPerView={3}
               breakpoints={{
                 768: { slidesPerView: 1 }, 
