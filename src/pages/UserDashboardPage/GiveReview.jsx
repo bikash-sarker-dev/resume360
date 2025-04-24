@@ -6,6 +6,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 export default function GiveReview() {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
+  console.log(user);
 
   const handleCreateReview = async (event) => {
     event.preventDefault();
@@ -22,6 +23,7 @@ export default function GiveReview() {
       profession,
       review,
       rating,
+      image: user?.photoURL,
     };
     console.log(newReview);
     try {
