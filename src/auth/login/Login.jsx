@@ -11,6 +11,7 @@ export default function Login() {
     signInUser,
     setLoading,
     setUser,
+    user,
     signInWithGoogle,
     signInWithGithub,
     loading,
@@ -19,7 +20,14 @@ export default function Login() {
   const axiosPublic = useAxiosPublic();
   const [showPassword, setShowPassword] = useState(false);
   const [blocks, setBlocks] = useState(false);
+  const [userCheck, setUserCheck] = useState();
 
+  async function userFind(email) {
+    let person = await axiosPublic.get(`/users/${email}`);
+    console.log(person.data);
+    setUserCheck(person.data.result);
+  }
+  console.log(userCheck);
   const blockFun = (num) => {
     let getValue = localStorage.getItem("block");
     let count = num + parseInt(getValue);
@@ -27,13 +35,6 @@ export default function Login() {
     setBlocks(count);
     localStorage.setItem("block", count);
   };
-
-  // useEffect(()=>{
-  //   async function getBlockFun() {
-  //     let res = await axiosPublic.get(`/users/${}`)
-  //   }
-  //   getBlockFun()
-  // },[])
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -115,7 +116,10 @@ export default function Login() {
             <span className="block mx-auto loading loading-spinner loading-xl"></span>
           );
         }
+
+        console.log(result.user?.email);
         setUser(result.user);
+        userFind(result.user?.email);
         Swal.fire({
           title: "Success",
           text: "Login with Google successfully",
@@ -123,7 +127,7 @@ export default function Login() {
           confirmButtonText: "Done",
           confirmButtonColor: "#3e563f",
         });
-        navigate("/socialMiddleware");
+        // navigate("/socialMiddleware");
       })
       .catch((error) => {
         // console.log(error)

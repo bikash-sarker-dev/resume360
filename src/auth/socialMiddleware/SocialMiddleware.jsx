@@ -6,7 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 export default function SocialMiddleware() {
-  const { setUser, user } = useAuth();
+  const { setUser, user, setLoading } = useAuth();
   const navigate = useNavigate();
   const [conditions, setConditions] = useState(false);
   const [profession, setProfession] = useState("");
@@ -15,7 +15,9 @@ export default function SocialMiddleware() {
   const axiosPublic = useAxiosPublic();
 
   useEffect(() => {
+    setLoading(true);
     userFind();
+    setLoading(false);
   }, []);
 
   async function userFind() {
@@ -25,6 +27,7 @@ export default function SocialMiddleware() {
   console.log(userCheck, user);
   if (user?.email === userCheck?.email) {
     navigate("/");
+    setLoading(false);
     return;
   }
   const handleSelectChange = (event) => {
