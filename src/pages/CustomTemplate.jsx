@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router'
 import TemplateOne from '../components/DefaultTemplates/TemplateOne'
 import { StepperForCustomTemplate } from '../components/CustomTemplate/StepperForCustomTemplate'
+import { CustomTemplate1 } from '../components/CustomTemplate/CustomTemplates/CustomTemplate1'
 
 export const CustomTemplate = () => {
    
@@ -15,7 +16,7 @@ export const CustomTemplate = () => {
                 <StepperForCustomTemplate></StepperForCustomTemplate>
             </div>
             <div className='bg-red-800'>
-            <TemplateOne></TemplateOne>
+         <CustomTemplate1/>
             </div>
         </div>
     </div>
