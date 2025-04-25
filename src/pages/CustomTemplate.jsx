@@ -12,7 +12,7 @@ export const CustomTemplate = () => {
         CustomTemplate
         </h1>
         <div className='flex flex-row bg-amber-300'>
-            <div className='w-1/2 bg-red-500 '>
+            <div className='w-1/2 bg-red-100 '>
                 <StepperForCustomTemplate></StepperForCustomTemplate>
             </div>
             <div className='bg-red-800'>
