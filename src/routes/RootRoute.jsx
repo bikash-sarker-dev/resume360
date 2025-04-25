@@ -46,6 +46,7 @@ import ContactPage from "./../pages/ContactPage";
 import FeaturesPage from "./../pages/FeaturesPage";
 import TermsAndConditionsPage from "./../pages/TermsAndConditionsPage";
 import GiveReview from "./../pages/UserDashboardPage/GiveReview";
+import Uploadresume from "../components/uploadresume/Uploadresume";
 
 const RootRoute = () => {
   return (
@@ -66,6 +67,7 @@ const RootRoute = () => {
         <Route path="/contact" element={<ContactPage />} />
 
         {/* user page routes  */}
+        <Route path="/resumeUpload" element={<Uploadresume />}></Route>
         <Route path="/user" element={<User />}>
           <Route index element={<Userabout />} />
           <Route path="usereducation" element={<UserEducation />} />
