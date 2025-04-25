@@ -5,11 +5,13 @@ import Step from '@mui/material/Step';
 import StepButton from '@mui/material/StepButton';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { InfoForm } from './StepperInputData/infoForm';
+
 
 const renderStepContent = (step) => {
   switch (step) {
     case 0:
-      return <h2>Render 1</h2>;
+      return <InfoForm></InfoForm>;
     case 1:
       return <h2>Render 2</h2>;
     case 2:

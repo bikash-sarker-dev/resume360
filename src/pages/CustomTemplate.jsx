@@ -15,7 +15,7 @@ export const CustomTemplate = () => {
             <div className='w-1/2 bg-red-100 '>
                 <StepperForCustomTemplate></StepperForCustomTemplate>
             </div>
-            <div className='bg-red-800'>
+            <div className='bg-red-400 w-1/2'>
          <CustomTemplate1/>
             </div>
         </div>
