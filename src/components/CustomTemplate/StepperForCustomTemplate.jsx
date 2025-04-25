@@ -6,9 +6,35 @@ import StepButton from '@mui/material/StepButton';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
+const renderStepContent = (step) => {
+  switch (step) {
+    case 0:
+      return <h2>Render 1</h2>;
+    case 1:
+      return <h2>Render 2</h2>;
+    case 2:
+      return <h2>Render 3</h2>;
+    case 3:
+      return <h2>4</h2>;
+  
+    default:
+      return <h2>8</h2>;
+  }
+};
+
+
+
+
+
+
+
+
 const steps = ['Personal Info', 'Education & Skills', 'Experience & Projects',
     'Achievements & References'
 ];
+
+
+
 
 export const StepperForCustomTemplate = () => {
     const [activeStep, setActiveStep] = React.useState(0);
@@ -125,6 +151,11 @@ export const StepperForCustomTemplate = () => {
                       </Button>
                     ))}
                 </Box>
+
+                <Box sx={{ mt: 2, mb: 1 }}>
+  {renderStepContent(activeStep)}
+</Box>
+
               </React.Fragment>
             )}
           </div>
