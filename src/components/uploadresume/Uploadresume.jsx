@@ -91,25 +91,71 @@ const Uploadresume = () => {
   }
 
   function parseSkills(text) {
-    const frontendKeywords = ['JavaScript', 'React', 'React.js', 'Bootstrap', 'Tailwind'];
-    const backendKeywords = ['MongoDB', 'Express', 'Node', 'Node.js'];
+    const frontendKeywords = [
+      'JavaScript', 'React', 'React.js', 'Bootstrap', 'Tailwind', 'Vue.js', 
+      'Angular', 'SASS', 'HTML', 'CSS', 'TypeScript', 'jQuery', 'Responsive Web Design'
+    ];
+  
+    const backendKeywords = [
+      'MongoDB', 'Express', 'Node', 'Node.js', 'Python', 'Django', 'Ruby', 
+      'Java', 'C#', 'PHP', 'MySQL', 'PostgreSQL', 'JWT'
+    ];
+  
+    const categoryMap = {
+      experience: [],
+      comfortable: [],
+      familiar: [],
+      tools: [],
+      softSkills: [],
+    };
   
     const frontend = [];
     const backend = [];
+    const others = [];
   
-    const allSkills = text.split(",").map(s => s.trim());
+    const lines = text.split("●").map(line => line.trim()).filter(Boolean);
   
-    allSkills.forEach(skill => {
-      const lower = skill.toLowerCase();
-      if (frontendKeywords.some(k => lower.includes(k.toLowerCase()))) {
-        frontend.push(skill);
-      } else if (backendKeywords.some(k => lower.includes(k.toLowerCase()))) {
-        backend.push(skill);
+    lines.forEach(line => {
+      const [rawCategory, skillList] = line.split(":");
+      if (!skillList) return;
+  
+      const category = rawCategory.toLowerCase();
+      const skills = skillList.split(",").map(s => s.trim()).filter(Boolean);
+  
+      if (category.includes("experience")) {
+        categoryMap.experience.push(...skills);
+      } else if (category.includes("comfortable")) {
+        categoryMap.comfortable.push(...skills);
+      } else if (category.includes("familiar")) {
+        categoryMap.familiar.push(...skills);
+      } else if (category.includes("tools")) {
+        categoryMap.tools.push(...skills);
+      } else if (category.includes("soft")) {
+        categoryMap.softSkills.push(...skills);
       }
+  
+      // Classify each skill into frontend, backend, others
+      skills.forEach(skill => {
+        const lowerSkill = skill.toLowerCase();
+        if (frontendKeywords.some(k => lowerSkill.includes(k.toLowerCase()))) {
+          frontend.push(skill);
+        } else if (backendKeywords.some(k => lowerSkill.includes(k.toLowerCase()))) {
+          backend.push(skill);
+        } else {
+          others.push(skill);
+        }
+      });
     });
   
-    return { frontend, backend, others: allSkills.filter(s => !frontend.includes(s) && !backend.includes(s)) };
+    return {
+      frontend,
+      backend,
+      others,
+      ...categoryMap,
+    };
   }
+  
+  
   
 
   const parseProjects = (text) => {
