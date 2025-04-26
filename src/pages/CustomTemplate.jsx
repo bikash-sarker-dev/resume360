@@ -11,11 +11,11 @@ export const CustomTemplate = () => {
         <h1 className="text-4xl text-black text-center">
         CustomTemplate
         </h1>
-        <div className='flex flex-row bg-amber-300'>
-            <div className='w-1/2 bg-red-100 '>
+        <div className='flex flex-row '>
+            <div className='w-1/2  '>
                 <StepperForCustomTemplate></StepperForCustomTemplate>
             </div>
-            <div className='bg-red-400 w-1/2'>
+            <div className=' w-1/2'>
          <CustomTemplate1/>
             </div>
         </div>

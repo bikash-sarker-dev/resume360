@@ -5,7 +5,7 @@ import React from 'react'
 export const InfoForm = () => {
   return (
     <div>
-      <div className='grid grid-cols-2 gap-x-2 gap-y-4 px-1'>
+      <div className='grid grid-cols-2 gap-x-2 gap-y-6 px-1'>
       
       <label >
       <TextField
