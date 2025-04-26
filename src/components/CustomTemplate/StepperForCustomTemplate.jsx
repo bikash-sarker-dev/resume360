@@ -146,7 +146,14 @@ export const StepperForCustomTemplate = () => {
                         Step {activeStep + 1} already completed
                       </Typography>
                     ) : (
-                      <Button onClick={handleComplete}>
+                      <Button 
+                    
+                      sx={{
+                        color: 'black',
+                      
+                      
+                      }}
+                      onClick={handleComplete}>
                         {completedSteps() === totalSteps() - 1
                           ? 'Finish'
                           : 'Complete Step'}
