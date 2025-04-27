@@ -1,17 +1,19 @@
 import { TextField } from '@mui/material';
 import React from 'react';
+import { useFormData } from '../FormDataProvider';
 
-export const CustomExperienceForm = ({ formData, setFormData }) => {
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      experience: {
-        ...prevData.experience,
-        [name]: value,
-      },
-    }));
-  };
+export const CustomExperienceForm = () => {
+ const { formData, updateFormData } = useFormData();
+
+  
+ const handleChange = (e) => {
+  const { name, value } = e.target;
+  // Update the achievements section
+  updateFormData('experience', {
+    ...formData.experience,
+    [name]: value,
+  });
+};
 
   return (
     <div>

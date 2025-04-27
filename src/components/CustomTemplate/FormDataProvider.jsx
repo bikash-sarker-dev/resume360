@@ -9,16 +9,10 @@ export const useFormData = () => {
 
 export const FormDataProvider = ({ children }) => {
   const [formData, setFormData] = useState({
-    fullName: '',
-    jobTitle: '',
-    phoneNumber: '',
-    email: '',
-    address: '',
-    nationality: '',
-    dob: '',
-    gender: '',
-    aboutMe: '',
-    // Your other fields...
+    personalInfo: {},
+    education: [],
+    experience: [],
+    achievements: [],
   });
 
   const updateFormData = (key, value) => {
