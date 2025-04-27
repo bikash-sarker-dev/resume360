@@ -292,6 +292,34 @@ const Uploadresume = () => {
   };
   
 
+  function extractLocation(lines) {
+    const locationKeywords = [
+      "bandarban", "barguna", "barisal", "bhola", "bogura", "brahmanbaria",
+      "chandpur", "chapainawabganj", "chattogram", "chuadanga", "comilla", "cox's bazar",
+      "dhaka", "dinajpur", "faridpur", "feni", "gaibandha", "gazipur",
+      "gopalganj", "habiganj", "jaipurhat", "jamalpur", "jashore", "jhalokathi",
+      "jhenaidah", "joypurhat", "khagrachhari", "khulna", "kishoreganj", "kurigram",
+      "kushtia", "lakshmipur", "lalmonirhat", "madaripur", "magura", "manikganj",
+      "meherpur", "moulvibazar", "munshiganj", "mymensingh", "naogaon", "narail",
+      "narayanganj", "narsingdi", "natore", "netrokona", "nilphamari", "noakhali",
+      "pabna", "panchagarh", "patuakhali", "pirojpur", "rajbari", "rajshahi",
+      "rangamati", "rangpur", "satkhira", "shariatpur", "sherpur", "sirajganj",
+      "sunamganj", "sylhet", "tangail", "thakurgaon", "bangladesh"
+    ];
+  
+    for (const line of lines) {
+      const words = line.toLowerCase().split(/[\s,]+/); 
+      for (const word of words) {
+        if (locationKeywords.includes(word)) {
+          return word.charAt(0).toUpperCase() + word.slice(1);
+        }
+      }
+    }
+  
+    return ""; 
+  }
+  
+  
   
   
   
@@ -304,6 +332,11 @@ const Uploadresume = () => {
     const name = lines[0] || "Your Name";
     const title = lines[1] || "Your Title";
     const email = fullText.match(/\b\S+@\S+\.\S+\b/)?.[0] || "example@email.com";
+
+    const numberMatch = fullText.match(/(\+?88)?01[3-9]\d{8}\b/);
+    const number = numberMatch ? numberMatch[0] : "Your Number";
+  
+    const location = extractLocation(lines); 
   
     const sections = splitByHeadings(fullText); 
     const skillData = sections.skills ? parseSkills(sections.skills) : { frontend: [], backend: [], others: [] };
@@ -314,12 +347,14 @@ const Uploadresume = () => {
       name,
       title,
       email,
+      number,
+    location,
       ...sections,
       skills: skillData,
       projects: parseProjects(projectsText),
-      references: sections.references || "Available on request",
-      portfolio: sections.portfolio || "yourportfolio.com",
-      linkedin: sections.linkedin || "linkedin.com/in/joynal-abedin",
+      references: sections.references,
+      portfolio: sections.portfolio,
+      linkedin: sections.linkedin,
       
     };
   };

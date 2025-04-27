@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa6";
+import Swal from "sweetalert2";
 
 const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
   const [formData, setFormData] = useState({});
@@ -61,21 +62,40 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
   };
 
   const handleDeleteProject = (index) => {
-    setFormData((prev) => {
-      const updatedProjects = [...(prev.projects || [])];
-      updatedProjects.splice(index, 1); // Remove the project at index
-      return {
-        ...prev,
-        projects: updatedProjects,
-      };
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#588568',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setFormData((prev) => {
+          const updatedProjects = [...(prev.projects || [])];
+          updatedProjects.splice(index, 1); // Remove the project at index
+          return {
+            ...prev,
+            projects: updatedProjects,
+          };
+        });
+  
+        Swal.fire(
+          'Deleted!',
+          'Your project has been deleted.',
+          'success'
+        );
+      }
     });
   };
+  
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded-lg w-[600px] max-h-[80vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-r-accent bg-opacity-40 flex items-center justify-center z-50">
+      <div className="bg-r-background p-6 rounded-lg w-[600px] max-h-[80vh] overflow-y-auto">
         <h2 className="text-xl font-bold mb-4">Edit Resume</h2>
 
         <label>name</label>
@@ -83,7 +103,7 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
           type="text"
           value={formData.name || ""}
           onChange={(e) => handleChange(e, "skills", "frontend")}
-          className="w-full p-2 border rounded mb-2"
+          className="w-full p-2 border border-[#588568] rounded mb-2"
         />
 
         <label>title</label>
@@ -91,7 +111,7 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
           type="text"
           value={formData.title || ""}
           onChange={(e) => handleChange(e, "skills", "frontend")}
-          className="w-full p-2 border rounded mb-2"
+          className="w-full p-2 border border-[#588568] rounded mb-2"
         />
 
         <label>email</label>
@@ -99,7 +119,7 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
           type="text"
           value={formData.email || ""}
           onChange={(e) => handleChange(e, "skills", "frontend")}
-          className="w-full p-2 border rounded mb-2"
+          className="w-full p-2 border border-[#588568] rounded mb-2"
         />
 
         <label>linkedin link</label>
@@ -107,7 +127,7 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
           type="text"
           value={formData.linkedin || ""}
           onChange={(e) => handleChange(e, "skills", "frontend")}
-          className="w-full p-2 border rounded mb-2"
+          className="w-full p-2 border border-[#588568] rounded mb-2"
         />
 
         <label>portfolio</label>
@@ -115,39 +135,37 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
           type="text"
           value={formData.portfolio || ""}
           onChange={(e) => handleChange(e, "skills", "frontend")}
-          className="w-full p-2 border rounded mb-2"
+          className="w-full p-2 border border-[#588568] rounded mb-2"
         />
 
-        {/* Summary */}
         <label className="font-medium">Summary</label>
         <textarea
           value={formData.summary || ""}
           onChange={(e) => handleChange(e, "summary")}
-          className="w-full p-2 border rounded mb-4"
+          className="w-full p-2 border border-[#588568] rounded mb-4"
         />
 
-        {/* Skills */}
         <h3 className="font-semibold">Skills</h3>
         <label>Frontend</label>
         <input
           type="text"
           value={formData.skills?.frontend.join(", ") || ""}
           onChange={(e) => handleChange(e, "skills", "frontend")}
-          className="w-full p-2 border rounded mb-2"
+          className="w-full p-2 border border-[#588568] rounded mb-2"
         />
         <label>Backend</label>
         <input
           type="text"
           value={formData.skills?.backend.join(", ") || ""}
           onChange={(e) => handleChange(e, "skills", "backend")}
-          className="w-full p-2 border rounded mb-2"
+          className="w-full p-2 border border-[#588568] rounded mb-2"
         />
         <label>Others</label>
         <input
           type="text"
           value={formData.skills?.others.join(", ") || ""}
           onChange={(e) => handleChange(e, "skills", "others")}
-          className="w-full p-2 border rounded mb-4"
+          className="w-full p-2 border border-[#588568] rounded mb-4"
         />
 
         {formData.projects && (
@@ -157,11 +175,11 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
             {formData.projects.map((project, index) => (
               <div
                 key={index}
-                className="border p-4 my-4 rounded-md shadow-sm bg-gray-100"
+                className=" p-4 my-4 rounded-md shadow-lg bg-gray-100"
               >
                 <button
                   onClick={() => handleDeleteProject(index)}
-                  className="flex  bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700"
+                  className="flex mb-4 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700"
                 >
                   <FaTrash></FaTrash>
                 </button>
@@ -169,12 +187,14 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
                 <label className="font-medium">Title</label>
                 <input
                   type="text"
+                  required
                   value={project.title || ""}
                   onChange={(e) =>
                     handleProjectChange(index, "title", e.target.value)
                   }
-                  className="w-full p-2 border rounded mb-4"
+                  className="w-full p-2 border  border-[#588568] rounded mb-4"
                   placeholder="Project Title"
+                  
                 />
 
                 <label className="font-medium">Type</label>
@@ -184,7 +204,7 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
                   onChange={(e) =>
                     handleProjectChange(index, "type", e.target.value)
                   }
-                  className="w-full p-2 border rounded mb-4"
+                  className="w-full p-2 border border-[#588568] rounded mb-4"
                   placeholder="Project Type"
                 />
 
@@ -194,7 +214,7 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
                   onChange={(e) =>
                     handleProjectChange(index, "overview", e.target.value)
                   }
-                  className="w-full p-2 border rounded mb-4"
+                  className="w-full p-2 border border-[#588568] rounded mb-4"
                   rows="3"
                   placeholder="Project Overview"
                 />
@@ -211,7 +231,7 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
                       e.target.value.split(",").map((f) => f.trim())
                     )
                   }
-                  className="w-full p-2 border rounded mb-4"
+                  className="w-full p-2 border border-[#588568] rounded mb-4"
                   rows="3"
                   placeholder="Project Features"
                 />
@@ -229,7 +249,7 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
                       e.target.value.split(",").map((t) => t.trim())
                     )
                   }
-                  className="w-full p-2 border rounded mb-4"
+                  className="w-full p-2 border border-[#588568] rounded mb-4"
                   placeholder="Technologies Used"
                 />
 
@@ -240,7 +260,7 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
                   onChange={(e) =>
                     handleProjectChange(index, "clientRepo", e.target.value)
                   }
-                  className="w-full p-2 border rounded mb-4"
+                  className="w-full p-2 border border-[#588568] rounded mb-4"
                   placeholder="Client Repo Link"
                 />
 
@@ -251,7 +271,7 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
                   onChange={(e) =>
                     handleProjectChange(index, "serverRepo", e.target.value)
                   }
-                  className="w-full p-2 border rounded mb-4"
+                  className="w-full p-2 border border-[#588568] rounded mb-4"
                   placeholder="Server Repo Link"
                 />
 
@@ -262,7 +282,7 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
                   onChange={(e) =>
                     handleProjectChange(index, "liveLink", e.target.value)
                   }
-                  className="w-full p-2 border rounded mb-4"
+                  className="w-full p-2 border border-[#588568] rounded mb-4"
                   placeholder="Live Link"
                 />
               </div>
@@ -272,7 +292,7 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
             <div className="text-center">
               <button
                 onClick={handleAddProject}
-                className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 mt-4"
+                className="bg-r-primary text-white py-2 px-4 rounded hover:bg-green-700 mt-4"
               >
                 + Add New Project
               </button>
@@ -280,24 +300,21 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
           </div>
         )}
 
-        {/* Education */}
         <label className="font-medium">Education</label>
         <textarea
           value={formData.education || ""}
           onChange={(e) => handleChange(e, "education")}
-          className="w-full p-2 border rounded mb-4"
+          className="w-full p-2 border border-[#588568] rounded mb-4"
         />
 
-        {/* Languages */}
         <label className="font-medium">Languages</label>
         <input
           type="text"
           value={formData.languages || ""}
           onChange={(e) => handleChange(e, "languages")}
-          className="w-full p-2 border rounded mb-4"
+          className="w-full p-2 border border-[#588568] rounded mb-4"
         />
 
-        {/* Buttons */}
         <div className="flex justify-end gap-4">
           <button
             onClick={onClose}
