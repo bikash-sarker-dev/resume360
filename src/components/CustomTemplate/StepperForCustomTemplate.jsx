@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 import {InfoForm} from "../../components/CustomTemplate/StepperInputData/InfoForm"
 import React, { useState } from 'react';
 import { CustomEducationForm } from './StepperInputData/CustomEducationForm';
+import { CustomExperienceForm } from './StepperInputData/CustomExperienceForm';
+import { CustomAchievementForm } from './StepperInputData/CustomAchievementForm';
 
 
 
@@ -43,16 +45,18 @@ const renderStepContent = (step) => {
      languages: '',
   });
   console.log(formData);
-  const [test,setTest]=useState("Tamj")
+
   switch (step) {
     case 0:
-      return <InfoForm formData={formData} setFormData={setFormData}></InfoForm>
+      return <InfoForm 
+      formData={formData} setFormData={setFormData}></InfoForm>
     case 1:
-      return <CustomEducationForm/>;
+      return <CustomEducationForm formData={formData} setFormData={setFormData}/>;
     case 2:
-      return <h2>Render 3</h2>;
+      return <CustomExperienceForm formData={formData} setFormData={setFormData}
+      />;
     case 3:
-      return <h2>4</h2>;
+      return <CustomAchievementForm formData={formData} setFormData={setFormData}/>
   
     default:
       return <h2>8</h2>;
