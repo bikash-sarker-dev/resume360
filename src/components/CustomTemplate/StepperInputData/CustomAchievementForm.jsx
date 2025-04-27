@@ -1,18 +1,19 @@
 import { TextField } from '@mui/material';
 import React from 'react';
+import { useFormData } from '../FormDataProvider';
 
-export const CustomAchievementForm = ({ formData, setFormData }) => {
+export const CustomAchievementForm = () => {
+  const { formData, updateFormData } = useFormData();
+ 
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      achievements: {
-        ...prevData.achievements,
-        [name]: value,
-      },
-    }));
+    // Update the achievements section
+    updateFormData('achievements', {
+      ...formData.achievements,
+      [name]: value,
+    });
   };
-
   return (
     <div>
       <div className='grid grid-cols-2 gap-x-2 gap-y-6 px-1'>

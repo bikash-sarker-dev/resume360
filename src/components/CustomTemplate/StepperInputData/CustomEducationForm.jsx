@@ -1,17 +1,17 @@
 import { TextField } from '@mui/material'
 import React from 'react'
+import { useFormData } from '../FormDataProvider';
 
-export const CustomEducationForm = ({ formData, setFormData }) => {
+export const CustomEducationForm = () => {
+    const { formData, updateFormData } = useFormData();
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-          ...prevData,
-          education: {
-            ...prevData.education,
-            [name]: value,
-          },
-        }));
-      };
+      const { name, value } = e.target;
+      // Update the achievements section
+      updateFormData('education', {
+        ...formData. education,
+        [name]: value,
+      });
+    };
   return (
     <div>
     <div className='grid grid-cols-2 gap-x-2 gap-y-6 px-1'>

@@ -6,9 +6,12 @@ import { useFormData } from '../FormDataProvider';
 export const InfoForm = () => {
   const { formData, updateFormData } = useFormData();
 
-   const handleChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    updateFormData(name, value); 
+    updateFormData('personalInfo', {
+      ...formData.personalInfo,
+      [name]: value,
+    });
   };
   return (
     <div>
