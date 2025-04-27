@@ -1,6 +1,10 @@
 import React from "react";
+import { useFormData } from "../FormDataProvider";
 
 export const CustomTemplate1 = () => {
+  const { formData, updateFormData } = useFormData();
+  console.log(formData);
+
   return (
     <div>
       {" "}
