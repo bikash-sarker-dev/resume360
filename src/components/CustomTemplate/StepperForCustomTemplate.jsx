@@ -1,19 +1,54 @@
-import * as React from 'react';
+
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepButton from '@mui/material/StepButton';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { InfoForm } from './StepperInputData/infoForm';
+import {InfoForm} from "../../components/CustomTemplate/StepperInputData/InfoForm"
+import React, { useState } from 'react';
+import { CustomEducationForm } from './StepperInputData/CustomEducationForm';
 
+
+
+
+{/* ; */}
 
 const renderStepContent = (step) => {
+  const [formData,setFormData] = useState({
+    fullName: '',
+    jobTitle: '',
+    phoneNumber: '',
+    email: '',
+    address: '',
+    nationality: '',
+    dob: '',
+    gender: '',
+    aboutMe: '',
+  
+     // Step 1: Work Experience Info
+     companyName: '',
+     jobPosition: '',
+     duration: '',
+     // etc...
+   
+     // Step 2: Education Info
+     universityName: '',
+     degree: '',
+     passingYear: '',
+     // etc...
+   
+     // Step 3: Skills Info
+     skills: '',
+     languages: '',
+  });
+  console.log(formData);
+  const [test,setTest]=useState("Tamj")
   switch (step) {
     case 0:
-      return <InfoForm></InfoForm>;
+      return <InfoForm formData={formData} setFormData={setFormData}></InfoForm>
     case 1:
-      return <h2>Render 2</h2>;
+      return <CustomEducationForm/>;
     case 2:
       return <h2>Render 3</h2>;
     case 3:
@@ -168,6 +203,7 @@ export const StepperForCustomTemplate = () => {
               </React.Fragment>
             )}
           </div>
+         
         </Box>
       );
     }
