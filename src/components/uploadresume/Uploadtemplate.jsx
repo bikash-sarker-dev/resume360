@@ -57,19 +57,19 @@ const Uploadtemplate = ({ extractedText }) => {
             <div className="mt-2">
               <p className="text-black ml-4">
                 <span className="font-bold text-gray-700">Front-End:</span>{" "}
-                {extractedTexts.skills.frontend.join(", ") ||
+                {extractedTexts?.skills?.frontend.join(", ") ||
                   "Add front-end skills..."}
               </p>
             </div>
             <div className="mt-2">
               <p className="text-black ml-4">
                 <span className="font-bold text-gray-700">Back-End:</span>{" "}
-                {extractedTexts.skills.backend.join(", ") ||
+                {extractedTexts?.skills?.backend.join(", ") ||
                   "Add front-end skills..."}
               </p>
             </div>
 
-            {extractedTexts.skills.comfortable.length > 0 && (
+            {extractedTexts?.skills?.comfortable?.length > 0 && (
               <div className="mt-2">
                 <p className="text-black ml-4">
                   <span className="font-bold text-gray-700">comfortable:</span>{" "}
@@ -78,7 +78,7 @@ const Uploadtemplate = ({ extractedText }) => {
                 </p>
               </div>
             )}
-            {extractedTexts.skills.experience.length > 0 && (
+            {extractedTexts?.skills?.experience?.length > 0 && (
               <div className="mt-2">
                 <p className="text-black ml-4">
                   <span className="font-bold text-gray-700">experience:</span>{" "}
@@ -87,7 +87,7 @@ const Uploadtemplate = ({ extractedText }) => {
                 </p>
               </div>
             )}
-            {extractedTexts.skills.familiar.length > 0 && (
+            {extractedTexts?.skills?.familiar?.length > 0 && (
               <div className="mt-2">
                 <p className="text-black ml-4">
                   <span className="font-bold text-gray-700">familiar:</span>{" "}
@@ -96,7 +96,7 @@ const Uploadtemplate = ({ extractedText }) => {
                 </p>
               </div>
             )}
-            {extractedTexts.skills.softSkills.length > 0 && (
+            {extractedTexts?.skills?.softSkills?.length > 0 && (
               <div className="mt-2">
                 <p className="text-black ml-4">
                   <span className="font-bold text-gray-700">softSkills:</span>{" "}
@@ -105,7 +105,7 @@ const Uploadtemplate = ({ extractedText }) => {
                 </p>
               </div>
             )}
-            {extractedTexts.skills.tools.length > 0 && (
+            {extractedTexts?.skills?.tools?.length > 0 && (
               <div className="mt-2">
                 <p className="text-black ml-4">
                   <span className="font-bold text-gray-700">tools:</span>{" "}
@@ -114,7 +114,7 @@ const Uploadtemplate = ({ extractedText }) => {
                 </p>
               </div>
             )}
-            {extractedTexts.skills.others.length > 0 && (
+            {extractedTexts?.skills?.others?.length > 0 && (
               <div className="mt-2">
                 <p className="text-black ml-4">
                   <span className="font-bold text-gray-700">others:</span>{" "}
