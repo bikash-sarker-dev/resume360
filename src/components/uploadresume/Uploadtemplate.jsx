@@ -31,12 +31,17 @@ const Uploadtemplate = ({ extractedText }) => {
           <div className="mt-2 text-left flex flex-col text-black">
             <h2 className="mb-3 text-2xl font-bold">Contact Info</h2>
             <a href="">Email: {extractedTexts.email || "example@mail.com"}</a>
-            <a href="">
-              Portfolio: {extractedTexts.portfolio || "yourportfolio.com"}
+            <div className="flex gap-4">
+            <a href={extractedTexts.portfolio}>
+              {extractedTexts.portfolio ? "Portfolio " : "add-your-portfolio"}
             </a>
+            <h2>|</h2>
             <a href={extractedTexts.linkedin}>
-              LinkedIn: {extractedTexts.linkedin || "linkedin.com/in/you"}
+               {extractedTexts.linkedin ? "linkedin" : "add-your-linkdin"}
             </a>
+            </div>
+            <h2>location: {extractedTexts.location}</h2>
+            <h2>number: {extractedTexts.number}</h2>
           </div>
         </div>
 
@@ -138,41 +143,85 @@ const Uploadtemplate = ({ extractedText }) => {
         </div>
 
         {/* Projects Section */}
-        <div className="mt-6">
-          <h3 className="text-xl font-bold mb-2">PROJECTS</h3>
-          <div className="text-black">
-            {extractedTexts.projects?.map((proj, index) => (
-              <div key={index} className="mb-4">
-                <div className="flex my-3 space-x-3">
-                  <h4 className="text-lg font-bold">{proj.title}</h4>
-                  <p>
-                    <strong>Type:</strong> {proj.type}
-                  </p>
-                  <p>
-                    <strong>Client Repo:</strong> {proj.clientRepo}
-                  </p>
-                </div>
-                <p>
-                  <strong>Features:</strong>
-                </p>
-                <ul className="list-disc ml-6">
-                  {proj.features.map((feat, i) => (
-                    <li key={i}>{feat}</li>
-                  ))}
-                </ul>
-                <p>
-                  <strong>Overview:</strong> {proj.overview}
-                </p>
-                <p className="mt-2">
-                  <strong>Technologies:</strong> {proj.technologies.join(", ")}
-                </p>
-              </div>
-            ))}
+        <div className="mt-2">
+  
+
+  {extractedTexts.projects?.length > 0 ? (
+    
+    <div className="text-black">
+      <h3 className="text-xl font-bold mb-2">PROJECTS</h3>
+      {extractedTexts.projects.map((proj, index) => (
+        <div key={index} className="mb-1  p-4 ">
+          
+          {proj.title && (
+            <h4 className="text-lg font-bold">{proj.title}</h4>
+          )}
+          
+          <div className="flex flex-wrap gap-4 my-2">
+            {proj.type && (
+              <p>
+                <strong>Type:</strong> {proj.type}
+              </p>
+            )}
+            {proj.clientRepo && (
+              <p>
+                <strong>Client Repo:</strong> {proj.clientRepo}
+              </p>
+            )}
+            {proj.serverRepo && (
+              <p>
+                <strong>Server Repo:</strong> {proj.serverRepo}
+              </p>
+            )}
+            {proj.liveLink && (
+              <p>
+                <strong>Live:</strong> {proj.liveLink}
+              </p>
+            )}
           </div>
+
+          {proj.overview && (
+            <p className="mt-2">
+              <strong>Overview:</strong> {proj.overview}
+            </p>
+          )}
+
+          {proj.features && proj.features.length > 0 && (
+            <>
+              <p className="mt-2 font-semibold">Features:</p>
+              <ul className="list-disc ml-6">
+                {proj.features.map((feat, i) => (
+                  <li key={i}>{feat}</li>
+                ))}
+              </ul>
+            </>
+          )}
+
+          {proj.technologies && proj.technologies.length > 0 && (
+            <p className="mt-2">
+              <strong>Technologies:</strong> {proj.technologies.join(", ")}
+            </p>
+          )}
         </div>
+      ))}
+    </div>
+  ) : (
+    // If no projects found
+    <div className="text-center">
+      <p className="text-gray-500 mb-4">No projects added yet.</p>
+      <button
+        onClick={() => setIsModalOpen(true)} // Modal open for adding project
+        className="bg-green-600 text-white py-2 px-6 rounded hover:bg-green-700 transition"
+      >
+        + Add Project
+      </button>
+    </div>
+  )}
+</div>
+
 
         {/* Languages Section */}
-        <div className="mt-6">
+        <div className="mt-2">
           <h3 className="text-xl font-semibold text-black">Languages</h3>
           <p className="text-black mt-2">
             {extractedTexts.languages ||
@@ -182,12 +231,17 @@ const Uploadtemplate = ({ extractedText }) => {
         </div>
 
         {/* edit Button */}
-        <div className="text-center mt-6">
+        <div className="text-center space-x-3 mt-6">
           <button
             onClick={() => setIsModalOpen(true)}
-            className="bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700 transition"
+            className="bg-r-info text-white py-2 px-6 rounded-full hover:text-r-text hover:bg-r-accent transition"
           >
             edit
+          </button>
+          <button
+            className="bg-r-info text-white py-2 px-6 rounded-full hover:text-r-text hover:bg-r-accent transition"
+          >
+            download pdf
           </button>
         </div>
       </div>
