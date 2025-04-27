@@ -1,15 +1,15 @@
 
 import { TextField } from '@mui/material'
 import React from 'react'
+import { useFormData } from '../FormDataProvider';
 
-export const InfoForm = ({formData,setFormData}) => {
-  const handleChange=(e)=>{
+export const InfoForm = () => {
+  const { formData, updateFormData } = useFormData();
+
+   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-  }
+    updateFormData(name, value); 
+  };
   return (
     <div>
       <div className='grid grid-cols-2 gap-x-2 gap-y-6 px-1'>
