@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import Modal from "./Modal"; // Assuming you have a modal component
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+
 
 const Uploadtemplate = ({ extractedText }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,6 +17,23 @@ const Uploadtemplate = ({ extractedText }) => {
   const handleSave = (updatedObject) => {
     setExtractedTexts(updatedObject); // set updated data from modal
   };
+
+  const handleDownloadPDF = () => {
+    const input = document.getElementById('templateDiv'); // Template wrapper div id
+    
+    html2canvas(input, { scale: 2 }).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+  
+      const pdf = new jsPDF('p', 'mm', 'a4'); // portrait mode
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+  
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      pdf.save('resume.pdf'); // File name
+    });
+  };
+  
 
   return (
     <>
@@ -239,6 +259,7 @@ const Uploadtemplate = ({ extractedText }) => {
             edit
           </button>
           <button
+          onClick={handleDownloadPDF}
             className="bg-r-info text-white py-2 px-6 rounded-full hover:text-r-text hover:bg-r-accent transition"
           >
             download pdf
