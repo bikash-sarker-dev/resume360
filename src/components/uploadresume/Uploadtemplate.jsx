@@ -14,7 +14,37 @@ const Uploadtemplate = ({ extractedText }) => {
     setExtractedTexts(updatedObject);
   };
 
- 
+  const generatePDFDocument = (texts) => (
+    <Document>
+      <Page size="A4" style={styles.page}>
+        {/* Name and Contact Info */}
+        <View style={styles.section}>
+          <Text style={styles.title}>{texts.name || "Your Name"}</Text>
+          <Text>{texts.title || "Your Title"}</Text>
+          <Text>Email: {texts.email || "example@mail.com"}</Text>
+          <Text>Location: {texts.location}</Text>
+          <Text>Number: {texts.number}</Text>
+          <Text>Portfolio: {texts.portfolio}</Text>
+          <Text>LinkedIn: {texts.linkedin}</Text>
+        </View>
+  
+        {/* Summary */}
+        
+  
+        {/* Skills */}
+        
+  
+        {/* Education */}
+        
+  
+        {/* Projects */}
+        
+  
+        {/* Languages */}
+        
+      </Page>
+    </Document>
+  );
 
   const styles = StyleSheet.create({
     page: {
