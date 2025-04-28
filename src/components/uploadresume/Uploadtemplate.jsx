@@ -92,7 +92,31 @@ const Uploadtemplate = ({ extractedText }) => {
         </View>
   
         {/* Projects */}
-        
+        {texts.projects?.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.heading}>PROJECTS</Text>
+            {texts.projects.map((proj, index) => (
+              <View key={index}>
+                {proj.title && <Text style={styles.paragraph}><Text style={{ fontWeight: "bold" }}>Title: </Text>{proj.title}</Text>}
+                {proj.overview && <Text style={styles.paragraph}><Text style={{ fontWeight: "bold" }}>Overview: </Text>{proj.overview}</Text>}
+                {proj.features?.length > 0 && (
+                  <View style={styles.list}>
+                    <Text style={styles.paragraph}><Text style={{ fontWeight: "bold" }}>Features: </Text></Text>
+                    {proj.features.map((feat, i) => (
+                      <Text key={i} style={styles.listItem}>{feat}</Text>
+                    ))}
+                  </View>
+                )}
+                {proj.technologies?.length > 0 && (
+                  <Text style={styles.paragraph}>
+                    <Text style={{ fontWeight: "bold" }}>Technologies: </Text>
+                    {proj.technologies.join(", ")}
+                  </Text>
+                )}
+              </View>
+            ))}
+          </View>
+        )}
   
         {/* Languages */}
         
