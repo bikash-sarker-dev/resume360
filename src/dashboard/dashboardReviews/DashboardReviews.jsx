@@ -1,18 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
+import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 export default function DashboardReviews() {
   const axiosPublic = useAxiosPublic();
   const [reviews, setReviews] = useState([]);
+  const [reviewTrue, setReviewsTrue] = useState(false);
   useEffect(() => {
     async function reviewFun() {
       const response = await axiosPublic.get(`/reviews/all`);
       setReviews(response.data.result);
     }
     reviewFun();
-  }, []);
+  }, [reviewTrue]);
   console.log(reviews);
+  const handleDeleteReview = (review) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#588568",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosPublic.delete(`/reviews/${review._id}`);
+        console.log(res.data);
+        setReviewsTrue(!reviewTrue);
+        Swal.fire({
+          title: "Deleted!",
+          text: res.data.message,
+          icon: "success",
+          confirmButtonColor: "#588568",
+        });
+      }
+    });
+  };
   return (
     <div className="mx-auto w-11/12 p-4">
       <div className="mb-4"></div>
@@ -58,7 +83,7 @@ export default function DashboardReviews() {
                   </span>
                 </td>
                 <td>
-                  <button>
+                  <button onClick={() => handleDeleteReview(testimonial)}>
                     <RiDeleteBinLine className="text-2xl text-red-500 cursor-pointer" />
                   </button>
                 </td>
