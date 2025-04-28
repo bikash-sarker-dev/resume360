@@ -90,7 +90,8 @@ const Sidebar = () => {
       {/* Sidebar for all screen sizes */}
       <div className="drawer-side lg:block">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <aside className="w-64 bg-r-primary min-h-screen p-4 space-y-6">
+        <aside className="w-64 bg-r-primary min-h-screen p-4 space-y-6  ">
+        {/* <aside className="w-64 bg-r-primary h-screen p-4 space-y-6 sticky top-0 overflow-y-auto  "> */}
           <div className="text-center">
             <h2 className="text-3xl font-bold text-r-text">Resume360</h2>
           </div>
