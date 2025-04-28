@@ -29,7 +29,12 @@ const Uploadtemplate = ({ extractedText }) => {
         </View>
   
         {/* Summary */}
-        
+        <View style={styles.section}>
+          <Text style={styles.heading}>SUMMARY</Text>
+          <Text style={styles.paragraph}>
+            {texts.summary || texts.objective || "Write a brief personal summary here..."}
+          </Text>
+        </View>
   
         {/* Skills */}
         
