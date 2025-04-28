@@ -8,7 +8,7 @@ export const CustomTemplate1 = () => {
     achievements);
     const {
       personalInfo: { fullName, jobTitle, phoneNumber, email, address,summary },
-      education: { institution, degree, fieldOfStudy, additionalInfo },
+      education: { institution, degree, fieldOfStudy, additionalInfo , startDate,endDate},
       experience: { companyName, position, duration, location, description },
       experience2: { companyName2, position2, duration2, location2, description2 },
       achievements: { achievementTitle, date, organization, description: achievementDescription },
@@ -27,13 +27,13 @@ export const CustomTemplate1 = () => {
           <i className="fa-solid fa-phone mr-2"></i>{phoneNumber || "+8801523892111"}
         </p>
         <div className="text-2xl">
-          <a target="_blank" href="https://www.linkedin.com/in/sadia-afrin-597515301/">
+          <a target="_blank" href="">
             <i className="fa-brands fa-linkedin mr-10"></i>
           </a>
-          <a target="_blank" href="https://github.com/Sadia0920">
+          <a target="_blank" href="">
             <i className="fa-brands fa-github mr-10"></i>
           </a>
-          <a target="_blank" href="https://www.facebook.com/sadia.afrin.khan.52">
+          <a target="_blank" href="">
             <i className="fa-brands fa-square-facebook"></i>
           </a>
         </div>
