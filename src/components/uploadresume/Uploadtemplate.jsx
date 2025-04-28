@@ -37,7 +37,53 @@ const Uploadtemplate = ({ extractedText }) => {
         </View>
   
         {/* Skills */}
-        
+        <View style={styles.section}>
+          <Text style={styles.heading}>SKILLS</Text>
+          <Text style={styles.paragraph}>
+            <Text style={{ fontWeight: "bold" }}>Front-End: </Text>
+            {texts?.skills?.frontend?.join(", ") || "Add front-end skills..."}
+          </Text>
+          <Text style={styles.paragraph}>
+            <Text style={{ fontWeight: "bold" }}>Back-End: </Text>
+            {texts?.skills?.backend?.join(", ") || "Add back-end skills..."}
+          </Text>
+          {texts?.skills?.comfortable?.length > 0 && (
+            <Text style={styles.paragraph}>
+              <Text style={{ fontWeight: "bold" }}>Comfortable: </Text>
+              {texts.skills.comfortable.join(", ") || "Add comfortable skills..."}
+            </Text>
+          )}
+          {texts?.skills?.experience?.length > 0 && (
+            <Text style={styles.paragraph}>
+              <Text style={{ fontWeight: "bold" }}>Experience: </Text>
+              {texts.skills.experience.join(", ") || "Add experienced skills..."}
+            </Text>
+          )}
+          {texts?.skills?.familiar?.length > 0 && (
+            <Text style={styles.paragraph}>
+              <Text style={{ fontWeight: "bold" }}>Familiar: </Text>
+              {texts.skills.familiar.join(", ") || "Add familiar skills..."}
+            </Text>
+          )}
+          {texts?.skills?.softSkills?.length > 0 && (
+            <Text style={styles.paragraph}>
+              <Text style={{ fontWeight: "bold" }}>Soft Skills: </Text>
+              {texts.skills.softSkills.join(", ") || "Add soft skills..."}
+            </Text>
+          )}
+          {texts?.skills?.tools?.length > 0 && (
+            <Text style={styles.paragraph}>
+              <Text style={{ fontWeight: "bold" }}>Tools: </Text>
+              {texts.skills.tools.join(", ") || "Add tools..."}
+            </Text>
+          )}
+          {texts?.skills?.others?.length > 0 && (
+            <Text style={styles.paragraph}>
+              <Text style={{ fontWeight: "bold" }}>Others: </Text>
+              {texts.skills.others.join(", ") || "Add other skills..."}
+            </Text>
+          )}
+        </View>
   
         {/* Education */}
         
