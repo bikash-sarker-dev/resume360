@@ -86,7 +86,10 @@ const Uploadtemplate = ({ extractedText }) => {
         </View>
   
         {/* Education */}
-        
+        <View style={styles.section}>
+          <Text style={styles.heading}>EDUCATION</Text>
+          <Text style={styles.paragraph}>{texts.education || "Add your education background here..."}</Text>
+        </View>
   
         {/* Projects */}
         
