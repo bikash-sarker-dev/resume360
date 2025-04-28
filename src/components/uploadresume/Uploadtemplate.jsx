@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import Modal from "./Modal"; // Assuming you have a modal component
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
+import Modal from "./Modal";
+import { pdf, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 
 
 const Uploadtemplate = ({ extractedText }) => {
@@ -9,35 +8,39 @@ const Uploadtemplate = ({ extractedText }) => {
   const [editingSection, setEditingSection] = useState(null);
   const [extractedTexts, setExtractedTexts] = useState(extractedText);
 
-  const handleEdit = (section) => {
-    setEditingSection(section);
-    setIsModalOpen(true);
-  };
-
+  const input = document.getElementById("templateDiv");
+  console.log(input);
   const handleSave = (updatedObject) => {
-    setExtractedTexts(updatedObject); // set updated data from modal
+    setExtractedTexts(updatedObject);
   };
 
-  const handleDownloadPDF = () => {
-    const input = document.getElementById('templateDiv'); // Template wrapper div id
-    
-    html2canvas(input, { scale: 2 }).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
+ 
+
+ 
   
-      const pdf = new jsPDF('p', 'mm', 'a4'); // portrait mode
-      const imgProps = pdf.getImageProperties(imgData);
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
   
-      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-      pdf.save('resume.pdf'); // File name
-    });
+
+  const downloadPdf = async () => {
+    const blob = await pdf(generatePDFDocument(extractedTexts)).toBlob();
+    const url = URL.createObjectURL(blob);
+  
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
+  
+  
   
 
   return (
     <>
-      <div className="container pt-28 mx-auto bg-white shadow-lg p-16 rounded-lg">
+      <div
+        className="container pt-28 mx-auto bg-white shadow-lg p-16 rounded-lg"
+      >
         {/* Name and Contact Info */}
         <div className="text-center flex justify-between border-b pb-5">
           <div className="text-left">
@@ -52,13 +55,13 @@ const Uploadtemplate = ({ extractedText }) => {
             <h2 className="mb-3 text-2xl font-bold">Contact Info</h2>
             <a href="">Email: {extractedTexts.email || "example@mail.com"}</a>
             <div className="flex gap-4">
-            <a href={extractedTexts.portfolio}>
-              {extractedTexts.portfolio ? "Portfolio " : "add-your-portfolio"}
-            </a>
-            <h2>|</h2>
-            <a href={extractedTexts.linkedin}>
-               {extractedTexts.linkedin ? "linkedin" : "add-your-linkdin"}
-            </a>
+              <a href={extractedTexts.portfolio}>
+                {extractedTexts.portfolio ? "Portfolio " : "add-your-portfolio"}
+              </a>
+              <h2>|</h2>
+              <a href={extractedTexts.linkedin}>
+                {extractedTexts.linkedin ? "linkedin" : "add-your-linkdin"}
+              </a>
             </div>
             <h2>location: {extractedTexts.location}</h2>
             <h2>number: {extractedTexts.number}</h2>
@@ -148,8 +151,6 @@ const Uploadtemplate = ({ extractedText }) => {
                 </p>
               </div>
             )}
-            
-            
           </div>
         </div>
 
@@ -164,81 +165,77 @@ const Uploadtemplate = ({ extractedText }) => {
 
         {/* Projects Section */}
         <div className="mt-2">
-  
+          {extractedTexts.projects?.length > 0 ? (
+            <div className="text-black">
+              <h3 className="text-xl font-bold mb-2">PROJECTS</h3>
+              {extractedTexts.projects.map((proj, index) => (
+                <div key={index} className="mb-1  p-4 ">
+                  {proj.title && (
+                    <h4 className="text-lg font-bold">{proj.title}</h4>
+                  )}
 
-  {extractedTexts.projects?.length > 0 ? (
-    
-    <div className="text-black">
-      <h3 className="text-xl font-bold mb-2">PROJECTS</h3>
-      {extractedTexts.projects.map((proj, index) => (
-        <div key={index} className="mb-1  p-4 ">
-          
-          {proj.title && (
-            <h4 className="text-lg font-bold">{proj.title}</h4>
-          )}
-          
-          <div className="flex flex-wrap gap-4 my-2">
-            {proj.type && (
-              <p>
-                <strong>Type:</strong> {proj.type}
-              </p>
-            )}
-            {proj.clientRepo && (
-              <p>
-                <strong>Client Repo:</strong> {proj.clientRepo}
-              </p>
-            )}
-            {proj.serverRepo && (
-              <p>
-                <strong>Server Repo:</strong> {proj.serverRepo}
-              </p>
-            )}
-            {proj.liveLink && (
-              <p>
-                <strong>Live:</strong> {proj.liveLink}
-              </p>
-            )}
-          </div>
+                  <div className="flex flex-wrap gap-4 my-2">
+                    {proj.type && (
+                      <p>
+                        <strong>Type:</strong> {proj.type}
+                      </p>
+                    )}
+                    {proj.clientRepo && (
+                      <p>
+                        <strong>Client Repo:</strong> {proj.clientRepo}
+                      </p>
+                    )}
+                    {proj.serverRepo && (
+                      <p>
+                        <strong>Server Repo:</strong> {proj.serverRepo}
+                      </p>
+                    )}
+                    {proj.liveLink && (
+                      <p>
+                        <strong>Live:</strong> {proj.liveLink}
+                      </p>
+                    )}
+                  </div>
 
-          {proj.overview && (
-            <p className="mt-2">
-              <strong>Overview:</strong> {proj.overview}
-            </p>
-          )}
+                  {proj.overview && (
+                    <p className="mt-2">
+                      <strong>Overview:</strong> {proj.overview}
+                    </p>
+                  )}
 
-          {proj.features && proj.features.length > 0 && (
-            <>
-              <p className="mt-2 font-semibold">Features:</p>
-              <ul className="list-disc ml-6">
-                {proj.features.map((feat, i) => (
-                  <li key={i}>{feat}</li>
-                ))}
-              </ul>
-            </>
-          )}
+                  {proj.features && proj.features.length > 0 && (
+                    <>
+                      <p className="mt-2 font-semibold">Features:</p>
+                      <ul className="list-disc ml-6">
+                        {proj.features.map((feat, i) => (
+                          <li key={i}>{feat}</li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
 
-          {proj.technologies && proj.technologies.length > 0 && (
-            <p className="mt-2">
-              <strong>Technologies:</strong> {proj.technologies.join(", ")}
-            </p>
+                  {proj.technologies && proj.technologies.length > 0 && (
+                    <p className="mt-2">
+                      <strong>Technologies:</strong>{" "}
+                      {proj.technologies.join(", ")}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            // If no projects found
+            <div className="text-center">
+              <p className="text-gray-500 mb-4">No projects added yet.</p>
+              <button
+                onClick={() => setIsModalOpen(true)} // Modal open for adding project
+                className="bg-green-600 text-white py-2 px-6 rounded hover:bg-green-700 transition"
+              >
+                + Add Project
+              </button>
+            </div>
           )}
         </div>
-      ))}
-    </div>
-  ) : (
-    // If no projects found
-    <div className="text-center">
-      <p className="text-gray-500 mb-4">No projects added yet.</p>
-      <button
-        onClick={() => setIsModalOpen(true)} // Modal open for adding project
-        className="bg-green-600 text-white py-2 px-6 rounded hover:bg-green-700 transition"
-      >
-        + Add Project
-      </button>
-    </div>
-  )}
-</div>
-
 
         {/* Languages Section */}
         <div className="mt-2">
@@ -251,7 +248,10 @@ const Uploadtemplate = ({ extractedText }) => {
         </div>
 
         {/* edit Button */}
-        <div className="text-center space-x-3 mt-6">
+        
+      </div>
+
+      <div className="text-center space-x-3 mt-6">
           <button
             onClick={() => setIsModalOpen(true)}
             className="bg-r-info text-white py-2 px-6 rounded-full hover:text-r-text hover:bg-r-accent transition"
@@ -259,13 +259,17 @@ const Uploadtemplate = ({ extractedText }) => {
             edit
           </button>
           <button
-          onClick={handleDownloadPDF}
             className="bg-r-info text-white py-2 px-6 rounded-full hover:text-r-text hover:bg-r-accent transition"
+            onClick={() => {
+              setIsModalOpen(false);
+              setTimeout(() => {
+                downloadPdf(); 
+              }, 100); 
+            }}
           >
             download pdf
           </button>
         </div>
-      </div>
 
       {/* Modal for editing */}
       <Modal
