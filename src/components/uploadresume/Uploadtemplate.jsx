@@ -119,7 +119,10 @@ const Uploadtemplate = ({ extractedText }) => {
         )}
   
         {/* Languages */}
-        
+        <View style={styles.section}>
+          <Text style={styles.heading}>LANGUAGES</Text>
+          <Text style={styles.paragraph}>{texts.languages || texts.language || "Add your language details..."}</Text>
+        </View>
       </Page>
     </Document>
   );
