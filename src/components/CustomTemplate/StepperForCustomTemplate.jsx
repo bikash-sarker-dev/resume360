@@ -62,6 +62,10 @@ export const StepperForCustomTemplate = () => {
           {allStepsCompleted() ? (
             <React.Fragment>
               <Typography sx={{ mt: 2, mb: 1 }}>All steps completed - you're finished</Typography>
+{/* Download pdf */}
+              <button 
+              className="btn bg-r-secondary text-white">DownLoad PDF
+              </button>
               <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                 <Box sx={{ flex: '1 1 auto' }} />
                 <Button onClick={handleReset}>Reset</Button>

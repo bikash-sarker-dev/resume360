@@ -112,10 +112,10 @@ export const CustomExperienceForm = () => {
   <TextField
     className='w-full'
     required
-    name="companyName"
+    name="companyName2"
     label="Company Name"
     variant="outlined"
-    value={formData.experience2?.companyName || ''}
+    value={formData.experience2?.companyName2 || ''}
     onChange={handleChangeAdd}
     helperText="Enter your company name"
   />
@@ -125,10 +125,10 @@ export const CustomExperienceForm = () => {
   <TextField
     className='w-full'
     required
-    name="position"
+    name="position2"
     label="Job Position"
     variant="outlined"
-    value={formData.experience2?.position || ''}
+    value={formData.experience2?.position2 || ''}
     onChange={handleChangeAdd}
     helperText="Enter your job title or position"
   />
@@ -137,10 +137,10 @@ export const CustomExperienceForm = () => {
 <label>
   <TextField
     className='w-full'
-    name="duration"
+    name="duration2"
     label="Duration"
     variant="outlined"
-    value={formData.experience2?.duration || ''}
+    value={formData.experience2?.duration2 || ''}
     onChange={handleChangeAdd}
     helperText="Example: Jan 2022 - Present"
   />
@@ -149,10 +149,10 @@ export const CustomExperienceForm = () => {
 <label>
   <TextField
     className='w-full'
-    name="location"
+    name="location2"
     label="Location"
     variant="outlined"
-    value={formData.experience2?.location || ''}
+    value={formData.experience2?.location2 || ''}
     onChange={handleChangeAdd}
     helperText="City, Country"
   />
@@ -161,12 +161,12 @@ export const CustomExperienceForm = () => {
 <label className='col-span-2'>
   <TextField
     className='w-full'
-    name="description"
+    name="description2"
     label="Description"
     multiline
     rows={3}
     variant="outlined"
-    value={formData.experience2?.description || ''}
+    value={formData.experience2?.description2 || ''}
     onChange={handleChangeAdd}
     helperText="Describe your responsibilities or achievements"
   />
