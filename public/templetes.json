@@ -1,65 +1,79 @@
 {
-    "images": [
-      {
-        "category": "coverLetter",
-        "url": "https://i.ibb.co.com/XrpkBz9k/CL3.jpg"
-      },
-      {
-        "category": "coverLetter",
-        "url": "https://i.ibb.co.com/TFcGPCM/CL4.jpg"
-      },
-      {
-        "category": "coverLetter",
-        "url": "https://i.ibb.co.com/8L4rKvd7/CL5.jpg"
-      },
-      {
-        "category": "coverLetter",
-        "url": "https://i.ibb.co.com/whjd1DsP/CL1.jpg"
-      },
-      {
-        "category": "coverLetter",
-        "url": "https://i.ibb.co.com/XfX60Hsk/CL2.jpg"
-      },
-      {
-        "category": "CV",
-        "url": "https://i.ibb.co.com/9kwQckj0/CV3.jpg"
-      },
-      {
-        "category": "CV",
-        "url": "https://i.ibb.co.com/hFb9qN8Z/CV4.jpg"
-      },
-      {
-        "category": "CV",
-        "url": "https://i.ibb.co.com/67ss158D/CV5.jpg"
-      },
-      {
-        "category": "CV",
-        "url": "https://i.ibb.co.com/FkSw71LY/CV6.jpg"
-      },
-      {
-        "category": "CV",
-        "url": "https://i.ibb.co.com/8n4hx56X/CV1.jpg"
-      },
-      {
-        "category": "CV",
-        "url": "https://i.ibb.co.com/pBjkNqTV/CV2.jpg"
-      },
-      {
-        "category": "resume",
-        "url": "https://i.ibb.co.com/yc88ZknG/resume2.jpg"
-      },
-      {
-        "category": "resume",
-        "url": "https://i.ibb.co.com/840rZcj5/resume3.jpg"
-      },
-      {
-        "category": "resume",
-        "url": "https://i.ibb.co.com/M0LJGw3/resume4.jpg"
-      },
-      {
-        "category": "resume",
-        "url": "https://i.ibb.co.com/nsFtPGx5/resume1.jpg"
-      }
-    ]
-  }
-  
+  "images": [
+    {
+      "id": "CL3",
+      "category": "coverLetter",
+      "url": "https://i.ibb.co.com/XrpkBz9k/CL3.jpg"
+    },
+    {
+      "id": "CL4",
+      "category": "coverLetter",
+      "url": "https://i.ibb.co.com/TFcGPCM/CL4.jpg"
+    },
+    {
+      "id": "CL5",
+      "category": "coverLetter",
+      "url": "https://i.ibb.co.com/8L4rKvd7/CL5.jpg"
+    },
+    {
+      "id": "CL1",
+      "category": "coverLetter",
+      "url": "https://i.ibb.co.com/whjd1DsP/CL1.jpg"
+    },
+    {
+      "id": "CL2",
+      "category": "coverLetter",
+      "url": "https://i.ibb.co.com/XfX60Hsk/CL2.jpg"
+    },
+    {
+      "id": "CV3",
+      "category": "CV",
+      "url": "https://i.ibb.co.com/9kwQckj0/CV3.jpg"
+    },
+    {
+      "id": "CV4",
+      "category": "CV",
+      "url": "https://i.ibb.co.com/hFb9qN8Z/CV4.jpg"
+    },
+    {
+      "id": "CV5",
+      "category": "CV",
+      "url": "https://i.ibb.co.com/67ss158D/CV5.jpg"
+    },
+    {
+      "id": "CV6",
+      "category": "CV",
+      "url": "https://i.ibb.co.com/FkSw71LY/CV6.jpg"
+    },
+    {
+      "id": "CV1",
+      "category": "CV",
+      "url": "https://i.ibb.co.com/8n4hx56X/CV1.jpg"
+    },
+    {
+      "id": "CV2",
+      "category": "CV",
+      "url": "https://i.ibb.co.com/pBjkNqTV/CV2.jpg"
+    },
+    {
+      "id": "resume2",
+      "category": "resume",
+      "url": "https://i.ibb.co.com/yc88ZknG/resume2.jpg"
+    },
+    {
+      "id": "resume3",
+      "category": "resume",
+      "url": "https://i.ibb.co.com/840rZcj5/resume3.jpg"
+    },
+    {
+      "id": "resume4",
+      "category": "resume",
+      "url": "https://i.ibb.co.com/M0LJGw3/resume4.jpg"
+    },
+    {
+      "id": "resume1",
+      "category": "resume",
+      "url": "https://i.ibb.co.com/nsFtPGx5/resume1.jpg"
+    }
+  ]
+}

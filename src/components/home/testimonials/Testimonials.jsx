@@ -28,6 +28,10 @@ export const Testimonials = () => {
       />
       <div>
         <Swiper
+          style={{
+            "--swiper-navigation-color": "var(--color-r-info)",
+            "--swiper-pagination-color": "var(--color-r-accent)",
+          }}
           slidesPerView={3}
           breakpoints={{
             768: { slidesPerView: 1 },
@@ -57,10 +61,7 @@ export const Testimonials = () => {
                       <div className="w-16 h-16 rounded-full">
                         <img
                           className="h-full w-full object-cover rounded-full"
-                          src={
-                            testimonial.image ||
-                            "https://avatar.iran.liara.run/public/44"
-                          }
+                          src={testimonial.authorImage}
                         />
                       </div>
                       <div className="hidden md:flex  divider divider-horizontal"></div>
@@ -85,7 +86,7 @@ export const Testimonials = () => {
                   </div>
                 </div>
                 <p className="text-center   sm:w-11/12 md:w-10/12 lg:w-9/12 mx-auto mt-6">
-                  {testimonial.message}
+                  {testimonial.review}
                 </p>
               </div>
             </SwiperSlide>

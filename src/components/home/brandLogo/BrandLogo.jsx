@@ -12,7 +12,7 @@ const BrandLogo = () => {
     <div className="bg-r-card py-8">
       <Marquee>
         <div className=" flex space-x-5 ">
-          <div className="max-w-64 border rounded-md p-1  bg-r-background">
+          <div className="max-w-64  border rounded-md p-1  bg-r-background">
             <img src={logo1} alt="brand logo" className="min-h-32" />
           </div>
           <div className="max-w-64 border rounded-md p-1  bg-r-background">
