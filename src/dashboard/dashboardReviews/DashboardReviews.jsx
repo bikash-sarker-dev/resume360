@@ -15,10 +15,10 @@ export default function DashboardReviews() {
       <div className="overflow-x-auto">
         <table className="table w-full border border-gray-300">
           <thead>
-            <tr className="bg-gray-300 text-gray-700">
+            <tr className="bg-r-primary/70 text-[17px] text-r-text">
               <th>#</th>
-              <th>photo</th>
-              <th> User Name</th>
+              <th>Photo</th>
+              <th>User Name</th>
               <th>Email</th>
               <th>Rating</th>
               <th>Action</th>
