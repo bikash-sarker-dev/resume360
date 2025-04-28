@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 export default function DashboardReviews() {
-  const [testimonials, setTestimonials] = useState([]);
+  const axiosPublic = useAxiosPublic();
+  const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch("/testimonials.json")
-      .then((res) => res.json())
-      .then((data) => setTestimonials(data));
+    async function reviewFun() {
+      const response = await axiosPublic.get(`/reviews/all`);
+      setReviews(response.data.result);
+    }
+    reviewFun();
   }, []);
-  // console.log(testimonials)
+  console.log(reviews);
   return (
     <div className="mx-auto w-11/12 p-4">
       <div className="mb-4"></div>
@@ -25,7 +29,7 @@ export default function DashboardReviews() {
             </tr>
           </thead>
           <tbody>
-            {testimonials.map((testimonial, index) => (
+            {reviews.map((testimonial, index) => (
               <tr key={testimonial._id || index} className="hover:bg-gray-200">
                 <td className="font-semibold text-center">{index + 1}</td>
 
@@ -41,10 +45,21 @@ export default function DashboardReviews() {
                 </td>
                 <td>{testimonial.name || "N/A"}</td>
                 <td>{testimonial.email}</td>
-                <td>{testimonial.rating}</td>
+                <td>
+                  <span
+                    className={`  ${
+                      testimonial.rating < 4 && "bg-[#FDD9D7] text-[#BB2626]"
+                    }
+                    ${testimonial.rating > 4 && "bg-[#DBEFDC] text-[#1B5E20]"} 
+                    
+                     px-6 rounded-sm py-2 text-lg font-bold `}
+                  >
+                    {testimonial.rating}
+                  </span>
+                </td>
                 <td>
                   <button>
-                    <RiDeleteBinLine />
+                    <RiDeleteBinLine className="text-2xl text-red-500 cursor-pointer" />
                   </button>
                 </td>
               </tr>
