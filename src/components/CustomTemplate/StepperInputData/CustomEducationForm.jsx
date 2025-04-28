@@ -57,15 +57,42 @@ export const CustomEducationForm = () => {
       <label>
         <TextField
           className='w-full'
-          name="graduationYear"
-          label="Graduation Year"
+          name="cgpa"
+          label="CGPA"
           type="number"
           variant="outlined"
-          value={formData.education?.graduationYear || ''}
+          value={formData.education?.cgpa || ''}
           onChange={handleChange}
           helperText="Enter your graduation year"
         />
       </label>
+
+  <label >
+  <TextField
+          fullWidth
+          required
+          name="startDate"
+          label="Start Date"
+          type="month"
+          value={formData.education?.startDate || ''}
+          onChange={handleChange}
+          InputLabelProps={{ shrink: true }}
+          helperText="Please select start month and year"
+        /></label>
+        
+        <label >
+        <TextField
+          fullWidth
+          name="endDate"
+          label="End Date"
+          type="month"
+          value={formData.education?.endDate || ''}
+          onChange={handleChange}
+          InputLabelProps={{ shrink: true }}
+          helperText="Please select end month and year"
+        />
+        </label>
+     
 
       <label className='col-span-2'>
         <TextField

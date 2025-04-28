@@ -45,6 +45,31 @@ export const CustomAchievementForm = () => {
             helperText="When did you achieve this?"
           />
         </label>
+          <label >
+          <TextField
+                  fullWidth
+                  required
+                  name="startdate"
+                  label="Start Date"
+                  type="month"
+                  value={formData.achievements?.startdate || ''}
+                  onChange={handleChange}
+                  InputLabelProps={{ shrink: true }}
+                  helperText="Please select start month and year"
+                /></label>
+                
+                <label >
+                <TextField
+                  fullWidth
+                  name="enddate"
+                  label="End Date"
+                  type="month"
+                  value={formData.achievements?.enddate || ''}
+                  onChange={handleChange}
+                  InputLabelProps={{ shrink: true }}
+                  helperText="Please select end month and year"
+                />
+                </label>
 
         <label>
           <TextField
