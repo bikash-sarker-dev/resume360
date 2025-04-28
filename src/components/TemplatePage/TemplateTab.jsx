@@ -6,10 +6,10 @@ export const TemplateTab = ({ title, templates }) => {
     <div  className="grid  grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4  pt-4 ">
       {templates.map((template, idx) => (
        <Link
-       className="absoloute"
+       className="relative"
        to={`customtemplate/${template.id}`}>
         <img key={idx} src={template.url} alt="" />
-        <button className="bg-r-accent btn">Customize</button>
+        <button className="bg-r-accent btn absolute ">Customize</button>
        </Link>
       ))}
     </div>
