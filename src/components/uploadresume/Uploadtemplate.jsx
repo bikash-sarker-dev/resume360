@@ -16,7 +16,33 @@ const Uploadtemplate = ({ extractedText }) => {
 
  
 
- 
+  const styles = StyleSheet.create({
+    page: {
+      padding: 30,
+    },
+    section: {
+      marginBottom: 20,
+    },
+    title: {
+      fontSize: 24,
+      fontWeight: "bold",
+      marginBottom: 10,
+    },
+    heading: {
+      fontSize: 18,
+      fontWeight: "bold",
+      marginTop: 10,
+    },
+    paragraph: {
+      fontSize: 12,
+    },
+    list: {
+      marginLeft: 20,
+    },
+    listItem: {
+      fontSize: 12,
+    },
+  });
   
   
 
