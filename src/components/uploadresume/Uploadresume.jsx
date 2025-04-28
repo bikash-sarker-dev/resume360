@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import WebViewer from "@pdftron/webviewer";
 import Uploadtemplate from "./Uploadtemplate";
+import Language from "../resume/language/Language";
 
 const Uploadresume = () => {
   const viewerRef = useRef(null);
@@ -203,8 +204,8 @@ const Uploadresume = () => {
               title = titleMatch ? titleMatch[1].trim() : "Untitled Project";
               type = typeMatch ? typeMatch[1].trim() : "";
               if (githubMatch) {
-                clientRepo = githubMatch[1].includes("Client") ? "Yes" : "No";
-                serverRepo = githubMatch[1].includes("Server") ? "Yes" : "No";
+                clientRepo = githubMatch[1].includes("Client") ;
+                serverRepo = githubMatch[1].includes("Server") ;
               }
             } else if (/^overview\s*:/i.test(cleanLine)) {
               overview = cleanLine.replace(/^overview\s*:\s*/i, "").trim();
@@ -229,8 +230,8 @@ const Uploadresume = () => {
             overview,
             features,
             technologies,
-            clientRepo,
-            serverRepo,
+            clientRepo: "",
+            serverRepo:"",
             liveLink: ""
           });
         });
@@ -349,6 +350,9 @@ const Uploadresume = () => {
       email,
       number,
     location,
+    
+    language: sections.languages || sections.language,
+    summary: sections.objective || sections.summary,
       ...sections,
       skills: skillData,
       projects: parseProjects(projectsText),
