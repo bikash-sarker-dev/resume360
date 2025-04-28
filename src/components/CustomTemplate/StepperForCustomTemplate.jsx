@@ -20,12 +20,12 @@ const steps = [
   "Achievements & References",
 ];
 
-export const StepperForCustomTemplate = () => {
+export const StepperForCustomTemplate = ({pageId}) => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
  const {formData}=useFormData()
  
-
+console.log(pageId);
   const totalSteps = () => steps.length;
   const completedSteps = () => Object.keys(completed).length;
   const isLastStep = () => activeStep === totalSteps() - 1;
@@ -76,14 +76,8 @@ export const StepperForCustomTemplate = () => {
 
 
             {/* Download pdf */}
-            {/* <PDFDownloadLink
-              document={<CustomTemplate2PDF formData={formData} />}
-              fileName="custom-template.pdf"
-              className="btn bg-r-secondary text-white py-2 px-4 rounded"
-            >
-              {({ loading }) => (loading ? 'Preparing PDF...' : 'Download PDF')}
-            </PDFDownloadLink> */}
-            <DownloadBTN></DownloadBTN>
+       
+            <DownloadBTN pageId={pageId}></DownloadBTN>
 
            
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
