@@ -49,15 +49,20 @@ export const StepperForCustomTemplate = () => {
   return (
  
       <Box sx={{ width: '100%' }}>
-        <Stepper nonLinear activeStep={activeStep}>
+
+
+        {/* <Stepper nonLinear activeStep={activeStep}>
           {steps.map((label, index) => (
             <Step key={label} completed={completed[index]}>
-              <StepButton color="inherit" onClick={handleStep(index)}>
+              <StepButton  color="inherit" onClick={handleStep(index)}>
                 {label}
               </StepButton>
             </Step>
           ))}
-        </Stepper>
+        </Stepper> */}
+
+
+
         <div>
           {allStepsCompleted() ? (
             <React.Fragment>
@@ -68,12 +73,17 @@ export const StepperForCustomTemplate = () => {
               </button>
               <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                 <Box sx={{ flex: '1 1 auto' }} />
-                <Button onClick={handleReset}>Reset</Button>
+                <Button sx={{
+    backgroundColor:` #588568`,
+    color: '#ffff',
+  }}
+   onClick={handleReset}>Reset</Button>
               </Box>
             </React.Fragment>
           ) : (
             <React.Fragment>
-              <Typography sx={{ mt: 2, mb: 1, py: 1 }}>
+              <Typography sx={{color:"#ffff",backgroundColor:` #588568`, mt: 2, mb: 1, p: 1,
+                backgroundColor:'#344e41',width:'fit-content' }}>
                 Step {activeStep + 1}
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
@@ -81,7 +91,9 @@ export const StepperForCustomTemplate = () => {
                   Back
                 </Button>
                 <Box sx={{ flex: '1 1 auto' }} />
-                <Button onClick={handleNext} sx={{ mr: 1 }}>
+                <Button  onClick={handleNext} sx={{ mr: 1,
+                  backgroundColor:` #588568`,color: '#ffff',
+                 }}>
                   Next
                 </Button>
                 {activeStep !== steps.length &&
@@ -90,7 +102,7 @@ export const StepperForCustomTemplate = () => {
                       Step {activeStep + 1} already completed
                     </Typography>
                   ) : (
-                    <Button sx={{ color: 'black' }} onClick={handleComplete}>
+                    <Button sx={{ color: 'black',border:'2px solid #588568' }} onClick={handleComplete}>
                       {completedSteps() === totalSteps() - 1 ? 'Finish' : 'Complete Step'}
                     </Button>
                   ))}
