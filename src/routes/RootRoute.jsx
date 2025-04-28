@@ -47,6 +47,7 @@ import ContactPage from "./../pages/ContactPage";
 import FeaturesPage from "./../pages/FeaturesPage";
 import TermsAndConditionsPage from "./../pages/TermsAndConditionsPage";
 import GiveReview from "./../pages/UserDashboardPage/GiveReview";
+import { CustomTemplate } from "../pages/CustomTemplate";
 
 const RootRoute = () => {
   return (
@@ -76,6 +77,11 @@ const RootRoute = () => {
           <Route path="userlink" element={<UserLink />} />
         </Route>
         <Route path="/templates" element={<TemplatesPage />} />
+        <Route path="/templates/customtemplate/:id" element={<CustomTemplate/>
+
+       } />
+
+
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/generate" element={<Generate />} />
         <Route path="/resume" element={<ResumeGenerate />} />

@@ -84,7 +84,9 @@ const StepperComponents = () => {
                 <StepLabel
                   {...labelProps}
                   sx={{
-                    color: activeStep === index ? 'r-primary' : 'text.secondary',
+                    color: activeStep === index ? 
+                    'r-primary' : 'text.secondary',
+                    
                   }}
                 >
                   {label}
