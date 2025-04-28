@@ -4,27 +4,36 @@ import { useFormData } from "../FormDataProvider";
 export const CustomTemplate1 = () => {
   const { formData, updateFormData } = useFormData();
   console.log(formData);
+  console.log(formData.
+    achievements);
+    const {
+      personalInfo: { fullName, jobTitle, phoneNumber, email, address,summary },
+      education: { institution, degree, fieldOfStudy, additionalInfo },
+      experience: { companyName, position, duration, location, description },
+      achievements: { achievementTitle, date, organization, description: achievementDescription },
+    } = formData;
+    
 
   return (
     <div>
       {" "}
       <div className="container pb-8  lg:pb-12">
         <div className="bg-white p-16">
-          <h1 className="text-4xl font-bold mb-3">DANIEL GALLEGO 4</h1>
-          <h2 className="text-2xl font-bold mb-2">UX DESIGNER</h2>
+          <h1 className="text-4xl font-bold mb-3">{ fullName || "DANIEL GALLEGO 4"}</h1>
+          <h2 className="text-2xl font-bold mb-2">{jobTitle || "UX DESIGNER"}</h2>
           <p className="mb-2">
-            <i className="fa-solid fa-location-dot mr-2"></i>Dhaka, Bangladesh |{" "}
-            <i className="fa-solid fa-envelope mr-2"></i>denial123@gmail.com |{" "}
-            <i className="fa-solid fa-phone mr-2"></i>+8801523892111
+            <i className="fa-solid fa-location-dot mr-2"></i>{address || "Dhaka, Bangladesh"} |{" "}
+            <i className="fa-solid fa-envelope mr-2"></i>{email || "denial123@gmail.com"}|{" "}
+            <i className="fa-solid fa-phone mr-2"></i>{phoneNumber || "+8801523892111"}
           </p>
           <div className="text-2xl">
-            <a href="https://www.linkedin.com/in/sadia-afrin-597515301/">
+            <a target="_blank" href="https://www.linkedin.com/in/sadia-afrin-597515301/">
               <i className="fa-brands fa-linkedin mr-10"></i>
             </a>
-            <a href="https://github.com/Sadia0920">
+            <a target="_blank" href="https://github.com/Sadia0920">
               <i className="fa-brands fa-github mr-10"></i>
             </a>
-            <a href="https://www.facebook.com/sadia.afrin.khan.52">
+            <a target="_blank"  href="https://www.facebook.com/sadia.afrin.khan.52">
               <i className="fa-brands fa-square-facebook"></i>
             </a>
           </div>
@@ -35,13 +44,13 @@ export const CustomTemplate1 = () => {
               SUMMARY
             </h3>
             <p>
-              UX Designer with a focus on devivering impactful results, eager to
+            { summary || ` UX Designer with a focus on devivering impactful results, eager to
               trackle dynamic challenges and apply creativity to craft intutive
               user experiences. Demonstrated profiency in project management,
               user-centric problem-solving, and seamless collaboration across
               teams skilled in leveraging state-of-the-art tools and
               methosologies to streaming processes and elevate user
-              satisfaction.
+              satisfaction.`}
             </p>
           </section>
 

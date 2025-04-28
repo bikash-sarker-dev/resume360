@@ -12,6 +12,7 @@ export const FormDataProvider = ({ children }) => {
     personalInfo: {},
     education: [],
     experience: [],
+    experience2:[],
     achievements: [],
   });
 

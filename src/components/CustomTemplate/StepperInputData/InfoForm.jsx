@@ -1,10 +1,18 @@
 
-import { TextField } from '@mui/material'
+import { Autocomplete, MenuItem, TextField } from '@mui/material'
 import React from 'react'
 import { useFormData } from '../FormDataProvider';
 
 export const InfoForm = () => {
   const { formData, updateFormData } = useFormData();
+  const options = [
+    { label: 'Male', year: 1994 },
+    { label: 'Female', year: 1972 },
+    { label: 'Others', year: 2008 }
+   
+    // ...and so on
+  ];
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -106,7 +114,7 @@ export const InfoForm = () => {
     />
   </label>
 
-  <label>
+  <label>  
     <TextField
       className='w-full'
       name="gender"
@@ -116,17 +124,19 @@ export const InfoForm = () => {
       onChange={handleChange}
       helperText="Specify your gender"
     />
+   
   </label>
+
 
   <label className='col-span-2'>
     <TextField
       className='w-full' 
-      name="aboutMe"
-      label="About Me"
+      name="summary"
+      label="Summary"
       multiline
       rows={4}
       variant="outlined"
-      value={formData.aboutMe}
+      value={formData.summary}
       onChange={handleChange}
       helperText="Write a short bio"
     />
