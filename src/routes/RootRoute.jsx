@@ -36,8 +36,10 @@ import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
 import CoverLetterManager from "../components/cover-letter/cover-letter-manager/CoverLetterManager";
 import Resume from "../components/resume/Resume";
 import ResumeManager from "../components/resume/resume-manager/ResumeManager";
+import Uploadresume from "../components/uploadresume/Uploadresume";
 import CoverLetter from "../pages/CoverLetter";
 import CoverLetterGenerate from "../pages/CoverLetterGenerate";
+import { CustomTemplate } from "../pages/CustomTemplate";
 import Generate from "../pages/Generate";
 import { Pricing } from "../pages/Pricing";
 import SocialMiddlewarePage from "../pages/SocialMiddlewarePage";
@@ -47,8 +49,6 @@ import ContactPage from "./../pages/ContactPage";
 import FeaturesPage from "./../pages/FeaturesPage";
 import TermsAndConditionsPage from "./../pages/TermsAndConditionsPage";
 import GiveReview from "./../pages/UserDashboardPage/GiveReview";
-import Uploadresume from "../components/uploadresume/Uploadresume";
-import { CustomTemplate } from "../pages/CustomTemplate";
 
 const RootRoute = () => {
   return (
