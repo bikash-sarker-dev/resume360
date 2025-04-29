@@ -38,7 +38,8 @@
     },
     {
       "id": "CV5",
-      "category": "CV",
+      "category": "resume",
+      "custom":true,
       "url": "https://i.ibb.co.com/67ss158D/CV5.jpg"
     },
     {
