@@ -26,6 +26,7 @@ export const CustomExperienceForm = () => {
 
   return (
     <div>
+      <h1 className='my-8 bg-r-accent btn'>Experience Section</h1>
       <div className='grid grid-cols-2 gap-x-2 gap-y-6 px-1'>
 
         <label>
@@ -90,7 +91,59 @@ export const CustomExperienceForm = () => {
             onChange={handleChange}
             helperText="Describe your responsibilities or achievements"
           />
-        </label>
+        </label> 
+        {/* Project */}
+        <label>
+    <TextField
+      className="w-full"
+      name="projectTitle"
+      label="Project Title"
+      variant="outlined"
+      value={formData.experience?.projectTitle || ''}
+      onChange={handleChange}
+      helperText="Enter the title of the project"
+    />
+  </label>
+
+  <label>
+    <TextField
+      className="w-full"
+      name="projectTools"
+      label="Tools Used"
+      variant="outlined"
+      value={formData.experience?.projectTools || ''}
+      onChange={handleChange}
+      helperText="Example: React, Node.js, MongoDB"
+    />
+  </label>
+
+  <label className="col-span-2">
+    <TextField
+      className="w-full"
+      name="projectDescription"
+      label="Project Description"
+      multiline
+      rows={3}
+      variant="outlined"
+      value={formData.experience?.projectDescription || ''}
+      onChange={handleChange}
+      helperText="Briefly describe your project"
+    />
+  </label>
+
+  <label>
+    <TextField
+      className="w-full"
+      name="projectGithubLink"
+      label="GitHub Link"
+      variant="outlined"
+      value={formData.experience?.projectGithubLink || ''}
+      onChange={handleChange}
+      helperText="Link to the project repository"
+    />
+  </label>
+
+     
 
       </div>
      <div className='mt-5'>
@@ -171,6 +224,58 @@ export const CustomExperienceForm = () => {
     helperText="Describe your responsibilities or achievements"
   />
 </label>
+
+<label>
+        <TextField
+          className="w-full"
+          name="projectTitle2"
+          label="Project Title"
+          variant="outlined"
+          value={formData.experience2?.projectTitle2 || ''}
+          onChange={handleChangeAdd}
+          helperText="Enter the title of the project"
+        />
+      </label>
+
+      <label>
+        <TextField
+          className="w-full"
+          name="projectTools2"
+          label="Tools Used"
+          variant="outlined"
+          value={formData.experience2?.projectTools2 || ''}
+          onChange={handleChangeAdd}
+          helperText="Example: React, Node.js, MongoDB"
+        />
+      </label>
+
+      <label className="col-span-2">
+        <TextField
+          className="w-full"
+          name="projectDescription2"
+          label="Project Description"
+          multiline
+          rows={3}
+          variant="outlined"
+          value={formData.experience2?.projectDescription2 || ''}
+          onChange={handleChangeAdd}
+          helperText="Briefly describe your project"
+        />
+      </label>
+
+      <label>
+        <TextField
+          className="w-full"
+          name="projectGithubLink2"
+          label="GitHub Link"
+          variant="outlined"
+          value={formData.experience2?.projectGithubLink2 || ''}
+          onChange={handleChangeAdd}
+          helperText="Link to the project repository"
+        />
+      </label>
+
+
 
 </div>
         </AccordionDetails>
