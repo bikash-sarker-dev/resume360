@@ -229,13 +229,13 @@ const DashboardProfile = () => {
     <div className="bg-r-background mb-20 pt-0 sm:pt-5 min-h-screen backdrop-blur-lg">
       {loading && (
         <div className="text-center py-4">
-          <span className="loading loading-spinner loading-md text-blue-600"></span>
+          <span className="loading loading-spinner loading-md text-r-accent"></span>
           <p>Loading...</p>
         </div>
       )}
 
       <div className="w-11/12 container mx-auto p-6 shadow-xl rounded-xl grid md:grid-cols-3 gap-6 bg-gradient-to-br from-r-hover via-r-card to-r-hover text-r-text">
-        <div className="pt-4 rounded-xl bg-opacity-30 sm:min-w-50 backdrop-blur-xl shadow-lg border border-primary/50 relative overflow-hidden">
+        <div className="pt-4 rounded-xl bg-opacity-30 sm:min-w-50 backdrop-blur-xl shadow-lg border border-[#588568] relative overflow-hidden">
         <div className="flex items-center justify-center">
   {loading ? (
     <p>Loading...</p>
@@ -249,7 +249,7 @@ const DashboardProfile = () => {
       />
       <label htmlFor="upload-image">
         <div
-          className={`absolute bottom-8 sm:bottom-6 sm:right-6 md:bottom-2 md:right-2 xl:bottom-6 xl:right-6 right-8 bg-blue-600 text-white p-3 rounded-full cursor-pointer transition-transform ${
+          className={`absolute bottom-8 sm:bottom-6 sm:right-6 md:bottom-2 md:right-2 xl:bottom-6 xl:right-6 right-8 bg-r-primary text-white p-3 rounded-full cursor-pointer transition-transform ${
             loading ? "opacity-50 cursor-not-allowed" : "hover:scale-110"
           }`}
         >
@@ -289,7 +289,7 @@ const DashboardProfile = () => {
         </div>
 
         <div className="md:col-span-2">
-          <div className="flex items-center  justify-between border-b border-primary/50 pb-4">
+          <div className="flex items-center  justify-between border-b border-[#588568] pb-4">
             <div>
               <h2 className="text-3xl font-extrabold text-r-text">
                 {profile?.name || user?.displayName}
@@ -310,7 +310,7 @@ const DashboardProfile = () => {
             </button>
           </div>
 
-          <div className="mt-6 p-6 rounded-xl bg-opacity-30 backdrop-blur-xl border border-primary/50 shadow-lg">
+          <div className="mt-6 p-6 rounded-xl bg-opacity-30 backdrop-blur-xl border border-[#588568] shadow-lg">
             <h3 className="text-lg font-bold text-r-primary">
               Contact Information
             </h3>
@@ -328,7 +328,7 @@ const DashboardProfile = () => {
             </a>
           </div>
 
-          <div className="mt-6 p-6 rounded-xl bg-opacity-30 backdrop-blur-xl border border-primary/50 shadow-lg">
+          <div className="mt-6 p-6 rounded-xl bg-opacity-30 backdrop-blur-xl border border-[#588568] shadow-lg">
             <h3 className="text-lg font-bold text-r-primary">
               Basic Information
             </h3>
@@ -336,7 +336,7 @@ const DashboardProfile = () => {
             <p className="text-r-text">Gender: {profile?.gender}</p>
           </div>
 
-          <div className="mt-6 p-6 rounded-xl bg-opacity-30 backdrop-blur-xl border border-primary/50 shadow-lg">
+          <div className="mt-6 p-6 rounded-xl bg-opacity-30 backdrop-blur-xl border border-[#588568] shadow-lg">
             <h3 className="text-lg font-bold text-r-primary">
               Career Progress
             </h3>

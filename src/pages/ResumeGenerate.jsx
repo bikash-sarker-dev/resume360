@@ -11,9 +11,10 @@ const ResumeGenerate = () => {
         subTitle="Build a free resume that gets you interviewed by employers"
         title="How do you want to start?"
       />
+      
       <div className="flex gap-6 justify-center mt-12 flex-wrap">
         {/* Import Resume */}
-        <div className="bg-white shadow-md hover:shadow-xl text-r-info-card cursor-pointer rounded-xl p-8 w-72">
+        <Link to='/resumeUpload' className="bg-white shadow-md hover:shadow-xl text-r-info-card cursor-pointer rounded-xl p-8 w-72">
           <div className="flex justify-center mb-4 text-r-primary">
             <FaFileImport size="50px" />
           </div>
@@ -21,7 +22,7 @@ const ResumeGenerate = () => {
           <p className="text-sm text-gray-600">
             Upload your existing resume and we’ll auto-fill your information to get started quickly.
           </p>
-        </div>
+        </Link>
 
         {/* Resume List */}
         <Link to="/resume-manager" className="bg-white shadow-md hover:shadow-xl text-r-info-card cursor-pointer rounded-xl p-8 w-72">
