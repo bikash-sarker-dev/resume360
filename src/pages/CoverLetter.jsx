@@ -13,7 +13,7 @@ const CoverLetter = () => {
       />
       <div className="flex gap-6 justify-center mt-12 flex-wrap">
         {/* Import Cover Letter */}
-        <div className="bg-white shadow-md hover:shadow-xl text-r-info-card cursor-pointer rounded-xl p-8 w-72">
+        {/* <div className="bg-white shadow-md hover:shadow-xl text-r-info-card cursor-pointer rounded-xl p-8 w-72">
           <div className="flex justify-center mb-4 text-r-primary">
             <FaFileImport size="50px" />
           </div>
@@ -21,7 +21,7 @@ const CoverLetter = () => {
           <p className="text-sm text-gray-600">
             Upload your existing cover letter and we’ll auto-fill your information to get started quickly.
           </p>
-        </div>
+        </div> */}
 
         {/* Cover Letter List */}
         <Link to="/cover-letter-manager" className="bg-white shadow-md hover:shadow-xl text-r-info-card cursor-pointer rounded-xl p-8 w-72">
