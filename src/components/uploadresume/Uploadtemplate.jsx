@@ -1,18 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "./Modal";
 import { pdf, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import axios from "axios";
+import { useParams } from "react-router";
 
 
-const Uploadtemplate = ({ extractedText }) => {
+const Uploadtemplate = ({ resumeId  }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingSection, setEditingSection] = useState(null);
-  const [extractedTexts, setExtractedTexts] = useState(extractedText);
+  const [extractedTexts, setExtractedTexts] = useState(null);
+ 
 
-  const input = document.getElementById("templateDiv");
-  console.log(input);
+ 
+
+ 
   const handleSave = (updatedObject) => {
     setExtractedTexts(updatedObject);
   };
+
+  useEffect(() => {
+    const fetchResume = async () => {
+      try {
+        const res = await axios.get(`https://resume360-server.vercel.app/resumeIn/${resumeId}`);
+        console.log("Fetched resume:", res.data);
+        setExtractedTexts(res.data);
+      } catch (err) {
+        console.error("Failed to fetch resume:", err);
+      }
+    };
+
+    if (resumeId) {
+      fetchResume();
+    }
+  }, [resumeId]);
+
+  console.log(extractedTexts)
+
+
 
   const generatePDFDocument = (texts) => (
     <Document>

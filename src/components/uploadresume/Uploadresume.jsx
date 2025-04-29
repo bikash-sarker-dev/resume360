@@ -8,6 +8,7 @@ const Uploadresume = () => {
   const [instance, setInstance] = useState(null);
   const [textContent, setTextContent] = useState({});
   const [pdfUploaded, setPdfUploaded] = useState(false);
+  const [resumeId, setResumeId] = useState(null);
 
   useEffect(() => {
     WebViewer(
@@ -54,7 +55,10 @@ const Uploadresume = () => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("✅ Resume saved successfully:", data);
+        setResumeId(data.result._id);
+         console.log(data.result._id)
+      setPdfUploaded(true);  
+        console.log("✅ Resume saved successfully:", data.result._id);
       } else {
         console.error("❌ Failed to save resume");
       }
@@ -480,7 +484,7 @@ const Uploadresume = () => {
           />
         </div>
       ) : (
-        <Uploadtemplate extractedText={textContent} />
+        <Uploadtemplate  resumeId={resumeId}/>
       )}
 
       <div ref={viewerRef} style={{ display: "none" }} />
