@@ -40,15 +40,24 @@ const Uploadtemplate = ({ resumeId  }) => {
   const generatePDFDocument = (texts) => (
     <Document>
       <Page size="A4" style={styles.page}>
-        <View style={styles.section}>
-          <Text style={styles.title}>{texts.name || "Your Name"}</Text>
-          <Text>{texts.title || "Your Title"}</Text>
-          <Text>Email: {texts.email || "example@mail.com"}</Text>
-          <Text>Location: {texts.location}</Text>
-          <Text>Number: {texts.number}</Text>
-          <Text>Portfolio: {texts.portfolio}</Text>
-          <Text>LinkedIn: {texts.linkedin}</Text>
-        </View>
+      <View style={styles.headerContainer}>
+  {/* Left Side: Name & Title */}
+  <View style={styles.leftColumn}>
+    <Text style={styles.name}>{texts.name || "Your Name"}</Text>
+    <Text style={styles.title}>{texts.title || "Your Title"}</Text>
+  </View>
+
+  {/* Right Side: Contact Info */}
+  <View style={styles.rightColumn}>
+    <Text style={styles.contactHeading}>Contact Info</Text>
+    <Text>Email: {texts.email || "example@mail.com"}</Text>
+    <Text>Location: {texts.location || "Your City"}</Text>
+    <Text>Number: {texts.number || "123-456-7890"}</Text>
+    <Text>Portfolio: {texts.portfolio || "yourportfolio.com"}</Text>
+    <Text>LinkedIn: {texts.linkedin || "linkedin.com/in/yourprofile"}</Text>
+  </View>
+</View>
+
   
         {/* Summary */}
         <View style={styles.section}>
