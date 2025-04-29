@@ -4,12 +4,18 @@ import { useFormData } from "../FormDataProvider";
 export const CustomTemplate1 = () => {
   const { formData, updateFormData } = useFormData();
 
-  
+  console.log(formData);
     const {
       personalInfo: { fullName, jobTitle, phoneNumber, email, address,summary },
       education: { institution, degree, fieldOfStudy, additionalInfo , startDate,endDate},
-      experience: { companyName, position, duration, location, description },
-      experience2: { companyName2, position2, duration2, location2, description2 },
+      experience: { companyName, position, duration, location, description,
+        projectTitle
+       , projectTools ,projectDescription,projectGithubLink
+       },
+      experience2: { companyName2, position2, duration2, location2, description2,
+        projectTitle2
+        , projectTools2 ,projectDescription2,projectGithubLink2
+       },
       achievements: { achievementTitle, date, organization, description: achievementDescription },
     } = formData;
     
@@ -40,7 +46,7 @@ export const CustomTemplate1 = () => {
         {/* Summary Section */}
         <section className="mt-6">
           <h3 className="text-lg font-bold bg-gray-300 px-6 py-2 rounded-full mb-2">SUMMARY</h3>
-          <p>
+          <p className="break-words overflow-hidden">
             {summary || `UX Designer with a focus on delivering impactful results, eager to track dynamic challenges and apply creativity to craft intuitive user experiences. Demonstrated proficiency in project management, user-centric problem-solving, and seamless collaboration across teams skilled in leveraging state-of-the-art tools and methodologies to streamline processes and elevate user satisfaction.`}
           </p>
         </section>
@@ -75,7 +81,7 @@ export const CustomTemplate1 = () => {
             <p>{formData.experience.companyName || 'Instant Chartz App, Morcelle Program'}</p>
             <p>{formData.experience.duration || 'Jan 2023 - Present'}</p>
           </div>
-          <ul className="list-inside list-disc">
+          <ul className="list-inside list-disc break-words overflow-hidden">
             <li>{formData.experience.description || 'Led development of an advanced automation system, achieving a 15% increase in operational efficiency.'}</li>
           </ul>
   
@@ -86,7 +92,7 @@ export const CustomTemplate1 = () => {
                 <p>{formData.experience2.companyName2 || 'System UX Engineer, XarrowAI Industries'}</p>
                 <p>{formData.experience2.duration2 || 'Feb 2021 - Dec 2022'}</p>
               </div>
-              <ul className="list-inside list-disc">
+              <ul className="list-inside list-disc break-words overflow-hidden">
                 <li>{formData.experience2.description2 || 'Designed and optimized a robotic control system, realizing a 12% performance improvement.'}</li>
               </ul>
             </>
@@ -97,57 +103,37 @@ export const CustomTemplate1 = () => {
         <section className="mt-6">
           <h3 className="text-lg font-bold bg-gray-300 px-6 py-2 rounded-full mb-2">PROJECTS</h3>
           {/* Project - 1 */}
-          <p className="font-bold">1. SmartBudget – Personal Finance Tracker</p>
-          <div className="flex">
-            <p className="font-bold mr-2">Role: </p>
-            <p>UX Designer</p>
-          </div>
+          <p className="font-bold">{ projectTitle||`1. SmartBudget – Personal Finance Tracker`}</p>
+          
           <div className="flex">
             <p className="font-bold mr-2">Tools: </p>
-            <p>Figma, Adobe XD, Sketch, Usability Testing</p>
+            <p>{ projectTools|| `Figma, Adobe XD, Sketch, Usability Testing`}</p>
           </div>
           <p className="font-bold">Key Contributions:</p>
-          <ul className="list-inside list-disc">
-            <li>Designed wireframes and interactive prototypes.</li>
-            <li>Conducted usability testing and improved designs based on feedback.</li>
+          <ul className="list-inside list-disc break-words overflow-hidden">
+          <li>{projectDescription || 'Designed wireframes and interactive prototypes.'}</li>
           </ul>
           <div className="grid grid-cols-3">
-            <a className="underline text-blue-500" href="http://localhost:5173/templateOne">
-              Live Link
-            </a>
-            <a className="underline text-blue-500" href="http://localhost:5173/templateOne">
-              Client Github Link
-            </a>
-            <a className="underline text-blue-500" href="http://localhost:5173/templateOne">
-              Server Github Link
-            </a>
+          
+          <a className="underline text-blue-500" href={projectGithubLink || "http://localhost:5173/templateOne"} target="_blank" rel="noopener noreferrer">
+      GitHub Link
+    </a>
           </div>
   
           {/* Project - 2 */}
-          <p className="font-bold mt-4">2. Task Management App</p>
-          <div className="flex">
-            <p className="font-bold mr-2">Role: </p>
-            <p>UX Designer</p>
-          </div>
+          <p className="font-bold mt-4">{projectTitle || `2. Task Management App`}</p>
+          
           <div className="flex">
             <p className="font-bold mr-2">Tools: </p>
-            <p>Figma, Adobe XD, User Interviews, Wireframing</p>
+            <p>{projectTools2 || `Figma, Adobe XD, User Interviews, Wireframing`}</p>
           </div>
           <p className="font-bold">Key Contributions:</p>
           <ul className="list-inside list-disc">
-            <li>Conducted user research through interviews and surveys.</li>
+          <li>{projectDescription2 || 'Conducted user research through interviews and surveys.'}</li>
             <li>Created user personas and user flows for seamless navigation.</li>
           </ul>
           <div className="grid grid-cols-3">
-            <a className="underline text-blue-500" href="http://localhost:5173/templateOne">
-              Live Link
-            </a>
-            <a className="underline text-blue-500" href="http://localhost:5173/templateOne">
-              Client Github Link
-            </a>
-            <a className="underline text-blue-500" href="http://localhost:5173/templateOne">
-              Server Github Link
-            </a>
+          <li>{projectDescription2 || 'Conducted user research through interviews and surveys.'}</li>
           </div>
         </section>
   

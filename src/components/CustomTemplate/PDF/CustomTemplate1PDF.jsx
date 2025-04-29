@@ -8,6 +8,23 @@ const styles = StyleSheet.create({
     fontFamily: 'Helvetica',
     lineHeight: 1.6,
   },
+  heading: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  subHeading: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginBottom: 6,
+    color: 'gray',
+  },
+  sectionTitle: {
+    fontSize: 13,
+    fontWeight: 'bold',
+    marginBottom: 4,
+    textDecoration: 'underline',
+  },
   senderInfo: {
     marginBottom: 10,
   },
