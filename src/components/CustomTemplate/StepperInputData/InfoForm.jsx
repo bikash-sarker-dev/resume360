@@ -115,15 +115,20 @@ export const InfoForm = () => {
   </label>
 
   <label>  
-    <TextField
-      className='w-full'
-      name="gender"
-      label="Gender"
-      variant="outlined"
-      value={formData.gender}
-      onChange={handleChange}
-      helperText="Specify your gender"
-    />
+                        <TextField
+                        fullWidth
+                        required
+                        name="gender"
+                        select
+                        label="Gender"
+                        value={formData.gender}
+                        onChange={handleChange}
+                        helperText="Please select your gender"
+                    >
+                        <MenuItem value="Male">Male</MenuItem>
+                        <MenuItem value="Female">Female</MenuItem>
+                        <MenuItem value="Other">Other</MenuItem>
+                        </TextField>
    
   </label>
 
