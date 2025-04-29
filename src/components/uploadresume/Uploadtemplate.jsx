@@ -211,7 +211,7 @@ const Uploadtemplate = ({ resumeId }) => {
       padding: 30,
     },
     section: {
-      marginBottom: 20,
+      marginBottom: 5,
     },
     title: {
       fontSize: 24,
@@ -221,7 +221,7 @@ const Uploadtemplate = ({ resumeId }) => {
     heading: {
       fontSize: 18,
       fontWeight: "bold",
-      marginTop: 10,
+      marginTop: 3,
     },
     paragraph: {
       fontSize: 12,
@@ -257,6 +257,31 @@ const Uploadtemplate = ({ resumeId }) => {
       fontSize: 16,
       fontWeight: "bold",
       marginBottom: 5,
+    },
+    rightColumn: {
+      flex: 1,
+      paddingLeft: 10,
+      flexDirection: 'column', 
+    },
+    contactHeading: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginBottom: 5,
+    },
+    headingText: {
+      fontSize: 18, 
+      fontWeight: 'bold',
+      marginBottom: 5,
+    },
+    link: {
+      color: '#1E90FF',  
+      textDecorationLine: 'underline',
+      marginRight: 15, 
+    },
+    row: {
+      flexDirection: 'row',
+      justifyContent: 'flex-start', 
+      marginTop: 5, 
     },
   });
 
