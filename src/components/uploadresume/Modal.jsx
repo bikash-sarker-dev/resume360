@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa6";
@@ -29,10 +30,23 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
     }
   };
 
-  const handleSubmit = () => {
-    onSave(formData);
-    onClose();
+  const handleSubmit = async () => {
+    try {
+      await axios.put(
+        `https://resume360-server.vercel.app/resumeIn/${formData._id}`,
+        formData
+      );
+      Swal.fire("Success!", "Resume updated successfully.", "success");
+      onSave(formData);
+      onClose();
+    } catch (error) {
+      Swal.fire("Error", "Failed to update resume.", "error");
+      console.error("PUT Error:", error);
+    }
   };
+  
+  
+  
 
   const handleProjectChange = (index, field, value) => {
     setFormData((prev) => {
@@ -318,13 +332,13 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
         <div className="flex justify-end gap-4">
           <button
             onClick={onClose}
-            className="bg-gray-500 text-white px-4 py-2 rounded"
+            className="bg-r-background hover:bg-r-card border-[#588568] border rounded-full text-r-info px-4 py-2 "
           >
             Cancel
           </button>
           <button
             onClick={handleSubmit}
-            className="bg-blue-600 text-white px-4 py-2 rounded"
+            className="bg-r-info text-white py-2 px-6 rounded-full hover:text-r-text hover:bg-r-accent transition"
           >
             Save
           </button>
