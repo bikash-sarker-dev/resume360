@@ -26,16 +26,16 @@ const Footer = () => {
             </h3>
             <ul className="mt-3 grid grid-cols-1  space-y-2">
               <Link to="/">
-                <a className="hover:text-r-info-card cursor-pointer">Home</a>
+                <span className="hover:text-r-info-card cursor-pointer">Home</span>
               </Link>
               <Link to="/features">
-                <a className="hover:text-r-info-card cursor-pointer">Features</a>
+                <span className="hover:text-r-info-card cursor-pointer">Features</span>
               </Link>
               <Link to="/pricing">
-                <a className="hover:text-r-info-card cursor-pointer">Pricing</a>
+                <span className="hover:text-r-info-card cursor-pointer">Pricing</span>
               </Link>
               <Link to="/contact">
-                <a className="hover:text-r-info-card cursor-pointer">Contact</a>
+                <span className="hover:text-r-info-card cursor-pointer">Contact</span>
               </Link>
             </ul>
           </div>
@@ -45,20 +45,20 @@ const Footer = () => {
             </h3>
             <ul className="mt-3 grid grid-cols-1 space-y-2">
               <Link to="/about">
-                <a className="hover:text-r-info-card cursor-pointer ">About Us</a>
+                <span className="hover:text-r-info-card cursor-pointer ">About Us</span>
               </Link>
               <Link to="/terms">
-                <a className="hover:text-r-info-card cursor-pointer">
+                <span className="hover:text-r-info-card cursor-pointer">
                   Terms & Conditions
-                </a>
+                </span>
               </Link>
               <Link to="/privacy-policy">
-                <a className="hover:text-r-info-card cursor-pointer">
+                <span className="hover:text-r-info-card cursor-pointer">
                   Privacy Policy
-                </a>
+                </span>
               </Link>
               <Link to="/faq">
-                <a className="hover:text-r-info-card cursor-pointer">FAQ</a>
+                <span className="hover:text-r-info-card cursor-pointer">FAQ</span>
               </Link>
             </ul>
           </div>
