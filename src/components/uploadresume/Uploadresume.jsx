@@ -26,30 +26,39 @@ const Uploadresume = () => {
     });
   }, []);
 
- 
-  
-  
-  
-  
-
   const extractTextFromPDF = async (inst) => {
     try {
-      const doc = inst.Core.documentViewer.getDocument();  
-      const pageCount = inst.Core.documentViewer.getPageCount();  
+      const doc = inst.Core.documentViewer.getDocument();
+      const pageCount = inst.Core.documentViewer.getPageCount();
 
       let fullText = "";
 
       for (let p = 1; p <= pageCount; p++) {
-        const pageText = await doc.loadPageText(p);  
+        const pageText = await doc.loadPageText(p);
         fullText += pageText + "\n\n";
-
       }
-
 
       console.log("📄 fullText:", fullText);
       const parsed = parseResumeSections(fullText);
 
       console.log("🧩 parsed:", parsed);
+
+      const response = await fetch("https://resume360-server.vercel.app/resumeIn", {
+        
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(parsed),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("✅ Resume saved successfully:", data);
+      } else {
+        console.error("❌ Failed to save resume");
+      }
+
       setTextContent(parsed);
     } catch (e) {
       console.error("❌ extractTextFromPDF failed:", e);
@@ -57,33 +66,30 @@ const Uploadresume = () => {
   };
 
 
- 
-
-  
   function splitByHeadings(fullText) {
     const headingRe = /^([A-Z ]+):?\s*$/gm;
-  
+
     let match;
     const sections = [];
     let lastIndex = 0;
     let lastHeading = null;
-  
+
     while ((match = headingRe.exec(fullText))) {
       if (lastHeading !== null) {
         const sectionText = fullText.slice(lastIndex, match.index).trim();
         sections.push({ heading: lastHeading, text: sectionText });
       }
-      lastHeading = match[1].trim();     
-      lastIndex = headingRe.lastIndex;     
+      lastHeading = match[1].trim();
+      lastIndex = headingRe.lastIndex;
     }
-    
+
     if (lastHeading !== null) {
       sections.push({
         heading: lastHeading,
         text: fullText.slice(lastIndex).trim(),
       });
     }
-  
+
     return sections.reduce((acc, { heading, text }) => {
       const key = heading
         .toLowerCase()
@@ -95,20 +101,40 @@ const Uploadresume = () => {
     }, {});
   }
 
- 
-  
 
   function parseSkills(text) {
     const frontendKeywords = [
-      'JavaScript', 'React', 'React.js', 'Bootstrap', 'Tailwind', 'Vue.js',
-      'Angular', 'SASS', 'HTML', 'CSS', 'TypeScript', 'jQuery', 'Responsive Web Design'
+      "JavaScript",
+      "React",
+      "React.js",
+      "Bootstrap",
+      "Tailwind",
+      "Vue.js",
+      "Angular",
+      "SASS",
+      "HTML",
+      "CSS",
+      "TypeScript",
+      "jQuery",
+      "Responsive Web Design",
     ];
-  
+
     const backendKeywords = [
-      'MongoDB', 'Express', 'Node', 'Node.js', 'Python', 'Django', 'Ruby',
-      'Java', 'C#', 'PHP', 'MySQL', 'PostgreSQL', 'JWT'
+      "MongoDB",
+      "Express",
+      "Node",
+      "Node.js",
+      "Python",
+      "Django",
+      "Ruby",
+      "Java",
+      "C#",
+      "PHP",
+      "MySQL",
+      "PostgreSQL",
+      "JWT",
     ];
-  
+
     const categoryMap = {
       experience: [],
       comfortable: [],
@@ -119,16 +145,22 @@ const Uploadresume = () => {
       backend: [],
       others: [],
     };
-  
-    const lines = text.split(/\n|●/).map(line => line.trim()).filter(Boolean);
-  
-    lines.forEach(line => {
+
+    const lines = text
+      .split(/\n|●/)
+      .map((line) => line.trim())
+      .filter(Boolean);
+
+    lines.forEach((line) => {
       const [rawCategory, skillList] = line.split(":");
       if (!skillList) return;
-  
+
       const category = rawCategory.toLowerCase();
-      const skills = skillList.split(",").map(s => s.trim()).filter(Boolean);
-  
+      const skills = skillList
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean);
+
       if (category.includes("experience")) {
         categoryMap.experience.push(...skills);
       } else if (category.includes("comfortable")) {
@@ -146,44 +178,53 @@ const Uploadresume = () => {
       } else if (category.includes("other")) {
         categoryMap.others.push(...skills);
       }
-  
+
       // Auto-classify for frontend, backend, or others (only if not already categorized)
-      skills.forEach(skill => {
+      skills.forEach((skill) => {
         const lowerSkill = skill.toLowerCase();
-        if (frontendKeywords.some(k => lowerSkill.includes(k.toLowerCase()))) {
-          if (!categoryMap.frontend.includes(skill)) categoryMap.frontend.push(skill);
-        } else if (backendKeywords.some(k => lowerSkill.includes(k.toLowerCase()))) {
-          if (!categoryMap.backend.includes(skill)) categoryMap.backend.push(skill);
+        if (
+          frontendKeywords.some((k) => lowerSkill.includes(k.toLowerCase()))
+        ) {
+          if (!categoryMap.frontend.includes(skill))
+            categoryMap.frontend.push(skill);
+        } else if (
+          backendKeywords.some((k) => lowerSkill.includes(k.toLowerCase()))
+        ) {
+          if (!categoryMap.backend.includes(skill))
+            categoryMap.backend.push(skill);
         } else {
-          if (!categoryMap.others.includes(skill)) categoryMap.others.push(skill);
+          if (!categoryMap.others.includes(skill))
+            categoryMap.others.push(skill);
         }
       });
     });
-  
+
     return categoryMap;
   }
-  
-  
 
-  
-  
 
   const parseProjects = (text) => {
     const projects = [];
-  
+
     // Split by project number like "1." or custom "||" type blocks
-    const blocks = text.split(/\n(?=\d+\.\s|[a-zA-Z0-9]+\s*\|\|)/).filter(Boolean);
-  
-    blocks.forEach(block => {
-      const lines = block.trim().split("\n").map(l => l.trim()).filter(Boolean);
-  
+    const blocks = text
+      .split(/\n(?=\d+\.\s|[a-zA-Z0-9]+\s*\|\|)/)
+      .filter(Boolean);
+
+    blocks.forEach((block) => {
+      const lines = block
+        .trim()
+        .split("\n")
+        .map((l) => l.trim())
+        .filter(Boolean);
+
       // === Type 1: PDF-style format with ||
       if (block.includes("||")) {
         const projectBlocks = text.split(/\n(?=\w+\s*\|\|)/).filter(Boolean);
-  
-        projectBlocks.forEach(block => {
+
+        projectBlocks.forEach((block) => {
           const lines = block.trim().split("\n").filter(Boolean);
-      
+
           let title = "";
           let type = "";
           let clientRepo = "";
@@ -191,21 +232,21 @@ const Uploadresume = () => {
           let overview = "";
           const features = [];
           const technologies = [];
-      
+
           lines.forEach((line, index) => {
             const cleanLine = line.trim();
-      
+
             if (index === 0) {
               // First line example: Tech_Hunt || Type: full stack || github_repo: Client | Server
               const titleMatch = cleanLine.match(/^(.+?)\s*\|\|/);
               const typeMatch = cleanLine.match(/Type\s*:\s*(.+?)\s*\|\|/i);
               const githubMatch = cleanLine.match(/github_repo\s*:\s*(.*)/i);
-      
+
               title = titleMatch ? titleMatch[1].trim() : "Untitled Project";
               type = typeMatch ? typeMatch[1].trim() : "";
               if (githubMatch) {
-                clientRepo = githubMatch[1].includes("Client") ;
-                serverRepo = githubMatch[1].includes("Server") ;
+                clientRepo = githubMatch[1].includes("Client");
+                serverRepo = githubMatch[1].includes("Server");
               }
             } else if (/^overview\s*:/i.test(cleanLine)) {
               overview = cleanLine.replace(/^overview\s*:\s*/i, "").trim();
@@ -220,10 +261,10 @@ const Uploadresume = () => {
               features.push(cleanLine.replace(/^•\s*/, "").trim());
             } else if (/^used technologies\s*:/i.test(cleanLine)) {
               const techText = cleanLine.split(":")[1] || "";
-              technologies.push(...techText.split(",").map(t => t.trim()));
+              technologies.push(...techText.split(",").map((t) => t.trim()));
             }
           });
-      
+
           projects.push({
             title,
             type,
@@ -231,39 +272,40 @@ const Uploadresume = () => {
             features,
             technologies,
             clientRepo: "",
-            serverRepo:"",
-            liveLink: ""
+            serverRepo: "",
+            liveLink: "",
           });
         });
-  
       } else {
         // === Type 2: Traditional resume format ===
         const projectBlocks = text.split(/\n(?=\d+\.)/).filter(Boolean);
-  
-        projectBlocks.forEach(block => {
+
+        projectBlocks.forEach((block) => {
           const lines = block.trim().split("\n").filter(Boolean);
-      
+
           // Title and type from first line
           const titleLine = lines[0];
           const [titlePart, typePart] = titleLine.split(" - ");
-          const title = titlePart?.replace(/^\d+\.\s*/, "").trim() || "Untitled Project";
+          const title =
+            titlePart?.replace(/^\d+\.\s*/, "").trim() || "Untitled Project";
           const type = typePart?.replace(/\(.*\)/g, "").trim() || "";
-      
+
           const features = [];
           let technologies = [];
           let overview = "";
           let clientRepo = "";
           let serverRepo = "";
           let liveLink = "";
-      
-          lines.forEach(line => {
+
+          lines.forEach((line) => {
             const cleanLine = line.trim();
             if (cleanLine.startsWith("●")) {
               features.push(cleanLine.replace(/^●\s*/, ""));
             } else if (/^Technologies\s*:/i.test(cleanLine)) {
-              technologies = cleanLine.split(":")[1]
+              technologies = cleanLine
+                .split(":")[1]
                 .split(",")
-                .map(t => t.trim());
+                .map((t) => t.trim());
             } else if (/live link/i.test(cleanLine)) {
               liveLink = cleanLine;
             } else if (/client/i.test(cleanLine)) {
@@ -274,7 +316,7 @@ const Uploadresume = () => {
               overview = cleanLine;
             }
           });
-      
+
           projects.push({
             title,
             type,
@@ -288,86 +330,132 @@ const Uploadresume = () => {
         });
       }
     });
-  
+
     return projects;
   };
-  
+
 
   function extractLocation(lines) {
     const locationKeywords = [
-      "bandarban", "barguna", "barisal", "bhola", "bogura", "brahmanbaria",
-      "chandpur", "chapainawabganj", "chattogram", "chuadanga", "comilla", "cox's bazar",
-      "dhaka", "dinajpur", "faridpur", "feni", "gaibandha", "gazipur",
-      "gopalganj", "habiganj", "jaipurhat", "jamalpur", "jashore", "jhalokathi",
-      "jhenaidah", "joypurhat", "khagrachhari", "khulna", "kishoreganj", "kurigram",
-      "kushtia", "lakshmipur", "lalmonirhat", "madaripur", "magura", "manikganj",
-      "meherpur", "moulvibazar", "munshiganj", "mymensingh", "naogaon", "narail",
-      "narayanganj", "narsingdi", "natore", "netrokona", "nilphamari", "noakhali",
-      "pabna", "panchagarh", "patuakhali", "pirojpur", "rajbari", "rajshahi",
-      "rangamati", "rangpur", "satkhira", "shariatpur", "sherpur", "sirajganj",
-      "sunamganj", "sylhet", "tangail", "thakurgaon", "bangladesh"
+      "bandarban",
+      "barguna",
+      "barisal",
+      "bhola",
+      "bogura",
+      "brahmanbaria",
+      "chandpur",
+      "chapainawabganj",
+      "chattogram",
+      "chuadanga",
+      "comilla",
+      "cox's bazar",
+      "dhaka",
+      "dinajpur",
+      "faridpur",
+      "feni",
+      "gaibandha",
+      "gazipur",
+      "gopalganj",
+      "habiganj",
+      "jaipurhat",
+      "jamalpur",
+      "jashore",
+      "jhalokathi",
+      "jhenaidah",
+      "joypurhat",
+      "khagrachhari",
+      "khulna",
+      "kishoreganj",
+      "kurigram",
+      "kushtia",
+      "lakshmipur",
+      "lalmonirhat",
+      "madaripur",
+      "magura",
+      "manikganj",
+      "meherpur",
+      "moulvibazar",
+      "munshiganj",
+      "mymensingh",
+      "naogaon",
+      "narail",
+      "narayanganj",
+      "narsingdi",
+      "natore",
+      "netrokona",
+      "nilphamari",
+      "noakhali",
+      "pabna",
+      "panchagarh",
+      "patuakhali",
+      "pirojpur",
+      "rajbari",
+      "rajshahi",
+      "rangamati",
+      "rangpur",
+      "satkhira",
+      "shariatpur",
+      "sherpur",
+      "sirajganj",
+      "sunamganj",
+      "sylhet",
+      "tangail",
+      "thakurgaon",
+      "bangladesh",
     ];
-  
+
     for (const line of lines) {
-      const words = line.toLowerCase().split(/[\s,]+/); 
+      const words = line.toLowerCase().split(/[\s,]+/);
       for (const word of words) {
         if (locationKeywords.includes(word)) {
           return word.charAt(0).toUpperCase() + word.slice(1);
         }
       }
     }
-  
-    return ""; 
-  }
-  
-  
-  
-  
-  
 
-  
+    return "";
+  }
+
 
   const parseResumeSections = (fullText) => {
-    const lines = fullText.split("\n").map(line => line.trim()).filter(Boolean);
-  
+    const lines = fullText
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean);
+
     const name = lines[0] || "Your Name";
     const title = lines[1] || "Your Title";
-    const email = fullText.match(/\b\S+@\S+\.\S+\b/)?.[0] || "example@email.com";
+    const email =
+      fullText.match(/\b\S+@\S+\.\S+\b/)?.[0] || "example@email.com";
 
     const numberMatch = fullText.match(/(\+?88)?01[3-9]\d{8}\b/);
     const number = numberMatch ? numberMatch[0] : "Your Number";
-  
-    const location = extractLocation(lines); 
-  
-    const sections = splitByHeadings(fullText); 
-    const skillData = sections.skills ? parseSkills(sections.skills) : { frontend: [], backend: [], others: [] };
+
+    const location = extractLocation(lines);
+
+    const sections = splitByHeadings(fullText);
+    const skillData = sections.skills
+      ? parseSkills(sections.skills)
+      : { frontend: [], backend: [], others: [] };
     const projectsText = sections.projects || "";
 
-  
     return {
       name,
       title,
       email,
       number,
-    location,
-    
-    language: sections.languages || sections.language,
-    summary: sections.objective || sections.summary,
+      location,
+
+      language: sections.languages || sections.language,
+      summary: sections.objective || sections.summary,
       ...sections,
       skills: skillData,
       projects: parseProjects(projectsText),
       references: sections.references,
       portfolio: sections.portfolio,
       linkedin: sections.linkedin,
-      
     };
   };
-  
-
- 
-  
-  
-  
 
   return (
     <div className="p-6  rounded-xl shadow-md min-h-screen max-w-4xl mx-auto mt-20">
