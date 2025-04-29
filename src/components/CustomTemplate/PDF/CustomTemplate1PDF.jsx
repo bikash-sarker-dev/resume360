@@ -64,8 +64,15 @@ export const CustomTemplate1PDF = ({formData}) => {
         const {
           personalInfo: { fullName, jobTitle, phoneNumber, email, address,summary },
           education: { institution, degree, fieldOfStudy, additionalInfo , startDate,endDate},
-          experience: { companyName, position, duration, location, description },
-          experience2: { companyName2, position2, duration2, location2, description2 },
+          experience: { companyName, position, duration, location, description,
+            projectTitle
+           , projectTools ,projectDescription,projectGithubLink
+           },
+          experience2: { companyName2, position2, duration2, 
+            location2, description2,
+            projectTitle2
+            , projectTools2 ,projectDescription2,projectGithubLink2
+           },
           achievements: { achievementTitle, date, organization, description: achievementDescription },
         } = formData;
   return (
@@ -92,16 +99,8 @@ export const CustomTemplate1PDF = ({formData}) => {
 
         {/* Skills */}
         <View style={{ marginTop: 10 }}>
-          <Text style={styles.sectionTitle}>TECHNICAL SKILLS</Text>
-          <Text style={styles.listItem}>• Prototyping Tools</Text>
-          <Text style={styles.listItem}>• User Research</Text>
-          <Text style={styles.listItem}>• Information Architecture</Text>
-          <Text style={styles.listItem}>• Interaction Design</Text>
-          <Text style={styles.listItem}>• Visual Design</Text>
-          <Text style={styles.listItem}>• Usability Heuristics</Text>
-          <Text style={styles.listItem}>• Accessibility</Text>
-          <Text style={styles.listItem}>• Responsive Design</Text>
-          <Text style={styles.listItem}>• User Testing Tools</Text>
+          <Text style={styles.sectionTitle}>{"TECHNICAL SKILLS"}</Text>
+          
         </View>
 
         {/* Experience */}
@@ -115,7 +114,7 @@ export const CustomTemplate1PDF = ({formData}) => {
           </Text>
 
           {/* Second Experience if exists */}
-          {/* {Object.values(experience2 || {}).some((val) => val) && (
+          {Object.values(experience2 || {}).some((val) => val) && (
             <>
               <Text style={{ marginTop: 6, fontWeight: "bold" }}>
                 {companyName2 || "System UX Engineer, XarrowAI Industries"} ({duration2 || "Feb 2021 - Dec 2022"})
@@ -124,30 +123,31 @@ export const CustomTemplate1PDF = ({formData}) => {
                 • {description2 || "Designed and optimized a robotic control system..."}
               </Text>
             </>
-          )} */}
+          )}
         </View>
 
         {/* Projects */}
         <View style={{ marginTop: 10 }}>
           <Text style={styles.sectionTitle}>PROJECTS</Text>
-          <Text style={styles.text}>SmartBudget – Personal Finance Tracker (UX Designer)</Text>
-          <Text style={styles.listItem}>• Designed wireframes and interactive prototypes</Text>
-          <Text style={styles.listItem}>• Conducted usability testing</Text>
+          <Text style={styles.text}>{ projectTitle || "SmartBudget – Personal Finance Tracker"}
+             </Text>
+          <Text style={styles.listItem}>{projectTools ||"• Designed wireframes and interactive prototypes"}</Text>
+          <Text style={styles.listItem}>{projectDescription ||"• Conducted usability testing"}</Text>
 
-          <Text style={{ marginTop: 6, fontWeight: "bold" }}>Task Management App (UX Designer)</Text>
-          <Text style={styles.listItem}>• Conducted user research</Text>
-          <Text style={styles.listItem}>• Created user personas and flows</Text>
+          <Text style={styles.text}>{ projectTitle2 || "SmartBudget – Personal Finance Tracker"}
+             </Text>
+          <Text style={styles.listItem}>{projectTools2 ||"• Designed wireframes and interactive prototypes"}</Text>
+          <Text style={styles.listItem}>{projectDescription2 ||"• Conducted usability testing"}</Text>
         </View>
 
-        {/* Education */}
+        {/* Education institution, degree, fieldOfStudy, additionalInfo , startDate,endDate */}
         <View style={{ marginTop: 10 }}>
           <Text style={styles.sectionTitle}>EDUCATION</Text>
-          <Text style={styles.text}>UX Industrial Basics and General Application (Aug 2016 - Oct 2019)</Text>
-          <Text style={styles.listItem}>• Major in Automotive Technology</Text>
-          <Text style={styles.listItem}>• Thesis on "Technological Advancements within Mechatronics"</Text>
+          <Text style={styles.text}>{institution ||"UX Industrial Basics and General Application"} {startDate}-{endDate}</Text>
+          <Text style={styles.listItem}>{fieldOfStudy ||"• Major in Automotive Technology"}</Text>
+          <Text style={styles.listItem}>{degree|| "• Thesis on Technological Advancements within Mechatronics"}</Text>
 
-          <Text style={{ marginTop: 6, fontWeight: "bold" }}>Bachelor of Design in Process Engineering (May 2014 - May 2016)</Text>
-          <Text style={styles.listItem}>• Coursework in Structural Design and Project Management</Text>
+         
         </View>
 
         {/* Languages */}
