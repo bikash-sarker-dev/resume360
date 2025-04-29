@@ -2,8 +2,11 @@ import React from "react";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
 import { LuMessageCircleMore } from "react-icons/lu";
+import useAuth from "../../hooks/useAuth";
 
 const DextopNavbar = () => {
+  const {  user } = useAuth();
+
   return (
     <>
       <div className="bg-r-primary p-4 hidden lg:block">
@@ -68,11 +71,17 @@ const DextopNavbar = () => {
           {/* User */}
           <div className="flex items-center gap-4 pr-4">
             <h4 className="font-semibold opacity-80 text-r-background hidden xl:block">
-              Bikash Sarker
+              {/* Bikash Sarker */}
+              {user?.displayName}
             </h4>
             <div className="avatar">
               <div className="w-12 h-12 rounded-full">
-                <img src="https://st2.depositphotos.com/1006318/5909/v/450/depositphotos_59094701-stock-illustration-businessman-profile-icon.jpg" />
+                {/* <img src="https://st2.depositphotos.com/1006318/5909/v/450/depositphotos_59094701-stock-illustration-businessman-profile-icon.jpg" /> */}
+                <img
+                        
+                        src={user.photoURL}
+                        alt="User"
+                      />
               </div>
             </div>
           </div>

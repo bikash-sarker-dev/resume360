@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router";
 
 import React from "react";
+
 import TemplateOne from "../components/DefaultTemplates/TemplateOne";
 import Userabout from "../components/user/Userabout";
 import UserEducation from "../components/user/UserEducation";
@@ -20,7 +21,6 @@ import OrderListPage from "../pages/AdminDashboardPage/OrderListPage";
 import ReviewsPage from "../pages/AdminDashboardPage/ReviewsPage";
 import SecurityPage from "../pages/AdminDashboardPage/SecurityPage";
 import BlogPage from "../pages/BlogPage";
-import CoverLetter from "../pages/CoverLetter";
 import ErrorPage from "../pages/ErrorPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
@@ -36,7 +36,10 @@ import ForgetPasswordPage from "./../pages/ForgetPasswordPage";
 import CoverLetterManager from "../components/cover-letter/cover-letter-manager/CoverLetterManager";
 import Resume from "../components/resume/Resume";
 import ResumeManager from "../components/resume/resume-manager/ResumeManager";
+import Uploadresume from "../components/uploadresume/Uploadresume";
+import CoverLetter from "../pages/CoverLetter";
 import CoverLetterGenerate from "../pages/CoverLetterGenerate";
+import { CustomTemplate } from "../pages/CustomTemplate";
 import Generate from "../pages/Generate";
 import { Pricing } from "../pages/Pricing";
 import SocialMiddlewarePage from "../pages/SocialMiddlewarePage";
@@ -46,7 +49,6 @@ import ContactPage from "./../pages/ContactPage";
 import FeaturesPage from "./../pages/FeaturesPage";
 import TermsAndConditionsPage from "./../pages/TermsAndConditionsPage";
 import GiveReview from "./../pages/UserDashboardPage/GiveReview";
-import { CustomTemplate } from "../pages/CustomTemplate";
 
 const RootRoute = () => {
   return (
@@ -67,6 +69,7 @@ const RootRoute = () => {
         <Route path="/contact" element={<ContactPage />} />
 
         {/* user page routes  */}
+        <Route path="/resumeUpload" element={<Uploadresume />}></Route>
         <Route path="/user" element={<User />}>
           <Route index element={<Userabout />} />
           <Route path="usereducation" element={<UserEducation />} />
@@ -94,6 +97,7 @@ const RootRoute = () => {
           element={<CoverLetterGenerate />}
         />
         <Route path="/cover-letter-manager" element={<CoverLetterManager />} />
+        <Route path="/cover-letter" element={<CoverLetter />} />
       </Route>
       {/* dashboard route working start  */}
       <Route path="/dashboard" element={<DashboardLayouts />}>
