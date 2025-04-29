@@ -27,7 +27,8 @@
     },
     {
       "id": "CV3",
-      "category": "CV",
+      "custom":true,
+      "category": "resume",
       "url": "https://i.ibb.co.com/9kwQckj0/CV3.jpg"
     },
     {
@@ -57,6 +58,7 @@
     },
     {
       "id": "resume2",
+      "custom":true,
       "category": "resume",
       "url": "https://i.ibb.co.com/yc88ZknG/resume2.jpg"
     },
