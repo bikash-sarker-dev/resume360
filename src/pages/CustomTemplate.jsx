@@ -22,7 +22,7 @@ export const CustomTemplate = () => {
         </h1>
         <div className='flex flex-row my-16 gap-4'>
             <div className='w-1/2  '>
-                <StepperForCustomTemplate></StepperForCustomTemplate>
+                <StepperForCustomTemplate pageId={id}></StepperForCustomTemplate>
             </div>
             <div className=' w-1/2 '>
  
