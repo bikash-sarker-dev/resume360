@@ -22,7 +22,7 @@ const Uploadtemplate = ({ resumeId  }) => {
     const fetchResume = async () => {
       try {
         const res = await axios.get(`https://resume360-server.vercel.app/resumeIn/${resumeId}`);
-        console.log("Fetched resume:", res.data);
+        console.log( res.data);
         setExtractedTexts(res.data);
       } catch (err) {
         console.error("Failed to fetch resume:", err);
