@@ -184,6 +184,32 @@ const Uploadtemplate = ({ resumeId  }) => {
     listItem: {
       fontSize: 12,
     },
+    headerContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      paddingBottom: 20,
+    },
+    leftColumn: {
+      flex: 1,
+      paddingRight: 10,
+    },
+    rightColumn: {
+      flex: 1,
+      paddingLeft: 10,
+    },
+    name: {
+      fontSize: 24,
+      fontWeight: 'bold',
+    },
+    title: {
+      fontSize: 18,
+      color: '#666',
+    },
+    contactHeading: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginBottom: 5,
+    },
   });
   
   
