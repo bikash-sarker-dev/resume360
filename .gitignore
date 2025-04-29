@@ -12,6 +12,8 @@ dist
 dist-ssr
 webviewer
 *.local
+public/webviewer.zip
+
 
 # Editor directories and files
 .vscode/*

@@ -20,6 +20,8 @@ const Uploadtemplate = ({ resumeId }) => {
     setExtractedTexts(updatedObject);
   };
 
+  
+
   useEffect(() => {
     const storedId = localStorage.getItem("resumeId");
     if (storedId && !resumeId) {
