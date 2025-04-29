@@ -140,10 +140,10 @@ export const CustomTemplate1 = () => {
         {/* Education Section */}
         <section className="mt-6">
           <h3 className="text-lg font-bold bg-gray-300 px-6 py-2 rounded-full mb-2">EDUCATION</h3>
-          {/* Education - 1 */}
+          {/* Education - 1 institution, degree, fieldOfStudy, additionalInfo , startDate,endDate */}
           <div className="grid grid-cols-2 font-bold">
-            <p>UX Industrial Basics and General Application</p>
-            <p>Aug 2016 - Oct 2019</p>
+            <p>{ institution || "UX Industrial Basics and General Application"}</p>
+            <p>{{startDate}-{ endDate } || "Aug 2016 - Oct 2019"}</p>
           </div>
           <p>University of Engineering UX Cohort</p>
           <ul className="list-inside list-disc">
