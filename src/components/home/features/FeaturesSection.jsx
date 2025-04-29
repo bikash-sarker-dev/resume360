@@ -78,10 +78,14 @@ const FeaturesSection = () => {
           );
         })}
       </div>
-      <div className="text-center mt-10 text-2xl font-medium text-r-primary">
-        <Link to="/features" className="underline">
-          Read More
-        </Link>
+      <div className="text-center mt-10 text-xl font-medium text-r-primary">
+      <Link to="/features" className="underline">
+      <button className="relative inline-flex items-center justify-center px-6 py-2 overflow-hidden font-mono font-bold hover:text-black  text-r-background   bg-r-primary rounded-full group slide-up slide-up-btn">
+          <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-r-background  rounded-full group-hover:w-56 group-hover:h-56"></span>
+          <span className="absolute inset-0 w-full h-full  rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-r-accent "></span>
+          <span className="relative">Read More</span>
+      </button>
+      </Link>
       </div>
     </div>
   );
