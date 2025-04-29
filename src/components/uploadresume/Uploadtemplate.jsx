@@ -34,14 +34,12 @@ const Uploadtemplate = ({ resumeId  }) => {
     }
   }, [resumeId]);
 
-  console.log(extractedTexts)
 
 
 
   const generatePDFDocument = (texts) => (
     <Document>
       <Page size="A4" style={styles.page}>
-        {/* Name and Contact Info */}
         <View style={styles.section}>
           <Text style={styles.title}>{texts.name || "Your Name"}</Text>
           <Text>{texts.title || "Your Title"}</Text>
