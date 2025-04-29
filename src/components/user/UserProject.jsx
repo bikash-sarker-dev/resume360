@@ -40,7 +40,7 @@ const UserProject = () => {
           className="bg-white border border-gray-200 shadow-sm w-full rounded-xl p-6 mb-6 space-y-4 transition hover:shadow-md"
         >
           <div>
-            <h3 className="text-xl font-semibold text-indigo-600">
+            <h3 className="text-xl font-semibold text-r-accent">
               {project.projectName}
             </h3>
             <p className="text-gray-700">{project.description}</p>
@@ -51,7 +51,7 @@ const UserProject = () => {
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-1 bg-green-100 text-r-text rounded-full text-sm hover:bg-green-700 transition"
+              className="px-4 py-1 bg-r-card text-r-text rounded-full text-sm hover:bg-r-background transition"
             >
               Live Site
             </a>
@@ -59,7 +59,7 @@ const UserProject = () => {
               href={project.client}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-1 bg-blue-100 text-r-text rounded-full text-sm hover:bg-blue-700 transition"
+              className="px-4 py-1 bg-r-card text-r-text rounded-full text-sm hover:bg-r-background transition"
             >
               Client Repo
             </a>
@@ -67,7 +67,7 @@ const UserProject = () => {
               href={project.server}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-1 bg-gray-100 text-r-text rounded-full text-sm hover:bg-gray-800 transition"
+              className="px-4 py-1 bg-r-card text-r-text rounded-full text-sm hover:bg-r-background transition"
             >
               Server Repo
             </a>
@@ -77,7 +77,7 @@ const UserProject = () => {
             {project.features.map((feature, i) => (
               <span
                 key={i}
-                className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm"
+                className="bg-r-card text-r-info px-3 py-1 rounded-full text-sm"
               >
                 {feature}
               </span>

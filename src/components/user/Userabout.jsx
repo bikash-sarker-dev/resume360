@@ -23,7 +23,7 @@ const Userabout = () => {
           <h1 className="text-2xl font-bold text-gray-800">
             {userInfo.fullName}
           </h1>
-          <p className="text-blue-600 font-semibold text-lg">
+          <p className="text-r-primary font-semibold text-lg">
             {userInfo.jobTitle}
           </p>
 

@@ -25,9 +25,9 @@ const User = () => {
               />
 
               <div className="text-center mt-7 space-y-3">
-                <h2 className=" font-bold text-2xl">User name </h2>
+                <h2 className=" font-bold text-2xl">{user?.displayName}</h2>
                 <h2 className=""> Experience </h2>
-                <h2 className="">you can setting your rsume from this </h2>
+                <h2 className="">you can setting your resume from this </h2>
                 <h2 className="font-bold text-xl">update resume*</h2>
               </div>
 

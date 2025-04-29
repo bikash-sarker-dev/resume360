@@ -35,7 +35,7 @@ const UserEducation = () => {
               {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
             </span>
           </div>
-          <p className="text-blue-600 font-medium">
+          <p className="text-r-primary font-medium">
             {edu.degree} in {edu.field}
           </p>
           <p className="text-sm text-gray-600 mb-1">GPA: {edu.grade}</p>

@@ -42,7 +42,7 @@ const UserExp = () => {
               {formatDate(exp.startMonth)} - {formatDate(exp.endMonth)}
             </span>
           </div>
-          <p className="text-blue-600 font-medium">{exp.position}</p>
+          <p className="text-r-primary font-medium">{exp.position}</p>
           <p className="text-gray-700 mt-2 text-sm leading-relaxed">
             {exp.description}
           </p>
