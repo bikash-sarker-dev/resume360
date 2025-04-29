@@ -26,8 +26,8 @@ const Uploadtemplate = ({ resumeId }) => {
         const res = await axios.get(
           `https://resume360-server.vercel.app/resumeIn/${resumeId}`
         );
-        console.log(res.data);
-        setExtractedTexts(res.data);
+        console.log(res.data.result);
+        setExtractedTexts(res.data.result);
       } catch (err) {
         console.error("Failed to fetch resume:", err);
       }
@@ -37,6 +37,8 @@ const Uploadtemplate = ({ resumeId }) => {
       fetchResume();
     }
   }, [resumeId]);
+
+  console.log(extractedTexts)
 
   const generatePDFDocument = (texts) => (
     <Document>
@@ -50,15 +52,35 @@ const Uploadtemplate = ({ resumeId }) => {
 
           {/* Right Side: Contact Info */}
           <View style={styles.rightColumn}>
-            <Text style={styles.contactHeading}>Contact Info</Text>
-            <Text>Email: {texts.email || "example@mail.com"}</Text>
-            <Text>Location: {texts.location || "Your City"}</Text>
-            <Text>Number: {texts.number || "123-456-7890"}</Text>
-            <Text>Portfolio: {texts.portfolio || "yourportfolio.com"}</Text>
-            <Text>
-              LinkedIn: {texts.linkedin || "linkedin.com/in/yourprofile"}
-            </Text>
-          </View>
+  <Text style={styles.contactHeading}>Contact Info</Text>
+  
+  <Text style={styles.headingText}>
+    Name: {texts.name || "Your Name"}
+  </Text>
+
+  <Text style={styles.headingText}>
+    Location: {texts.location || "Your City"}
+  </Text>
+  
+  <Text style={styles.headingText}>
+    Number: {texts.number || "123-456-7890"}
+  </Text>
+
+  <Text style={styles.headingText}>
+    Email: {texts.email || "example@mail.com"}
+  </Text>
+  
+  <View style={styles.row}>
+    <Text style={styles.link} onPress={() => Linking.openURL(texts.portfolio || "https://yourportfolio.com")}>
+      Portfolio
+    </Text>
+    
+    <Text style={styles.link} onPress={() => Linking.openURL(`https://linkedin.com/in/${texts.linkedin || "yourprofile"}`)}>
+      LinkedIn
+    </Text>
+  </View>
+</View>
+
         </View>
 
         {/* Summary */}
