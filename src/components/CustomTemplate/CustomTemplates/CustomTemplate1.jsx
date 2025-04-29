@@ -3,9 +3,8 @@ import { useFormData } from "../FormDataProvider";
 
 export const CustomTemplate1 = () => {
   const { formData, updateFormData } = useFormData();
-  console.log(formData);
-  console.log(formData.
-    achievements);
+
+  
     const {
       personalInfo: { fullName, jobTitle, phoneNumber, email, address,summary },
       education: { institution, degree, fieldOfStudy, additionalInfo , startDate,endDate},
