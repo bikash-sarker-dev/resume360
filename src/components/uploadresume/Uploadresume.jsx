@@ -44,20 +44,21 @@ const Uploadresume = () => {
 
       console.log("🧩 parsed:", parsed);
 
-      const response = await fetch("https://resume360-server.vercel.app/resumeIn", {
-        
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(parsed),
-      });
+      const response = await fetch(
+        "https://resume360-server.vercel.app/resumeIn",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(parsed),
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
         setResumeId(data.result._id);
-         console.log(data.result._id)
-      setPdfUploaded(true);  
+        console.log(data.result._id);
         console.log("✅ Resume saved successfully:", data.result._id);
       } else {
         console.error("❌ Failed to save resume");
@@ -68,7 +69,6 @@ const Uploadresume = () => {
       console.error("❌ extractTextFromPDF failed:", e);
     }
   };
-
 
   function splitByHeadings(fullText) {
     const headingRe = /^([A-Z ]+):?\s*$/gm;
@@ -104,7 +104,6 @@ const Uploadresume = () => {
       return acc;
     }, {});
   }
-
 
   function parseSkills(text) {
     const frontendKeywords = [
@@ -205,7 +204,6 @@ const Uploadresume = () => {
 
     return categoryMap;
   }
-
 
   const parseProjects = (text) => {
     const projects = [];
@@ -338,7 +336,6 @@ const Uploadresume = () => {
     return projects;
   };
 
-
   function extractLocation(lines) {
     const locationKeywords = [
       "bandarban",
@@ -420,7 +417,6 @@ const Uploadresume = () => {
     return "";
   }
 
-
   const parseResumeSections = (fullText) => {
     const lines = fullText
       .split("\n")
@@ -484,7 +480,7 @@ const Uploadresume = () => {
           />
         </div>
       ) : (
-        <Uploadtemplate  resumeId={resumeId}/>
+        <Uploadtemplate resumeId={resumeId} />
       )}
 
       <div ref={viewerRef} style={{ display: "none" }} />

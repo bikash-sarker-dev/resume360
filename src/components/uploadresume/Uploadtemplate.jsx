@@ -21,24 +21,28 @@ const Uploadtemplate = ({ resumeId }) => {
   };
 
   useEffect(() => {
-    const fetchResume = async () => {
+    const storedId = localStorage.getItem("resumeId");
+    if (storedId && !resumeId) {
+      setResumeId(storedId); // restore from localStorage if not already set
+    }
+  
+    const fetchResume = async (id) => {
       try {
-        const res = await axios.get(
-          `https://resume360-server.vercel.app/resumeIn/${resumeId}`
-        );
+        const res = await axios.get(`https://resume360-server.vercel.app/resumeIn/${id}`);
         console.log(res.data.result);
         setExtractedTexts(res.data.result);
       } catch (err) {
         console.error("Failed to fetch resume:", err);
       }
     };
-
+  
     if (resumeId) {
-      fetchResume();
+      fetchResume(resumeId);
     }
   }, [resumeId]);
+  
 
-  console.log(extractedTexts)
+  console.log(extractedTexts);
 
   const generatePDFDocument = (texts) => (
     <Document>
@@ -47,40 +51,55 @@ const Uploadtemplate = ({ resumeId }) => {
           {/* Left Side: Name & Title */}
           <View style={styles.leftColumn}>
             <Text style={styles.name}>{texts.name || "Your Name"}</Text>
-            <Text style={styles.title}>{texts.title || "Your Title"}</Text>
+            <Text style={styles.headingText}>
+              {texts.title || "Your Title"}
+            </Text>
           </View>
 
           {/* Right Side: Contact Info */}
           <View style={styles.rightColumn}>
-  <Text style={styles.contactHeading}>Contact Info</Text>
-  
-  <Text style={styles.headingText}>
-    Name: {texts.name || "Your Name"}
-  </Text>
+            <Text style={styles.headingText}>Contact Info</Text>
 
-  <Text style={styles.headingText}>
-    Location: {texts.location || "Your City"}
-  </Text>
-  
-  <Text style={styles.headingText}>
-    Number: {texts.number || "123-456-7890"}
-  </Text>
+            <Text style={styles.paragraph}>
+              Name: {texts.name || "Your Name"}
+            </Text>
 
-  <Text style={styles.headingText}>
-    Email: {texts.email || "example@mail.com"}
-  </Text>
-  
-  <View style={styles.row}>
-    <Text style={styles.link} onPress={() => Linking.openURL(texts.portfolio || "https://yourportfolio.com")}>
-      Portfolio
-    </Text>
-    
-    <Text style={styles.link} onPress={() => Linking.openURL(`https://linkedin.com/in/${texts.linkedin || "yourprofile"}`)}>
-      LinkedIn
-    </Text>
-  </View>
-</View>
+            <Text style={styles.paragraph}>
+              Location: {texts.location || "Your City"}
+            </Text>
 
+            <Text style={styles.paragraph}>
+              Number: {texts.number || "123-456-7890"}
+            </Text>
+
+            <Text style={styles.paragraph}>
+              Email: {texts.email || "example@mail.com"}
+            </Text>
+
+            <View style={styles.row}>
+              <Text
+                style={styles.link}
+                onPress={() =>
+                  Linking.openURL(
+                    texts.portfolio || "https://yourportfolio.com"
+                  )
+                }
+              >
+                Portfolio
+              </Text>
+
+              <Text
+                style={styles.link}
+                onPress={() =>
+                  Linking.openURL(
+                    `https://linkedin.com/in/${texts.linkedin || "yourprofile"}`
+                  )
+                }
+              >
+                LinkedIn
+              </Text>
+            </View>
+          </View>
         </View>
 
         {/* Summary */}
@@ -172,12 +191,9 @@ const Uploadtemplate = ({ resumeId }) => {
                 )}
                 {proj.features?.length > 0 && (
                   <View style={styles.list}>
-                    <Text style={styles.paragraph}>
-                      <Text style={{ fontWeight: "bold" }}>Features: </Text>
-                    </Text>
                     {proj.features.map((feat, i) => (
                       <Text key={i} style={styles.listItem}>
-                        {feat}
+                        {". "} {feat}
                       </Text>
                     ))}
                   </View>
@@ -246,12 +262,13 @@ const Uploadtemplate = ({ resumeId }) => {
       paddingLeft: 10,
     },
     name: {
-      fontSize: 24,
+      fontSize: 30,
       fontWeight: "bold",
+      marginBottom: 7,
     },
     title: {
       fontSize: 18,
-      color: "#666",
+      color: "bold",
     },
     contactHeading: {
       fontSize: 16,
@@ -261,27 +278,28 @@ const Uploadtemplate = ({ resumeId }) => {
     rightColumn: {
       flex: 1,
       paddingLeft: 10,
-      flexDirection: 'column', 
+      flexDirection: "column",
     },
     contactHeading: {
       fontSize: 16,
-      fontWeight: 'bold',
+      fontWeight: "bold",
       marginBottom: 5,
     },
     headingText: {
-      fontSize: 18, 
-      fontWeight: 'bold',
+      fontSize: 18,
+      fontWeight: "bold",
       marginBottom: 5,
     },
     link: {
-      color: '#1E90FF',  
-      textDecorationLine: 'underline',
-      marginRight: 15, 
+      color: "#1E90FF",
+      textDecorationLine: "underline",
+      marginRight: 15,
+      fontSize: 12,
     },
     row: {
-      flexDirection: 'row',
-      justifyContent: 'flex-start', 
-      marginTop: 5, 
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      marginTop: 5,
     },
   });
 
@@ -316,7 +334,9 @@ const Uploadtemplate = ({ resumeId }) => {
             <a href="">Email: {extractedTexts?.email || "example@mail.com"}</a>
             <div className="flex gap-4">
               <a href={extractedTexts?.portfolio}>
-                {extractedTexts?.portfolio ? "Portfolio " : "add-your-portfolio"}
+                {extractedTexts?.portfolio
+                  ? "Portfolio "
+                  : "add-your-portfolio"}
               </a>
               <h2>|</h2>
               <a href={extractedTexts?.linkedin}>
