@@ -17,7 +17,7 @@ const AccordionItem = ({ index, title, content, isOpen, toggle }) => {
           </svg>
         </span>
       </button>
-      <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? "max-h-60 px-6 pb-4" : "max-h-0"}`}>
+      <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? "max-h-max px-6 pb-4" : "max-h-0"}`}>
         <div className="text-gray-700 text-sm">{content}</div>
       </div>
     </div>

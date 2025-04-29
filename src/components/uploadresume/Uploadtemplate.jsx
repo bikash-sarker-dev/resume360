@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
 import Modal from "./Modal";
-import { pdf, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import {
+  pdf,
+  Document,
+  Page,
+  Text,
+  View,
+  StyleSheet,
+} from "@react-pdf/renderer";
 import axios from "axios";
 import { useParams } from "react-router";
 
-
-const Uploadtemplate = ({ resumeId  }) => {
+const Uploadtemplate = ({ resumeId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingSection, setEditingSection] = useState(null);
   const [extractedTexts, setExtractedTexts] = useState(null);
- 
 
- 
-
- 
   const handleSave = (updatedObject) => {
     setExtractedTexts(updatedObject);
   };
@@ -21,8 +23,10 @@ const Uploadtemplate = ({ resumeId  }) => {
   useEffect(() => {
     const fetchResume = async () => {
       try {
-        const res = await axios.get(`https://resume360-server.vercel.app/resumeIn/${resumeId}`);
-        console.log( res.data);
+        const res = await axios.get(
+          `https://resume360-server.vercel.app/resumeIn/${resumeId}`
+        );
+        console.log(res.data);
         setExtractedTexts(res.data);
       } catch (err) {
         console.error("Failed to fetch resume:", err);
@@ -34,39 +38,39 @@ const Uploadtemplate = ({ resumeId  }) => {
     }
   }, [resumeId]);
 
-
-
-
   const generatePDFDocument = (texts) => (
     <Document>
       <Page size="A4" style={styles.page}>
-      <View style={styles.headerContainer}>
-  {/* Left Side: Name & Title */}
-  <View style={styles.leftColumn}>
-    <Text style={styles.name}>{texts.name || "Your Name"}</Text>
-    <Text style={styles.title}>{texts.title || "Your Title"}</Text>
-  </View>
+        <View style={styles.headerContainer}>
+          {/* Left Side: Name & Title */}
+          <View style={styles.leftColumn}>
+            <Text style={styles.name}>{texts.name || "Your Name"}</Text>
+            <Text style={styles.title}>{texts.title || "Your Title"}</Text>
+          </View>
 
-  {/* Right Side: Contact Info */}
-  <View style={styles.rightColumn}>
-    <Text style={styles.contactHeading}>Contact Info</Text>
-    <Text>Email: {texts.email || "example@mail.com"}</Text>
-    <Text>Location: {texts.location || "Your City"}</Text>
-    <Text>Number: {texts.number || "123-456-7890"}</Text>
-    <Text>Portfolio: {texts.portfolio || "yourportfolio.com"}</Text>
-    <Text>LinkedIn: {texts.linkedin || "linkedin.com/in/yourprofile"}</Text>
-  </View>
-</View>
+          {/* Right Side: Contact Info */}
+          <View style={styles.rightColumn}>
+            <Text style={styles.contactHeading}>Contact Info</Text>
+            <Text>Email: {texts.email || "example@mail.com"}</Text>
+            <Text>Location: {texts.location || "Your City"}</Text>
+            <Text>Number: {texts.number || "123-456-7890"}</Text>
+            <Text>Portfolio: {texts.portfolio || "yourportfolio.com"}</Text>
+            <Text>
+              LinkedIn: {texts.linkedin || "linkedin.com/in/yourprofile"}
+            </Text>
+          </View>
+        </View>
 
-  
         {/* Summary */}
         <View style={styles.section}>
           <Text style={styles.heading}>SUMMARY</Text>
           <Text style={styles.paragraph}>
-            {texts.summary || texts.objective || "Write a brief personal summary here..."}
+            {texts.summary ||
+              texts.objective ||
+              "Write a brief personal summary here..."}
           </Text>
         </View>
-  
+
         {/* Skills */}
         <View style={styles.section}>
           <Text style={styles.heading}>SKILLS</Text>
@@ -81,13 +85,15 @@ const Uploadtemplate = ({ resumeId  }) => {
           {texts?.skills?.comfortable?.length > 0 && (
             <Text style={styles.paragraph}>
               <Text style={{ fontWeight: "bold" }}>Comfortable: </Text>
-              {texts.skills.comfortable.join(", ") || "Add comfortable skills..."}
+              {texts.skills.comfortable.join(", ") ||
+                "Add comfortable skills..."}
             </Text>
           )}
           {texts?.skills?.experience?.length > 0 && (
             <Text style={styles.paragraph}>
               <Text style={{ fontWeight: "bold" }}>Experience: </Text>
-              {texts.skills.experience.join(", ") || "Add experienced skills..."}
+              {texts.skills.experience.join(", ") ||
+                "Add experienced skills..."}
             </Text>
           )}
           {texts?.skills?.familiar?.length > 0 && (
@@ -115,26 +121,42 @@ const Uploadtemplate = ({ resumeId  }) => {
             </Text>
           )}
         </View>
-  
+
         {/* Education */}
         <View style={styles.section}>
           <Text style={styles.heading}>EDUCATION</Text>
-          <Text style={styles.paragraph}>{texts.education || "Add your education background here..."}</Text>
+          <Text style={styles.paragraph}>
+            {texts.education || "Add your education background here..."}
+          </Text>
         </View>
-  
+
         {/* Projects */}
         {texts.projects?.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.heading}>PROJECTS</Text>
             {texts.projects.map((proj, index) => (
               <View key={index}>
-                {proj.title && <Text style={styles.paragraph}><Text style={{ fontWeight: "bold" }}>Title: </Text>{proj.title}</Text>}
-                {proj.overview && <Text style={styles.paragraph}><Text style={{ fontWeight: "bold" }}>Overview: </Text>{proj.overview}</Text>}
+                {proj.title && (
+                  <Text style={styles.paragraph}>
+                    <Text style={{ fontWeight: "bold" }}>Title: </Text>
+                    {proj.title}
+                  </Text>
+                )}
+                {proj.overview && (
+                  <Text style={styles.paragraph}>
+                    <Text style={{ fontWeight: "bold" }}>Overview: </Text>
+                    {proj.overview}
+                  </Text>
+                )}
                 {proj.features?.length > 0 && (
                   <View style={styles.list}>
-                    <Text style={styles.paragraph}><Text style={{ fontWeight: "bold" }}>Features: </Text></Text>
+                    <Text style={styles.paragraph}>
+                      <Text style={{ fontWeight: "bold" }}>Features: </Text>
+                    </Text>
                     {proj.features.map((feat, i) => (
-                      <Text key={i} style={styles.listItem}>{feat}</Text>
+                      <Text key={i} style={styles.listItem}>
+                        {feat}
+                      </Text>
                     ))}
                   </View>
                 )}
@@ -148,11 +170,15 @@ const Uploadtemplate = ({ resumeId  }) => {
             ))}
           </View>
         )}
-  
+
         {/* Languages */}
         <View style={styles.section}>
           <Text style={styles.heading}>LANGUAGES</Text>
-          <Text style={styles.paragraph}>{texts.languages || texts.language || "Add your language details..."}</Text>
+          <Text style={styles.paragraph}>
+            {texts.languages ||
+              texts.language ||
+              "Add your language details..."}
+          </Text>
         </View>
       </Page>
     </Document>
@@ -185,8 +211,8 @@ const Uploadtemplate = ({ resumeId  }) => {
       fontSize: 12,
     },
     headerContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
+      flexDirection: "row",
+      justifyContent: "space-between",
       paddingBottom: 20,
     },
     leftColumn: {
@@ -199,66 +225,59 @@ const Uploadtemplate = ({ resumeId  }) => {
     },
     name: {
       fontSize: 24,
-      fontWeight: 'bold',
+      fontWeight: "bold",
     },
     title: {
       fontSize: 18,
-      color: '#666',
+      color: "#666",
     },
     contactHeading: {
       fontSize: 16,
-      fontWeight: 'bold',
+      fontWeight: "bold",
       marginBottom: 5,
     },
   });
-  
-  
 
   const downloadPdf = async () => {
     const blob = await pdf(generatePDFDocument(extractedTexts)).toBlob();
     const url = URL.createObjectURL(blob);
-  
-    const link = document.createElement('a');
+
+    const link = document.createElement("a");
     link.href = url;
-    link.download = 'resume.pdf';
+    link.download = "resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
   };
-  
-  
-  
 
   return (
     <>
-      <div
-        className="container pt-28 mx-auto bg-white shadow-lg p-16 rounded-lg"
-      >
+      <div className="container pt-28 mx-auto bg-white shadow-lg p-16 rounded-lg">
         {/* Name and Contact Info */}
         <div className="text-center flex justify-between border-b pb-5">
           <div className="text-left">
             <h1 className="text-4xl font-bold text-black">
-              {extractedTexts.name || "Your Name"}
+              {extractedTexts?.name || "Your Name"}
             </h1>
             <h2 className="text-2xl mt-2 text-black">
-              {extractedTexts.title || "Your Title"}
+              {extractedTexts?.title || "Your Title"}
             </h2>
           </div>
           <div className="mt-2 text-left flex flex-col text-black">
             <h2 className="mb-3 text-2xl font-bold">Contact Info</h2>
-            <a href="">Email: {extractedTexts.email || "example@mail.com"}</a>
+            <a href="">Email: {extractedTexts?.email || "example@mail.com"}</a>
             <div className="flex gap-4">
-              <a href={extractedTexts.portfolio}>
-                {extractedTexts.portfolio ? "Portfolio " : "add-your-portfolio"}
+              <a href={extractedTexts?.portfolio}>
+                {extractedTexts?.portfolio ? "Portfolio " : "add-your-portfolio"}
               </a>
               <h2>|</h2>
-              <a href={extractedTexts.linkedin}>
-                {extractedTexts.linkedin ? "linkedin" : "add-your-linkdin"}
+              <a href={extractedTexts?.linkedin}>
+                {extractedTexts?.linkedin ? "linkedin" : "add-your-linkdin"}
               </a>
             </div>
-            <h2>location: {extractedTexts.location}</h2>
-            <h2>number: {extractedTexts.number}</h2>
+            <h2>location: {extractedTexts?.location}</h2>
+            <h2>number: {extractedTexts?.number}</h2>
           </div>
         </div>
 
@@ -266,8 +285,8 @@ const Uploadtemplate = ({ resumeId  }) => {
         <div className="mt-6">
           <h3 className="text-xl font-semibold text-black">SUMMARY</h3>
           <p className="text-black mt-2">
-            {extractedTexts.summary ||
-              extractedTexts.objective ||
+            {extractedTexts?.summary ||
+              extractedTexts?.objective ||
               "Write a brief personal summary here..."}
           </p>
         </div>
@@ -352,14 +371,14 @@ const Uploadtemplate = ({ resumeId  }) => {
         <div>
           <h3 className="text-xl font-semibold text-black">EDUCATION</h3>
           <p className="text-black mt-2">
-            {extractedTexts.education ||
+            {extractedTexts?.education ||
               "Add your education background here..."}
           </p>
         </div>
 
         {/* Projects Section */}
         <div className="mt-2">
-          {extractedTexts.projects?.length > 0 ? (
+          {extractedTexts?.projects?.length > 0 ? (
             <div className="text-black">
               <h3 className="text-xl font-bold mb-2">PROJECTS</h3>
               {extractedTexts.projects.map((proj, index) => (
@@ -435,35 +454,34 @@ const Uploadtemplate = ({ resumeId  }) => {
         <div className="mt-2">
           <h3 className="text-xl font-semibold text-black">Languages</h3>
           <p className="text-black mt-2">
-            {extractedTexts.languages ||
-              extractedTexts.language ||
+            {extractedTexts?.languages ||
+              extractedTexts?.language ||
               "Language details go here..."}
           </p>
         </div>
 
         {/* edit Button */}
-        
       </div>
 
       <div className="text-center space-x-3 mt-6">
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="bg-r-info text-white py-2 px-6 rounded-full hover:text-r-text hover:bg-r-accent transition"
-          >
-            edit
-          </button>
-          <button
-            className="bg-r-info text-white py-2 px-6 rounded-full hover:text-r-text hover:bg-r-accent transition"
-            onClick={() => {
-              setIsModalOpen(false);
-              setTimeout(() => {
-                downloadPdf(); 
-              }, 100); 
-            }}
-          >
-            download pdf
-          </button>
-        </div>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="bg-r-info text-white py-2 px-6 rounded-full hover:text-r-text hover:bg-r-accent transition"
+        >
+          edit
+        </button>
+        <button
+          className="bg-r-info text-white py-2 px-6 rounded-full hover:text-r-text hover:bg-r-accent transition"
+          onClick={() => {
+            setIsModalOpen(false);
+            setTimeout(() => {
+              downloadPdf();
+            }, 100);
+          }}
+        >
+          download pdf
+        </button>
+      </div>
 
       {/* Modal for editing */}
       <Modal

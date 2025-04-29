@@ -4,69 +4,124 @@ import Swal from "sweetalert2";
 import google from "../../assets/icons/google.png";
 import SectionHead from "../../components/header/section-head/SectionHead";
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "./../../hooks/useAxiosPublic";
 
 export default function Login() {
-  const { signInUser, setUser, signInWithGoogle, signInWithGithub, loading } = useAuth();
+  const {
+    signInUser,
+    setLoading,
+    setUser,
+    user,
+    signInWithGoogle,
+    signInWithGithub,
+    loading,
+  } = useAuth();
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const [showPassword, setShowPassword] = useState(false);
+  const [blocks, setBlocks] = useState(false);
 
-  const handleLogin = (event) => {
+  const blockFun = (num) => {
+    let getValue = localStorage.getItem("block");
+    let count = num + parseInt(getValue);
+    console.log(count);
+    setBlocks(count);
+    localStorage.setItem("block", count);
+  };
+
+  const handleLogin = async (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
     const user = { email, password };
-    // console.log(user);
 
-    // SignInUser
-    signInUser(email, password)
-      .then((result) => {
-        // console.log(result.user)
-        if(loading){
-          return <span className='block mx-auto loading loading-spinner loading-xl'></span>
+    let res = await axiosPublic.get(`/users/${email}`);
+    if (res.data.result?.block) {
+      console.log("user block");
+      Swal.fire({
+        title: "Warning",
+        text: "Your account has been blocked, please contact the admin.",
+        icon: "warning",
+        confirmButtonColor: "#3e563f",
+        showCancelButton: true,
+        confirmButtonText: "Contact",
+        background: "#7dc696",
+        color: "#fff",
+      }).then((result) => {
+        if (result.value) {
+          window.location.href = `https://resume360.netlify.app/contact`;
         }
-        setUser(result.user);
-        Swal.fire({
-          title: "Success",
-          text: "Login successfully",
-          icon: "success",
-          confirmButtonText: "Done",
-          confirmButtonColor: '#3e563f',
-        });
-        navigate("/");
-        form.reset();
-      })
-
-      .catch((error) => {
-        // console.log(error.message)
-        setUser(null);
-        Swal.fire({
-          title: "Error",
-          text: "Email or Password is wrong please check",
-          icon: "error",
-          confirmButtonText: "Ok",
-          confirmButtonColor: '#3e563f',
-        });
       });
+    } else {
+      if (parseInt(localStorage.getItem("block")) === 2) {
+        let res = await axiosPublic.patch(`/users/block/${email}`);
+        localStorage.setItem("block", "0");
+      }
+      // SignInUser
+      signInUser(email, password)
+        .then((result) => {
+          // console.log(result.user)
+          if (loading) {
+            return (
+              <span className="block mx-auto loading loading-spinner loading-xl"></span>
+            );
+          }
+          setUser(result.user);
+          Swal.fire({
+            title: "Success",
+            text: "Login successfully",
+            icon: "success",
+            confirmButtonText: "Done",
+            confirmButtonColor: "#3e563f",
+          });
+          navigate("/");
+          form.reset();
+        })
+
+        .catch((error) => {
+          // console.log(error.message)
+          if (localStorage.getItem("block") == null) {
+            localStorage.setItem("block", "0");
+          }
+          blockFun(1);
+          console.log("error login");
+          setLoading(false);
+          setUser(null);
+          Swal.fire({
+            title: "Error",
+            text: "Email or Password is wrong please check",
+            icon: "error",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#3e563f",
+          });
+        });
+    }
   };
 
   // google signin
   const handleGoogleLogin = () => {
     signInWithGoogle()
-      .then((result) => {
+      .then(async (result) => {
         // console.log(result.user)
-        if(loading){
-          return <span className='block mx-auto loading loading-spinner loading-xl'></span>
+        if (loading) {
+          return (
+            <span className="block mx-auto loading loading-spinner loading-xl"></span>
+          );
         }
+
         setUser(result.user);
+        // userFind(result.user?.email);
+        let res = await axiosPublic.get(`/users/${result.user.email}`);
+        console.log(res.data.result);
         Swal.fire({
           title: "Success",
           text: "Login with Google successfully",
           icon: "success",
           confirmButtonText: "Done",
-          confirmButtonColor: '#3e563f',
+          confirmButtonColor: "#3e563f",
         });
-        navigate("/socialMiddleware");
+        navigate(!res.data.result ? "/socialMiddleware" : "/");
       })
       .catch((error) => {
         // console.log(error)
@@ -85,7 +140,7 @@ export default function Login() {
   //         text: "Login With Github Successfully",
   //         icon: "success",
   //         confirmButtonText: "Done",
-              // confirmButtonColor: '#3e563f',
+  // confirmButtonColor: '#3e563f',
   //       });
   //       navigate("/");
   //     })
@@ -136,7 +191,9 @@ export default function Login() {
             <div>
               <Link to="/forgetPassword">Forgot your password?</Link>
             </div>
-            <button className="btn bg-r-accent mt-4 text-r-text hover:bg-r-primary hover:text-white">Login</button>
+            <button className="btn bg-r-accent mt-4 text-r-text hover:bg-r-primary hover:text-white">
+              Login
+            </button>
           </fieldset>
         </form>
         <div className="divider">OR</div>
