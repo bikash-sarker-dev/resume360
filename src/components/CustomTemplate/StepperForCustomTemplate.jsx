@@ -77,7 +77,7 @@ console.log(pageId);
 
             {/* Download pdf */}
        
-            <DownloadBTN pageId={pageId}></DownloadBTN>
+            <DownloadBTN pageId={pageId }></DownloadBTN>
 
            
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
