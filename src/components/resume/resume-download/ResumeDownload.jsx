@@ -14,7 +14,7 @@ const ResumeDownload = () => {
     const { resumeData } = useContext(ResumeContext);
     const { user } = useContext(AuthContext);
     const axiosPublic = useAxiosPublic();
-    const navigate = useNavigate(); // 👈 Initialize navigate
+    const navigate = useNavigate();
     const [isSaving, setIsSaving] = useState(false);
     const [isSaved, setIsSaved] = useState(false);
 
@@ -24,7 +24,7 @@ const ResumeDownload = () => {
 
     const handleSaveResume = async () => {
         if (!user) {
-            navigate('/login'); // 👈 Redirect if not logged in
+            navigate('/login');
             return;
         }
 

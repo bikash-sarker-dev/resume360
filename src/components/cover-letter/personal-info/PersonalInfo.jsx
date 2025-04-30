@@ -1,10 +1,23 @@
 import * as React from 'react';
 import { TextField } from '@mui/material';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { CoverLetterContext } from '../../../contextApi/coverletter-context/CoverLetterContext';
+import { AuthContext } from '../../../contextApi/AuthenticationContext';
+
 
 const PersonalInfo = () => {
   const { CoverLetterData, updateSection } = useContext(CoverLetterContext);
+  const { user } = useContext(AuthContext); // Get user from AuthProvider
+
+  // Set email from auth user on first render
+  useEffect(() => {
+    if (user?.email) {
+      updateSection('personalInfo', { 
+        ...CoverLetterData.personalInfo,
+        email: user.email
+      });
+    }
+  }, [user?.email]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,7 +58,8 @@ const PersonalInfo = () => {
         type="email"
         value={CoverLetterData.personalInfo.email || ''}
         onChange={handleChange}
-        helperText="Please enter your email address"
+        helperText="Email is fetched from your account"
+        disabled // Disable input field
       />
       <TextField
         required
@@ -81,7 +95,6 @@ const PersonalInfo = () => {
         helperText="Please select the date"
       />
     </div>
-
   );
 };
 
