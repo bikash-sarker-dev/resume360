@@ -6,7 +6,7 @@ import { TemplateTab } from "../components/TemplatePage/TemplateTab";
 const TemplatesPage = () => {
   const [templetes, setTemplates] = useState([]);
   let [resumebtn, setResume] = useState(true);
-  let [cvbtn, setCv] = useState(false);
+  
 
 
 
@@ -19,23 +19,9 @@ const TemplatesPage = () => {
     setActive("resume");
     console.log(active);
   };
-  const handleCv = () => {
-    setResume(false);
-    setCoverLetter(false);
-    setCv(true);
 
-    setActive("cv");
-    console.log(active);
-  };
 
-  const handleCoverLetter = () => {
-    setResume(false);
-    setCv(false);
-    setCoverLetter(true);
-
-     setActive("cover");
-    console.log(active);
-  };
+  
 
 useEffect(()=>{
   console.log("Now active:", active);
