@@ -14,25 +14,19 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import ResumeView from '../../resume-view/ResumeView';
+import { AuthContext } from '../../../../contextApi/AuthenticationContext';
+
 
 const columns = [
     { id: 'name', label: 'Name', minWidth: 170 },
     { id: 'jobTitle', label: 'Job Title', minWidth: 100 },
     {
-        id: 'created',
-        label: 'Created',
+        id: 'email',
+        label: 'Email',
         minWidth: 170,
         align: 'right',
-        format: (value) => new Date(value).toLocaleDateString('en-US'),
-    },
-    {
-        id: 'modified',
-        label: 'Modified At',
-        minWidth: 170,
-        align: 'right',
-        format: (value) => new Date(value).toLocaleDateString('en-US'),
     },
     {
         id: 'action',
@@ -42,7 +36,9 @@ const columns = [
     },
 ];
 
+
 const ResumeList = ({ searchTerm }) => {
+    const { user } = useContext(AuthContext); // Get user from AuthContext
     const axiosPublic = useAxiosPublic();
     const [rows, setRows] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -53,8 +49,6 @@ const ResumeList = ({ searchTerm }) => {
     const [viewingResume, setViewingResume] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
 
-
-
     React.useEffect(() => {
         const fetchResumes = async () => {
             try {
@@ -64,8 +58,7 @@ const ResumeList = ({ searchTerm }) => {
                         id: resume._id,
                         name: resume.personalInfo?.fullName || 'N/A',
                         jobTitle: resume.personalInfo?.jobTitle || 'N/A',
-                        created: resume.personalInfo?.date || 'N/A',
-                        modified: resume.personalInfo?.date || 'N/A',
+                        email: resume.personalInfo?.email || 'N/A', // Add email here
                     }));
                     setRows(fetchedRows);
                 }
@@ -75,6 +68,7 @@ const ResumeList = ({ searchTerm }) => {
                 setLoading(false);
             }
         };
+        
 
         fetchResumes();
     }, [axiosPublic]);
@@ -152,11 +146,8 @@ const ResumeList = ({ searchTerm }) => {
             } catch (error) {
                 console.error('Failed to fetch resume:', error);
             }
-
         }
-
     };
-
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -168,17 +159,17 @@ const ResumeList = ({ searchTerm }) => {
     };
 
     if (loading) return (
-        <>
-            <div className="h-screen flex justify-center items-center">
-                <span className="loading loading-ring loading-xl"></span>
-            </div>
-        </>
+        <div className="h-screen flex justify-center items-center">
+            <span className="loading loading-ring loading-xl"></span>
+        </div>
     );
 
-    // ✅ Filter logic
+    // ✅ Filter logic based on user email
     const filteredRows = rows.filter((row) =>
-        row.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        row.jobTitle.toLowerCase().includes(searchTerm.toLowerCase())
+        row.email === user?.email && (
+            row.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            row.jobTitle.toLowerCase().includes(searchTerm.toLowerCase())
+        )
     );
 
     return (
