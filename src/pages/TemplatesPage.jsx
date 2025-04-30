@@ -63,38 +63,14 @@ useEffect(()=>{
 
       <div>
         <div className="flex gap-4 justify-center my-8  ">
-          <button
-            onClick={handleResume}
-            className={`py-7 w-20 md:w-40 btn  rounded-full
-              ${active==="resume" ?"bg-r-primary shadow-2xl text-white":"bg-r-secondary text-black"}
-              `}
-          >
-            Resume
-          </button>
-          <button
-            onClick={handleCv}
-            className={`btn py-7  w-20 md:w-40 bg-r-primary rounded-full
-                 ${active==="cv" ?"bg-r-primary text-white shadow-2xl":"bg-r-secondary text-black"}
-              `}
-          >
-            CV
-          </button>
-          <button
-            onClick={handleCoverLetter}
-            className={`btn w-20 md:w-40 py-7 bg-r-primary rounded-full
-                 ${active==="cover" ?"bg-r-primary text-white shadow-2xl":"bg-r-secondary text-black "}
-              `}
-          >
-            Cover Letter
-          </button>
+      
+        
         </div>
       </div>
       <div>
         {resumebtn && <TemplateTab title="Resume" templates={resume} />}
-        {cvbtn && <TemplateTab title="CV" templates={cv} />}
-        {coverLetterbtn && (
-          <TemplateTab title="Cover Letter" templates={coverLetter} />
-        )}
+       
+       
       </div>
     </div>
   );
