@@ -89,12 +89,7 @@ const ResumeDownload = () => {
                 <PDFDownloadLink
                     document={<ResumePDF resumeData={resumeData} />}
                     fileName={`${resumeData?.personalInfo?.fullName || 'resume'}.pdf`}
-<<<<<<< HEAD
                     className={`rounded-full bg-r-primary text-white py-2 px-6 transition duration-200 ${!isSaved ? 'opacity-50 pointer-events-none' : ''}`}
-=======
-                    className={`rounded-full bg-r-primary text-white hover:bg-r-accent hover:text-black py-2 px-6 transition duration-200 ${!isSaved ? 'opacity-50 pointer-events-none' : ''
-                        }`}
->>>>>>> 66aa8d7753556709ffadb4a1d08001502d3781ca
                 >
                     {({ loading }) => (loading ? 'Preparing PDF...' : 'Download PDF')}
                 </PDFDownloadLink>
