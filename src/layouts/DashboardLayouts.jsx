@@ -22,9 +22,9 @@ const DashboardLayouts = () => {
           className=" w-[100%]
         "
         > */}
-         <div className="w-full lg:ml-64 lg:w-[calc(100%-16rem)]">
+        <div className="w-full lg:ml-64 lg:w-[calc(100%-16rem)]">
           <NavbarDashboard />
-          <div className="">
+          <div className="min-h-screen bg-r-card">
             <Outlet />
           </div>
         </div>
