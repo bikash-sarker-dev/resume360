@@ -5,6 +5,7 @@ import { StepperForCustomTemplate } from '../components/CustomTemplate/StepperFo
 import { CustomTemplate1 } from '../components/CustomTemplate/CustomTemplates/CustomTemplate1'
 import { useFormData } from '../components/CustomTemplate/FormDataProvider'
 import { CustomeTemplate2 } from '../components/CustomTemplate/CustomTemplates/CustomeTemplate2'
+import { CustomTemplate3 } from '../components/CustomTemplate/CustomTemplates/CustomTemplate3'
 
 export const CustomTemplate = () => {
   const { id } = useParams()
@@ -12,7 +13,8 @@ export const CustomTemplate = () => {
  
   const templateComponents={
     CV3:<CustomTemplate1/>,
-    resume2:<CustomeTemplate2></CustomeTemplate2>
+    resume2:<CustomeTemplate2></CustomeTemplate2>,
+    CV5:<CustomTemplate3></CustomTemplate3>
   }
 
   return (
