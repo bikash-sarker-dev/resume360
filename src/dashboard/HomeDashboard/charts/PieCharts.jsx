@@ -3,13 +3,13 @@ import Chart from "react-apexcharts";
 
 const PieCharts = () => {
   const [chartData] = useState({
-    series: [44, 55, 41, 17, 15],
+    series: [60, 30, 10], // Example: 60% resumes, 30% cover letters, 10% others
     options: {
       chart: {
         type: "pie",
       },
-      labels: ["Apple", "Mango", "Orange", "Banana", "Grapes"],
-      colors: ["#588568", "#7dc696", "#344e41", "#FF4560", "#775DD0"],
+      labels: ["Resumes", "Cover Letters", "Other Documents"],
+      colors: ["#588568", "#7dc696", "#FF4560"],
       legend: {
         position: "bottom",
       },
@@ -31,7 +31,7 @@ const PieCharts = () => {
 
   return (
     <div>
-      <h2>Fruit Sales Distribution</h2>
+      <h2 className="text-xl font-semibold mb-4">Document Type Distribution</h2>
       <Chart
         options={chartData.options}
         series={chartData.series}
