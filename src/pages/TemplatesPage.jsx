@@ -1,4 +1,4 @@
-import React, { act, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "react-tabs/style/react-tabs.css";
 import SectionHead from "../components/header/section-head/SectionHead";
 import { TemplateTab } from "../components/TemplatePage/TemplateTab";
