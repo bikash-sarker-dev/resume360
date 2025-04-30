@@ -105,9 +105,9 @@ const Sidebar = () => {
                     <NavLink
                       to={item.to}
                       className={({ isActive }) =>
-                        `flex items-center gap-3 px-4 py-2 rounded-lg transition-all ${
+                        `flex items-center gap-3 ml-4 py-2 rounded-lg transition-all ${
                           isActive
-                            ? "bg-r-secondary text-white underline"
+                            ? "bg-r-secondary text-white border-b rounded-none w-[180px]"
                             : "hover:bg-r-secondary hover:text-white text-r-background"
                         }`
                       }
@@ -122,9 +122,9 @@ const Sidebar = () => {
                     <NavLink
                       to={item.to}
                       className={({ isActive }) =>
-                        `flex items-center gap-3 px-4 py-2 rounded-lg transition-all ${
+                        `flex items-center gap-3 ml-4 py-2 rounded-lg transition-all ${
                           isActive
-                            ? "bg-r-secondary text-white underline"
+                            ? "bg-r-secondary text-white border-b rounded-none w-[180px] "
                             : "hover:bg-r-secondary hover:text-white text-r-background"
                         }`
                       }
@@ -136,7 +136,7 @@ const Sidebar = () => {
                 ))}
             <li>
               {/* <button
-                className="flex items-center gap-3 px-4 py-2 rounded-lg text-r-background bg-gradient-to-r from-r-accent to-r-info-card hover:text-black transition-all w-full"
+                className="flex items-center gap-3 ml-4 py-2 rounded-lg text-r-background bg-gradient-to-r from-r-accent to-r-info-card hover:text-black transition-all w-full"
                 onClick={() => document.getElementById('my_modal_3').showModal()}
               >
                 <GiArtificialIntelligence className="text-2xl" />
@@ -158,7 +158,7 @@ const Sidebar = () => {
             <li>
               <button
                 onClick={handleSignOut}
-                className="flex items-center gap-3 px-4 py-2 rounded-lg text-r-background hover:bg-r-accent hover:text-black transition-all w-full"
+                className="flex items-center gap-3 ml-4 py-2 rounded-lg text-r-background hover:bg-r-accent hover:text-black transition-all w-full"
               >
                 <IoIosLogOut className="text-2xl" />
                 <span className="text-base">Log Out</span>
@@ -170,7 +170,7 @@ const Sidebar = () => {
             <li>
               <NavLink
                 to="/"
-                className="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-r-secondary hover:text-white text-r-background transition-all"
+                className="flex items-center gap-3 ml-4 py-2 rounded-lg hover:bg-r-secondary hover:text-white text-r-background transition-all"
               >
                 <GoHome className="text-2xl" />
                 <span className="text-base">Go to Home</span>
