@@ -5,8 +5,8 @@ const ColumnCharts = () => {
   const [chartData] = useState({
     series: [
       {
-        name: "Revenue",
-        data: [450, 650, 800, 700, 900, 1100, 1200], // Data points
+        name: "Documents Created",
+        data: [320, 480, 600, 540, 760, 900, 1050], // Replace with real data as needed
       },
     ],
     options: {
@@ -22,14 +22,14 @@ const ColumnCharts = () => {
         },
       },
       dataLabels: {
-        enabled: false, // Hide value labels on bars
+        enabled: false,
       },
       xaxis: {
         categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
       },
       yaxis: {
         title: {
-          text: "Revenue (USD)",
+          text: "Documents Created",
         },
       },
       fill: {
@@ -38,9 +38,10 @@ const ColumnCharts = () => {
       colors: ["#7dc696"],
     },
   });
+
   return (
     <div>
-      <h2>Monthly Revenue</h2>
+      <h2 className="text-xl font-semibold mb-4">Monthly Document Creation</h2>
       <Chart
         options={chartData.options}
         series={chartData.series}
