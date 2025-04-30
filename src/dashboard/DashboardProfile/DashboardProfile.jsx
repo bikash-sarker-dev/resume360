@@ -87,7 +87,7 @@ const DashboardProfile = () => {
     role: "profession role",
     birthday: "your birth year",
     gender: "your gender",
-    phone: "phone number",
+    phone: "your phone number",
     email: "",
     website: "enter your protfolio link",
     work: "your profession ",

@@ -1,0 +1,24 @@
+[33mcommit 76af8b34896ebf2be99e359afbf3f6bbb0655e97[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mjoynal-abedin[m[33m)[m
+Author: kazi tareq <kazitareq321@gmail.com>
+Date:   Wed Apr 30 00:33:15 2025 +0600
+
+    delete wrong file
+
+ delete mode 100644 et --soft HEAD~3
+
+[33mcommit 887f94e4d758696016baf95acbb04984a7b70898[m
+Author: Sadia0920 <sadiaafrin0920@gmail.com>
+Date:   Mon Apr 21 15:24:58 2025 +0600
+
+    polish about page
+
+ delete mode 100644 src/components/about/changing/CardChanging.jsx
+ delete mode 100644 src/components/about/changing/changing.jsx
+
+[33mcommit 8267fdbc7848e563a0b6e4803b2376e025af4efe[m
+Author: adnanmahmud0 <adnan.mahmud.pc@gmail.com>
+Date:   Sat Apr 19 14:31:30 2025 +0600
+
+    cover letter and resume link updated on root route
+
+ delete mode 100644 src/pages/AddInformation.jsx
