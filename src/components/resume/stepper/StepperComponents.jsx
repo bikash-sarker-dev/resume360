@@ -83,10 +83,10 @@ const StepperComponents = () => {
               <Step key={label} {...stepProps}>
                 <StepLabel
                   {...labelProps}
-                  sx={{
-                    color: activeStep === index ? 
-                    'r-primary' : 'text.secondary',
-                    
+                  StepIconProps={{
+                    style: {
+                      color: activeStep === index ? '#344e41' : '#7dc696', // customize as needed
+                    },
                   }}
                 >
                   {label}
