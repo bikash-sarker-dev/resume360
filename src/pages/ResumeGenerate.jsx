@@ -37,7 +37,7 @@ const ResumeGenerate = () => {
 
         {/* Create New Resume */}
         <Link
-          to="/create-resume"
+          to="/create-resume/resume0"
           className="bg-white shadow-md hover:shadow-xl text-r-info-card cursor-pointer rounded-xl p-8 w-72 block"
         >
           <div className="flex justify-center mb-4 text-r-primary">
