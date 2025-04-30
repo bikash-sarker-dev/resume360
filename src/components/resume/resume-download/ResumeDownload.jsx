@@ -1,25 +1,33 @@
+import { useContext, useState } from 'react';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import ResumePDF from './ResumePDF';
 import { generateDocx } from './generateDocx';
-import { useContext, useState } from 'react';
 import { ResumeContext } from '../../../contextApi/resume-context/ResumeContext';
+import { AuthContext } from '../../../contextApi/AuthenticationContext';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router';
+
 
 const ResumeDownload = () => {
     const { resumeData } = useContext(ResumeContext);
+    const { user } = useContext(AuthContext);
     const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate();
     const [isSaving, setIsSaving] = useState(false);
     const [isSaved, setIsSaved] = useState(false);
 
-    // Theme color fetcher
     const getThemeColor = (variableName) => {
         return getComputedStyle(document.documentElement).getPropertyValue(variableName)?.trim();
     };
 
-    // Save Handler
     const handleSaveResume = async () => {
+        if (!user) {
+            navigate('/login');
+            return;
+        }
+
         setIsSaving(true);
         const primaryColor = getThemeColor('--color-r-primary');
 
@@ -29,12 +37,12 @@ const ResumeDownload = () => {
             if (response.status === 200 || response.status === 201) {
                 setIsSaved(true);
                 Cookies.remove('resumeData');
-              
+
                 Swal.fire({
-                  icon: 'success',
-                  title: 'Great job!',
-                  text: 'All your resume information has been saved. You can now download it in PDF or DOCX format!',
-                  confirmButtonColor: primaryColor,
+                    icon: 'success',
+                    title: 'Great job!',
+                    text: 'All your resume information has been saved. You can now download it in PDF or DOCX format!',
+                    confirmButtonColor: primaryColor,
                 });
             } else {
                 Swal.fire({
@@ -68,15 +76,20 @@ const ResumeDownload = () => {
                 disabled={isSaving || isSaved}
                 className="rounded-full bg-r-primary hover:bg-r-accent hover:text-black text-white py-2 px-6 transition duration-200 disabled:opacity-50"
             >
-                {isSaving ? 'Saving...' : isSaved ? 'Resume Saved' : 'Save Resume'}
+                {!user
+                    ? 'Do login before saving'
+                    : isSaving
+                        ? 'Saving...'
+                        : isSaved
+                            ? 'Resume Saved'
+                            : 'Save Resume'}
             </button>
 
             <div className="flex flex-wrap gap-4 mt-4 justify-center">
                 <PDFDownloadLink
                     document={<ResumePDF resumeData={resumeData} />}
                     fileName={`${resumeData?.personalInfo?.fullName || 'resume'}.pdf`}
-                    className={`rounded-full bg-r-primary text-white hover:bg-r-accent hover:text-black py-2 px-6 transition duration-200 ${!isSaved ? 'opacity-50 pointer-events-none' : ''
-                        }`}
+                    className={`rounded-full bg-r-primary text-white py-2 px-6 transition duration-200 ${!isSaved ? 'opacity-50 pointer-events-none' : ''}`}
                 >
                     {({ loading }) => (loading ? 'Preparing PDF...' : 'Download PDF')}
                 </PDFDownloadLink>
@@ -88,7 +101,6 @@ const ResumeDownload = () => {
                 >
                     Download DOCX
                 </button>
-
             </div>
         </div>
     );

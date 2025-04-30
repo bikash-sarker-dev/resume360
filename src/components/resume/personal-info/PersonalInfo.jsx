@@ -1,14 +1,27 @@
 import * as React from 'react';
 import { TextField, Button, MenuItem } from "@mui/material";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { FiUploadCloud } from "react-icons/fi";
 import { ResumeContext } from '../../../contextApi/resume-context/ResumeContext';
+import { AuthContext } from '../../../contextApi/AuthenticationContext';
+
 
 const PersonalInfo = () => {
     const { resumeData, updateSection } = useContext(ResumeContext);
+    const { user } = useContext(AuthContext); // Get user from AuthProvider
     const [image, setImage] = useState(null);
     const [fileName, setFileName] = useState("");
     const [emailError, setEmailError] = useState(false);
+
+    // Set email from auth user on first render
+    useEffect(() => {
+        if (user?.email) {
+            updateSection('personalInfo', {
+                ...resumeData.personalInfo,
+                email: user.email,
+            });
+        }
+    }, [user?.email]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -85,10 +98,11 @@ const PersonalInfo = () => {
                     name="email"
                     label="Email"
                     type='email'
-                    error={emailError}
+                    value={resumeData.personalInfo.email || ""}
                     onChange={handleChange}
-                    helperText={emailError ? "Please enter a valid email address" : "Please enter your email"}
-                    value={resumeData.personalInfo.email}
+                    error={emailError}
+                    helperText={emailError ? "Please enter a valid email address" : "Email is fetched from your account"}
+                    disabled // Disable input field
                 />
                 <TextField
                     className='md:col-span-2'

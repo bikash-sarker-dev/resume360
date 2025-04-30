@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {
     Table, TableBody, TableCell, TableContainer, TableHead,
     TableRow, TablePagination, IconButton, Paper, Menu, MenuItem
@@ -7,6 +7,8 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 import CoverLetterViewer from '../../cover-letter-viewer/CoverLetterViewer';
+import { AuthContext } from '../../../../contextApi/AuthenticationContext';
+
 
 const columns = [
     { id: 'fullName', label: 'Name', minWidth: 150 },
@@ -18,6 +20,7 @@ const columns = [
 
 const CoverLetterList = ({ searchTerm }) => {
     const axiosPublic = useAxiosPublic();
+    const { user } = useContext(AuthContext); // Get the user data from AuthContext
     const [coverLetters, setCoverLetters] = useState([]);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(0);
@@ -109,7 +112,9 @@ const CoverLetterList = ({ searchTerm }) => {
         handleClose(index);
     };
 
+    // Filter the cover letters based on the user's email
     const filtered = coverLetters.filter(cl =>
+        cl.personalInfo.email === user.email && // Compare email with authenticated user's email
         cl.personalInfo.fullName.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
