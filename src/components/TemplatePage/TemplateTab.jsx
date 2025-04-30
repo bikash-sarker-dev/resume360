@@ -10,7 +10,7 @@ export const TemplateTab = ({ title, templates }) => {
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
         {templates.map((template, idx) => (
           <div key={idx} className="bg-white flex flex-col rounded overflow-hidden shadow-md hover:scale-[1.01] transition-all relative">
-            <Link to={`customtemplate/${template.id}`} className="block">
+            <Link to={`/create-resume/${template.id}`} className="block">
               <div className="w-full">
                 <img
                   src={template.url}
@@ -20,7 +20,7 @@ export const TemplateTab = ({ title, templates }) => {
               </div>
             </Link>
             <div className="min-h-[50px] p-4 !pt-0">
-              <button
+              {/* <button
                 type="button"
                 disabled={!template.custom}
                 className={`absolute left-0 right-0 bottom-3 max-w-[88%] mx-auto text-sm px-2 py-2 font-medium w-full ${
@@ -30,7 +30,7 @@ export const TemplateTab = ({ title, templates }) => {
                 } tracking-wide outline-none border-none rounded`}
               >
                 {template.custom ? "Customize" : "Not Customizable"}
-              </button>
+              </button> */}
             </div>
           </div>
         ))}
