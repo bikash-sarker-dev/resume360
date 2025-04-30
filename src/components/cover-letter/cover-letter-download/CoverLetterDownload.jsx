@@ -77,7 +77,7 @@ const CoverLetterDownload = () => {
             <button
                 onClick={handleSave}
                 disabled={isSaving || isSaved}
-                className="rounded-full bg-green-600 hover:bg-green-700 text-white py-2 px-6 transition duration-200 disabled:opacity-50"
+                className="rounded-full bg-r-primary hover:bg-r-accent hover:text-black text-white py-2 px-6 transition duration-200 disabled:opacity-50"
             >
                 {!user
                     ? 'Do login before saving'
@@ -94,7 +94,7 @@ const CoverLetterDownload = () => {
                         <PDFDownloadLink
                             document={<CoverLetterPDF coverLetterData={CoverLetterData} />}
                             fileName={`${CoverLetterData?.greeting || 'coverLetter'}.pdf`}
-                            className="rounded-full bg-r-primary text-white py-2 px-6 transition duration-200"
+                            className="rounded-full bg-r-primary text-white hover:bg-r-accent hover:text-black py-2 px-6 transition duration-200"
                         >
                             {({ loading, error }) =>
                                 loading ? 'Preparing PDF...' : error ? 'Error Generating PDF' : 'Download PDF'
@@ -104,7 +104,7 @@ const CoverLetterDownload = () => {
                         <button
                             onClick={() => generateDocx(CoverLetterData)}
                             disabled={!isSaved}
-                            className="rounded-full bg-r-primary text-white py-2 px-6 transition duration-200 disabled:opacity-50"
+                            className="rounded-full bg-r-primary text-white hover:bg-r-accent hover:text-black py-2 px-6 transition duration-200 disabled:opacity-50"
                         >
                             Download DOCX
                         </button>

@@ -45,7 +45,7 @@ const UserDashboard = () => {
               setUsers((prevUsers) =>
                 prevUsers.filter((user) => user._id !== id)
               );
-              Swal.fire("Deleted!", data.message, "success");
+              Swal.fire({title:"Deleted!", text: data.message, icon:"success", confirmButtonColor: "#588568"});
             } else {
               Swal.fire("Error!", "User could not be deleted.", "error");
             }

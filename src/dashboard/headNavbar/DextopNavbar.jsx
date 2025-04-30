@@ -2,10 +2,11 @@ import React from "react";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
 import { LuMessageCircleMore } from "react-icons/lu";
+import { Link } from "react-router";
 import useAuth from "../../hooks/useAuth";
 
 const DextopNavbar = () => {
-  const {  user } = useAuth();
+  const { user } = useAuth();
 
   return (
     <>
@@ -46,42 +47,45 @@ const DextopNavbar = () => {
               <span className="indicator-item badge w-6 h-6 text-r-text bg-r-primary rounded-full">
                 12
               </span>
-              <button className="w-11 h-11 border flex justify-center items-center border-r-background hover:bg-r-info transition-all duration-300 cursor-pointer rounded-full">
+              <Link
+                to="/dashboard/notification"
+                className="w-11 h-11 border flex justify-center items-center border-r-background hover:bg-r-info transition-all duration-300 cursor-pointer rounded-full"
+              >
                 <IoIosNotificationsOutline className="text-2xl text-r-background" />
-              </button>
+              </Link>
             </div>
             <div className="indicator">
               <span className="indicator-item badge w-6 h-6 text-r-text bg-r-primary rounded-full">
                 9
               </span>
-              <button className=" w-11 h-11 border flex justify-center items-center border-r-background hover:bg-r-info transition-all duration-300 cursor-pointer rounded-full">
+              <Link
+                to="/dashboard/chat"
+                className=" w-11 h-11 border flex justify-center items-center border-r-background hover:bg-r-info transition-all duration-300 cursor-pointer rounded-full"
+              >
                 <LuMessageCircleMore className="text-2xl text-r-background" />
-              </button>
+              </Link>
             </div>
             <div className="indicator">
               <span className="indicator-item badge w-6 h-6 text-r-text bg-r-primary rounded-full">
                 5
               </span>
-              <button className=" w-11 h-11 border flex justify-center items-center border-r-background hover:bg-r-info transition-all duration-300 cursor-pointer rounded-full">
+              <Link
+                to="/dashboard/security"
+                className=" w-11 h-11 border flex justify-center items-center border-r-background hover:bg-r-info transition-all duration-300 cursor-pointer rounded-full"
+              >
                 <IoSettingsOutline className="text-2xl text-r-background" />
-              </button>
+              </Link>
             </div>
           </div>
 
           {/* User */}
           <div className="flex items-center gap-4 pr-4">
             <h4 className="font-semibold opacity-80 text-r-background hidden xl:block">
-              {/* Bikash Sarker */}
               {user?.displayName}
             </h4>
             <div className="avatar">
               <div className="w-12 h-12 rounded-full">
-                {/* <img src="https://st2.depositphotos.com/1006318/5909/v/450/depositphotos_59094701-stock-illustration-businessman-profile-icon.jpg" /> */}
-                <img
-                        
-                        src={user.photoURL}
-                        alt="User"
-                      />
+                <img src={user.photoURL} alt="User" />
               </div>
             </div>
           </div>

@@ -74,7 +74,7 @@ const ResumeDownload = () => {
             <button
                 onClick={handleSaveResume}
                 disabled={isSaving || isSaved}
-                className="rounded-full bg-green-600 hover:bg-green-700 text-white py-2 px-6 transition duration-200 disabled:opacity-50"
+                className="rounded-full bg-r-primary hover:bg-r-accent hover:text-black text-white py-2 px-6 transition duration-200 disabled:opacity-50"
             >
                 {!user
                     ? 'Do login before saving'
@@ -89,7 +89,12 @@ const ResumeDownload = () => {
                 <PDFDownloadLink
                     document={<ResumePDF resumeData={resumeData} />}
                     fileName={`${resumeData?.personalInfo?.fullName || 'resume'}.pdf`}
+<<<<<<< HEAD
                     className={`rounded-full bg-r-primary text-white py-2 px-6 transition duration-200 ${!isSaved ? 'opacity-50 pointer-events-none' : ''}`}
+=======
+                    className={`rounded-full bg-r-primary text-white hover:bg-r-accent hover:text-black py-2 px-6 transition duration-200 ${!isSaved ? 'opacity-50 pointer-events-none' : ''
+                        }`}
+>>>>>>> 66aa8d7753556709ffadb4a1d08001502d3781ca
                 >
                     {({ loading }) => (loading ? 'Preparing PDF...' : 'Download PDF')}
                 </PDFDownloadLink>
@@ -97,7 +102,7 @@ const ResumeDownload = () => {
                 <button
                     onClick={() => generateDocx(resumeData)}
                     disabled={!isSaved}
-                    className="rounded-full bg-r-primary text-white py-2 px-6 transition duration-200 disabled:opacity-50"
+                    className="rounded-full bg-r-primary text-white hover:bg-r-accent hover:text-black py-2 px-6 transition duration-200 disabled:opacity-50"
                 >
                     Download DOCX
                 </button>

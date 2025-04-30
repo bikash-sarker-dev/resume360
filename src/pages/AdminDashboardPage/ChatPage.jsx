@@ -72,7 +72,7 @@ const ChatPage = () => {
   };
 
   return (
-    <div className="min-h-screen mb-24 bg-gray-100 mx-6 flex items-center justify-center">
+    <div className=" py-10 mx-6 flex items-center justify-center">
       <div className="max-w-6xl w-full h-[90vh] flex bg-white shadow-lg rounded-lg overflow-hidden">
         {/* Sidebar for Admin */}
         {isAdmin && (

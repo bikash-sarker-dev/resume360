@@ -17,7 +17,7 @@ const SecurityPage = () => {
             className="w-8 h-8  text-r-primary bg-r-secondary
         flex items-center justify-center rounded-full font-bold"
           >
-            <FaUser />
+            <FaUser className="text-r-background" />
           </div>
           <div>
             <h3 className="text-lg font-medium">User Roles & Permissions</h3>
@@ -34,7 +34,7 @@ const SecurityPage = () => {
               className="w-8 h-8 text-r-primary bg-r-secondary
           flex items-center justify-center rounded-full font-bold"
             >
-              <BiSolidLogInCircle />
+              <BiSolidLogInCircle className="text-r-background" />
             </div>
             <div>
               <h3 className="text-lg font-medium">Authentication</h3>
@@ -48,7 +48,7 @@ const SecurityPage = () => {
         {/* API & Session Security */}
         <div className="bg-white p-4 rounded-xl shadow flex items-center space-x-4">
           <div className="w-8 h-8 text-r-primary bg-r-secondary flex items-center justify-center rounded-full font-bold">
-            <MdOutlineSecurityUpdate />
+            <MdOutlineSecurityUpdate className="text-r-background" />
           </div>
           <div>
             <h3 className="text-lg font-medium">API & Session Security</h3>
@@ -64,7 +64,7 @@ const SecurityPage = () => {
             className="w-8 h-8 text-r-primary bg-r-secondary flex items-center justify-center rounded-full 
          font-bold"
           >
-            <MdPrivacyTip />
+            <MdPrivacyTip className="text-r-background" />
           </div>
           <div>
             <h3 className="text-lg font-medium">Data Privacy</h3>
@@ -80,7 +80,7 @@ const SecurityPage = () => {
             className="w-8 h-8 text-r-primary bg-r-secondary flex
          items-center justify-center rounded-full font-bold"
           >
-            <MdOutlineSecurity />{" "}
+            <MdOutlineSecurity className="text-r-background" />{" "}
           </div>
           <div>
             <h3 className="text-lg font-medium">Security Logs</h3>
@@ -96,7 +96,7 @@ const SecurityPage = () => {
             className="w-8 h-8 text-r-primary bg-r-secondary flex items-center
          justify-center rounded-full font-bold"
           >
-            <MdAdminPanelSettings />
+            <MdAdminPanelSettings className="text-r-background" />
           </div>
           <div>
             <h3 className="text-lg font-medium">Admin Controls</h3>

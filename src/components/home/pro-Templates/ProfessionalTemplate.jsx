@@ -62,6 +62,10 @@ const ProfessionalTemplate = () => {
           {resume && (
             <div>
               <Swiper
+               style={{
+                "--swiper-navigation-color": "var(--color-r-info)",
+                "--swiper-pagination-color": "var(--color-r-accent)",
+              }}
                 slidesPerView={3}
                 spaceBetween={20}
                 freeMode={true}
@@ -123,6 +127,10 @@ const ProfessionalTemplate = () => {
           )}
           {cv && (
             <Swiper
+            style={{
+              "--swiper-navigation-color": "var(--color-r-info)",
+              "--swiper-pagination-color": "var(--color-r-accent)",
+            }}
               slidesPerView={3}
               spaceBetween={20}
               freeMode={true}
@@ -198,6 +206,10 @@ const ProfessionalTemplate = () => {
           )}
           {coverLetter && (
             <Swiper
+            style={{
+              "--swiper-navigation-color": "var(--color-r-info)",
+              "--swiper-pagination-color": "var(--color-r-accent)",
+            }}
               slidesPerView={3}
               spaceBetween={20}
               freeMode={true}
