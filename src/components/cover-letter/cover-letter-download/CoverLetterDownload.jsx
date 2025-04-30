@@ -5,34 +5,42 @@ import { useContext, useState } from 'react';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import { CoverLetterContext } from '../../../contextApi/coverletter-context/CoverLetterContext';
+import { AuthContext } from '../../../contextApi/AuthenticationContext'; // 👈 Import AuthContext
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router';
+
 
 const CoverLetterDownload = () => {
     const { CoverLetterData } = useContext(CoverLetterContext);
+    const { user } = useContext(AuthContext); // 👈 Get user from AuthContext
     const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate(); // 👈 Initialize navigate
     const [isSaving, setIsSaving] = useState(false);
     const [isSaved, setIsSaved] = useState(false);
 
-    // Theme color fetcher
     const getThemeColor = (variableName) => {
         return getComputedStyle(document.documentElement).getPropertyValue(variableName)?.trim();
     };
-    // Save Handler for Cover Letter
+
     const handleSave = async () => {
+        if (!user) {
+            navigate('/login'); // 👈 Redirect if not logged in
+            return;
+        }
+
         setIsSaving(true);
         const primaryColor = getThemeColor('--color-r-primary');
 
         try {
-            const dataToSave = CoverLetterData;  // Use only cover letter data
-            const endpoint = '/cover-letter';  // Use endpoint for cover letter
+            const dataToSave = CoverLetterData;
+            const endpoint = '/cover-letter';
 
             const response = await axiosPublic.post(endpoint, dataToSave);
 
             if (response.status === 200 || response.status === 201) {
                 setIsSaved(true);
-
-                // Clear the cookies after successful save
                 Cookies.remove('coverLetterData');
+
                 Swal.fire({
                     icon: 'success',
                     title: 'Great job!',
@@ -71,7 +79,13 @@ const CoverLetterDownload = () => {
                 disabled={isSaving || isSaved}
                 className="rounded-full bg-r-primary hover:bg-r-accent hover:text-black text-white py-2 px-6 transition duration-200 disabled:opacity-50"
             >
-                {isSaving ? 'Saving...' : isSaved ? 'Cover Letter Saved' : 'Save Cover Letter'}
+                {!user
+                    ? 'Do login before saving'
+                    : isSaving
+                        ? 'Saving...'
+                        : isSaved
+                            ? 'Cover Letter Saved'
+                            : 'Save Cover Letter'}
             </button>
 
             <div className="flex flex-wrap gap-4 mt-4 justify-center">
@@ -87,13 +101,12 @@ const CoverLetterDownload = () => {
                             }
                         </PDFDownloadLink>
 
-
                         <button
                             onClick={() => generateDocx(CoverLetterData)}
                             disabled={!isSaved}
                             className="rounded-full bg-r-primary text-white hover:bg-r-accent hover:text-black py-2 px-6 transition duration-200 disabled:opacity-50"
                         >
-                            {isSaving ? 'Generating DOCX...' : 'Download DOCX'}
+                            Download DOCX
                         </button>
                     </>
                 )}

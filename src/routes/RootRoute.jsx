@@ -87,14 +87,12 @@ const RootRoute = () => {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/generate" element={<Generate />} />
         <Route path="/resume" element={<ResumeGenerate />} />
-        <Route path="/create-resume" element={<Resume />} />
+        <Route path="/create-resume/:templateId" element={<Resume />} />
         <Route path="/resume-manager" element={<ResumeManager />} />
         <Route path="/templateOne" element={<TemplateOne />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/cover-letter" element={<CoverLetter />} />
-        <Route
-          path="/generate-cover-letter"
-          element={<CoverLetterGenerate />}
+        <Route path="/generate-cover-letter" element={<CoverLetterGenerate />}
         />
         <Route path="/cover-letter-manager" element={<CoverLetterManager />} />
         <Route path="/cover-letter" element={<CoverLetter />} />
