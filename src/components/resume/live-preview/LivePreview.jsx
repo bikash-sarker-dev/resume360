@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { ResumeContext } from "../../../contextApi/resume-context/ResumeContext";
 import CustomeTemplate0 from "../../CustomTemplate/CustomTemplates/CustomeTemplate0";
+import { CustomTemplate1 } from "../../CustomTemplate/CustomTemplates/CustomTemplate1";
+import { CustomeTemplate2 } from "../../CustomTemplate/CustomTemplates/CustomeTemplate2";
 
 const LivePreview = () => {
     const { resumeData } = useContext(ResumeContext);
@@ -103,7 +105,11 @@ const LivePreview = () => {
             {!showDemo && isEmpty ? (
                 <p className="text-center mt-4 text-gray-500 italic">No resume data provided yet.</p>
             ) : (
-                <CustomeTemplate0 resumeData={finalData} />
+                <>
+                    <CustomeTemplate0 resumeData={finalData} />
+                    <CustomTemplate1 resumeData={finalData} />
+                    <CustomeTemplate2 resumeData={finalData} />
+                </>
             )}
         </div>
     );

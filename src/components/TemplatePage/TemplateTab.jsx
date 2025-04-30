@@ -18,17 +18,6 @@ export const TemplateTab = ({ title, templates }) => {
                   className="w-full aspect-[18/24] object-cover object-top"
                 />
               </div>
-              <div className="p-4">
-                <h5 className="text-sm sm:text-base font-semibold text-slate-900 line-clamp-2">{template.name || "Untitled Template"}</h5>
-                <div className="mt-2 flex items-center flex-wrap gap-2">
-                  <h6 className="text-sm sm:text-base font-semibold text-slate-900">{template.price ? `$${template.price}` : "Free"}</h6>
-                  <div
-                    className="bg-slate-100 w-8 h-8 flex items-center justify-center rounded-full cursor-pointer ml-auto"
-                    title="Wishlist"
-                  >
-                  </div>
-                </div>
-              </div>
             </Link>
             <div className="min-h-[50px] p-4 !pt-0">
               <button
