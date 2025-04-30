@@ -7,7 +7,7 @@ const TemplatesPage = () => {
   const [templetes, setTemplates] = useState([]);
   let [resumebtn, setResume] = useState(true);
   let [cvbtn, setCv] = useState(false);
-  let [coverLetterbtn, setCoverLetter] = useState(false);
+
 
 
   const [active,setActive]=useState("resume")
