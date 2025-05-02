@@ -9,30 +9,28 @@ import {
   StyleSheet,
 } from "@react-pdf/renderer";
 import axios from "axios";
-import { useParams } from "react-router";
 
 const Uploadtemplate = ({ resumeId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingSection, setEditingSection] = useState(null);
   const [extractedTexts, setExtractedTexts] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const handleSave = (updatedObject) => {
     setExtractedTexts(updatedObject);
   };
 
   useEffect(() => {
-    const storedId = localStorage.getItem("resumeId");
-    if (storedId && !resumeId) {
-      setResumeId(storedId); // restore from localStorage if not already set
-    }
+    
   
     const fetchResume = async (id) => {
       try {
         const res = await axios.get(`https://resume360-server.vercel.app/resumeIn/${id}`);
         console.log(res.data.result);
         setExtractedTexts(res.data.result);
+        setLoading(false);
       } catch (err) {
         console.error("Failed to fetch resume:", err);
+        setLoading(false);
       }
     };
   
@@ -315,6 +313,14 @@ const Uploadtemplate = ({ resumeId }) => {
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
   };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+       <div className="w-12 h-12 border-4 border-t-4 border-gray-200 border-t-[#588568] rounded-full animate-spin mx-auto"></div>
+      </div>
+    );
+  }
 
   return (
     <>

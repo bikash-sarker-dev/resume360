@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa6";
 import Swal from "sweetalert2";
 
@@ -44,9 +43,6 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
       console.error("PUT Error:", error);
     }
   };
-  
-  
-  
 
   const handleProjectChange = (index, field, value) => {
     setFormData((prev) => {
@@ -77,33 +73,28 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
 
   const handleDeleteProject = (index) => {
     Swal.fire({
-      title: 'Are you sure?',
+      title: "Are you sure?",
       text: "You won't be able to revert this!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#588568',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonColor: "#588568",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
         setFormData((prev) => {
           const updatedProjects = [...(prev.projects || [])];
-          updatedProjects.splice(index, 1); // Remove the project at index
+          updatedProjects.splice(index, 1); 
           return {
             ...prev,
             projects: updatedProjects,
           };
         });
-  
-        Swal.fire(
-          'Deleted!',
-          'Your project has been deleted.',
-          'success'
-        );
+
+        Swal.fire("Deleted!", "Your project has been deleted.", "success");
       }
     });
   };
-  
 
   if (!isOpen) return null;
 
@@ -112,43 +103,38 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
       <div className="bg-r-background p-6 rounded-lg w-[600px] max-h-[80vh] overflow-y-auto">
         <h2 className="text-xl font-bold mb-4">Edit Resume</h2>
 
-        <label>name</label>
         <input
           type="text"
           value={formData.name || ""}
-          onChange={(e) => handleChange(e, "skills", "frontend")}
+          onChange={(e) => handleChange(e, "name")} 
           className="w-full p-2 border border-[#588568] rounded mb-2"
         />
 
-        <label>title</label>
         <input
           type="text"
           value={formData.title || ""}
-          onChange={(e) => handleChange(e, "skills", "frontend")}
+          onChange={(e) => handleChange(e, "title")} 
           className="w-full p-2 border border-[#588568] rounded mb-2"
         />
 
-        <label>email</label>
         <input
           type="text"
           value={formData.email || ""}
-          onChange={(e) => handleChange(e, "skills", "frontend")}
+          onChange={(e) => handleChange(e, "email")} 
           className="w-full p-2 border border-[#588568] rounded mb-2"
         />
 
-        <label>linkedin link</label>
         <input
           type="text"
           value={formData.linkedin || ""}
-          onChange={(e) => handleChange(e, "skills", "frontend")}
+          onChange={(e) => handleChange(e, "linkedin")} 
           className="w-full p-2 border border-[#588568] rounded mb-2"
         />
 
-        <label>portfolio</label>
         <input
           type="text"
           value={formData.portfolio || ""}
-          onChange={(e) => handleChange(e, "skills", "frontend")}
+          onChange={(e) => handleChange(e, "portfolio")} 
           className="w-full p-2 border border-[#588568] rounded mb-2"
         />
 
@@ -208,7 +194,6 @@ const Modal = ({ isOpen, onClose, onSave, extractedTexts }) => {
                   }
                   className="w-full p-2 border  border-[#588568] rounded mb-4"
                   placeholder="Project Title"
-                  
                 />
 
                 <label className="font-medium">Type</label>
