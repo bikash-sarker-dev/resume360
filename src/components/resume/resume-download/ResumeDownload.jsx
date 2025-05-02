@@ -1,20 +1,22 @@
 import { useContext, useState } from 'react';
 import { PDFDownloadLink } from '@react-pdf/renderer';
-import ResumePDF from './ResumePDF';
+import ResumePDF from './ResumePDF'; // resume0
+import CustomTemplate1PDF from '../../CustomTemplate/PDF/CustomTemplate1PDF'; // resume1
+import CustomTemplate2PDF from '../../CustomTemplate/PDF/CustomTemplate2PDF'; // resume2
 import { generateDocx } from './generateDocx';
 import { ResumeContext } from '../../../contextApi/resume-context/ResumeContext';
 import { AuthContext } from '../../../contextApi/AuthenticationContext';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import Cookies from 'js-cookie';
-import { useNavigate } from 'react-router';
-
+import { useNavigate, useParams } from 'react-router';
 
 const ResumeDownload = () => {
     const { resumeData } = useContext(ResumeContext);
     const { user } = useContext(AuthContext);
     const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
+    const { templateId } = useParams(); // <- Get templateId from route
     const [isSaving, setIsSaving] = useState(false);
     const [isSaved, setIsSaved] = useState(false);
 
@@ -37,7 +39,6 @@ const ResumeDownload = () => {
             if (response.status === 200 || response.status === 201) {
                 setIsSaved(true);
                 Cookies.remove('resumeData');
-
                 Swal.fire({
                     icon: 'success',
                     title: 'Great job!',
@@ -65,6 +66,23 @@ const ResumeDownload = () => {
         }
     };
 
+    // Map templateId to PDF component
+    const pdfTemplateMap = {
+        resume0: ResumePDF,
+        resume1: CustomTemplate1PDF,
+        resume2: CustomTemplate2PDF,
+    };
+
+    const SelectedPDF = pdfTemplateMap[templateId];
+
+    if (!SelectedPDF) {
+        return (
+            <div className="text-center text-red-600 mt-12 font-semibold">
+                Invalid template selected. Please go back and choose a valid template.
+            </div>
+        );
+    }
+
     return (
         <div className="mt-6 p-6 flex flex-col justify-center">
             <p className="text-[--color-r-text] mb-4 text-center">
@@ -87,7 +105,7 @@ const ResumeDownload = () => {
 
             <div className="flex flex-wrap gap-4 mt-4 justify-center">
                 <PDFDownloadLink
-                    document={<ResumePDF resumeData={resumeData} />}
+                    document={<SelectedPDF resumeData={resumeData} />}
                     fileName={`${resumeData?.personalInfo?.fullName || 'resume'}.pdf`}
                     className={`rounded-full bg-r-primary text-white py-2 px-6 transition duration-200 ${!isSaved ? 'opacity-50 pointer-events-none' : ''}`}
                 >

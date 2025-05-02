@@ -1,9 +1,9 @@
 
 import React from "react";
-import pic1 from "../../../../src/assets/images/about/connecting/pic1.jpg"
-import pic2 from "../../../../src/assets/images/about/connecting/pic2.jpg"
-import pic3 from "../../../../src/assets/images/about/connecting/pic3.jpg"
-import pic4 from "../../../../src/assets/images/about/connecting/pic5.jpg"
+import pic1 from "../../../../src/assets/images/about/connecting/pic1.webp"
+import pic2 from "../../../../src/assets/images/about/connecting/pic2.webp"
+import pic3 from "../../../../src/assets/images/about/connecting/pic3.webp"
+import pic4 from "../../../../src/assets/images/about/connecting/pic5.webp"
 import { motion } from "framer-motion";
 
 const ConnectingPeople = () => {

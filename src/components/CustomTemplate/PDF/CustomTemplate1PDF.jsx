@@ -1,164 +1,187 @@
-import React from 'react'
-import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
-import { useFormData } from '../FormDataProvider';
+import React from 'react';
+import {
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  Font,
+  Link,
+} from '@react-pdf/renderer';
+
+// Custom font registration (optional, can use default fonts)
+Font.register({
+  family: 'Roboto',
+  fonts: [
+    {
+      src: 'https://fonts.gstatic.com/s/roboto/v29/KFOmCnqEu92Fr1Mu4mxP.ttf',
+    },
+  ],
+});
+
 const styles = StyleSheet.create({
   page: {
-    padding: 40,
+    padding: 30,
     fontSize: 11,
-    fontFamily: 'Helvetica',
-    lineHeight: 1.6,
+    fontFamily: 'Roboto',
+    lineHeight: 1.5,
+    color: '#000',
   },
-  heading: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  subHeading: {
+  sectionTitle: {
     fontSize: 14,
     fontWeight: 'bold',
     marginBottom: 6,
-    color: 'gray',
-  },
-  sectionTitle: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    marginBottom: 4,
-    textDecoration: 'underline',
-  },
-  senderInfo: {
-    marginBottom: 10,
-  },
-  receiverInfo: {
-    marginBottom: 20,
+    textTransform: 'uppercase',
   },
   text: {
-    marginBottom: 10,
-  },
-  bold: {
-    fontWeight: 'bold',
-  },
-  date: {
-    marginBottom: 10,
-  },
-  greeting: {
-    marginBottom: 10,
-    fontWeight: 'bold',
+    fontSize: 11,
+    marginBottom: 2,
   },
   paragraph: {
-    marginBottom: 12,
-    textAlign: 'justify',
+    fontSize: 11,
+    marginBottom: 6,
   },
-  closing: {
-    marginTop: 20,
-  },
-  signature: {
-    marginTop: 4,
-    fontWeight: 'bold',
+  listItem: {
+    fontSize: 11,
+    marginLeft: 10,
+    marginBottom: 2,
   },
 });
 
-export const CustomTemplate1PDF = ({formData}) => {
-    
-    
-      
-        const {
-          personalInfo: { fullName, jobTitle, phoneNumber, email, address,summary },
-          education: { institution, degree, fieldOfStudy, additionalInfo , startDate,endDate},
-          experience: { companyName, position, duration, location, description,
-            projectTitle
-           , projectTools ,projectDescription,projectGithubLink
-           },
-          experience2: { companyName2, position2, duration2, 
-            location2, description2,
-            projectTitle2
-            , projectTools2 ,projectDescription2,projectGithubLink2
-           },
-          achievements: { achievementTitle, date, organization, description: achievementDescription },
-        } = formData;
+export const CustomTemplate1PDF = ({ resumeData }) => {
+  const {
+    personalInfo,
+    education,
+    skills,
+    experience,
+    projects,
+    languages,
+    socialLinks,
+  } = resumeData || {};
+
   return (
-   
-          <Document>
+    <Document>
       <Page size="A4" style={styles.page}>
-        
-        {/* Personal Info */}
+        {/* Name and Job Title */}
         <View>
-          <Text style={styles.heading}>{fullName || "DANIEL GALLEGO 4"}</Text>
-          <Text style={styles.subHeading}>{jobTitle || "UX DESIGNER"}</Text>
-          <Text style={styles.text}>
-            {address || "Dhaka, Bangladesh"} | {email || "denial123@gmail.com"} | {phoneNumber || "+8801523892111"}
+          <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
+            {personalInfo?.fullName || 'Your Name'}
           </Text>
+          <Text style={{ fontSize: 12, marginBottom: 6 }}>
+            {personalInfo?.jobTitle || 'Your Job Title'}
+          </Text>
+        </View>
+
+        {/* Contact Info */}
+        <View style={{ marginBottom: 10 }}>
+          {personalInfo?.email && <Text style={styles.text}>Email: {personalInfo.email}</Text>}
+          {personalInfo?.phone && <Text style={styles.text}>Phone: {personalInfo.phone}</Text>}
+          {personalInfo?.address && <Text style={styles.text}>Address: {personalInfo.address}</Text>}
         </View>
 
         {/* Summary */}
-        <View style={{ marginTop: 10 }}>
-          <Text style={styles.sectionTitle}>SUMMARY</Text>
-          <Text style={styles.text}>
-            {summary || `UX Designer with a focus on delivering impactful results, eager to tackle dynamic challenges...`}
-          </Text>
-        </View>
+        {personalInfo?.about && (
+          <View style={{ marginBottom: 10 }}>
+            <Text style={styles.sectionTitle}>Summary</Text>
+            <Text style={styles.paragraph}>{personalInfo.about}</Text>
+          </View>
+        )}
+
+        {/* Education */}
+        {education?.length > 0 && (
+          <View style={{ marginBottom: 10 }}>
+            <Text style={styles.sectionTitle}>Education</Text>
+            {education.map((edu, i) => (
+              <View key={i} style={{ marginBottom: 6 }}>
+                <Text style={styles.text}>
+                  {edu.school} ({new Date(edu.startDate).getFullYear()} - {new Date(edu.endDate).getFullYear()})
+                </Text>
+                <Text style={styles.listItem}>
+                  {edu.degree} in {edu.field} | Grade: {edu.grade}
+                </Text>
+                {edu.description && <Text style={styles.listItem}>• {edu.description}</Text>}
+              </View>
+            ))}
+          </View>
+        )}
 
         {/* Skills */}
-        <View style={{ marginTop: 10 }}>
-          <Text style={styles.sectionTitle}>{"TECHNICAL SKILLS"}</Text>
-          
-        </View>
+        {skills?.length > 0 && (
+          <View style={{ marginBottom: 10 }}>
+            <Text style={styles.sectionTitle}>Skills</Text>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+              {skills.map((skill, i) => (
+                <Text key={i} style={{ ...styles.listItem, width: '50%' }}>
+                  • {skill}
+                </Text>
+              ))}
+            </View>
+          </View>
+        )}
 
         {/* Experience */}
-        <View style={{ marginTop: 10 }}>
-          <Text style={styles.sectionTitle}>EXPERIENCE</Text>
-          <Text style={styles.text}>
-            {companyName || "Instant Chartz App, Morcelle Program"} ({duration || "Jan 2023 - Present"})
-          </Text>
-          <Text style={styles.listItem}>
-            • {description || "Led development of an advanced automation system..."}
-          </Text>
-
-          {/* Second Experience if exists */}
-          {Object.values(experience2 || {}).some((val) => val) && (
-            <>
-              <Text style={{ marginTop: 6, fontWeight: "bold" }}>
-                {companyName2 || "System UX Engineer, XarrowAI Industries"} ({duration2 || "Feb 2021 - Dec 2022"})
-              </Text>
-              <Text style={styles.listItem}>
-                • {description2 || "Designed and optimized a robotic control system..."}
-              </Text>
-            </>
-          )}
-        </View>
+        {experience?.length > 0 && (
+          <View style={{ marginBottom: 10 }}>
+            <Text style={styles.sectionTitle}>Experience</Text>
+            {experience.map((exp, i) => (
+              <View key={i} style={{ marginBottom: 6 }}>
+                <Text style={styles.text}>
+                  {exp.company} — {exp.position}
+                </Text>
+                <Text style={styles.listItem}>
+                  {exp.startMonth} to {exp.endMonth}
+                </Text>
+                <Text style={styles.listItem}>{exp.description}</Text>
+              </View>
+            ))}
+          </View>
+        )}
 
         {/* Projects */}
-        <View style={{ marginTop: 10 }}>
-          <Text style={styles.sectionTitle}>PROJECTS</Text>
-          <Text style={styles.text}>{ projectTitle || "SmartBudget – Personal Finance Tracker"}
-             </Text>
-          <Text style={styles.listItem}>{projectTools ||"• Designed wireframes and interactive prototypes"}</Text>
-          <Text style={styles.listItem}>{projectDescription ||"• Conducted usability testing"}</Text>
-
-          <Text style={styles.text}>{ projectTitle2 || "SmartBudget – Personal Finance Tracker"}
-             </Text>
-          <Text style={styles.listItem}>{projectTools2 ||"• Designed wireframes and interactive prototypes"}</Text>
-          <Text style={styles.listItem}>{projectDescription2 ||"• Conducted usability testing"}</Text>
-        </View>
-
-        {/* Education institution, degree, fieldOfStudy, additionalInfo , startDate,endDate */}
-        <View style={{ marginTop: 10 }}>
-          <Text style={styles.sectionTitle}>EDUCATION</Text>
-          <Text style={styles.text}>{institution ||"UX Industrial Basics and General Application"} {startDate}-{endDate}</Text>
-          <Text style={styles.listItem}>{fieldOfStudy ||"• Major in Automotive Technology"}</Text>
-          <Text style={styles.listItem}>{degree|| "• Thesis on Technological Advancements within Mechatronics"}</Text>
-
-         
-        </View>
+        {projects?.length > 0 && (
+          <View style={{ marginBottom: 10 }}>
+            <Text style={styles.sectionTitle}>Projects</Text>
+            {projects.map((project, i) => (
+              <View key={i} style={{ marginBottom: 6 }}>
+                <Text style={styles.text}>{project.projectName}</Text>
+                <Text style={styles.listItem}>• {project.description}</Text>
+                {project.features?.map((feature, j) => (
+                  <Text key={j} style={styles.listItem}>• {feature}</Text>
+                ))}
+                {project.live && <Text style={styles.listItem}>Live: <Link src={project.live}>{project.live}</Link></Text>}
+                {project.client && <Text style={styles.listItem}>Client: <Link src={project.client}>{project.client}</Link></Text>}
+                {project.server && <Text style={styles.listItem}>Server: <Link src={project.server}>{project.server}</Link></Text>}
+              </View>
+            ))}
+          </View>
+        )}
 
         {/* Languages */}
-        <View style={{ marginTop: 10 }}>
-          <Text style={styles.sectionTitle}>LANGUAGES</Text>
-          <Text style={styles.listItem}>• English: Comfortable</Text>
-          <Text style={styles.listItem}>• Bangla: Native</Text>
-        </View>
+        {languages?.length > 0 && (
+          <View style={{ marginBottom: 10 }}>
+            <Text style={styles.sectionTitle}>Languages</Text>
+            {languages.map((lang, i) => (
+              <Text key={i} style={styles.listItem}>
+                {lang.language} — {lang.proficiency}
+              </Text>
+            ))}
+          </View>
+        )}
 
+        {/* Social Links */}
+        {socialLinks?.length > 0 && (
+          <View style={{ marginBottom: 10 }}>
+            <Text style={styles.sectionTitle}>Social Links</Text>
+            {socialLinks.map((link, i) => (
+              <Text key={i} style={styles.listItem}>
+                {link.platform}: <Link src={link.link}>{link.link}</Link>
+              </Text>
+            ))}
+          </View>
+        )}
       </Page>
     </Document>
-   
-  )
-}
+  );
+};
+
+export default CustomTemplate1PDF;

@@ -216,14 +216,14 @@ const ResumeList = ({ searchTerm }) => {
                                                             >
                                                                 View
                                                             </MenuItem>
-                                                            <MenuItem
+                                                            {/* <MenuItem
                                                                 onClick={() => {
                                                                     handleClose(index);
                                                                     handleAction('Edit', row);
                                                                 }}
                                                             >
                                                                 Edit
-                                                            </MenuItem>
+                                                            </MenuItem> */}
                                                             <MenuItem
                                                                 onClick={() => {
                                                                     handleClose(index);

@@ -9,6 +9,7 @@ const Uploadresume = () => {
   const [textContent, setTextContent] = useState({});
   const [pdfUploaded, setPdfUploaded] = useState(false);
   const [resumeId, setResumeId] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     WebViewer(
@@ -457,13 +458,27 @@ const Uploadresume = () => {
     };
   };
 
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    
+    if (file) {
+      setLoading(true); // Start the loader
+
+      const buf = await file.arrayBuffer();
+      await instance.UI.loadDocument(buf, { filename: file.name });
+
+      setPdfUploaded(true); // Set the uploaded state to true when upload is complete
+      setLoading(false); // Stop the loader
+    }
+  };
+
   return (
     <div className="p-6  rounded-xl shadow-md min-h-screen max-w-4xl mx-auto mt-20">
-      <h2 className="text-2xl font-semibold mb-6">Upload Resume & Preview</h2>
 
       {!pdfUploaded ? (
-        <div className="border-2 border-dashed p-6 text-center h-60 rounded-3xl cursor-pointer hover:border-blue-500 mb-6">
-          <label htmlFor="resume-upload" className="cursor-pointer ">
+        <div className="border-2 border-dashed p-6 text-center h-60 rounded-3xl cursor-pointer hover:border-[#588568] mb-6">
+          
+          <label htmlFor="resume-upload" className="w-full h-full cursor-pointer flex flex-col items-center justify-center ">
             <span className="text-lg ">Click to upload your PDF resume</span>
             <p className="text-sm text-gray-400">(PDF only)</p>
           </label>
@@ -471,15 +486,21 @@ const Uploadresume = () => {
             id="resume-upload"
             type="file"
             accept="application/pdf"
-            onChange={async (e) => {
-              const file = e.target.files[0];
-              const buf = await file.arrayBuffer();
-              await instance.UI.loadDocument(buf, { filename: file.name });
-            }}
+            onChange={handleFileUpload}
             className="hidden"
           />
+
+          {/* Loader */}
+          {loading && (
+            <div className="absolute min-h-screen inset-0 flex items-center justify-center bg-r-background bg-opacity-50 rounded-3xl">
+              <div className="spinner-border text-r-info" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          )}
         </div>
       ) : (
+        
         <Uploadtemplate resumeId={resumeId} />
       )}
 
