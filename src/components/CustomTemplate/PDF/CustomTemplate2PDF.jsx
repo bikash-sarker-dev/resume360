@@ -1,4 +1,3 @@
-// CustomTemplate2PDF.jsx
 import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import React from 'react';
 
@@ -61,113 +60,158 @@ const styles = StyleSheet.create({
       marginLeft: 10,
       marginBottom: 4,
     },
-  });
-export const CustomTemplate2PDF = ({formData}) => {
+});
 
-  console.log(formData);
-    const {
-        personalInfo: { fullName, jobTitle, phoneNumber, email, address, summary } = {},
-        education: { institution, cgpa, degree, fieldOfStudy, additionalInfo, startDate, endDate } = {},
-        experience: { companyName, position, duration, location, description } = {},
-        experience2: { companyName2, position2, duration2, location2, description2 } = {},
-        achievements: { achievementTitle, startdate, enddate, organization, description: achievementDescription } = {},
-      } = formData || {};
+export const CustomTemplate2PDF = ({ formData }) => {
+  const {
+    personalInfo: {
+      fullName,
+      jobTitle,
+      phone,
+      email,
+      address,
+      about,
+    } = {},
+    education = [],
+    skills = [],
+    socialLinks = [],
+    projects = [],
+    experience = [],
+    languages = [],
+  } = formData || {};
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         {/* Name and Job Title */}
-        <Text style={styles.headingCenter}>{fullName || 'Emma Achern'}</Text>
-        <Text style={styles.subHeadingCenter}>{jobTitle || 'Chemist'}</Text>
+        <Text style={styles.headingCenter}>{fullName || 'Johnathan Doe'}</Text>
+        <Text style={styles.subHeadingCenter}>{jobTitle || 'Senior Frontend Engineer'}</Text>
 
         <View style={styles.divider} />
 
-        {/* Professional Summary */}
-        <Text style={styles.sectionTitle}>Professional Summary</Text>
+        {/* About Section */}
+        <Text style={styles.sectionTitle}>About Me</Text>
         <Text style={styles.textCenter}>
-          {summary ||
-            `Dedicated and detail-oriented chemist with extensive experience in analytical research, laboratory testing, and chemical synthesis. Skilled in utilizing advanced instrumentation and methodologies to conduct qualitative and quantitative analyses.`}
+          {about ||
+            'Creative and detail-oriented frontend engineer with 5+ years of experience crafting intuitive and dynamic user interfaces. Skilled in modern frameworks and passionate about delivering seamless user experiences.'}
         </Text>
 
         {/* Contact Info */}
         <View style={styles.contactInfo}>
           <View style={styles.contactItem}>
             <Text style={styles.textXs}>Phone</Text>
-            <Text style={styles.textXs}>{phoneNumber || '+1 (123) 456-7890'}</Text>
+            <Text style={styles.textXs}>{phone || '+1 (123) 456-7890'}</Text>
           </View>
           <View style={styles.contactItem}>
             <Text style={styles.textXs}>Email</Text>
-            <Text style={styles.textXs}>{email || 'emma.achern@example.com'}</Text>
+            <Text style={styles.textXs}>{email || 'adnan.mahmud.pc@gmail.com'}</Text>
           </View>
           <View style={styles.contactItem}>
             <Text style={styles.textXs}>Address</Text>
-            <Text style={styles.textXs}>{address || '123 Main St, New York, NY'}</Text>
+            <Text style={styles.textXs}>{address || '170 William Street, NY'}</Text>
           </View>
         </View>
 
         {/* Education */}
-        <Text style={styles.sectionTitle}>Education</Text>
-        <Text style={styles.normalText}>
-          {fieldOfStudy || 'Bachelor of Science in Chemistry'} | {startDate || '2026'} - {endDate || '2030'}
-        </Text>
-        <Text style={{ ...styles.normalText, color: '#006400' }}>
-          {institution || 'East State University, Valley City'}
-        </Text>
-        <View style={{ marginVertical: 5 }}>
-          <Text style={styles.listItem}>
-            • <Text>Additional Info: {additionalInfo || 'Organic Chemistry, Analytical Chemistry, Physical Chemistry, Biochemistry, Environmental Chemistry'}</Text>
-          </Text>
-          <Text style={styles.listItem}>
-            • <Text>CGPA: {cgpa || '3.8/4.0'}</Text>
-          </Text>
-        </View>
-
-        {/* Project Experience */}
-        <Text style={styles.sectionTitle}>Project Experience</Text>
-
-        {/* Project 1 */}
-        <Text style={styles.normalText}>
-          {companyName || 'Fabrication of Miniature Chemical Reactor'} | {duration || '2028'}
-        </Text>
-        <Text style={{ ...styles.normalText, color: '#006400' }}>
-          {position || 'Department of Chemistry, East State University'}
-        </Text>
-        {description ? (
-          <Text style={styles.normalText}>{description}</Text>
-        ) : (
-          <View style={{ marginVertical: 5 }}>
-            <Text style={styles.listItem}>• Project Focus: Design and fabrication of a miniature chemical reactor for lab-scale reactions</Text>
-            <Text style={styles.listItem}>• Key Responsibilities: Developing the prototype, conducting experiments to test efficiency, and optimizing reactor performance</Text>
-            <Text style={styles.listItem}>• Technologies/Methods Used: CAD modeling, thermodynamic analysis, and material selection for reactor components</Text>
-          </View>
+        {education.length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>Education</Text>
+            {education.map((edu, idx) => (
+              <View key={idx}>
+                <Text style={styles.normalText}>
+                  {edu.field || 'Field'} | {edu.startDate ? new Date(edu.startDate).getFullYear() : '2025'} - {edu.endDate ? new Date(edu.endDate).getFullYear() : '2025'}
+                </Text>
+                <Text style={{ ...styles.normalText, color: '#006400' }}>
+                  {edu.school || 'University Name'}
+                </Text>
+                <Text style={styles.normalText}>{edu.description || 'Description of the course'}</Text>
+              </View>
+            ))}
+          </>
         )}
 
-        {/* Project 2 */}
-        <Text style={{ ...styles.normalText, marginTop: 10 }}>
-          {companyName2 || 'The Green Thumb Chemist'} | {duration2 || '2029'}
-        </Text>
-        <Text style={`${styles.projectSubTitle},, color: '#006400'`}>
-          {position2 || 'Department of Chemistry, East State University'}
-        </Text>
-        {description2 ? (
-          <Text style={styles.normalText}>{description2}</Text>
-        ) : (
-          <View style={{ marginVertical: 5 }}>
-            <Text style={styles.listItem}>• Project Focus: Development of an eco-friendly chemical solution for plant growth and soil health improvement</Text>
-            <Text style={styles.listItem}>• Key Responsibilities: Synthesizing the chemical solution, testing its effects on different plant species, and analyzing soil samples</Text>
-            <Text style={styles.listItem}>• Technologies/Methods Used: Green chemistry techniques, soil pH analysis, plant growth tracking</Text>
-          </View>
+        {/* Skills */}
+        {skills.length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>Skills</Text>
+            <View style={{ marginVertical: 5 }}>
+              {skills.map((skill, idx) => (
+                <Text key={idx} style={styles.listItem}>• {skill}</Text>
+              ))}
+            </View>
+          </>
         )}
 
-        {/* Awards */}
-        <Text style={styles.sectionTitle}>Notable Awards</Text>
-        <View style={{ marginVertical: 5 }}>
-          <Text style={styles.listItem}>
-            • {achievementTitle || `Dean's List`}, {organization || `East State University`}, {(startdate && startdate.split(`-`)[0]) || `2026`} - {(enddate && enddate.split(`-`)[0]) || `2026`}
-          </Text>
-        </View>
+        {/* Social Links */}
+        {socialLinks.length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>Social Links</Text>
+            <View style={{ marginVertical: 5 }}>
+              {socialLinks.map((link, idx) => (
+                <Text key={idx} style={styles.listItem}>
+                  • <Text>{link.platform}: <Text style={{ color: '#006400' }}>{link.link}</Text></Text>
+                </Text>
+              ))}
+            </View>
+          </>
+        )}
+
+        {/* Projects */}
+        {projects.length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>Projects</Text>
+            <View style={{ marginVertical: 5 }}>
+              {projects.map((project, idx) => (
+                <View key={idx}>
+                  <Text style={styles.normalText}>{project.projectName}</Text>
+                  <Text style={styles.normalText}>{project.description}</Text>
+                  <Text style={styles.normalText}>Live: <Text style={{ color: '#006400' }}>{project.live}</Text></Text>
+                  <Text style={styles.normalText}>Client: <Text style={{ color: '#006400' }}>{project.client}</Text></Text>
+                  <Text style={styles.normalText}>Server: <Text style={{ color: '#006400' }}>{project.server}</Text></Text>
+                  <View style={{ marginVertical: 5 }}>
+                    {project.features.map((feature, idx) => (
+                      <Text key={idx} style={styles.listItem}>• {feature}</Text>
+                    ))}
+                  </View>
+                </View>
+              ))}
+            </View>
+          </>
+        )}
+
+        {/* Experience */}
+        {experience.length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>Experience</Text>
+            <View style={{ marginVertical: 5 }}>
+              {experience.map((exp, idx) => (
+                <View key={idx}>
+                  <Text style={styles.normalText}>{exp.position} at {exp.company}</Text>
+                  <Text style={styles.normalText}>
+                    {exp.startMonth} - {exp.endMonth}
+                  </Text>
+                  <Text style={styles.normalText}>{exp.description}</Text>
+                </View>
+              ))}
+            </View>
+          </>
+        )}
+
+        {/* Languages */}
+        {languages.length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>Languages</Text>
+            <View style={{ marginVertical: 5 }}>
+              {languages.map((lang, idx) => (
+                <Text key={idx} style={styles.listItem}>• {lang.language} ({lang.proficiency})</Text>
+              ))}
+            </View>
+          </>
+        )}
 
         <View style={styles.divider} />
       </Page>
     </Document>
-  )
-}
+  );
+};
+export default CustomTemplate2PDF;

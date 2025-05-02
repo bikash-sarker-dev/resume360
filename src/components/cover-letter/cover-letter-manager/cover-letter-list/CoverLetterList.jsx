@@ -163,7 +163,7 @@ const CoverLetterList = ({ searchTerm }) => {
                                             onClose={() => handleClose(index)}
                                         >
                                             <MenuItem onClick={() => handleView(row, index)}>View</MenuItem>
-                                            <MenuItem onClick={() => handleClose(index)}>Edit</MenuItem>
+                                            {/* <MenuItem onClick={() => handleClose(index)}>Edit</MenuItem> */}
                                             <MenuItem onClick={() => handleDelete(row, index)}>Delete</MenuItem>
                                         </Menu>
                                     </TableCell>
