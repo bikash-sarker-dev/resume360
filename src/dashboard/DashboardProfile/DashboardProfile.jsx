@@ -315,14 +315,14 @@ const DashboardProfile = () => {
               Contact Information
             </h3>
             <p className="flex items-center text-r-text mt-2">
-              <FiPhone className="mr-2 text-blue-400" /> {profile?.phone}
+              <FiPhone className="mr-2 text-r-info" /> {profile?.phone}
             </p>
             <p className="flex items-center text-r-text mt-2">
-              <FiMail className="mr-2 text-blue-400" /> {profile?.email || user?.email}
+              <FiMail className="mr-2 text-r-info" /> {profile?.email || user?.email}
             </p>
             <a
               href={profile?.website}
-              className="border-b border-blue-500 text-blue-600"
+              className="border-b border-[#588568] text-r-info"
             >
               my protfolio
             </a>
